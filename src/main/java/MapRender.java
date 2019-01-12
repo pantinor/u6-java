@@ -70,7 +70,37 @@ public class MapRender {
             }
         }
 
-        
+        int[][][] dungeon = new int[5][32][32];
+        for (int i = 0; i < 5; i++) {
+            for (int y = 0; y < 32; y++) {
+                for (int x = 0; x < 32; x += 2) {
+                    int a = is.read() & 0xff;
+                    int b = is.read() & 0xff;
+                    int c = is.read() & 0xff;
+                    int d = 256 * (b % 16) + a;
+                    int e = 16 * c + (b / 16);
+                    dungeon[i][y][x] = d;
+                    dungeon[i][y][x + 1] = e;
+                }
+            }
+        }
+
+        int[] dtiles = new int[5 * 256 * 256];
+        pos = 0;
+        for (int i = 0; i < 5; i++) {
+            for (int y = 0; y < 32; y++) {
+                for (int j = 0; j < 8; j++) {
+                    for (int x = 0; x < 32; x++) {
+                        int map_ptr = dungeon[i][y][x];
+                        for (int k = 0; k < 8; k++) {
+                            dtiles[pos] = chunks[map_ptr][j][k];
+                            pos++;
+                        }
+                    }
+                }
+            }
+        }
+
         int count = 1;
         StringBuilder sb = new StringBuilder();
         for (int y = 0; y < 1024; y++) {
@@ -85,7 +115,22 @@ public class MapRender {
         }
 
         //System.out.println(sb.toString());
-         
+        count = 1;
+        sb = new StringBuilder();
+        for (int i = 4; i < 5; i++) {
+            for (int y = 0; y < 256; y++) {
+                for (int x = 0; x < 256; x++) {
+                    sb.append(dtiles[(i * 256 * 256) + 256 * y + x] + 1 + ",");
+                    count++;
+                    if (count > 256) {
+                        count = 0;
+                        sb.append("\n");
+                    }
+                }
+            }
+        }
+
+        //System.out.println(sb.toString());
         List<Map<String, Object>> tileflags = readTileFlags();
 
         short[] basetiles = new short[1024];
@@ -118,15 +163,38 @@ public class MapRender {
                 }
             }
         }
-
         //System.out.println(sb.toString());
+
+        objects = new int[256][256];
+        for (int i = 4; i < 5; i++) {
+            readObjBlockDungeon(i, basetiles, tileflags, objects);
+
+            count = 1;
+            sb = new StringBuilder();
+            for (int y = 0; y < 256; y++) {
+                for (int x = 0; x < 256; x++) {
+                    if (objects[y][x] > 0) {
+                        sb.append((257 + objects[y][x]) + ",");
+                    } else {
+                        sb.append("0,");
+                    }
+                    count++;
+                    if (count > 1024) {
+                        count = 0;
+                        sb.append("\n");
+                    }
+                }
+            }
+            //System.out.println(sb.toString());
+
+        }
 
         U6Object[] objectList = readObjList(basetiles);
         U6Object[][] objectListGrid = new U6Object[1024][1024];
         for (U6Object obj : objectList) {
             objectListGrid[obj.y][obj.x] = obj;
         }
-        
+
         count = 1;
         sb = new StringBuilder();
         for (int y = 0; y < 1024; y++) {
@@ -145,7 +213,24 @@ public class MapRender {
         }
 
         //System.out.println(sb.toString());
+        count = 1;
+        sb = new StringBuilder();
+        for (int y = 0; y < 256; y++) {
+            for (int x = 0; x < 256; x++) {
+                if (objectListGrid[y][x] != null && objectListGrid[y][x].z == 5) {
+                    sb.append((257 + objectListGrid[y][x].tile) + ",");
+                } else {
+                    sb.append("0,");
+                }
+                count++;
+                if (count > 1024) {
+                    count = 0;
+                    sb.append("\n");
+                }
+            }
+        }
 
+        System.out.println(sb.toString());
     }
 
     private static List<Map<String, Object>> readTileFlags() throws Exception {
@@ -229,6 +314,53 @@ public class MapRender {
 
             boolean on_map = (status & 0x18) == 0;
             if (z == 0 && on_map) {
+                int tile = basetiles[object] + frame;
+                int objtile = tile;
+
+                objects[y][x] = tile;
+
+                int vsize = (Integer) tileflags.get(objtile).get("vsize");
+                int hsize = (Integer) tileflags.get(objtile).get("hsize");
+                for (int vs = 0; vs < vsize; vs++) {
+                    for (int hs = 0; hs < hsize; hs++) {
+
+                    }
+                }
+            }
+        }
+    }
+
+    private static void readObjBlockDungeon(int idx, short[] basetiles, List<Map<String, Object>> tileflags, int[][] objects) throws Exception {
+
+        String chars = "ABCDEFGH";
+
+        FileInputStream is = new FileInputStream("D:\\ultima\\ULTIMA6\\SAVEGAME\\OBJBLK" + chars.charAt(idx) + "I");
+        LittleEndianDataInputStream dis = new LittleEndianDataInputStream(is);
+
+        short count = dis.readShort();
+        //System.out.printf("Reading block [%s][%s] count [%d]\n", chars.charAt(idy), chars.charAt(idx), count);
+        for (int i = 0; i < count; i++) {
+            int status = dis.readUnsignedByte();
+
+            int x = dis.readUnsignedByte();
+            int b1 = dis.readUnsignedByte();
+            x += (b1 & 0x3) << 8;
+
+            int y = (b1 & 0xfc) >> 2;
+            int b2 = dis.readUnsignedByte();
+            y += (b2 & 0xf) << 6;
+
+            int z = (b2 & 0xf0) >> 4;
+
+            int type = dis.readUnsignedShort();
+            byte quantity = dis.readByte();
+            byte quality = dis.readByte();
+
+            int object = type & 0x3ff;
+            int frame = type >> 10;
+
+            boolean on_map = (status & 0x18) == 0;
+            if (z == idx + 1 && on_map) {
                 int tile = basetiles[object] + frame;
                 int objtile = tile;
 
