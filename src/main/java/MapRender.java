@@ -140,19 +140,24 @@ public class MapRender {
             basetiles[i] = dis.readShort();
         }
 
-        int[][] objects = new int[1024][1024];
+        List<U6Object> worldObjects = new ArrayList<>();
         for (int y = 0; y < 8; y++) {
             for (int x = 0; x < 8; x++) {
-                readObjBlock(x, y, basetiles, tileflags, objects);
+                worldObjects.addAll(readObjBlock(x, y, basetiles, tileflags));
             }
+        }
+
+        U6Object[][] grid = new U6Object[1024][1024];
+        for (U6Object obj : worldObjects) {
+            grid[obj.y][obj.x] = obj;
         }
 
         count = 1;
         sb = new StringBuilder();
         for (int y = 0; y < 1024; y++) {
             for (int x = 0; x < 1024; x++) {
-                if (objects[y][x] > 0) {
-                    sb.append((257 + objects[y][x]) + ",");
+                if (grid[y][x] != null) {
+                    sb.append((257 + grid[y][x].tile) + ",");
                 } else {
                     sb.append("0,");
                 }
@@ -165,16 +170,21 @@ public class MapRender {
         }
         //System.out.println(sb.toString());
 
-        objects = new int[256][256];
         for (int i = 4; i < 5; i++) {
-            readObjBlockDungeon(i, basetiles, tileflags, objects);
+
+            List<U6Object> dungeonObjects = (readObjBlockDungeon(i, basetiles, tileflags));
+
+            grid = new U6Object[256][256];
+            for (U6Object obj : dungeonObjects) {
+                grid[obj.y][obj.x] = obj;
+            }
 
             count = 1;
             sb = new StringBuilder();
             for (int y = 0; y < 256; y++) {
                 for (int x = 0; x < 256; x++) {
-                    if (objects[y][x] > 0) {
-                        sb.append((257 + objects[y][x]) + ",");
+                    if (grid[y][x] != null) {
+                        sb.append((257 + grid[y][x].tile) + ",");
                     } else {
                         sb.append("0,");
                     }
@@ -185,22 +195,21 @@ public class MapRender {
                     }
                 }
             }
-            //System.out.println(sb.toString());
-
+            System.out.println(sb.toString());
         }
 
         U6Object[] objectList = readObjList(basetiles);
-        U6Object[][] objectListGrid = new U6Object[1024][1024];
+        grid = new U6Object[1024][1024];
         for (U6Object obj : objectList) {
-            objectListGrid[obj.y][obj.x] = obj;
+            grid[obj.y][obj.x] = obj;
         }
 
         count = 1;
         sb = new StringBuilder();
         for (int y = 0; y < 1024; y++) {
             for (int x = 0; x < 1024; x++) {
-                if (objectListGrid[y][x] != null && objectListGrid[y][x].z == 0) {
-                    sb.append((257 + objectListGrid[y][x].tile) + ",");
+                if (grid[y][x] != null && grid[y][x].z == 0) {
+                    sb.append((257 + grid[y][x].tile) + ",");
                 } else {
                     sb.append("0,");
                 }
@@ -217,8 +226,8 @@ public class MapRender {
         sb = new StringBuilder();
         for (int y = 0; y < 256; y++) {
             for (int x = 0; x < 256; x++) {
-                if (objectListGrid[y][x] != null && objectListGrid[y][x].z == 5) {
-                    sb.append((257 + objectListGrid[y][x].tile) + ",");
+                if (grid[y][x] != null && grid[y][x].z == 5) {
+                    sb.append((257 + grid[y][x].tile) + ",");
                 } else {
                     sb.append("0,");
                 }
@@ -230,7 +239,7 @@ public class MapRender {
             }
         }
 
-        System.out.println(sb.toString());
+        //System.out.println(sb.toString());
     }
 
     private static List<Map<String, Object>> readTileFlags() throws Exception {
@@ -283,7 +292,7 @@ public class MapRender {
 
     }
 
-    private static void readObjBlock(int idx, int idy, short[] basetiles, List<Map<String, Object>> tileflags, int[][] objects) throws Exception {
+    private static List<U6Object> readObjBlock(int idx, int idy, short[] basetiles, List<Map<String, Object>> tileflags) throws Exception {
 
         String chars = "ABCDEFGH";
 
@@ -291,7 +300,9 @@ public class MapRender {
         LittleEndianDataInputStream dis = new LittleEndianDataInputStream(is);
 
         short count = dis.readShort();
-        //System.out.printf("Reading block [%s][%s] count [%d]\n", chars.charAt(idy), chars.charAt(idx), count);
+
+        List<U6Object> objects = new ArrayList<>();
+
         for (int i = 0; i < count; i++) {
             int status = dis.readUnsignedByte();
 
@@ -305,32 +316,42 @@ public class MapRender {
 
             int z = (b2 & 0xf0) >> 4;
 
-            int type = dis.readUnsignedShort();
+            b1 = dis.readUnsignedByte();
+            b2 = dis.readUnsignedByte();
+            int object = b1;
+            object += (b2 & 0x3) << 8;
+            int frame = (b2 & 0xfc) >> 2;
+
             byte quantity = dis.readByte();
             byte quality = dis.readByte();
-
-            int object = type & 0x3ff;
-            int frame = type >> 10;
 
             boolean on_map = (status & 0x18) == 0;
             if (z == 0 && on_map) {
                 int tile = basetiles[object] + frame;
                 int objtile = tile;
-
-                objects[y][x] = tile;
-
                 int vsize = (Integer) tileflags.get(objtile).get("vsize");
                 int hsize = (Integer) tileflags.get(objtile).get("hsize");
+
                 for (int vs = 0; vs < vsize; vs++) {
                     for (int hs = 0; hs < hsize; hs++) {
-
+                        U6Object obj = new U6Object();
+                        obj.x = x - hs;
+                        obj.y = y - vs;
+                        obj.z = z;
+                        obj.frame = frame;
+                        obj.object = object;
+                        obj.tile = tile;
+                        objects.add(obj);
+                        tile--;
                     }
                 }
+
             }
         }
+        return objects;
     }
 
-    private static void readObjBlockDungeon(int idx, short[] basetiles, List<Map<String, Object>> tileflags, int[][] objects) throws Exception {
+    private static List<U6Object> readObjBlockDungeon(int idx, short[] basetiles, List<Map<String, Object>> tileflags) throws Exception {
 
         String chars = "ABCDEFGH";
 
@@ -338,7 +359,9 @@ public class MapRender {
         LittleEndianDataInputStream dis = new LittleEndianDataInputStream(is);
 
         short count = dis.readShort();
-        //System.out.printf("Reading block [%s][%s] count [%d]\n", chars.charAt(idy), chars.charAt(idx), count);
+
+        List<U6Object> objects = new ArrayList<>();
+
         for (int i = 0; i < count; i++) {
             int status = dis.readUnsignedByte();
 
@@ -352,29 +375,40 @@ public class MapRender {
 
             int z = (b2 & 0xf0) >> 4;
 
-            int type = dis.readUnsignedShort();
+            b1 = dis.readUnsignedByte();
+            b2 = dis.readUnsignedByte();
+            int object = b1;
+            object += (b2 & 0x3) << 8;
+            int frame = (b2 & 0xfc) >> 2;
+
             byte quantity = dis.readByte();
             byte quality = dis.readByte();
 
-            int object = type & 0x3ff;
-            int frame = type >> 10;
-
             boolean on_map = (status & 0x18) == 0;
             if (z == idx + 1 && on_map) {
+
                 int tile = basetiles[object] + frame;
                 int objtile = tile;
-
-                objects[y][x] = tile;
-
                 int vsize = (Integer) tileflags.get(objtile).get("vsize");
                 int hsize = (Integer) tileflags.get(objtile).get("hsize");
+
                 for (int vs = 0; vs < vsize; vs++) {
                     for (int hs = 0; hs < hsize; hs++) {
-
+                        U6Object obj = new U6Object();
+                        obj.x = x - hs;
+                        obj.y = y - vs;
+                        obj.z = z;
+                        obj.frame = frame;
+                        obj.object = object;
+                        obj.tile = tile;
+                        objects.add(obj);
+                        tile--;
                     }
                 }
+
             }
         }
+        return objects;
     }
 
     static class U6Object {
@@ -382,7 +416,6 @@ public class MapRender {
         int x;
         int y;
         int z;
-        int type;
         int frame;
         int tile;
         int object;
@@ -404,9 +437,14 @@ public class MapRender {
             objects[i] = obj;
         }
         for (int i = 0; i < 256; i++) {
-            objects[i].type = dis.readUnsignedShort();
-            objects[i].object = objects[i].type & 0x3ff;
-            objects[i].frame = objects[i].type >> 10;
+            int b1 = dis.readUnsignedByte();
+            int b2 = dis.readUnsignedByte();
+            int object = b1;
+            object += (b2 & 0x3) << 8;
+            int frame = (b2 & 0xfc) >> 2;
+
+            objects[i].object = object;
+            objects[i].frame = frame;
             objects[i].tile = basetiles[objects[i].object] + objects[i].frame;
         }
         return objects;
