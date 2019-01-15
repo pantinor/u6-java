@@ -9,19 +9,7 @@ import java.util.List;
 import java.util.Map;
 import org.apache.commons.io.FileUtils;
 
-/*
- * The file "chunks" contains 1024 8x8 byte arrays giving tile indices.
-  These consititute the building blocks of which the map is composed.
-  
-  The file "map" contains the world map, stored as an 8x8 array of
-  16x16 arrays of indices into the set of chunks. Each index occupies
-  3 nibbles, each pair of which is stored with the nibbles permuted
-  strangely. The world map is followed by 5 dungeons, which are 32x32
-  arrays of chunk indices.
- */
 public class MapRender {
-
-    private static AnimData animData;
 
     public static void main(String[] args) throws Exception {
 
@@ -140,15 +128,15 @@ public class MapRender {
 
         }
 
-        animData = readAnimData();
+        AnimData animData = readAnimData();
 
         List<Map<String, Object>> tileflags = readTileFlags();
 
-        short[] basetiles = new short[1024];
+        int[] basetiles = new int[1024];
         is = new FileInputStream("D:\\ultima\\ULTIMA6\\BASETILE");
         LittleEndianDataInputStream dis = new LittleEndianDataInputStream(is);
         for (int i = 0; i < 1024; i++) {
-            basetiles[i] = dis.readShort();
+            basetiles[i] = dis.readUnsignedShort();
         }
 
         List<U6Object> worldObjects = new ArrayList<>();
@@ -158,114 +146,99 @@ public class MapRender {
             }
         }
 
-        U6Object[][] grid = new U6Object[1024][1024];
-        for (U6Object obj : worldObjects) {
-            grid[obj.y][obj.x] = obj;
-        }
-
+        StringBuilder objectLayer = new StringBuilder();
+        StringBuilder moongateLayer = new StringBuilder();
+        StringBuilder itemsLayer = new StringBuilder();
+        StringBuilder onTopLayer = new StringBuilder();
         count = 1;
-        sb = new StringBuilder();
-        for (int y = 0; y < 1024; y++) {
-            for (int x = 0; x < 1024; x++) {
-                if (grid[y][x] != null) {
-                    sb.append((grid[y][x].tile) + 1 + ",");
-                } else {
-                    sb.append("0,");
-                }
-                count++;
-                if (count > 1024) {
-                    count = 0;
-                    sb.append("\n");
-                }
+        for (U6Object obj : worldObjects) {
+            if (obj.status > 1) {
+                //nothing
+            } else if (obj.on_top) {
+                onTopLayer.append(obj.toString(count++));
+            } else if (obj.on_top || obj.status == 1 || obj.object == Constants.Objects.MOONSTONE.getId()) {
+                itemsLayer.append(obj.toString(count++));
+            } else {
+                objectLayer.append(obj.toString(count++));
+            }
+
+            if (obj.object == Constants.Objects.RED_GATE.getId()) {
+                moongateLayer.append("<object id=\"" + count++ + "\" name=\"RED_GATE\" type=\"portal\" x=\"" + obj.x + "\" y=\"" + obj.y + "\" width=\"16\" height=\"16\"/>\n");
+            }
+            if (obj.object == Constants.Objects.MOONGATE.getId()) {
+                moongateLayer.append("<object id=\"" + count++ + "\" name=\"MOONGATE\" type=\"portal\" x=\"" + obj.x + "\" y=\"" + obj.y + "\" width=\"16\" height=\"16\"/>\n");
             }
         }
-        String worldLayer2 = sb.toString();
-        worldLayer2 = worldLayer2.substring(0, worldLayer2.length() - 1);
 
-        String[] dLayer2 = new String[5];
+        String[] dungObjectLayers = new String[5];
+        String[] dungMoongateLayers = new String[5];
+        String[] dungItemsLayers = new String[5];
+        String[] dungOnTopLayers = new String[5];
 
         for (int i = 0; i < 5; i++) {
 
             List<U6Object> dungeonObjects = (readObjBlockDungeon(i, basetiles, tileflags));
 
-            grid = new U6Object[256][256];
+            StringBuilder dungObjectLayer = new StringBuilder();
+            StringBuilder dungOnTopLayer = new StringBuilder();
+            StringBuilder dungItemLayer = new StringBuilder();
+            StringBuilder dungMoongateLayer = new StringBuilder();
+
+            count = 1;
             for (U6Object obj : dungeonObjects) {
-                grid[obj.y][obj.x] = obj;
-            }
 
-            count = 1;
-            sb = new StringBuilder();
-            for (int y = 0; y < 256; y++) {
-                for (int x = 0; x < 256; x++) {
-                    if (grid[y][x] != null) {
-                        sb.append((grid[y][x].tile) + 1 + ",");
-                    } else {
-                        sb.append("0,");
-                    }
-                    count++;
-                    if (count > 1024) {
-                        count = 0;
-                        sb.append("\n");
-                    }
-                }
-            }
-            dLayer2[i] = sb.toString();
-            dLayer2[i] = dLayer2[i].substring(0, dLayer2[i].length() - 1);
-
-        }
-
-        U6Object[] objectList = readObjList(basetiles);
-        grid = new U6Object[1024][1024];
-        for (U6Object obj : objectList) {
-            grid[obj.y][obj.x] = obj;
-        }
-
-        count = 1;
-        sb = new StringBuilder();
-        for (int y = 0; y < 1024; y++) {
-            for (int x = 0; x < 1024; x++) {
-                if (grid[y][x] != null && grid[y][x].z == 0) {
-                    sb.append((grid[y][x].tile) + 1 + ",");
+                if (obj.status > 1) {
+                    //nothing
+                } else if (obj.on_top) {
+                    dungOnTopLayer.append(obj.toString(count++));
+                } else if (obj.on_top || obj.status == 1 || obj.object == Constants.Objects.MOONSTONE.getId()) {
+                    dungItemLayer.append(obj.toString(count++));
                 } else {
-                    sb.append("0,");
+                    dungObjectLayer.append(obj.toString(count++));
                 }
-                count++;
-                if (count > 1024) {
-                    count = 0;
-                    sb.append("\n");
+
+                if (obj.object == Constants.Objects.RED_GATE.getId()) {
+                    dungMoongateLayer.append("<object id=\"" + count++ + "\" name=\"RED_GATE\" type=\"portal\" x=\"" + obj.x + "\" y=\"" + obj.y + "\" width=\"16\" height=\"16\"/>\n");
                 }
+                if (obj.object == Constants.Objects.MOONGATE.getId()) {
+                    dungMoongateLayer.append("<object id=\"" + count++ + "\" name=\"MOONGATE\" type=\"portal\" x=\"" + obj.x + "\" y=\"" + obj.y + "\" width=\"16\" height=\"16\"/>\n");
+                }
+
+            }
+            dungObjectLayers[i] = dungObjectLayer.toString();
+            dungOnTopLayers[i] = dungOnTopLayer.toString();
+            dungItemsLayers[i] = dungItemLayer.toString();
+            dungMoongateLayers[i] = dungMoongateLayer.toString();
+
+        }
+
+        U6Object[] actorList = readObjList(basetiles);
+
+        StringBuilder actorLayer = new StringBuilder();
+        count = 1;
+        for (U6Object obj : actorList) {
+            if (obj.z == 0 && obj.object > 0) {
+                actorLayer.append(obj.toString(count++));
             }
         }
 
-        String worldLayer3 = sb.toString();
-        worldLayer3 = worldLayer3.substring(0, worldLayer3.length() - 1);
-
-        String[] dLayer3 = new String[5];
+        String[] dungActorLayers = new String[5];
         for (int i = 1; i < 6; i++) {
-
-            count = 1;
-            sb = new StringBuilder();
-            for (int y = 0; y < 256; y++) {
-                for (int x = 0; x < 256; x++) {
-                    if (grid[y][x] != null && grid[y][x].z == i) {
-                        sb.append((grid[y][x].tile) + 1 + ",");
-                    } else {
-                        sb.append("0,");
-                    }
-                    count++;
-                    if (count > 1024) {
-                        count = 0;
-                        sb.append("\n");
-                    }
+            StringBuilder dungActorLayer = new StringBuilder();
+            for (U6Object obj : actorList) {
+                if (obj.z == i) {
+                    dungActorLayer.append(obj.toString(count++));
                 }
             }
-            dLayer3[i - 1] = sb.toString();
-            dLayer3[i - 1] = dLayer3[i - 1].substring(0, dLayer3[i - 1].length() - 1);
+            dungActorLayers[i - 1] = dungActorLayer.toString();
         }
 
-        FileUtils.writeStringToFile(new File("u6world.tmx"), String.format(WORLD_TMX, worldLayer1, worldLayer2, worldLayer3));
+        FileUtils.writeStringToFile(new File("src/main/resources/u6world.tmx"), String.format(WORLD_TMX, ANIMATIONS,
+                worldLayer1, objectLayer.toString(), moongateLayer.toString(), itemsLayer.toString(), actorLayer.toString(), onTopLayer.toString()));
         for (int i = 0; i < 5; i++) {
-            FileUtils.writeStringToFile(new File("u6dungeon_" + (i+1) + ".tmx"), String.format(DUNGEON_TMX, dLayer1[i], dLayer2[i], dLayer3[i]));
+            FileUtils.writeStringToFile(new File("src/main/resources/u6dungeon_" + (i + 1) + ".tmx"), String.format(DUNGEON_TMX, ANIMATIONS,
+                    dLayer1[i], dungObjectLayers[i], dungMoongateLayers[i], dungItemsLayers[i], dungActorLayers[i], dungOnTopLayers[i]));
+
         }
 
     }
@@ -320,71 +293,21 @@ public class MapRender {
 
     }
 
-    private static List<U6Object> readObjBlock(int idx, int idy, short[] basetiles, List<Map<String, Object>> tileflags) throws Exception {
-
+    private static List<U6Object> readObjBlock(int idx, int idy, int[] basetiles, List<Map<String, Object>> tileflags) throws Exception {
         String chars = "ABCDEFGH";
-
         FileInputStream is = new FileInputStream("D:\\ultima\\ULTIMA6\\SAVEGAME\\OBJBLK" + chars.charAt(idy) + chars.charAt(idx));
         LittleEndianDataInputStream dis = new LittleEndianDataInputStream(is);
-
-        short count = dis.readShort();
-
-        List<U6Object> objects = new ArrayList<>();
-
-        for (int i = 0; i < count; i++) {
-            int status = dis.readUnsignedByte();
-
-            int x = dis.readUnsignedByte();
-            int b1 = dis.readUnsignedByte();
-            x += (b1 & 0x3) << 8;
-
-            int y = (b1 & 0xfc) >> 2;
-            int b2 = dis.readUnsignedByte();
-            y += (b2 & 0xf) << 6;
-
-            int z = (b2 & 0xf0) >> 4;
-
-            b1 = dis.readUnsignedByte();
-            b2 = dis.readUnsignedByte();
-            int object = b1;
-            object += (b2 & 0x3) << 8;
-            int frame = (b2 & 0xfc) >> 2;
-
-            byte quantity = dis.readByte();
-            byte quality = dis.readByte();
-
-            boolean on_map = (status & 0x18) == 0;
-            if (z == 0 && on_map) {
-                int tile = basetiles[object] + frame;
-                int objtile = tile;
-                int vsize = (Integer) tileflags.get(objtile).get("vsize");
-                int hsize = (Integer) tileflags.get(objtile).get("hsize");
-
-                for (int vs = 0; vs < vsize; vs++) {
-                    for (int hs = 0; hs < hsize; hs++) {
-                        U6Object obj = new U6Object();
-                        obj.x = x - hs;
-                        obj.y = y - vs;
-                        obj.z = z;
-                        obj.frame = frame;
-                        obj.object = object;
-                        obj.tile = tile;
-                        objects.add(obj);
-                        tile--;
-                    }
-                }
-
-            }
-        }
-        return objects;
+        return readObjBlock(0, basetiles, tileflags, dis);
     }
 
-    private static List<U6Object> readObjBlockDungeon(int idx, short[] basetiles, List<Map<String, Object>> tileflags) throws Exception {
-
+    private static List<U6Object> readObjBlockDungeon(int idx, int[] basetiles, List<Map<String, Object>> tileflags) throws Exception {
         String chars = "ABCDEFGH";
-
         FileInputStream is = new FileInputStream("D:\\ultima\\ULTIMA6\\SAVEGAME\\OBJBLK" + chars.charAt(idx) + "I");
         LittleEndianDataInputStream dis = new LittleEndianDataInputStream(is);
+        return readObjBlock(idx + 1, basetiles, tileflags, dis);
+    }
+
+    private static List<U6Object> readObjBlock(int idz, int[] basetiles, List<Map<String, Object>> tileflags, LittleEndianDataInputStream dis) throws Exception {
 
         short count = dis.readShort();
 
@@ -413,12 +336,14 @@ public class MapRender {
             byte quality = dis.readByte();
 
             boolean on_map = (status & 0x18) == 0;
-            if (z == idx + 1 && on_map) {
+            if (z == idz && on_map) {
 
                 int tile = basetiles[object] + frame;
                 int objtile = tile;
+
                 int vsize = (Integer) tileflags.get(objtile).get("vsize");
                 int hsize = (Integer) tileflags.get(objtile).get("hsize");
+                boolean on_top = (Boolean) tileflags.get(objtile).get("ontop");
 
                 for (int vs = 0; vs < vsize; vs++) {
                     for (int hs = 0; hs < hsize; hs++) {
@@ -429,6 +354,11 @@ public class MapRender {
                         obj.frame = frame;
                         obj.object = object;
                         obj.tile = tile;
+                        obj.quality = quality;
+                        obj.quantity = quantity;
+                        obj.name = Constants.Objects.getName(object);
+                        obj.status = status;
+                        obj.on_top = on_top;
                         objects.add(obj);
                         tile--;
                     }
@@ -441,15 +371,32 @@ public class MapRender {
 
     static class U6Object {
 
+        String name;
         int x;
         int y;
         int z;
         int frame;
         int tile;
         int object;
+        int status;
+        int quality;
+        int quantity;
+        boolean on_top;
+
+        public String toString(int id) {
+            return "<object id=\"" + id + "\" name=\"" + name + "\" gid=\"" + (tile + 1) + "\" x=\"" + ((x) * 16) + "\" y=\"" + ((y + 1) * 16) + "\" width=\"16\" height=\"16\">\n"
+                    + "   <properties>\n"
+                    + "    <property name=\"object\" value=\"" + object + "\"/>\n"
+                    + (frame > 0 ? "    <property name=\"frame\" value=\"" + frame + "\"/>\n" : "")
+                    + (quantity > 0 ? "    <property name=\"qty\" value=\"" + quantity + "\"/>\n" : "")
+                    + (quality > 0 ? "    <property name=\"quality\" value=\"" + quality + "\"/>\n" : "")
+                    + (status > 0 ? "    <property name=\"status\" value=\"" + status + "\"/>\n" : "")
+                    + "   </properties>\n"
+                    + "  </object>\n";
+        }
     }
 
-    private static U6Object[] readObjList(short[] basetiles) throws Exception {
+    private static U6Object[] readObjList(int[] basetiles) throws Exception {
         FileInputStream is = new FileInputStream("D:\\ultima\\ULTIMA6\\SAVEGAME\\OBJLIST");
         LittleEndianDataInputStream dis = new LittleEndianDataInputStream(is);
         dis.skipBytes(0x100);
@@ -470,7 +417,7 @@ public class MapRender {
             int object = b1;
             object += (b2 & 0x3) << 8;
             int frame = (b2 & 0xfc) >> 2;
-
+            objects[i].name = Constants.Objects.getName(object);
             objects[i].object = object;
             objects[i].frame = frame;
             objects[i].tile = basetiles[objects[i].object] + objects[i].frame;
@@ -539,477 +486,39 @@ public class MapRender {
             + "<map version=\"1.0\" tiledversion=\"1.1.5\" orientation=\"orthogonal\" renderorder=\"right-down\" width=\"256\" height=\"256\" tilewidth=\"16\" tileheight=\"16\" infinite=\"0\" nextobjectid=\"1\">\n"
             + "    <tileset firstgid=\"1\" name=\"u6tiles+objects\" tilewidth=\"16\" tileheight=\"16\" tilecount=\"2048\" columns=\"32\">\n"
             + "        <image source=\"u6tiles+objects.png\" trans=\"ff00ff\" width=\"512\" height=\"1024\"/>\n"
-            + "<tile id=\"8\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"448\" duration=\"300\"/>\n"
-            + "<frame tileid=\"448\" duration=\"300\"/>\n"
-            + "<frame tileid=\"449\" duration=\"300\"/>\n"
-            + "<frame tileid=\"449\" duration=\"300\"/>\n"
-            + "<frame tileid=\"450\" duration=\"300\"/>\n"
-            + "<frame tileid=\"450\" duration=\"300\"/>\n"
-            + "<frame tileid=\"451\" duration=\"300\"/>\n"
-            + "<frame tileid=\"451\" duration=\"300\"/>\n"
-            + "<frame tileid=\"452\" duration=\"300\"/>\n"
-            + "<frame tileid=\"452\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>\n"
-            + "<tile id=\"9\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"456\" duration=\"300\"/>\n"
-            + "<frame tileid=\"456\" duration=\"300\"/>\n"
-            + "<frame tileid=\"457\" duration=\"300\"/>\n"
-            + "<frame tileid=\"457\" duration=\"300\"/>\n"
-            + "<frame tileid=\"458\" duration=\"300\"/>\n"
-            + "<frame tileid=\"458\" duration=\"300\"/>\n"
-            + "<frame tileid=\"459\" duration=\"300\"/>\n"
-            + "<frame tileid=\"459\" duration=\"300\"/>\n"
-            + "<frame tileid=\"460\" duration=\"300\"/>\n"
-            + "<frame tileid=\"460\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>\n"
-            + "<tile id=\"10\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"464\" duration=\"300\"/>\n"
-            + "<frame tileid=\"464\" duration=\"300\"/>\n"
-            + "<frame tileid=\"465\" duration=\"300\"/>\n"
-            + "<frame tileid=\"465\" duration=\"300\"/>\n"
-            + "<frame tileid=\"466\" duration=\"300\"/>\n"
-            + "<frame tileid=\"466\" duration=\"300\"/>\n"
-            + "<frame tileid=\"467\" duration=\"300\"/>\n"
-            + "<frame tileid=\"467\" duration=\"300\"/>\n"
-            + "<frame tileid=\"468\" duration=\"300\"/>\n"
-            + "<frame tileid=\"468\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>\n"
-            + "<tile id=\"11\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"472\" duration=\"300\"/>\n"
-            + "<frame tileid=\"472\" duration=\"300\"/>\n"
-            + "<frame tileid=\"473\" duration=\"300\"/>\n"
-            + "<frame tileid=\"473\" duration=\"300\"/>\n"
-            + "<frame tileid=\"474\" duration=\"300\"/>\n"
-            + "<frame tileid=\"474\" duration=\"300\"/>\n"
-            + "<frame tileid=\"475\" duration=\"300\"/>\n"
-            + "<frame tileid=\"475\" duration=\"300\"/>\n"
-            + "<frame tileid=\"476\" duration=\"300\"/>\n"
-            + "<frame tileid=\"476\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>\n"
-            + "<tile id=\"12\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"480\" duration=\"300\"/>\n"
-            + "<frame tileid=\"480\" duration=\"300\"/>\n"
-            + "<frame tileid=\"481\" duration=\"300\"/>\n"
-            + "<frame tileid=\"481\" duration=\"300\"/>\n"
-            + "<frame tileid=\"482\" duration=\"300\"/>\n"
-            + "<frame tileid=\"482\" duration=\"300\"/>\n"
-            + "<frame tileid=\"483\" duration=\"300\"/>\n"
-            + "<frame tileid=\"483\" duration=\"300\"/>\n"
-            + "<frame tileid=\"484\" duration=\"300\"/>\n"
-            + "<frame tileid=\"484\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>\n"
-            + "<tile id=\"13\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"488\" duration=\"300\"/>\n"
-            + "<frame tileid=\"488\" duration=\"300\"/>\n"
-            + "<frame tileid=\"489\" duration=\"300\"/>\n"
-            + "<frame tileid=\"489\" duration=\"300\"/>\n"
-            + "<frame tileid=\"490\" duration=\"300\"/>\n"
-            + "<frame tileid=\"490\" duration=\"300\"/>\n"
-            + "<frame tileid=\"491\" duration=\"300\"/>\n"
-            + "<frame tileid=\"491\" duration=\"300\"/>\n"
-            + "<frame tileid=\"492\" duration=\"300\"/>\n"
-            + "<frame tileid=\"492\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>\n"
-            + "<tile id=\"14\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"496\" duration=\"300\"/>\n"
-            + "<frame tileid=\"496\" duration=\"300\"/>\n"
-            + "<frame tileid=\"497\" duration=\"300\"/>\n"
-            + "<frame tileid=\"497\" duration=\"300\"/>\n"
-            + "<frame tileid=\"498\" duration=\"300\"/>\n"
-            + "<frame tileid=\"498\" duration=\"300\"/>\n"
-            + "<frame tileid=\"499\" duration=\"300\"/>\n"
-            + "<frame tileid=\"499\" duration=\"300\"/>\n"
-            + "<frame tileid=\"500\" duration=\"300\"/>\n"
-            + "<frame tileid=\"500\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>\n"
-            + "<tile id=\"15\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"504\" duration=\"300\"/>\n"
-            + "<frame tileid=\"504\" duration=\"300\"/>\n"
-            + "<frame tileid=\"505\" duration=\"300\"/>\n"
-            + "<frame tileid=\"505\" duration=\"300\"/>\n"
-            + "<frame tileid=\"506\" duration=\"300\"/>\n"
-            + "<frame tileid=\"506\" duration=\"300\"/>\n"
-            + "<frame tileid=\"507\" duration=\"300\"/>\n"
-            + "<frame tileid=\"507\" duration=\"300\"/>\n"
-            + "<frame tileid=\"508\" duration=\"300\"/>\n"
-            + "<frame tileid=\"508\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>\n"
-            + "<tile id=\"699\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"298\" duration=\"300\"/>\n"
-            + "<frame tileid=\"298\" duration=\"300\"/>\n"
-            + "<frame tileid=\"298\" duration=\"300\"/>\n"
-            + "<frame tileid=\"298\" duration=\"300\"/>\n"
-            + "<frame tileid=\"298\" duration=\"300\"/>\n"
-            + "<frame tileid=\"298\" duration=\"300\"/>\n"
-            + "<frame tileid=\"298\" duration=\"300\"/>\n"
-            + "<frame tileid=\"298\" duration=\"300\"/>\n"
-            + "<frame tileid=\"299\" duration=\"300\"/>\n"
-            + "<frame tileid=\"299\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>\n"
-            + "<tile id=\"862\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"288\" duration=\"300\"/>\n"
-            + "<frame tileid=\"288\" duration=\"300\"/>\n"
-            + "<frame tileid=\"288\" duration=\"300\"/>\n"
-            + "<frame tileid=\"288\" duration=\"300\"/>\n"
-            + "<frame tileid=\"289\" duration=\"300\"/>\n"
-            + "<frame tileid=\"289\" duration=\"300\"/>\n"
-            + "<frame tileid=\"289\" duration=\"300\"/>\n"
-            + "<frame tileid=\"289\" duration=\"300\"/>\n"
-            + "<frame tileid=\"290\" duration=\"300\"/>\n"
-            + "<frame tileid=\"290\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>\n"
-            + "<tile id=\"831\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"292\" duration=\"300\"/>\n"
-            + "<frame tileid=\"293\" duration=\"300\"/>\n"
-            + "<frame tileid=\"294\" duration=\"300\"/>\n"
-            + "<frame tileid=\"295\" duration=\"300\"/>\n"
-            + "<frame tileid=\"292\" duration=\"300\"/>\n"
-            + "<frame tileid=\"293\" duration=\"300\"/>\n"
-            + "<frame tileid=\"294\" duration=\"300\"/>\n"
-            + "<frame tileid=\"295\" duration=\"300\"/>\n"
-            + "<frame tileid=\"292\" duration=\"300\"/>\n"
-            + "<frame tileid=\"293\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>\n"
-            + "<tile id=\"860\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"300\" duration=\"300\"/>\n"
-            + "<frame tileid=\"300\" duration=\"300\"/>\n"
-            + "<frame tileid=\"301\" duration=\"300\"/>\n"
-            + "<frame tileid=\"301\" duration=\"300\"/>\n"
-            + "<frame tileid=\"302\" duration=\"300\"/>\n"
-            + "<frame tileid=\"302\" duration=\"300\"/>\n"
-            + "<frame tileid=\"303\" duration=\"300\"/>\n"
-            + "<frame tileid=\"303\" duration=\"300\"/>\n"
-            + "<frame tileid=\"300\" duration=\"300\"/>\n"
-            + "<frame tileid=\"300\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>\n"
-            + "<tile id=\"1166\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"304\" duration=\"300\"/>\n"
-            + "<frame tileid=\"304\" duration=\"300\"/>\n"
-            + "<frame tileid=\"304\" duration=\"300\"/>\n"
-            + "<frame tileid=\"304\" duration=\"300\"/>\n"
-            + "<frame tileid=\"305\" duration=\"300\"/>\n"
-            + "<frame tileid=\"305\" duration=\"300\"/>\n"
-            + "<frame tileid=\"305\" duration=\"300\"/>\n"
-            + "<frame tileid=\"305\" duration=\"300\"/>\n"
-            + "<frame tileid=\"306\" duration=\"300\"/>\n"
-            + "<frame tileid=\"306\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>\n"
-            + "<tile id=\"846\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"320\" duration=\"300\"/>\n"
-            + "<frame tileid=\"320\" duration=\"300\"/>\n"
-            + "<frame tileid=\"321\" duration=\"300\"/>\n"
-            + "<frame tileid=\"321\" duration=\"300\"/>\n"
-            + "<frame tileid=\"322\" duration=\"300\"/>\n"
-            + "<frame tileid=\"322\" duration=\"300\"/>\n"
-            + "<frame tileid=\"323\" duration=\"300\"/>\n"
-            + "<frame tileid=\"323\" duration=\"300\"/>\n"
-            + "<frame tileid=\"320\" duration=\"300\"/>\n"
-            + "<frame tileid=\"320\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>\n"
-            + "<tile id=\"847\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"324\" duration=\"300\"/>\n"
-            + "<frame tileid=\"324\" duration=\"300\"/>\n"
-            + "<frame tileid=\"325\" duration=\"300\"/>\n"
-            + "<frame tileid=\"325\" duration=\"300\"/>\n"
-            + "<frame tileid=\"326\" duration=\"300\"/>\n"
-            + "<frame tileid=\"326\" duration=\"300\"/>\n"
-            + "<frame tileid=\"327\" duration=\"300\"/>\n"
-            + "<frame tileid=\"327\" duration=\"300\"/>\n"
-            + "<frame tileid=\"324\" duration=\"300\"/>\n"
-            + "<frame tileid=\"324\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>\n"
-            + "<tile id=\"1016\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"336\" duration=\"300\"/>\n"
-            + "<frame tileid=\"336\" duration=\"300\"/>\n"
-            + "<frame tileid=\"337\" duration=\"300\"/>\n"
-            + "<frame tileid=\"337\" duration=\"300\"/>\n"
-            + "<frame tileid=\"336\" duration=\"300\"/>\n"
-            + "<frame tileid=\"336\" duration=\"300\"/>\n"
-            + "<frame tileid=\"337\" duration=\"300\"/>\n"
-            + "<frame tileid=\"337\" duration=\"300\"/>\n"
-            + "<frame tileid=\"336\" duration=\"300\"/>\n"
-            + "<frame tileid=\"336\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>\n"
-            + "<tile id=\"1017\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"338\" duration=\"300\"/>\n"
-            + "<frame tileid=\"338\" duration=\"300\"/>\n"
-            + "<frame tileid=\"339\" duration=\"300\"/>\n"
-            + "<frame tileid=\"339\" duration=\"300\"/>\n"
-            + "<frame tileid=\"338\" duration=\"300\"/>\n"
-            + "<frame tileid=\"338\" duration=\"300\"/>\n"
-            + "<frame tileid=\"339\" duration=\"300\"/>\n"
-            + "<frame tileid=\"339\" duration=\"300\"/>\n"
-            + "<frame tileid=\"338\" duration=\"300\"/>\n"
-            + "<frame tileid=\"338\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>\n"
-            + "<tile id=\"1018\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"340\" duration=\"300\"/>\n"
-            + "<frame tileid=\"340\" duration=\"300\"/>\n"
-            + "<frame tileid=\"341\" duration=\"300\"/>\n"
-            + "<frame tileid=\"341\" duration=\"300\"/>\n"
-            + "<frame tileid=\"340\" duration=\"300\"/>\n"
-            + "<frame tileid=\"340\" duration=\"300\"/>\n"
-            + "<frame tileid=\"341\" duration=\"300\"/>\n"
-            + "<frame tileid=\"341\" duration=\"300\"/>\n"
-            + "<frame tileid=\"340\" duration=\"300\"/>\n"
-            + "<frame tileid=\"340\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>\n"
-            + "<tile id=\"1019\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"342\" duration=\"300\"/>\n"
-            + "<frame tileid=\"342\" duration=\"300\"/>\n"
-            + "<frame tileid=\"343\" duration=\"300\"/>\n"
-            + "<frame tileid=\"343\" duration=\"300\"/>\n"
-            + "<frame tileid=\"342\" duration=\"300\"/>\n"
-            + "<frame tileid=\"342\" duration=\"300\"/>\n"
-            + "<frame tileid=\"343\" duration=\"300\"/>\n"
-            + "<frame tileid=\"343\" duration=\"300\"/>\n"
-            + "<frame tileid=\"342\" duration=\"300\"/>\n"
-            + "<frame tileid=\"342\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>\n"
-            + "<tile id=\"1020\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"310\" duration=\"300\"/>\n"
-            + "<frame tileid=\"310\" duration=\"300\"/>\n"
-            + "<frame tileid=\"310\" duration=\"300\"/>\n"
-            + "<frame tileid=\"310\" duration=\"300\"/>\n"
-            + "<frame tileid=\"311\" duration=\"300\"/>\n"
-            + "<frame tileid=\"311\" duration=\"300\"/>\n"
-            + "<frame tileid=\"311\" duration=\"300\"/>\n"
-            + "<frame tileid=\"311\" duration=\"300\"/>\n"
-            + "<frame tileid=\"310\" duration=\"300\"/>\n"
-            + "<frame tileid=\"310\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>\n"
-            + "<tile id=\"1008\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"284\" duration=\"300\"/>\n"
-            + "<frame tileid=\"284\" duration=\"300\"/>\n"
-            + "<frame tileid=\"285\" duration=\"300\"/>\n"
-            + "<frame tileid=\"285\" duration=\"300\"/>\n"
-            + "<frame tileid=\"286\" duration=\"300\"/>\n"
-            + "<frame tileid=\"286\" duration=\"300\"/>\n"
-            + "<frame tileid=\"287\" duration=\"300\"/>\n"
-            + "<frame tileid=\"287\" duration=\"300\"/>\n"
-            + "<frame tileid=\"284\" duration=\"300\"/>\n"
-            + "<frame tileid=\"284\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>\n"
-            + "<tile id=\"1009\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"272\" duration=\"300\"/>\n"
-            + "<frame tileid=\"272\" duration=\"300\"/>\n"
-            + "<frame tileid=\"273\" duration=\"300\"/>\n"
-            + "<frame tileid=\"273\" duration=\"300\"/>\n"
-            + "<frame tileid=\"274\" duration=\"300\"/>\n"
-            + "<frame tileid=\"274\" duration=\"300\"/>\n"
-            + "<frame tileid=\"275\" duration=\"300\"/>\n"
-            + "<frame tileid=\"275\" duration=\"300\"/>\n"
-            + "<frame tileid=\"272\" duration=\"300\"/>\n"
-            + "<frame tileid=\"272\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>\n"
-            + "<tile id=\"1010\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"276\" duration=\"300\"/>\n"
-            + "<frame tileid=\"277\" duration=\"300\"/>\n"
-            + "<frame tileid=\"278\" duration=\"300\"/>\n"
-            + "<frame tileid=\"279\" duration=\"300\"/>\n"
-            + "<frame tileid=\"276\" duration=\"300\"/>\n"
-            + "<frame tileid=\"277\" duration=\"300\"/>\n"
-            + "<frame tileid=\"278\" duration=\"300\"/>\n"
-            + "<frame tileid=\"279\" duration=\"300\"/>\n"
-            + "<frame tileid=\"276\" duration=\"300\"/>\n"
-            + "<frame tileid=\"277\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>\n"
-            + "<tile id=\"1011\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"280\" duration=\"300\"/>\n"
-            + "<frame tileid=\"280\" duration=\"300\"/>\n"
-            + "<frame tileid=\"281\" duration=\"300\"/>\n"
-            + "<frame tileid=\"281\" duration=\"300\"/>\n"
-            + "<frame tileid=\"282\" duration=\"300\"/>\n"
-            + "<frame tileid=\"282\" duration=\"300\"/>\n"
-            + "<frame tileid=\"283\" duration=\"300\"/>\n"
-            + "<frame tileid=\"283\" duration=\"300\"/>\n"
-            + "<frame tileid=\"280\" duration=\"300\"/>\n"
-            + "<frame tileid=\"280\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>\n"
-            + "<tile id=\"829\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"308\" duration=\"300\"/>\n"
-            + "<frame tileid=\"308\" duration=\"300\"/>\n"
-            + "<frame tileid=\"308\" duration=\"300\"/>\n"
-            + "<frame tileid=\"308\" duration=\"300\"/>\n"
-            + "<frame tileid=\"308\" duration=\"300\"/>\n"
-            + "<frame tileid=\"308\" duration=\"300\"/>\n"
-            + "<frame tileid=\"308\" duration=\"300\"/>\n"
-            + "<frame tileid=\"308\" duration=\"300\"/>\n"
-            + "<frame tileid=\"309\" duration=\"300\"/>\n"
-            + "<frame tileid=\"309\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>\n"
-            + "<tile id=\"902\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"312\" duration=\"300\"/>\n"
-            + "<frame tileid=\"312\" duration=\"300\"/>\n"
-            + "<frame tileid=\"312\" duration=\"300\"/>\n"
-            + "<frame tileid=\"312\" duration=\"300\"/>\n"
-            + "<frame tileid=\"313\" duration=\"300\"/>\n"
-            + "<frame tileid=\"313\" duration=\"300\"/>\n"
-            + "<frame tileid=\"313\" duration=\"300\"/>\n"
-            + "<frame tileid=\"313\" duration=\"300\"/>\n"
-            + "<frame tileid=\"312\" duration=\"300\"/>\n"
-            + "<frame tileid=\"312\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>\n"
-            + "<tile id=\"903\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"314\" duration=\"300\"/>\n"
-            + "<frame tileid=\"314\" duration=\"300\"/>\n"
-            + "<frame tileid=\"314\" duration=\"300\"/>\n"
-            + "<frame tileid=\"314\" duration=\"300\"/>\n"
-            + "<frame tileid=\"315\" duration=\"300\"/>\n"
-            + "<frame tileid=\"315\" duration=\"300\"/>\n"
-            + "<frame tileid=\"315\" duration=\"300\"/>\n"
-            + "<frame tileid=\"315\" duration=\"300\"/>\n"
-            + "<frame tileid=\"314\" duration=\"300\"/>\n"
-            + "<frame tileid=\"314\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>\n"
-            + "<tile id=\"1021\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"344\" duration=\"300\"/>\n"
-            + "<frame tileid=\"344\" duration=\"300\"/>\n"
-            + "<frame tileid=\"345\" duration=\"300\"/>\n"
-            + "<frame tileid=\"345\" duration=\"300\"/>\n"
-            + "<frame tileid=\"346\" duration=\"300\"/>\n"
-            + "<frame tileid=\"346\" duration=\"300\"/>\n"
-            + "<frame tileid=\"347\" duration=\"300\"/>\n"
-            + "<frame tileid=\"347\" duration=\"300\"/>\n"
-            + "<frame tileid=\"344\" duration=\"300\"/>\n"
-            + "<frame tileid=\"344\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>\n"
-            + "<tile id=\"735\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"348\" duration=\"300\"/>\n"
-            + "<frame tileid=\"349\" duration=\"300\"/>\n"
-            + "<frame tileid=\"350\" duration=\"300\"/>\n"
-            + "<frame tileid=\"351\" duration=\"300\"/>\n"
-            + "<frame tileid=\"348\" duration=\"300\"/>\n"
-            + "<frame tileid=\"349\" duration=\"300\"/>\n"
-            + "<frame tileid=\"350\" duration=\"300\"/>\n"
-            + "<frame tileid=\"351\" duration=\"300\"/>\n"
-            + "<frame tileid=\"348\" duration=\"300\"/>\n"
-            + "<frame tileid=\"349\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>\n"
-            + "<tile id=\"1020\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"310\" duration=\"300\"/>\n"
-            + "<frame tileid=\"310\" duration=\"300\"/>\n"
-            + "<frame tileid=\"311\" duration=\"300\"/>\n"
-            + "<frame tileid=\"311\" duration=\"300\"/>\n"
-            + "<frame tileid=\"310\" duration=\"300\"/>\n"
-            + "<frame tileid=\"310\" duration=\"300\"/>\n"
-            + "<frame tileid=\"311\" duration=\"300\"/>\n"
-            + "<frame tileid=\"311\" duration=\"300\"/>\n"
-            + "<frame tileid=\"310\" duration=\"300\"/>\n"
-            + "<frame tileid=\"310\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>\n"
-            + "<tile id=\"1020\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"310\" duration=\"300\"/>\n"
-            + "<frame tileid=\"310\" duration=\"300\"/>\n"
-            + "<frame tileid=\"311\" duration=\"300\"/>\n"
-            + "<frame tileid=\"311\" duration=\"300\"/>\n"
-            + "<frame tileid=\"310\" duration=\"300\"/>\n"
-            + "<frame tileid=\"310\" duration=\"300\"/>\n"
-            + "<frame tileid=\"311\" duration=\"300\"/>\n"
-            + "<frame tileid=\"311\" duration=\"300\"/>\n"
-            + "<frame tileid=\"310\" duration=\"300\"/>\n"
-            + "<frame tileid=\"310\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>\n"
-            + "<tile id=\"1017\">\n"
-            + "<animation>\n"
-            + "<frame tileid=\"338\" duration=\"300\"/>\n"
-            + "<frame tileid=\"338\" duration=\"300\"/>\n"
-            + "<frame tileid=\"339\" duration=\"300\"/>\n"
-            + "<frame tileid=\"339\" duration=\"300\"/>\n"
-            + "<frame tileid=\"338\" duration=\"300\"/>\n"
-            + "<frame tileid=\"338\" duration=\"300\"/>\n"
-            + "<frame tileid=\"339\" duration=\"300\"/>\n"
-            + "<frame tileid=\"339\" duration=\"300\"/>\n"
-            + "<frame tileid=\"338\" duration=\"300\"/>\n"
-            + "<frame tileid=\"338\" duration=\"300\"/>\n"
-            + "</animation>\n"
-            + "</tile>"
+            + "%s"
             + "    </tileset>\n"
             + "    <layer name=\"base\" width=\"256\" height=\"256\">\n"
             + "        <data encoding=\"csv\">\n"
             + "%s"
             + "        </data>\n"
             + "    </layer>\n"
-            + "    <layer name=\"objects\" width=\"256\" height=\"256\">\n"
-            + "        <data encoding=\"csv\">\n"
-            + "%s"
-            + "        </data>\n"
-            + "    </layer>\n"
-            + "    <layer name=\"actors\" width=\"256\" height=\"256\">\n"
-            + "        <data encoding=\"csv\">\n"
-            + "%s"
-            + "        </data>\n"
-            + "    </layer>\n"
+            + "<objectgroup name=\"objects\" width=\"256\" height=\"256\">\n%s</objectgroup>\n"
+            + "<objectgroup name=\"moongates\" width=\"256\" height=\"256\">\n%s</objectgroup>\n"
+            + "<objectgroup name=\"items\" width=\"256\" height=\"256\">\n%s</objectgroup>\n"
+            + "<objectgroup name=\"actors\" width=\"256\" height=\"256\">\n%s</objectgroup>\n"
+            + "<objectgroup name=\"on_top\" width=\"256\" height=\"256\">\n%s</objectgroup>\n"
             + "</map>";
 
     private static final String WORLD_TMX = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
             + "<map version=\"1.0\" tiledversion=\"1.1.5\" orientation=\"orthogonal\" renderorder=\"right-down\" width=\"1024\" height=\"1024\" tilewidth=\"16\" tileheight=\"16\" infinite=\"0\" nextobjectid=\"1\">\n"
             + "    <tileset firstgid=\"1\" name=\"u6tiles+objects\" tilewidth=\"16\" tileheight=\"16\" tilecount=\"2048\" columns=\"32\">\n"
             + "        <image source=\"u6tiles+objects.png\" trans=\"ff00ff\" width=\"512\" height=\"1024\"/>\n"
-            + "<tile id=\"8\">\n"
+            + "%s"
+            + "    </tileset>\n"
+            + "    <layer name=\"base\" width=\"1024\" height=\"1024\">\n"
+            + "        <data encoding=\"csv\">\n"
+            + "%s"
+            + "        </data>\n"
+            + "    </layer>\n"
+            + "<objectgroup name=\"objects\" width=\"1024\" height=\"1024\">\n%s</objectgroup>\n"
+            + "<objectgroup name=\"moongates\" width=\"1024\" height=\"1024\">\n%s</objectgroup>\n"
+            + "<objectgroup name=\"items\" width=\"1024\" height=\"1024\">\n%s</objectgroup>\n"
+            + "<objectgroup name=\"actors\" width=\"1024\" height=\"1024\">\n%s</objectgroup>\n"
+            + "<objectgroup name=\"on_top\" width=\"1024\" height=\"1024\">\n%s</objectgroup>\n"
+            + "</map>";
+
+    public static final String ANIMATIONS = "<tile id=\"8\">\n"
             + "<animation>\n"
             + "<frame tileid=\"448\" duration=\"300\"/>\n"
             + "<frame tileid=\"448\" duration=\"300\"/>\n"
@@ -1456,22 +965,5 @@ public class MapRender {
             + "<frame tileid=\"338\" duration=\"300\"/>\n"
             + "<frame tileid=\"338\" duration=\"300\"/>\n"
             + "</animation>\n"
-            + "</tile>"
-            + "    </tileset>\n"
-            + "    <layer name=\"base\" width=\"1024\" height=\"1024\">\n"
-            + "        <data encoding=\"csv\">\n"
-            + "%s"
-            + "        </data>\n"
-            + "    </layer>\n"
-            + "    <layer name=\"objects\" width=\"1024\" height=\"1024\">\n"
-            + "        <data encoding=\"csv\">\n"
-            + "%s"
-            + "        </data>\n"
-            + "    </layer>\n"
-            + "    <layer name=\"actors\" width=\"1024\" height=\"1024\">\n"
-            + "        <data encoding=\"csv\">\n"
-            + "%s"
-            + "        </data>\n"
-            + "    </layer>\n"
-            + "</map>";
+            + "</tile>\n";
 }
