@@ -277,7 +277,7 @@ public class Constants {
         STEPS1(272),
         TILE(273),
         YEW_LOG(274),
-        BLUE_POTION(275),
+        POTION(275),
         STEPS2(276),
         YEW_BOARD(277),
         PASSTHROUGH1(278),
