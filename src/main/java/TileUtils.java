@@ -5,16 +5,11 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.utils.Array;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import javax.imageio.ImageIO;
 
 public class TileUtils implements ApplicationListener {
 
@@ -56,48 +51,35 @@ public class TileUtils implements ApplicationListener {
 
         batch.begin();
 
-        int x = 20, y = 1000;
+        int x = 48, y = 1000;
         for (Constants.ActorAnimation aa : Constants.ActorAnimation.values()) {
             for (Constants.Direction d : Constants.Direction.values()) {
                 TextureRegion tr = aa.getTexture(d);
                 if (tr != null) {
                     batch.draw(tr, x, y);
                 }
-                x += 20;
+                x += 48;
                 if (x > 1500) {
-                    x = 20;
-                    y -= 20;
+                    x = 48;
+                    y -= 48;
                 }
 
             }
         }
 
-        x = 20;
-        y = 800;
-        for (Constants.Direction d : Constants.Direction.values()) {
-            TextureRegion tr = Constants.ActorAnimation.DAEMON.getTexture(d);
-            if (tr != null) {
-                batch.draw(tr, x, y);
-            }
-            x += 20;
-            if (x > 1500) {
-                x = 20;
-                y -= 20;
-            }
-        }
 
-        x = 36;
-        y = 600;
+        x = 48;
+        y = 500;
         for (Constants.ActorAnimation aa : Constants.ActorAnimation.values()) {
             for (Constants.Direction d : Constants.Direction.values()) {
                 Animation anim = aa.getAnimation(d);
                 if (anim != null) {
                     batch.draw((TextureRegion) anim.getKeyFrame(time, true), x, y);
                 }
-                x += 36;
+                x += 48;
                 if (x > 1500) {
-                    x = 36;
-                    y -= 36;
+                    x = 48;
+                    y -= 48;
                 }
             }
         }

@@ -553,7 +553,6 @@ public class Constants {
         RABBIT(1376, 359, 0, 0, 1, 0),
         ROT_WORMS(1380, 360, 0, 0, 1, 0),
         GIANT_SPIDER(1384, 361, 2, 2, 1, 0),
-        ACID_SLUG(1452, 364, 0, 0, 1, 0),
         TANGLE_VINE(1456, 365, 1, 2, 1, 0),
         DAEMON(1464, 367, 2, 2, 1, 0),
         SKELETON(1472, 368, 2, 2, 1, 0),
@@ -561,9 +560,11 @@ public class Constants {
         HEADLESS(1488, 370, 2, 2, 1, 0),
         TROLL(1496, 371, 2, 2, 1, 0),
         MONGBAT(1504, 372, 2, 2, 1, 0),
+        //
         WISP(1512, 373, 0, 0, 1, 0),
         HYDRA(1516, 374, 0, 0, 1, 0),
         SLIME(1520, 375, 0, 0, 0, 0),
+        ACID_SLUG(1452, 364, 0, 0, 1, 0),
         //
         WINGED_GARGOYLE(1392, 362, 3, 12, 4, 0),
         GARGOYLE(1440, 363, 3, 3, 1, 0),
@@ -642,7 +643,104 @@ public class Constants {
             }
 
             for (ActorAnimation aa : ActorAnimation.values()) {
-                if (aa.framesPerDirection == 0) {
+
+                if (aa == ActorAnimation.SHIP) {
+                    for (int i = 0; i < 4; i++) {
+                        TextureRegion tr = new TextureRegion(mergeTiles(Direction.values()[i],
+                                tiles[aa.tile + 0 + 2 * i], tiles[aa.tile + 1 + 2 * i],
+                                tiles[aa.tile + 8 + 2 * i], tiles[aa.tile + 9 + 2 * i],
+                                tiles[aa.tile + 16 + 2 * i], tiles[aa.tile + 17 + 2 * i]
+                        ));
+                        aa.textureMap.put(Direction.values()[i], tr);
+                    }
+                } else if (aa == ActorAnimation.HYDRA) {
+                    int[] t = new int[]{1920, 1921, 1922, 1923};
+                    int[] b = new int[]{1936, 1937, 1938, 1939};
+                    int[] l = new int[]{1944, 1945, 1946, 1947};
+                    int[] r = new int[]{1928, 1929, 1930, 1931};
+                    int[] tr = new int[]{1924, 1925, 1926, 1927};
+                    int[] tl = new int[]{1948, 1949, 1950, 1951};
+                    int[] bl = new int[]{1940, 1941, 1942, 1943};
+                    int[] br = new int[]{1932, 1933, 1934, 1935};
+                    Array<TextureRegion> arr = new Array<>();
+                    for (int i = 0; i < 4; i++) {
+                        TextureRegion txr = new TextureRegion(mergeTiles(null,
+                                tiles[tl[i]], tiles[t[i]], tiles[tr[i]],
+                                tiles[l[i]], tiles[aa.tile + i], tiles[r[i]],
+                                tiles[bl[i]], tiles[b[i]], tiles[br[i]]
+                        ));
+                        arr.add(txr);
+                    }
+                    Animation a = new Animation(.3f, arr);
+                    for (int i = 0; i < 4; i++) {
+                        aa.animMap.put(Direction.values()[i], a);
+                        aa.textureMap.put(Direction.values()[i], arr.first());
+                    }
+                } else if (aa == ActorAnimation.DRAGON) {
+                    int[] t = new int[]{1800, 1801};
+                    int[] b = new int[]{1808, 1809};
+                    int[] l = new int[]{1816, 1817};
+                    int[] r = new int[]{1824, 1825};
+                    int[] m = new int[]{1792, 1793};
+                    {
+                        Array<TextureRegion> arr = new Array<>();
+                        for (int i = 0; i < 2; i++) {
+                            TextureRegion txr = new TextureRegion(mergeTiles(null,
+                                    null, tiles[t[i]], null,
+                                    tiles[l[i]], tiles[m[i]], tiles[r[i]],
+                                    null, tiles[b[i]], null
+                            ));
+                            arr.add(txr);
+                        }
+                        Animation a = new Animation(.3f, arr);
+                        aa.animMap.put(Direction.NORTH, a);
+                        aa.textureMap.put(Direction.NORTH, arr.first());
+                    }
+                    {
+                        Array<TextureRegion> arr = new Array<>();
+                        for (int i = 0; i < 2; i++) {
+                            TextureRegion txr = new TextureRegion(mergeTiles(null,
+                                    null, tiles[l[i] + 2], null,
+                                    tiles[b[i] + 2], tiles[m[i] + 2], tiles[t[i] + 2],
+                                    null, tiles[r[i] + 2], null
+                            ));
+                            arr.add(txr);
+                        }
+                        Animation a = new Animation(.3f, arr);
+                        aa.animMap.put(Direction.EAST, a);
+                        aa.textureMap.put(Direction.EAST, arr.first());
+                    }
+                    {
+                        Array<TextureRegion> arr = new Array<>();
+                        for (int i = 0; i < 2; i++) {
+                            TextureRegion txr = new TextureRegion(mergeTiles(null,
+                                    null, tiles[r[i] + 6], null,
+                                    tiles[t[i] + 6], tiles[m[i] + 6], tiles[b[i] + 6],
+                                    null, tiles[l[i] + 6], null
+                            ));
+                            arr.add(txr);
+                        }
+                        Animation a = new Animation(.3f, arr);
+                        aa.animMap.put(Direction.WEST, a);
+                        aa.textureMap.put(Direction.WEST, arr.first());
+                    }
+                    {
+                        Array<TextureRegion> arr = new Array<>();
+                        for (int i = 0; i < 2; i++) {
+                            TextureRegion txr = new TextureRegion(mergeTiles(null,
+                                    null, tiles[b[i] + 4], null,
+                                    tiles[r[i] + 4], tiles[m[i] + 4], tiles[l[i] + 4],
+                                    null, tiles[t[i] + 4], null
+                            ));
+                            arr.add(txr);
+                        }
+                        Animation a = new Animation(.3f, arr);
+                        aa.animMap.put(Direction.SOUTH, a);
+                        aa.textureMap.put(Direction.SOUTH, arr.first());
+                    }
+                } else if (aa == ActorAnimation.SILVER_SERPENT) {
+
+                } else if (aa.framesPerDirection == 0) {
                     Array<TextureRegion> arr = new Array<>();
                     for (int i = 0; i < 4; i++) {
                         arr.add(tiles[aa.tile + i]);
@@ -655,12 +753,7 @@ public class Constants {
                 } else {
                     for (int i = 0; i < 4; i++) {
 
-                        if (aa == ActorAnimation.SHIP) {
-                        } else if (aa == ActorAnimation.HYDRA) {
-                        } else if (aa == ActorAnimation.DRAGON) {
-                        } else if (aa == ActorAnimation.SILVER_SERPENT) {
-
-                        } else if (aa.tilesPerFrame == 1) {
+                        if (aa.tilesPerFrame == 1) {
 
                             Array<TextureRegion> arr = new Array<>();
                             for (int j = 0; j < aa.framesPerDirection; j++) {
@@ -676,7 +769,23 @@ public class Constants {
                             arr.add(new TextureRegion(mergeTiles(Direction.values()[i], tiles[aa.tile + 1 + 2 * i], tiles[aa.tile + 8 + 1 + 2 * i])));
                             aa.animMap.put(Direction.values()[i], new Animation(.3f, arr));
 
-                            aa.textureMap.put(Direction.values()[i], tiles[aa.tile + i * aa.tilesPerDirection]);
+                            aa.textureMap.put(Direction.values()[i], arr.first());
+
+                        } else if (aa.tilesPerFrame == 4) {
+
+                            Array<TextureRegion> arr = new Array<>();
+                            for (int j = 0; j < aa.framesPerDirection; j++) {
+                                arr.add(new TextureRegion(mergeTiles(Direction.values()[i],
+                                        tiles[aa.tile + 0 + (4 * j) + (aa.tilesPerDirection * i)],
+                                        tiles[aa.tile + 1 + (4 * j) + (aa.tilesPerDirection * i)],
+                                        tiles[aa.tile + 2 + (4 * j) + (aa.tilesPerDirection * i)],
+                                        tiles[aa.tile + 3 + (4 * j) + (aa.tilesPerDirection * i)]
+                                )));
+                            }
+
+                            aa.animMap.put(Direction.values()[i], new Animation(.3f, arr));
+
+                            aa.textureMap.put(Direction.values()[i], arr.first());
 
                         }
                     }
@@ -716,12 +825,61 @@ public class Constants {
                 p3.dispose();
                 p4.dispose();
                 ret = new Texture(dest);
+            } else if (tr.length == 6) {
+                Pixmap p1 = pixmapFromRegion(tr[0]);
+                Pixmap p2 = pixmapFromRegion(tr[1]);
+                Pixmap p3 = pixmapFromRegion(tr[2]);
+                Pixmap p4 = pixmapFromRegion(tr[3]);
+                Pixmap p5 = pixmapFromRegion(tr[4]);
+                Pixmap p6 = pixmapFromRegion(tr[5]);
+                Pixmap dest = (dir == Direction.EAST || dir == Direction.WEST ? new Pixmap(48, 32, Format.RGBA8888) : new Pixmap(32, 48, Format.RGBA8888));
+                if (dir == Direction.EAST || dir == Direction.WEST) {
+                    dest.drawPixmap(p1, (dir == Direction.EAST ? 32 : 0), 0);
+                    dest.drawPixmap(p2, (dir == Direction.EAST ? 32 : 0), 16);
+                    dest.drawPixmap(p3, 16, 0);
+                    dest.drawPixmap(p4, 16, 16);
+                    dest.drawPixmap(p5, (dir == Direction.EAST ? 0 : 32), 0);
+                    dest.drawPixmap(p6, (dir == Direction.EAST ? 0 : 32), 16);
+                } else {
+                    dest.drawPixmap(p1, 0, (dir == Direction.NORTH ? 0 : 32));
+                    dest.drawPixmap(p2, 16, (dir == Direction.NORTH ? 0 : 32));
+                    dest.drawPixmap(p3, 0, 16);
+                    dest.drawPixmap(p4, 16, 16);
+                    dest.drawPixmap(p5, 0, (dir == Direction.NORTH ? 32 : 0));
+                    dest.drawPixmap(p6, 16, (dir == Direction.NORTH ? 32 : 0));
+                }
+                p1.dispose();
+                p2.dispose();
+                p3.dispose();
+                p4.dispose();
+                p5.dispose();
+                p6.dispose();
+                ret = new Texture(dest);
+            } else if (tr.length == 9) {
+                Pixmap dest = new Pixmap(48, 48, Format.RGBA8888);
+                Pixmap[] sources = new Pixmap[tr.length];
+                for (int i = 0; i < tr.length; i++) {
+                    sources[i] = pixmapFromRegion(tr[i]);
+                }
+                for (int x = 0; x < 3; x++) {
+                    for (int y = 0; y < 3; y++) {
+                        Pixmap p = sources[y * 3 + x];
+                        if (p != null) {
+                            dest.drawPixmap(p, x * 16, y * 16);
+                            p.dispose();
+                        }
+                    }
+                }
+                ret = new Texture(dest);
             }
             return ret;
 
         }
 
         private static Pixmap pixmapFromRegion(TextureRegion tr) {
+            if (tr == null) {
+                return null;
+            }
             tr.getTexture().getTextureData().prepare();
             Pixmap source = tr.getTexture().getTextureData().consumePixmap();
             Pixmap dest = new Pixmap(tr.getRegionWidth(), tr.getRegionHeight(), Format.RGBA8888);
