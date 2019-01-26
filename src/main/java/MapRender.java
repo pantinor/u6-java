@@ -3,6 +3,7 @@ import java.io.FileInputStream;
 import org.apache.commons.io.IOUtils;
 import com.google.common.io.LittleEndianDataInputStream;
 import java.io.File;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -147,13 +148,15 @@ public class MapRender {
         }
 
         StringBuilder objectLayer = new StringBuilder();
-        StringBuilder moongateLayer = new StringBuilder();
+        StringBuilder portalLayer = new StringBuilder();
         StringBuilder itemsLayer = new StringBuilder();
         StringBuilder onTopLayer = new StringBuilder();
         count = 1;
         for (U6Object obj : worldObjects) {
             if (obj.status > 1) {
                 //nothing
+            } else if (obj.object == Constants.Objects.MINE_SHAFT.getId() || obj.object == Constants.Objects.LADDER.getId()) {
+                portalLayer.append(obj.toString(count++));
             } else if (obj.on_top) {
                 onTopLayer.append(obj.toString(count++));
             } else if (obj.status == 1 || obj.object == Constants.Objects.MOONSTONE.getId()) {
@@ -162,16 +165,10 @@ public class MapRender {
                 objectLayer.append(obj.toString(count++));
             }
 
-            if (obj.object == Constants.Objects.RED_GATE.getId()) {
-                moongateLayer.append("<object id=\"" + count++ + "\" name=\"RED_GATE\" type=\"portal\" x=\"" + obj.x + "\" y=\"" + obj.y + "\" width=\"16\" height=\"16\"/>\n");
-            }
-            if (obj.object == Constants.Objects.MOONGATE.getId()) {
-                moongateLayer.append("<object id=\"" + count++ + "\" name=\"MOONGATE\" type=\"portal\" x=\"" + obj.x + "\" y=\"" + obj.y + "\" width=\"16\" height=\"16\"/>\n");
-            }
         }
 
         String[] dungObjectLayers = new String[5];
-        String[] dungMoongateLayers = new String[5];
+        String[] dungPortalLayers = new String[5];
         String[] dungItemsLayers = new String[5];
         String[] dungOnTopLayers = new String[5];
 
@@ -182,13 +179,15 @@ public class MapRender {
             StringBuilder dungObjectLayer = new StringBuilder();
             StringBuilder dungOnTopLayer = new StringBuilder();
             StringBuilder dungItemLayer = new StringBuilder();
-            StringBuilder dungMoongateLayer = new StringBuilder();
+            StringBuilder dungPortalLayer = new StringBuilder();
 
             count = 1;
             for (U6Object obj : dungeonObjects) {
 
                 if (obj.status > 1) {
                     //nothing
+                } else if (obj.object == Constants.Objects.MINE_SHAFT.getId() || obj.object == Constants.Objects.LADDER.getId()) {
+                    dungPortalLayer.append(obj.toString(count++));
                 } else if (obj.on_top) {
                     dungOnTopLayer.append(obj.toString(count++));
                 } else if (obj.status == 1 || obj.object == Constants.Objects.MOONSTONE.getId()) {
@@ -201,7 +200,7 @@ public class MapRender {
             dungObjectLayers[i] = dungObjectLayer.toString();
             dungOnTopLayers[i] = dungOnTopLayer.toString();
             dungItemsLayers[i] = dungItemLayer.toString();
-            dungMoongateLayers[i] = dungMoongateLayer.toString();
+            dungPortalLayers[i] = dungPortalLayer.toString();
 
         }
 
@@ -227,10 +226,10 @@ public class MapRender {
         }
 
         FileUtils.writeStringToFile(new File("src/main/resources/u6world.tmx"), String.format(WORLD_TMX, ANIMATIONS,
-                worldLayer1, objectLayer.toString(), moongateLayer.toString(), itemsLayer.toString(), actorLayer.toString(), onTopLayer.toString()));
+                worldLayer1, objectLayer.toString(), portalLayer.toString(), itemsLayer.toString(), actorLayer.toString(), onTopLayer.toString()));
         for (int i = 0; i < 5; i++) {
             FileUtils.writeStringToFile(new File("src/main/resources/u6dungeon_" + (i + 1) + ".tmx"), String.format(DUNGEON_TMX, ANIMATIONS,
-                    dLayer1[i], dungObjectLayers[i], dungMoongateLayers[i], dungItemsLayers[i], dungActorLayers[i], dungOnTopLayers[i]));
+                    dLayer1[i], dungObjectLayers[i], dungPortalLayers[i], dungItemsLayers[i], dungActorLayers[i], dungOnTopLayers[i]));
 
         }
 
@@ -365,6 +364,17 @@ public class MapRender {
                                     obj.portal_dest_x = x;
                                     obj.portal_dest_y = y;
                                 }
+                                obj.portal_dest_z = z - 1;
+                            }
+                        }
+                        if (obj.object == Constants.Objects.MINE_SHAFT.getId()) {
+                            if (z == 0) {
+                                obj.portal_dest_x = (x & 0x07) | (x >> 2 & 0xF8);
+                                obj.portal_dest_y = (y & 0x07) | (y >> 2 & 0xF8);
+                                obj.portal_dest_z = z + 1;
+                            } else {
+                                obj.portal_dest_x = x;
+                                obj.portal_dest_y = y;
                                 obj.portal_dest_z = z - 1;
                             }
                         }
@@ -518,7 +528,7 @@ public class MapRender {
             + "        </data>\n"
             + "    </layer>\n"
             + "<objectgroup name=\"objects\" width=\"256\" height=\"256\">\n%s</objectgroup>\n"
-            + "<objectgroup name=\"moongates\" width=\"256\" height=\"256\">\n%s</objectgroup>\n"
+            + "<objectgroup name=\"portals\" width=\"256\" height=\"256\">\n%s</objectgroup>\n"
             + "<objectgroup name=\"items\" width=\"256\" height=\"256\">\n%s</objectgroup>\n"
             + "<objectgroup name=\"actors\" width=\"256\" height=\"256\">\n%s</objectgroup>\n"
             + "<objectgroup name=\"on_top\" width=\"256\" height=\"256\">\n%s</objectgroup>\n"
@@ -536,7 +546,7 @@ public class MapRender {
             + "        </data>\n"
             + "    </layer>\n"
             + "<objectgroup name=\"objects\" width=\"1024\" height=\"1024\">\n%s</objectgroup>\n"
-            + "<objectgroup name=\"moongates\" width=\"1024\" height=\"1024\">\n%s</objectgroup>\n"
+            + "<objectgroup name=\"portals\" width=\"1024\" height=\"1024\">\n%s</objectgroup>\n"
             + "<objectgroup name=\"items\" width=\"1024\" height=\"1024\">\n%s</objectgroup>\n"
             + "<objectgroup name=\"actors\" width=\"1024\" height=\"1024\">\n%s</objectgroup>\n"
             + "<objectgroup name=\"on_top\" width=\"1024\" height=\"1024\">\n%s</objectgroup>\n"

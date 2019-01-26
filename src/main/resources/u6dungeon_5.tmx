@@ -561,37 +561,9 @@
     <property name="object" value="307"/>
    </properties>
   </object>
-<object id="9" name="MINE_SHAFT" gid="1198" x="1072" y="688" width="16" height="16">
-   <properties>
-    <property name="object" value="326"/>
-    <property name="frame" value="3"/>
-    <property name="quality" value="9"/>
-   </properties>
-  </object>
-<object id="10" name="MINE_SHAFT" gid="1197" x="1056" y="688" width="16" height="16">
-   <properties>
-    <property name="object" value="326"/>
-    <property name="frame" value="3"/>
-    <property name="quality" value="9"/>
-   </properties>
-  </object>
 <object id="11" name="VOLCANO" gid="1141" x="1184" y="688" width="16" height="16">
    <properties>
     <property name="object" value="307"/>
-   </properties>
-  </object>
-<object id="12" name="MINE_SHAFT" gid="1198" x="3008" y="688" width="16" height="16">
-   <properties>
-    <property name="object" value="326"/>
-    <property name="frame" value="3"/>
-    <property name="quality" value="10"/>
-   </properties>
-  </object>
-<object id="13" name="MINE_SHAFT" gid="1197" x="2992" y="688" width="16" height="16">
-   <properties>
-    <property name="object" value="326"/>
-    <property name="frame" value="3"/>
-    <property name="quality" value="10"/>
    </properties>
   </object>
 <object id="14" name="VOLCANO" gid="1141" x="944" y="704" width="16" height="16">
@@ -970,20 +942,6 @@
 <object id="92" name="VOLCANO" gid="1141" x="2368" y="1184" width="16" height="16">
    <properties>
     <property name="object" value="307"/>
-   </properties>
-  </object>
-<object id="93" name="MINE_SHAFT" gid="1198" x="2032" y="1248" width="16" height="16">
-   <properties>
-    <property name="object" value="326"/>
-    <property name="frame" value="3"/>
-    <property name="quality" value="12"/>
-   </properties>
-  </object>
-<object id="94" name="MINE_SHAFT" gid="1197" x="2016" y="1248" width="16" height="16">
-   <properties>
-    <property name="object" value="326"/>
-    <property name="frame" value="3"/>
-    <property name="quality" value="12"/>
    </properties>
   </object>
 <object id="95" name="VOLCANO" gid="1141" x="2064" y="1248" width="16" height="16">
@@ -4051,20 +4009,6 @@
     <property name="object" value="307"/>
    </properties>
   </object>
-<object id="816" name="MINE_SHAFT" gid="1198" x="1728" y="3504" width="16" height="16">
-   <properties>
-    <property name="object" value="326"/>
-    <property name="frame" value="3"/>
-    <property name="quality" value="11"/>
-   </properties>
-  </object>
-<object id="817" name="MINE_SHAFT" gid="1197" x="1712" y="3504" width="16" height="16">
-   <properties>
-    <property name="object" value="326"/>
-    <property name="frame" value="3"/>
-    <property name="quality" value="11"/>
-   </properties>
-  </object>
 <object id="818" name="VOLCANO" gid="1141" x="1824" y="3504" width="16" height="16">
    <properties>
     <property name="object" value="307"/>
@@ -4073,20 +4017,6 @@
 <object id="819" name="VOLCANO" gid="1141" x="3232" y="3504" width="16" height="16">
    <properties>
     <property name="object" value="307"/>
-   </properties>
-  </object>
-<object id="820" name="MINE_SHAFT" gid="1200" x="3520" y="3504" width="16" height="16">
-   <properties>
-    <property name="object" value="326"/>
-    <property name="frame" value="5"/>
-    <property name="quality" value="7"/>
-   </properties>
-  </object>
-<object id="821" name="MINE_SHAFT" gid="1199" x="3504" y="3504" width="16" height="16">
-   <properties>
-    <property name="object" value="326"/>
-    <property name="frame" value="5"/>
-    <property name="quality" value="7"/>
    </properties>
   </object>
 <object id="822" name="VOLCANO" gid="1141" x="2224" y="3520" width="16" height="16">
@@ -4170,7 +4100,107 @@
    </properties>
   </object>
 </objectgroup>
-<objectgroup name="moongates" width="256" height="256">
+<objectgroup name="portals" width="256" height="256">
+<object id="9" name="MINE_SHAFT" gid="1198" x="1072" y="688" width="16" height="16">
+   <properties>
+    <property name="object" value="326"/>
+    <property name="frame" value="3"/>
+    <property name="quality" value="9"/>
+    <property name="portal_dest_x" value="67"/>
+    <property name="portal_dest_y" value="42"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="10" name="MINE_SHAFT" gid="1197" x="1056" y="688" width="16" height="16">
+   <properties>
+    <property name="object" value="326"/>
+    <property name="frame" value="3"/>
+    <property name="quality" value="9"/>
+    <property name="portal_dest_x" value="67"/>
+    <property name="portal_dest_y" value="42"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="12" name="MINE_SHAFT" gid="1198" x="3008" y="688" width="16" height="16">
+   <properties>
+    <property name="object" value="326"/>
+    <property name="frame" value="3"/>
+    <property name="quality" value="10"/>
+    <property name="portal_dest_x" value="188"/>
+    <property name="portal_dest_y" value="42"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="13" name="MINE_SHAFT" gid="1197" x="2992" y="688" width="16" height="16">
+   <properties>
+    <property name="object" value="326"/>
+    <property name="frame" value="3"/>
+    <property name="quality" value="10"/>
+    <property name="portal_dest_x" value="188"/>
+    <property name="portal_dest_y" value="42"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="93" name="MINE_SHAFT" gid="1198" x="2032" y="1248" width="16" height="16">
+   <properties>
+    <property name="object" value="326"/>
+    <property name="frame" value="3"/>
+    <property name="quality" value="12"/>
+    <property name="portal_dest_x" value="127"/>
+    <property name="portal_dest_y" value="77"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="94" name="MINE_SHAFT" gid="1197" x="2016" y="1248" width="16" height="16">
+   <properties>
+    <property name="object" value="326"/>
+    <property name="frame" value="3"/>
+    <property name="quality" value="12"/>
+    <property name="portal_dest_x" value="127"/>
+    <property name="portal_dest_y" value="77"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="816" name="MINE_SHAFT" gid="1198" x="1728" y="3504" width="16" height="16">
+   <properties>
+    <property name="object" value="326"/>
+    <property name="frame" value="3"/>
+    <property name="quality" value="11"/>
+    <property name="portal_dest_x" value="108"/>
+    <property name="portal_dest_y" value="218"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="817" name="MINE_SHAFT" gid="1197" x="1712" y="3504" width="16" height="16">
+   <properties>
+    <property name="object" value="326"/>
+    <property name="frame" value="3"/>
+    <property name="quality" value="11"/>
+    <property name="portal_dest_x" value="108"/>
+    <property name="portal_dest_y" value="218"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="820" name="MINE_SHAFT" gid="1200" x="3520" y="3504" width="16" height="16">
+   <properties>
+    <property name="object" value="326"/>
+    <property name="frame" value="5"/>
+    <property name="quality" value="7"/>
+    <property name="portal_dest_x" value="220"/>
+    <property name="portal_dest_y" value="218"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="821" name="MINE_SHAFT" gid="1199" x="3504" y="3504" width="16" height="16">
+   <properties>
+    <property name="object" value="326"/>
+    <property name="frame" value="5"/>
+    <property name="quality" value="7"/>
+    <property name="portal_dest_x" value="220"/>
+    <property name="portal_dest_y" value="218"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
 </objectgroup>
 <objectgroup name="items" width="256" height="256">
 </objectgroup>

@@ -1,7 +1,17 @@
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Pixmap.Format;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.Array;
+import java.util.HashMap;
+import java.util.Map;
+
 public class Constants {
 
-    public enum Objects {
+    public static enum Objects {
         NOTHING(0),
         LEATHER_HELM(1),
         CHAIN_COIF(2),
@@ -455,6 +465,14 @@ public class Constants {
         }
     }
 
+    public static int MOVETYPE_U6_NONE = 0;
+    public static int MOVETYPE_U6_LAND = 1;
+    public static int MOVETYPE_U6_WATER_LOW = 2;// skiffs, rafts
+    public static int MOVETYPE_U6_WATER_HIGH = 3; // ships
+    public static int MOVETYPE_U6_AIR_LOW = 4; // balloon, birds... this movetype cannot cross mountain tops.
+    public static int MOVETYPE_U6_AIR_HIGH = 5; // dragons
+    public static int MOVETYPE_U6_ETHEREAL = 6;
+
     public static final String[] DUNGEONS = new String[]{
         "Deceit",
         "Despise",
@@ -508,5 +526,215 @@ public class Constants {
         {0x29b, 0x43, 0x0}
 
     };
+
+    public static enum Direction {
+        NORTH, EAST, SOUTH, WEST;
+    }
+
+    public static enum ActorAnimation {
+
+        GIANT_RAT(1280, 342, 2, 2, 1, 0),
+        INSECTS(1288, 343, 0, 0, 1, 0),
+        GIANT_BAT(1292, 344, 0, 0, 1, 0),
+        GIANT_SQUID(1296, 345, 0, 0, 1, 0),
+        SEA_SERPENT(1300, 346, 2, 2, 1, 0),
+        REAPER(1308, 347, 0, 0, 1, 0),
+        SHEEP(1312, 348, 2, 2, 1, 0),
+        DOG(1320, 349, 2, 2, 1, 0),
+        DEER(1328, 350, 2, 2, 1, 0),
+        WOLF(1336, 351, 2, 2, 1, 0),
+        GHOST(1344, 352, 0, 0, 1, 0),
+        GREMLIN(1348, 353, 0, 0, 1, 0),
+        MOUSE(1352, 354, 1, 1, 1, 0),
+        GAZER(1356, 355, 0, 0, 1, 0),
+        BIRD(1360, 356, 0, 0, 1, 0),
+        CORPSER(1364, 357, 0, 0, 1, 0),
+        SNAKE(1368, 358, 2, 2, 1, 0),
+        RABBIT(1376, 359, 0, 0, 1, 0),
+        ROT_WORMS(1380, 360, 0, 0, 1, 0),
+        GIANT_SPIDER(1384, 361, 2, 2, 1, 0),
+        ACID_SLUG(1452, 364, 0, 0, 1, 0),
+        TANGLE_VINE(1456, 365, 1, 2, 1, 0),
+        DAEMON(1464, 367, 2, 2, 1, 0),
+        SKELETON(1472, 368, 2, 2, 1, 0),
+        DRAKE(1480, 369, 2, 2, 1, 0),
+        HEADLESS(1488, 370, 2, 2, 1, 0),
+        TROLL(1496, 371, 2, 2, 1, 0),
+        MONGBAT(1504, 372, 2, 2, 1, 0),
+        WISP(1512, 373, 0, 0, 1, 0),
+        HYDRA(1516, 374, 0, 0, 1, 0),
+        SLIME(1520, 375, 0, 0, 0, 0),
+        //
+        WINGED_GARGOYLE(1392, 362, 3, 12, 4, 0),
+        GARGOYLE(1440, 363, 3, 3, 1, 0),
+        //
+        FIGHTER(1536, 376, 3, 4, 1, 0),
+        SWASHBUCKLER(1552, 377, 3, 4, 1, 0),
+        MAGE(1568, 378, 3, 4, 1, 0),
+        VILLAGER(1584, 379, 3, 4, 1, 0),
+        MERCHANT(1600, 380, 3, 4, 1, 0),
+        CHILD(1616, 381, 3, 4, 1, 0),
+        GUARD(1632, 382, 3, 4, 1, 0),
+        JESTER(1648, 383, 3, 4, 1, 0),
+        PEASANT(1664, 384, 3, 4, 1, 0),
+        FARMER(1680, 385, 3, 4, 1, 0),
+        MUSICIAN(1696, 386, 3, 4, 1, 0),
+        WOMAN(1712, 387, 3, 4, 1, 0),
+        CAT(1728, 388, 1, 1, 1, 0),
+        LORD_BRITISH(1760, 409, 3, 4, 1, 0),
+        AVATAR(1776, 410, 3, 4, 1, 0),
+        //
+        DRAGON(1792, 411, 2, 2, 1, 0),
+        SILVER_SERPENT(1856, 413, 1, 2, 1, 0),
+        CYCLOPS(1888, 424, 2, 8, 4, 0),
+        //
+        SHIP(1832, 412, 1, 2, 6, 8),
+        SKIFF(1872, 414, 1, 1, 1, 0),
+        RAFT(1876, 415, 0, 0, 0, 1),
+        //
+        GIANT_SCORPION(1952, 426, 2, 2, 2, 0),
+        GIANT_ANT(1968, 427, 2, 2, 2, 0),
+        COW(1984, 428, 2, 2, 2, 0),
+        ALLIGATOR(2000, 429, 2, 2, 2, 0),
+        HORSE(2016, 430, 2, 2, 2, 0);
+
+        private final int tile;
+        private final int object;
+        private final int framesPerDirection;
+        private final int tilesPerDirection;
+        private final int tilesPerFrame;
+        private final int tileStartOffset;
+
+        private final Map<Direction, Animation<TextureRegion>> animMap = new HashMap<>();
+        private final Map<Direction, TextureRegion> textureMap = new HashMap<>();
+
+        private ActorAnimation(
+                int tile,
+                int object,
+                int framesPerDirection,
+                int tilesPerDirection,
+                int tilesPerFrame,
+                int tileStartOffset) {
+
+            this.tile = tile;
+            this.object = object;
+            this.framesPerDirection = framesPerDirection;
+            this.tilesPerDirection = tilesPerDirection;
+            this.tilesPerFrame = tilesPerFrame;
+            this.tileStartOffset = tileStartOffset;
+        }
+
+        public Animation<TextureRegion> getAnimation(Direction dir) {
+            return this.animMap.get(dir);
+        }
+
+        public TextureRegion getTexture(Direction dir) {
+            return this.textureMap.get(dir);
+        }
+
+        public static void init() throws Exception {
+            TextureRegion[] tiles = new TextureRegion[32 * 64];
+            TextureRegion[][] tmp = TextureRegion.split(new Texture(Gdx.files.classpath("u6tiles+objects.png")), 16, 16);
+            for (int y = 0; y < 64; y++) {
+                for (int x = 0; x < 32; x++) {
+                    tiles[y * 32 + x] = tmp[y][x];
+                }
+            }
+
+            for (ActorAnimation aa : ActorAnimation.values()) {
+                if (aa.framesPerDirection == 0) {
+                    Array<TextureRegion> arr = new Array<>();
+                    for (int i = 0; i < 4; i++) {
+                        arr.add(tiles[aa.tile + i]);
+                    }
+                    Animation a = new Animation(.3f, arr);
+                    for (int i = 0; i < 4; i++) {
+                        aa.animMap.put(Direction.values()[i], a);
+                        aa.textureMap.put(Direction.values()[i], tiles[aa.tile]);
+                    }
+                } else {
+                    for (int i = 0; i < 4; i++) {
+
+                        if (aa == ActorAnimation.SHIP) {
+                        } else if (aa == ActorAnimation.HYDRA) {
+                        } else if (aa == ActorAnimation.DRAGON) {
+                        } else if (aa == ActorAnimation.SILVER_SERPENT) {
+
+                        } else if (aa.tilesPerFrame == 1) {
+
+                            Array<TextureRegion> arr = new Array<>();
+                            for (int j = 0; j < aa.framesPerDirection; j++) {
+                                arr.add(tiles[aa.tile + j + i * aa.tilesPerDirection]);
+                            }
+                            aa.animMap.put(Direction.values()[i], new Animation(.3f, arr));
+                            aa.textureMap.put(Direction.values()[i], tiles[aa.tile + i * aa.tilesPerDirection]);
+
+                        } else if (aa.tilesPerFrame == 2 && aa.framesPerDirection == 2) {
+
+                            Array<TextureRegion> arr = new Array<>();
+                            arr.add(new TextureRegion(mergeTiles(Direction.values()[i], tiles[aa.tile + 0 + 2 * i], tiles[aa.tile + 8 + 2 * i])));
+                            arr.add(new TextureRegion(mergeTiles(Direction.values()[i], tiles[aa.tile + 1 + 2 * i], tiles[aa.tile + 8 + 1 + 2 * i])));
+                            aa.animMap.put(Direction.values()[i], new Animation(.3f, arr));
+
+                            aa.textureMap.put(Direction.values()[i], tiles[aa.tile + i * aa.tilesPerDirection]);
+
+                        }
+                    }
+                }
+
+            }
+        }
+
+        private static Texture mergeTiles(Direction dir, TextureRegion... tr) {
+            Texture ret = null;
+            if (tr.length == 2) {
+                Pixmap dest = (dir == Direction.EAST || dir == Direction.WEST ? new Pixmap(32, 16, Format.RGBA8888) : new Pixmap(16, 32, Format.RGBA8888));
+                Pixmap p1 = pixmapFromRegion(tr[0]);
+                Pixmap p2 = pixmapFromRegion(tr[1]);
+                if (dir == Direction.EAST || dir == Direction.WEST) {
+                    dest.drawPixmap(p1, (dir == Direction.EAST ? 16 : 0), 0);
+                    dest.drawPixmap(p2, (dir == Direction.EAST ? 0 : 16), 0);
+                } else {
+                    dest.drawPixmap(p1, 0, (dir == Direction.NORTH ? 0 : 16));
+                    dest.drawPixmap(p2, 0, (dir == Direction.NORTH ? 16 : 0));
+                }
+                p1.dispose();
+                p2.dispose();
+                ret = new Texture(dest);
+            } else if (tr.length == 4) {
+                Pixmap p1 = pixmapFromRegion(tr[0]);
+                Pixmap p2 = pixmapFromRegion(tr[1]);
+                Pixmap p3 = pixmapFromRegion(tr[2]);
+                Pixmap p4 = pixmapFromRegion(tr[3]);
+                Pixmap dest = new Pixmap(32, 32, Format.RGBA8888);
+                dest.drawPixmap(p1, 0, 0);
+                dest.drawPixmap(p2, 16, 0);
+                dest.drawPixmap(p3, 0, 16);
+                dest.drawPixmap(p4, 16, 16);
+                p1.dispose();
+                p2.dispose();
+                p3.dispose();
+                p4.dispose();
+                ret = new Texture(dest);
+            }
+            return ret;
+
+        }
+
+        private static Pixmap pixmapFromRegion(TextureRegion tr) {
+            tr.getTexture().getTextureData().prepare();
+            Pixmap source = tr.getTexture().getTextureData().consumePixmap();
+            Pixmap dest = new Pixmap(tr.getRegionWidth(), tr.getRegionHeight(), Format.RGBA8888);
+            for (int x = 0; x < tr.getRegionWidth(); x++) {
+                for (int y = 0; y < tr.getRegionHeight(); y++) {
+                    int colorInt = source.getPixel(tr.getRegionX() + x, tr.getRegionY() + y);
+                    dest.drawPixel(x, y, colorInt);
+                }
+            }
+            source.dispose();
+            return dest;
+        }
+
+    }
 
 }

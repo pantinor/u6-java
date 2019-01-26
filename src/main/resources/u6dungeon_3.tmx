@@ -582,14 +582,6 @@
     <property name="qty" value="66"/>
    </properties>
   </object>
-<object id="20" name="DOWN_LADDER" gid="1135" x="4016" y="64" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="59"/>
-    <property name="portal_dest_y" value="3"/>
-    <property name="portal_dest_z" value="4"/>
-   </properties>
-  </object>
 <object id="21" name="STALAGMITE" gid="722" x="208" y="80" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
@@ -1491,14 +1483,6 @@
 <object id="215" name="STALAGMITE" gid="721" x="1168" y="320" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
-   </properties>
-  </object>
-<object id="216" name="DOWN_LADDER" gid="1135" x="1584" y="320" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="27"/>
-    <property name="portal_dest_y" value="3"/>
-    <property name="portal_dest_z" value="4"/>
    </properties>
   </object>
 <object id="225" name="EGG" gid="1257" x="2096" y="320" width="16" height="16">
@@ -3501,14 +3485,6 @@
     <property name="frame" value="5"/>
    </properties>
   </object>
-<object id="618" name="DOWN_LADDER" gid="1135" x="2480" y="1088" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="35"/>
-    <property name="portal_dest_y" value="19"/>
-    <property name="portal_dest_z" value="4"/>
-   </properties>
-  </object>
 <object id="624" name="FUMAROLE" gid="731" x="1088" y="1104" width="16" height="16">
    <properties>
     <property name="object" value="171"/>
@@ -3699,22 +3675,6 @@
 <object id="663" name="STALAGMITE" gid="721" x="1792" y="1216" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
-   </properties>
-  </object>
-<object id="668" name="DOWN_LADDER" gid="1135" x="2352" y="1216" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="35"/>
-    <property name="portal_dest_y" value="19"/>
-    <property name="portal_dest_z" value="4"/>
-   </properties>
-  </object>
-<object id="669" name="DOWN_LADDER" gid="1135" x="2480" y="1216" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="35"/>
-    <property name="portal_dest_y" value="19"/>
-    <property name="portal_dest_z" value="4"/>
    </properties>
   </object>
 <object id="674" name="STALAGMITE" gid="721" x="1360" y="1232" width="16" height="16">
@@ -4023,14 +3983,6 @@
     <property name="frame" value="3"/>
    </properties>
   </object>
-<object id="748" name="DOWN_LADDER" gid="1135" x="3504" y="1472" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="51"/>
-    <property name="portal_dest_y" value="19"/>
-    <property name="portal_dest_z" value="4"/>
-   </properties>
-  </object>
 <object id="752" name="STALAGMITE" gid="721" x="2128" y="1488" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
@@ -4066,22 +4018,6 @@
    <properties>
     <property name="object" value="216"/>
     <property name="frame" value="5"/>
-   </properties>
-  </object>
-<object id="759" name="DOWN_LADDER" gid="1135" x="3264" y="1488" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="52"/>
-    <property name="portal_dest_y" value="20"/>
-    <property name="portal_dest_z" value="4"/>
-   </properties>
-  </object>
-<object id="760" name="DOWN_LADDER" gid="1135" x="3744" y="1488" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="58"/>
-    <property name="portal_dest_y" value="20"/>
-    <property name="portal_dest_z" value="4"/>
    </properties>
   </object>
 <object id="764" name="STALAGMITE" gid="721" x="2064" y="1504" width="16" height="16">
@@ -4203,22 +4139,6 @@
     <property name="qty" value="50"/>
    </properties>
   </object>
-<object id="795" name="DOWN_LADDER" gid="1135" x="3376" y="1600" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="51"/>
-    <property name="portal_dest_y" value="27"/>
-    <property name="portal_dest_z" value="4"/>
-   </properties>
-  </object>
-<object id="797" name="DOWN_LADDER" gid="1135" x="3504" y="1600" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="51"/>
-    <property name="portal_dest_y" value="27"/>
-    <property name="portal_dest_z" value="4"/>
-   </properties>
-  </object>
 <object id="798" name="BOOKSHELF" gid="820" x="3600" y="1600" width="16" height="16">
    <properties>
     <property name="object" value="216"/>
@@ -4229,14 +4149,6 @@
    <properties>
     <property name="object" value="216"/>
     <property name="frame" value="3"/>
-   </properties>
-  </object>
-<object id="800" name="DOWN_LADDER" gid="1135" x="3632" y="1600" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="59"/>
-    <property name="portal_dest_y" value="27"/>
-    <property name="portal_dest_z" value="4"/>
    </properties>
   </object>
 <object id="804" name="EGG" gid="1257" x="432" y="1616" width="16" height="16">
@@ -4303,22 +4215,6 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-<object id="822" name="DOWN_LADDER" gid="1135" x="3472" y="1696" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="49"/>
-    <property name="portal_dest_y" value="25"/>
-    <property name="portal_dest_z" value="4"/>
-   </properties>
-  </object>
-<object id="823" name="DOWN_LADDER" gid="1135" x="3536" y="1696" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="53"/>
-    <property name="portal_dest_y" value="25"/>
-    <property name="portal_dest_z" value="4"/>
-   </properties>
-  </object>
 <object id="824" name="STALAGMITE" gid="721" x="1008" y="1712" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
@@ -4361,46 +4257,6 @@
    <properties>
     <property name="object" value="165"/>
     <property name="frame" value="1"/>
-   </properties>
-  </object>
-<object id="832" name="DOWN_LADDER" gid="1135" x="3248" y="1728" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="51"/>
-    <property name="portal_dest_y" value="27"/>
-    <property name="portal_dest_z" value="4"/>
-   </properties>
-  </object>
-<object id="833" name="DOWN_LADDER" gid="1135" x="3376" y="1728" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="51"/>
-    <property name="portal_dest_y" value="27"/>
-    <property name="portal_dest_z" value="4"/>
-   </properties>
-  </object>
-<object id="835" name="DOWN_LADDER" gid="1135" x="3632" y="1728" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="59"/>
-    <property name="portal_dest_y" value="27"/>
-    <property name="portal_dest_z" value="4"/>
-   </properties>
-  </object>
-<object id="836" name="DOWN_LADDER" gid="1135" x="3760" y="1728" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="59"/>
-    <property name="portal_dest_y" value="27"/>
-    <property name="portal_dest_z" value="4"/>
-   </properties>
-  </object>
-<object id="837" name="DOWN_LADDER" gid="1135" x="4016" y="1728" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="59"/>
-    <property name="portal_dest_y" value="27"/>
-    <property name="portal_dest_z" value="4"/>
    </properties>
   </object>
 <object id="838" name="STALAGMITE" gid="721" x="752" y="1744" width="16" height="16">
@@ -4493,22 +4349,6 @@
 <object id="854" name="STALAGMITE" gid="721" x="3136" y="1760" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
-   </properties>
-  </object>
-<object id="855" name="DOWN_LADDER" gid="1135" x="3472" y="1760" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="49"/>
-    <property name="portal_dest_y" value="29"/>
-    <property name="portal_dest_z" value="4"/>
-   </properties>
-  </object>
-<object id="856" name="DOWN_LADDER" gid="1135" x="3536" y="1760" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="53"/>
-    <property name="portal_dest_y" value="29"/>
-    <property name="portal_dest_z" value="4"/>
    </properties>
   </object>
 <object id="857" name="EGG" gid="1257" x="1296" y="1776" width="16" height="16">
@@ -4890,22 +4730,6 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-<object id="926" name="DOWN_LADDER" gid="1135" x="3376" y="1856" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="51"/>
-    <property name="portal_dest_y" value="27"/>
-    <property name="portal_dest_z" value="4"/>
-   </properties>
-  </object>
-<object id="928" name="DOWN_LADDER" gid="1135" x="3504" y="1856" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="51"/>
-    <property name="portal_dest_y" value="27"/>
-    <property name="portal_dest_z" value="4"/>
-   </properties>
-  </object>
 <object id="929" name="BOOKSHELF" gid="820" x="3600" y="1856" width="16" height="16">
    <properties>
     <property name="object" value="216"/>
@@ -4916,22 +4740,6 @@
    <properties>
     <property name="object" value="216"/>
     <property name="frame" value="3"/>
-   </properties>
-  </object>
-<object id="931" name="DOWN_LADDER" gid="1135" x="3632" y="1856" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="59"/>
-    <property name="portal_dest_y" value="27"/>
-    <property name="portal_dest_z" value="4"/>
-   </properties>
-  </object>
-<object id="935" name="DOWN_LADDER" gid="1135" x="4016" y="1856" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="59"/>
-    <property name="portal_dest_y" value="27"/>
-    <property name="portal_dest_z" value="4"/>
    </properties>
   </object>
 <object id="936" name="EGG" gid="1257" x="304" y="1872" width="16" height="16">
@@ -5092,22 +4900,6 @@
     <property name="frame" value="1"/>
    </properties>
   </object>
-<object id="969" name="DOWN_LADDER" gid="1135" x="3264" y="1968" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="52"/>
-    <property name="portal_dest_y" value="26"/>
-    <property name="portal_dest_z" value="4"/>
-   </properties>
-  </object>
-<object id="970" name="DOWN_LADDER" gid="1135" x="3744" y="1968" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="58"/>
-    <property name="portal_dest_y" value="26"/>
-    <property name="portal_dest_z" value="4"/>
-   </properties>
-  </object>
 <object id="972" name="EGG" gid="1257" x="784" y="1984" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
@@ -5149,22 +4941,6 @@
    <properties>
     <property name="object" value="216"/>
     <property name="frame" value="3"/>
-   </properties>
-  </object>
-<object id="981" name="DOWN_LADDER" gid="1135" x="3504" y="1984" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="51"/>
-    <property name="portal_dest_y" value="27"/>
-    <property name="portal_dest_z" value="4"/>
-   </properties>
-  </object>
-<object id="985" name="DOWN_LADDER" gid="1135" x="3888" y="1984" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="59"/>
-    <property name="portal_dest_y" value="27"/>
-    <property name="portal_dest_z" value="4"/>
    </properties>
   </object>
 <object id="986" name="WALKWAY" gid="995" x="944" y="2000" width="16" height="16">
@@ -5571,25 +5347,9 @@
     <property name="qty" value="50"/>
    </properties>
   </object>
-<object id="1084" name="DOWN_LADDER" gid="1135" x="2096" y="2240" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="35"/>
-    <property name="portal_dest_y" value="35"/>
-    <property name="portal_dest_z" value="4"/>
-   </properties>
-  </object>
 <object id="1085" name="STALAGMITE" gid="721" x="3744" y="2240" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
-   </properties>
-  </object>
-<object id="1086" name="DOWN_LADDER" gid="1135" x="3760" y="2240" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="59"/>
-    <property name="portal_dest_y" value="35"/>
-    <property name="portal_dest_z" value="4"/>
    </properties>
   </object>
 <object id="1087" name="STALAGMITE" gid="721" x="4000" y="2240" width="16" height="16">
@@ -5881,14 +5641,6 @@
 <object id="1144" name="STALAGMITE" gid="721" x="1232" y="2368" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
-   </properties>
-  </object>
-<object id="1145" name="DOWN_LADDER" gid="1135" x="1328" y="2368" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="19"/>
-    <property name="portal_dest_y" value="35"/>
-    <property name="portal_dest_z" value="4"/>
    </properties>
   </object>
 <object id="1146" name="STALAGMITE" gid="721" x="1376" y="2368" width="16" height="16">
@@ -6448,14 +6200,6 @@
     <property name="frame" value="1"/>
    </properties>
   </object>
-<object id="1269" name="DOWN_LADDER" gid="1135" x="2736" y="2624" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="43"/>
-    <property name="portal_dest_y" value="43"/>
-    <property name="portal_dest_z" value="4"/>
-   </properties>
-  </object>
 <object id="1271" name="STALAGMITE" gid="721" x="3936" y="2624" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
@@ -6832,14 +6576,6 @@
     <property name="frame" value="1"/>
    </properties>
   </object>
-<object id="1342" name="DOWN_LADDER" gid="1135" x="1456" y="2880" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="19"/>
-    <property name="portal_dest_y" value="43"/>
-    <property name="portal_dest_z" value="4"/>
-   </properties>
-  </object>
 <object id="1343" name="STALAGMITE" gid="721" x="1888" y="2880" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
@@ -7060,14 +6796,6 @@
     <property name="qty" value="66"/>
    </properties>
   </object>
-<object id="1384" name="DOWN_LADDER" gid="1135" x="1824" y="3056" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="26"/>
-    <property name="portal_dest_y" value="46"/>
-    <property name="portal_dest_z" value="4"/>
-   </properties>
-  </object>
 <object id="1385" name="STALAGMITE" gid="722" x="1712" y="3072" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
@@ -7114,14 +6842,6 @@
 <object id="1393" name="STALAGMITE" gid="721" x="2656" y="3120" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
-   </properties>
-  </object>
-<object id="1394" name="DOWN_LADDER" gid="1135" x="48" y="3136" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="3"/>
-    <property name="portal_dest_y" value="51"/>
-    <property name="portal_dest_z" value="4"/>
    </properties>
   </object>
 <object id="1395" name="STALAGMITE" gid="722" x="448" y="3136" width="16" height="16">
@@ -8044,14 +7764,6 @@
     <property name="quality" value="2"/>
    </properties>
   </object>
-<object id="1569" name="DOWN_LADDER" gid="1135" x="3248" y="3536" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="51"/>
-    <property name="portal_dest_y" value="52"/>
-    <property name="portal_dest_z" value="4"/>
-   </properties>
-  </object>
 <object id="1570" name="GOLD_NUGGET" gid="610" x="3552" y="3536" width="16" height="16">
    <properties>
     <property name="object" value="89"/>
@@ -8335,14 +8047,6 @@
     <property name="quality" value="4"/>
    </properties>
   </object>
-<object id="1629" name="DOWN_LADDER" gid="1135" x="1648" y="3712" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="31"/>
-    <property name="portal_dest_y" value="63"/>
-    <property name="portal_dest_z" value="4"/>
-   </properties>
-  </object>
 <object id="1630" name="MAGIC_ARMOUR" gid="535" x="1840" y="3712" width="16" height="16">
    <properties>
     <property name="object" value="23"/>
@@ -8568,14 +8272,6 @@
     <property name="qty" value="8"/>
    </properties>
   </object>
-<object id="1676" name="DOWN_LADDER" gid="1135" x="1648" y="3840" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="31"/>
-    <property name="portal_dest_y" value="63"/>
-    <property name="portal_dest_z" value="4"/>
-   </properties>
-  </object>
 <object id="1677" name="STALAGMITE" gid="721" x="3616" y="3856" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
@@ -8687,14 +8383,6 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-<object id="1702" name="DOWN_LADDER" gid="1135" x="2864" y="3904" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="43"/>
-    <property name="portal_dest_y" value="59"/>
-    <property name="portal_dest_z" value="4"/>
-   </properties>
-  </object>
 <object id="1703" name="FUMAROLE" gid="731" x="3600" y="3904" width="16" height="16">
    <properties>
     <property name="object" value="171"/>
@@ -8794,14 +8482,6 @@
     <property name="frame" value="1"/>
    </properties>
   </object>
-<object id="1727" name="DOWN_LADDER" gid="1135" x="3984" y="4016" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="57"/>
-    <property name="portal_dest_y" value="58"/>
-    <property name="portal_dest_z" value="4"/>
-   </properties>
-  </object>
 <object id="1728" name="HOLE" gid="1143" x="304" y="4032" width="16" height="16">
    <properties>
     <property name="object" value="308"/>
@@ -8819,14 +8499,6 @@
     <property name="qty" value="50"/>
    </properties>
   </object>
-<object id="1731" name="DOWN_LADDER" gid="1135" x="3376" y="4032" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="51"/>
-    <property name="portal_dest_y" value="59"/>
-    <property name="portal_dest_z" value="4"/>
-   </properties>
-  </object>
 <object id="1732" name="FUMAROLE" gid="731" x="3872" y="4032" width="16" height="16">
    <properties>
     <property name="object" value="171"/>
@@ -8842,14 +8514,6 @@
     <property name="object" value="308"/>
    </properties>
   </object>
-<object id="1735" name="DOWN_LADDER" gid="1135" x="1088" y="4048" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="20"/>
-    <property name="portal_dest_y" value="60"/>
-    <property name="portal_dest_z" value="4"/>
-   </properties>
-  </object>
 <object id="1736" name="STALAGMITE" gid="722" x="2496" y="4048" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
@@ -8859,14 +8523,6 @@
 <object id="1737" name="STALAGMITE" gid="721" x="2688" y="4048" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
-   </properties>
-  </object>
-<object id="1738" name="DOWN_LADDER" gid="1135" x="2880" y="4048" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="portal_dest_x" value="44"/>
-    <property name="portal_dest_y" value="60"/>
-    <property name="portal_dest_z" value="4"/>
    </properties>
   </object>
 <object id="1739" name="STALAGMITE" gid="721" x="3936" y="4048" width="16" height="16">
@@ -8890,7 +8546,828 @@
    </properties>
   </object>
 </objectgroup>
-<objectgroup name="moongates" width="256" height="256">
+<objectgroup name="portals" width="256" height="256">
+<object id="20" name="DOWN_LADDER" gid="1135" x="4016" y="64" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="59"/>
+    <property name="portal_dest_y" value="3"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="25" name="UP_LADDER" gid="1136" x="1344" y="80" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="84"/>
+    <property name="portal_dest_y" value="4"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="92" name="UP_LADDER" gid="1136" x="1840" y="192" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="115"/>
+    <property name="portal_dest_y" value="11"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="97" name="UP_LADDER" gid="1136" x="3264" y="192" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="204"/>
+    <property name="portal_dest_y" value="11"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="216" name="DOWN_LADDER" gid="1135" x="1584" y="320" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="27"/>
+    <property name="portal_dest_y" value="3"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="350" name="UP_LADDER" gid="1136" x="432" y="576" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="27"/>
+    <property name="portal_dest_y" value="35"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="364" name="UP_LADDER" gid="1136" x="1840" y="576" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="115"/>
+    <property name="portal_dest_y" value="35"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="515" name="UP_LADDER" gid="1136" x="3888" y="944" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="243"/>
+    <property name="portal_dest_y" value="58"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="517" name="UP_LADDER" gid="1136" x="816" y="960" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="51"/>
+    <property name="portal_dest_y" value="59"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="523" name="UP_LADDER" gid="1136" x="2224" y="960" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="139"/>
+    <property name="portal_dest_y" value="59"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="524" name="UP_LADDER" gid="1136" x="2608" y="960" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="163"/>
+    <property name="portal_dest_y" value="59"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="618" name="DOWN_LADDER" gid="1135" x="2480" y="1088" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="35"/>
+    <property name="portal_dest_y" value="19"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="623" name="UP_LADDER" gid="1136" x="3888" y="1088" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="243"/>
+    <property name="portal_dest_y" value="67"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="668" name="DOWN_LADDER" gid="1135" x="2352" y="1216" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="35"/>
+    <property name="portal_dest_y" value="19"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="669" name="DOWN_LADDER" gid="1135" x="2480" y="1216" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="35"/>
+    <property name="portal_dest_y" value="19"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="682" name="UP_LADDER" gid="1136" x="3152" y="1248" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="197"/>
+    <property name="portal_dest_y" value="77"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="691" name="UP_LADDER" gid="1136" x="3872" y="1264" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="242"/>
+    <property name="portal_dest_y" value="78"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="693" name="UP_LADDER" gid="1136" x="2736" y="1328" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="171"/>
+    <property name="portal_dest_y" value="82"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="694" name="UP_LADDER" gid="1136" x="3872" y="1328" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="242"/>
+    <property name="portal_dest_y" value="82"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="699" name="UP_LADDER" gid="1136" x="2224" y="1344" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="139"/>
+    <property name="portal_dest_y" value="83"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="700" name="UP_LADDER" gid="1136" x="2608" y="1344" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="163"/>
+    <property name="portal_dest_y" value="83"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="738" name="UP_LADDER" gid="1136" x="1456" y="1472" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="91"/>
+    <property name="portal_dest_y" value="91"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="746" name="UP_LADDER" gid="1136" x="3248" y="1472" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="203"/>
+    <property name="portal_dest_y" value="91"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="747" name="UP_LADDER" gid="1136" x="3376" y="1472" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="211"/>
+    <property name="portal_dest_y" value="91"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="748" name="DOWN_LADDER" gid="1135" x="3504" y="1472" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="51"/>
+    <property name="portal_dest_y" value="19"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="749" name="UP_LADDER" gid="1136" x="3632" y="1472" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="227"/>
+    <property name="portal_dest_y" value="91"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="750" name="UP_LADDER" gid="1136" x="3760" y="1472" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="235"/>
+    <property name="portal_dest_y" value="91"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="759" name="DOWN_LADDER" gid="1135" x="3264" y="1488" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="52"/>
+    <property name="portal_dest_y" value="20"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="760" name="DOWN_LADDER" gid="1135" x="3744" y="1488" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="58"/>
+    <property name="portal_dest_y" value="20"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="762" name="UP_LADDER" gid="1136" x="3888" y="1488" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="243"/>
+    <property name="portal_dest_y" value="92"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="776" name="UP_LADDER" gid="1136" x="3104" y="1568" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="194"/>
+    <property name="portal_dest_y" value="97"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="790" name="UP_LADDER" gid="1136" x="2352" y="1600" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="147"/>
+    <property name="portal_dest_y" value="99"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="792" name="UP_LADDER" gid="1136" x="3248" y="1600" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="203"/>
+    <property name="portal_dest_y" value="99"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="795" name="DOWN_LADDER" gid="1135" x="3376" y="1600" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="51"/>
+    <property name="portal_dest_y" value="27"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="797" name="DOWN_LADDER" gid="1135" x="3504" y="1600" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="51"/>
+    <property name="portal_dest_y" value="27"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="800" name="DOWN_LADDER" gid="1135" x="3632" y="1600" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="59"/>
+    <property name="portal_dest_y" value="27"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="803" name="UP_LADDER" gid="1136" x="3760" y="1600" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="235"/>
+    <property name="portal_dest_y" value="99"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="822" name="DOWN_LADDER" gid="1135" x="3472" y="1696" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="49"/>
+    <property name="portal_dest_y" value="25"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="823" name="DOWN_LADDER" gid="1135" x="3536" y="1696" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="53"/>
+    <property name="portal_dest_y" value="25"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="832" name="DOWN_LADDER" gid="1135" x="3248" y="1728" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="51"/>
+    <property name="portal_dest_y" value="27"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="833" name="DOWN_LADDER" gid="1135" x="3376" y="1728" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="51"/>
+    <property name="portal_dest_y" value="27"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="834" name="UP_LADDER" gid="1136" x="3504" y="1728" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="219"/>
+    <property name="portal_dest_y" value="107"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="835" name="DOWN_LADDER" gid="1135" x="3632" y="1728" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="59"/>
+    <property name="portal_dest_y" value="27"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="836" name="DOWN_LADDER" gid="1135" x="3760" y="1728" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="59"/>
+    <property name="portal_dest_y" value="27"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="837" name="DOWN_LADDER" gid="1135" x="4016" y="1728" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="59"/>
+    <property name="portal_dest_y" value="27"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="855" name="DOWN_LADDER" gid="1135" x="3472" y="1760" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="49"/>
+    <property name="portal_dest_y" value="29"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="856" name="DOWN_LADDER" gid="1135" x="3536" y="1760" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="53"/>
+    <property name="portal_dest_y" value="29"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="923" name="UP_LADDER" gid="1136" x="3248" y="1856" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="203"/>
+    <property name="portal_dest_y" value="115"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="926" name="DOWN_LADDER" gid="1135" x="3376" y="1856" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="51"/>
+    <property name="portal_dest_y" value="27"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="928" name="DOWN_LADDER" gid="1135" x="3504" y="1856" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="51"/>
+    <property name="portal_dest_y" value="27"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="931" name="DOWN_LADDER" gid="1135" x="3632" y="1856" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="59"/>
+    <property name="portal_dest_y" value="27"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="934" name="UP_LADDER" gid="1136" x="3760" y="1856" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="235"/>
+    <property name="portal_dest_y" value="115"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="935" name="DOWN_LADDER" gid="1135" x="4016" y="1856" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="59"/>
+    <property name="portal_dest_y" value="27"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="966" name="UP_LADDER" gid="1136" x="3072" y="1968" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="192"/>
+    <property name="portal_dest_y" value="122"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="969" name="DOWN_LADDER" gid="1135" x="3264" y="1968" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="52"/>
+    <property name="portal_dest_y" value="26"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="970" name="DOWN_LADDER" gid="1135" x="3744" y="1968" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="58"/>
+    <property name="portal_dest_y" value="26"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="979" name="UP_LADDER" gid="1136" x="3248" y="1984" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="203"/>
+    <property name="portal_dest_y" value="123"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="980" name="UP_LADDER" gid="1136" x="3376" y="1984" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="211"/>
+    <property name="portal_dest_y" value="123"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="981" name="DOWN_LADDER" gid="1135" x="3504" y="1984" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="51"/>
+    <property name="portal_dest_y" value="27"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="982" name="UP_LADDER" gid="1136" x="3632" y="1984" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="227"/>
+    <property name="portal_dest_y" value="123"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="983" name="UP_LADDER" gid="1136" x="3760" y="1984" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="235"/>
+    <property name="portal_dest_y" value="123"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="985" name="DOWN_LADDER" gid="1135" x="3888" y="1984" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="59"/>
+    <property name="portal_dest_y" value="27"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="1038" name="UP_LADDER" gid="1136" x="3776" y="2144" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="236"/>
+    <property name="portal_dest_y" value="133"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="1084" name="DOWN_LADDER" gid="1135" x="2096" y="2240" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="35"/>
+    <property name="portal_dest_y" value="35"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="1086" name="DOWN_LADDER" gid="1135" x="3760" y="2240" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="59"/>
+    <property name="portal_dest_y" value="35"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="1126" name="UP_LADDER" gid="1136" x="96" y="2336" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="6"/>
+    <property name="portal_dest_y" value="145"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="1145" name="DOWN_LADDER" gid="1135" x="1328" y="2368" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="19"/>
+    <property name="portal_dest_y" value="35"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="1208" name="UP_LADDER" gid="1136" x="688" y="2496" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="43"/>
+    <property name="portal_dest_y" value="155"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="1259" name="UP_LADDER" gid="1136" x="48" y="2624" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="3"/>
+    <property name="portal_dest_y" value="163"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="1269" name="DOWN_LADDER" gid="1135" x="2736" y="2624" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="43"/>
+    <property name="portal_dest_y" value="43"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="1270" name="UP_LADDER" gid="1136" x="3888" y="2624" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="243"/>
+    <property name="portal_dest_y" value="163"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="1338" name="UP_LADDER" gid="1136" x="432" y="2880" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="27"/>
+    <property name="portal_dest_y" value="179"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="1340" name="UP_LADDER" gid="1136" x="944" y="2880" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="59"/>
+    <property name="portal_dest_y" value="179"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="1342" name="DOWN_LADDER" gid="1135" x="1456" y="2880" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="19"/>
+    <property name="portal_dest_y" value="43"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="1378" name="UP_LADDER" gid="1136" x="2864" y="3008" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="179"/>
+    <property name="portal_dest_y" value="187"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="1384" name="DOWN_LADDER" gid="1135" x="1824" y="3056" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="26"/>
+    <property name="portal_dest_y" value="46"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="1394" name="DOWN_LADDER" gid="1135" x="48" y="3136" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="3"/>
+    <property name="portal_dest_y" value="51"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="1398" name="UP_LADDER" gid="1136" x="1328" y="3136" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="83"/>
+    <property name="portal_dest_y" value="195"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="1413" name="UP_LADDER" gid="1136" x="2448" y="3232" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="153"/>
+    <property name="portal_dest_y" value="201"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="1458" name="UP_LADDER" gid="1136" x="432" y="3392" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="27"/>
+    <property name="portal_dest_y" value="211"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="1460" name="UP_LADDER" gid="1136" x="944" y="3392" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="59"/>
+    <property name="portal_dest_y" value="211"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="1466" name="UP_LADDER" gid="1136" x="3632" y="3392" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="227"/>
+    <property name="portal_dest_y" value="211"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="1569" name="DOWN_LADDER" gid="1135" x="3248" y="3536" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="51"/>
+    <property name="portal_dest_y" value="52"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="1611" name="UP_LADDER" gid="1136" x="3248" y="3648" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="203"/>
+    <property name="portal_dest_y" value="227"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="1629" name="DOWN_LADDER" gid="1135" x="1648" y="3712" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="31"/>
+    <property name="portal_dest_y" value="63"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="1651" name="UP_LADDER" gid="1136" x="688" y="3776" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="43"/>
+    <property name="portal_dest_y" value="235"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="1655" name="UP_LADDER" gid="1136" x="1088" y="3792" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="68"/>
+    <property name="portal_dest_y" value="236"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="1676" name="DOWN_LADDER" gid="1135" x="1648" y="3840" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="31"/>
+    <property name="portal_dest_y" value="63"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="1702" name="DOWN_LADDER" gid="1135" x="2864" y="3904" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="43"/>
+    <property name="portal_dest_y" value="59"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="1711" name="UP_LADDER" gid="1136" x="4016" y="3920" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="251"/>
+    <property name="portal_dest_y" value="244"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="1727" name="DOWN_LADDER" gid="1135" x="3984" y="4016" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="57"/>
+    <property name="portal_dest_y" value="58"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="1731" name="DOWN_LADDER" gid="1135" x="3376" y="4032" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="51"/>
+    <property name="portal_dest_y" value="59"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="1735" name="DOWN_LADDER" gid="1135" x="1088" y="4048" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="20"/>
+    <property name="portal_dest_y" value="60"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="1738" name="DOWN_LADDER" gid="1135" x="2880" y="4048" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="portal_dest_x" value="44"/>
+    <property name="portal_dest_y" value="60"/>
+    <property name="portal_dest_z" value="4"/>
+   </properties>
+  </object>
+<object id="1743" name="UP_LADDER" gid="1136" x="3888" y="4064" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="243"/>
+    <property name="portal_dest_y" value="253"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
+<object id="1744" name="UP_LADDER" gid="1136" x="3488" y="4080" width="16" height="16">
+   <properties>
+    <property name="object" value="305"/>
+    <property name="frame" value="1"/>
+    <property name="portal_dest_x" value="218"/>
+    <property name="portal_dest_y" value="254"/>
+    <property name="portal_dest_z" value="2"/>
+   </properties>
+  </object>
 </objectgroup>
 <objectgroup name="items" width="256" height="256">
 </objectgroup>
@@ -8954,15 +9431,6 @@
    <properties>
     <property name="object" value="301"/>
     <property name="frame" value="3"/>
-   </properties>
-  </object>
-<object id="25" name="UP_LADDER" gid="1136" x="1344" y="80" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="84"/>
-    <property name="portal_dest_y" value="4"/>
-    <property name="portal_dest_z" value="2"/>
    </properties>
   </object>
 <object id="26" name="WEB" gid="565" x="1568" y="80" width="16" height="16">
@@ -9059,24 +9527,6 @@
    <properties>
     <property name="object" value="53"/>
     <property name="qty" value="5"/>
-   </properties>
-  </object>
-<object id="92" name="UP_LADDER" gid="1136" x="1840" y="192" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="115"/>
-    <property name="portal_dest_y" value="11"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
-<object id="97" name="UP_LADDER" gid="1136" x="3264" y="192" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="204"/>
-    <property name="portal_dest_y" value="11"/>
-    <property name="portal_dest_z" value="2"/>
    </properties>
   </object>
 <object id="101" name="WEB" gid="565" x="256" y="208" width="16" height="16">
@@ -9271,24 +9721,6 @@
     <property name="frame" value="3"/>
    </properties>
   </object>
-<object id="350" name="UP_LADDER" gid="1136" x="432" y="576" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="27"/>
-    <property name="portal_dest_y" value="35"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
-<object id="364" name="UP_LADDER" gid="1136" x="1840" y="576" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="115"/>
-    <property name="portal_dest_y" value="35"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
 <object id="453" name="STEEL_DOOR" gid="1088" x="1760" y="832" width="16" height="16">
    <properties>
     <property name="object" value="300"/>
@@ -9335,42 +9767,6 @@
    <properties>
     <property name="object" value="301"/>
     <property name="frame" value="3"/>
-   </properties>
-  </object>
-<object id="515" name="UP_LADDER" gid="1136" x="3888" y="944" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="243"/>
-    <property name="portal_dest_y" value="58"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
-<object id="517" name="UP_LADDER" gid="1136" x="816" y="960" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="51"/>
-    <property name="portal_dest_y" value="59"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
-<object id="523" name="UP_LADDER" gid="1136" x="2224" y="960" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="139"/>
-    <property name="portal_dest_y" value="59"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
-<object id="524" name="UP_LADDER" gid="1136" x="2608" y="960" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="163"/>
-    <property name="portal_dest_y" value="59"/>
-    <property name="portal_dest_z" value="2"/>
    </properties>
   </object>
 <object id="534" name="FOUNTAIN" gid="861" x="1232" y="992" width="16" height="16">
@@ -9492,15 +9888,6 @@
     <property name="frame" value="3"/>
    </properties>
   </object>
-<object id="623" name="UP_LADDER" gid="1136" x="3888" y="1088" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="243"/>
-    <property name="portal_dest_y" value="67"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
 <object id="640" name="STEEL_DOOR" gid="1078" x="1888" y="1120" width="16" height="16">
    <properties>
     <property name="object" value="300"/>
@@ -9577,15 +9964,6 @@
     <property name="frame" value="3"/>
    </properties>
   </object>
-<object id="682" name="UP_LADDER" gid="1136" x="3152" y="1248" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="197"/>
-    <property name="portal_dest_y" value="77"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
 <object id="683" name="OAKEN_DOOR" gid="1030" x="2352" y="1264" width="16" height="16">
    <properties>
     <property name="object" value="297"/>
@@ -9638,51 +10016,6 @@
     <property name="frame" value="1"/>
    </properties>
   </object>
-<object id="691" name="UP_LADDER" gid="1136" x="3872" y="1264" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="242"/>
-    <property name="portal_dest_y" value="78"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
-<object id="693" name="UP_LADDER" gid="1136" x="2736" y="1328" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="171"/>
-    <property name="portal_dest_y" value="82"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
-<object id="694" name="UP_LADDER" gid="1136" x="3872" y="1328" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="242"/>
-    <property name="portal_dest_y" value="82"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
-<object id="699" name="UP_LADDER" gid="1136" x="2224" y="1344" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="139"/>
-    <property name="portal_dest_y" value="83"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
-<object id="700" name="UP_LADDER" gid="1136" x="2608" y="1344" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="163"/>
-    <property name="portal_dest_y" value="83"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
 <object id="707" name="FOUNTAIN" gid="861" x="976" y="1376" width="16" height="16">
    <properties>
     <property name="object" value="234"/>
@@ -9691,51 +10024,6 @@
 <object id="737" name="BOOKSHELF" gid="817" x="3792" y="1456" width="16" height="16">
    <properties>
     <property name="object" value="216"/>
-   </properties>
-  </object>
-<object id="738" name="UP_LADDER" gid="1136" x="1456" y="1472" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="91"/>
-    <property name="portal_dest_y" value="91"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
-<object id="746" name="UP_LADDER" gid="1136" x="3248" y="1472" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="203"/>
-    <property name="portal_dest_y" value="91"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
-<object id="747" name="UP_LADDER" gid="1136" x="3376" y="1472" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="211"/>
-    <property name="portal_dest_y" value="91"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
-<object id="749" name="UP_LADDER" gid="1136" x="3632" y="1472" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="227"/>
-    <property name="portal_dest_y" value="91"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
-<object id="750" name="UP_LADDER" gid="1136" x="3760" y="1472" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="235"/>
-    <property name="portal_dest_y" value="91"/>
-    <property name="portal_dest_z" value="2"/>
    </properties>
   </object>
 <object id="751" name="BOOKSHELF" gid="819" x="3792" y="1472" width="16" height="16">
@@ -9748,15 +10036,6 @@
    <properties>
     <property name="object" value="216"/>
     <property name="frame" value="4"/>
-   </properties>
-  </object>
-<object id="762" name="UP_LADDER" gid="1136" x="3888" y="1488" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="243"/>
-    <property name="portal_dest_y" value="92"/>
-    <property name="portal_dest_z" value="2"/>
    </properties>
   </object>
 <object id="763" name="FOUNTAIN" gid="861" x="848" y="1504" width="16" height="16">
@@ -9788,36 +10067,9 @@
     <property name="frame" value="1"/>
    </properties>
   </object>
-<object id="776" name="UP_LADDER" gid="1136" x="3104" y="1568" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="194"/>
-    <property name="portal_dest_y" value="97"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
 <object id="784" name="BOOKSHELF" gid="817" x="3408" y="1584" width="16" height="16">
    <properties>
     <property name="object" value="216"/>
-   </properties>
-  </object>
-<object id="790" name="UP_LADDER" gid="1136" x="2352" y="1600" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="147"/>
-    <property name="portal_dest_y" value="99"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
-<object id="792" name="UP_LADDER" gid="1136" x="3248" y="1600" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="203"/>
-    <property name="portal_dest_y" value="99"/>
-    <property name="portal_dest_z" value="2"/>
    </properties>
   </object>
 <object id="793" name="DOORWAY" gid="1092" x="3328" y="1600" width="16" height="16">
@@ -9848,15 +10100,6 @@
    <properties>
     <property name="object" value="301"/>
     <property name="frame" value="3"/>
-   </properties>
-  </object>
-<object id="803" name="UP_LADDER" gid="1136" x="3760" y="1600" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="235"/>
-    <property name="portal_dest_y" value="99"/>
-    <property name="portal_dest_z" value="2"/>
    </properties>
   </object>
 <object id="807" name="BOOKSHELF" gid="821" x="3408" y="1616" width="16" height="16">
@@ -9901,27 +10144,9 @@
     <property name="frame" value="10"/>
    </properties>
   </object>
-<object id="834" name="UP_LADDER" gid="1136" x="3504" y="1728" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="219"/>
-    <property name="portal_dest_y" value="107"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
 <object id="912" name="BOOKSHELF" gid="817" x="3408" y="1840" width="16" height="16">
    <properties>
     <property name="object" value="216"/>
-   </properties>
-  </object>
-<object id="923" name="UP_LADDER" gid="1136" x="3248" y="1856" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="203"/>
-    <property name="portal_dest_y" value="115"/>
-    <property name="portal_dest_z" value="2"/>
    </properties>
   </object>
 <object id="924" name="DOORWAY" gid="1092" x="3328" y="1856" width="16" height="16">
@@ -9954,15 +10179,6 @@
     <property name="frame" value="3"/>
    </properties>
   </object>
-<object id="934" name="UP_LADDER" gid="1136" x="3760" y="1856" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="235"/>
-    <property name="portal_dest_y" value="115"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
 <object id="944" name="BOOKSHELF" gid="821" x="3408" y="1872" width="16" height="16">
    <properties>
     <property name="object" value="216"/>
@@ -9993,54 +10209,9 @@
     <property name="frame" value="1"/>
    </properties>
   </object>
-<object id="966" name="UP_LADDER" gid="1136" x="3072" y="1968" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="192"/>
-    <property name="portal_dest_y" value="122"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
 <object id="971" name="BOOKSHELF" gid="817" x="3792" y="1968" width="16" height="16">
    <properties>
     <property name="object" value="216"/>
-   </properties>
-  </object>
-<object id="979" name="UP_LADDER" gid="1136" x="3248" y="1984" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="203"/>
-    <property name="portal_dest_y" value="123"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
-<object id="980" name="UP_LADDER" gid="1136" x="3376" y="1984" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="211"/>
-    <property name="portal_dest_y" value="123"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
-<object id="982" name="UP_LADDER" gid="1136" x="3632" y="1984" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="227"/>
-    <property name="portal_dest_y" value="123"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
-<object id="983" name="UP_LADDER" gid="1136" x="3760" y="1984" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="235"/>
-    <property name="portal_dest_y" value="123"/>
-    <property name="portal_dest_z" value="2"/>
    </properties>
   </object>
 <object id="984" name="BOOKSHELF" gid="819" x="3792" y="1984" width="16" height="16">
@@ -10089,15 +10260,6 @@
    <properties>
     <property name="object" value="216"/>
     <property name="frame" value="10"/>
-   </properties>
-  </object>
-<object id="1038" name="UP_LADDER" gid="1136" x="3776" y="2144" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="236"/>
-    <property name="portal_dest_y" value="133"/>
-    <property name="portal_dest_z" value="2"/>
    </properties>
   </object>
 <object id="1063" name="ROD" gid="801" x="96" y="2240" width="16" height="16">
@@ -10226,15 +10388,6 @@
     <property name="frame" value="1"/>
    </properties>
   </object>
-<object id="1126" name="UP_LADDER" gid="1136" x="96" y="2336" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="6"/>
-    <property name="portal_dest_y" value="145"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
 <object id="1137" name="FOUNTAIN" gid="861" x="3536" y="2352" width="16" height="16">
    <properties>
     <property name="object" value="234"/>
@@ -10281,15 +10434,6 @@
    <properties>
     <property name="object" value="207"/>
     <property name="frame" value="1"/>
-   </properties>
-  </object>
-<object id="1208" name="UP_LADDER" gid="1136" x="688" y="2496" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="43"/>
-    <property name="portal_dest_y" value="155"/>
-    <property name="portal_dest_z" value="2"/>
    </properties>
   </object>
 <object id="1228" name="ROD" gid="801" x="32" y="2544" width="16" height="16">
@@ -10345,45 +10489,9 @@
     <property name="frame" value="1"/>
    </properties>
   </object>
-<object id="1259" name="UP_LADDER" gid="1136" x="48" y="2624" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="3"/>
-    <property name="portal_dest_y" value="163"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
-<object id="1270" name="UP_LADDER" gid="1136" x="3888" y="2624" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="243"/>
-    <property name="portal_dest_y" value="163"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
 <object id="1284" name="FOUNTAIN" gid="861" x="3152" y="2656" width="16" height="16">
    <properties>
     <property name="object" value="234"/>
-   </properties>
-  </object>
-<object id="1338" name="UP_LADDER" gid="1136" x="432" y="2880" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="27"/>
-    <property name="portal_dest_y" value="179"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
-<object id="1340" name="UP_LADDER" gid="1136" x="944" y="2880" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="59"/>
-    <property name="portal_dest_y" value="179"/>
-    <property name="portal_dest_z" value="2"/>
    </properties>
   </object>
 <object id="1356" name="FOUNTAIN" gid="861" x="848" y="2912" width="16" height="16">
@@ -10391,64 +10499,10 @@
     <property name="object" value="234"/>
    </properties>
   </object>
-<object id="1378" name="UP_LADDER" gid="1136" x="2864" y="3008" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="179"/>
-    <property name="portal_dest_y" value="187"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
-<object id="1398" name="UP_LADDER" gid="1136" x="1328" y="3136" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="83"/>
-    <property name="portal_dest_y" value="195"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
-<object id="1413" name="UP_LADDER" gid="1136" x="2448" y="3232" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="153"/>
-    <property name="portal_dest_y" value="201"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
 <object id="1441" name="BONES" gid="1146" x="2736" y="3344" width="16" height="16">
    <properties>
     <property name="object" value="309"/>
     <property name="frame" value="2"/>
-   </properties>
-  </object>
-<object id="1458" name="UP_LADDER" gid="1136" x="432" y="3392" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="27"/>
-    <property name="portal_dest_y" value="211"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
-<object id="1460" name="UP_LADDER" gid="1136" x="944" y="3392" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="59"/>
-    <property name="portal_dest_y" value="211"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
-<object id="1466" name="UP_LADDER" gid="1136" x="3632" y="3392" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="227"/>
-    <property name="portal_dest_y" value="211"/>
-    <property name="portal_dest_z" value="2"/>
    </properties>
   </object>
 <object id="1485" name="BONES" gid="1146" x="2736" y="3440" width="16" height="16">
@@ -10523,15 +10577,6 @@
     <property name="qty" value="5"/>
    </properties>
   </object>
-<object id="1611" name="UP_LADDER" gid="1136" x="3248" y="3648" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="203"/>
-    <property name="portal_dest_y" value="227"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
 <object id="1612" name="WEB" gid="565" x="2144" y="3664" width="16" height="16">
    <properties>
     <property name="object" value="53"/>
@@ -10560,24 +10605,6 @@
    <properties>
     <property name="object" value="53"/>
     <property name="qty" value="5"/>
-   </properties>
-  </object>
-<object id="1651" name="UP_LADDER" gid="1136" x="688" y="3776" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="43"/>
-    <property name="portal_dest_y" value="235"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
-<object id="1655" name="UP_LADDER" gid="1136" x="1088" y="3792" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="68"/>
-    <property name="portal_dest_y" value="236"/>
-    <property name="portal_dest_z" value="2"/>
    </properties>
   </object>
 <object id="1658" name="WEB" gid="565" x="1904" y="3792" width="16" height="16">
@@ -10640,15 +10667,6 @@
     <property name="qty" value="5"/>
    </properties>
   </object>
-<object id="1711" name="UP_LADDER" gid="1136" x="4016" y="3920" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="251"/>
-    <property name="portal_dest_y" value="244"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
 <object id="1712" name="WEB" gid="565" x="1968" y="3936" width="16" height="16">
    <properties>
     <property name="object" value="53"/>
@@ -10671,24 +10689,6 @@
    <properties>
     <property name="object" value="53"/>
     <property name="qty" value="5"/>
-   </properties>
-  </object>
-<object id="1743" name="UP_LADDER" gid="1136" x="3888" y="4064" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="243"/>
-    <property name="portal_dest_y" value="253"/>
-    <property name="portal_dest_z" value="2"/>
-   </properties>
-  </object>
-<object id="1744" name="UP_LADDER" gid="1136" x="3488" y="4080" width="16" height="16">
-   <properties>
-    <property name="object" value="305"/>
-    <property name="frame" value="1"/>
-    <property name="portal_dest_x" value="218"/>
-    <property name="portal_dest_y" value="254"/>
-    <property name="portal_dest_z" value="2"/>
    </properties>
   </object>
 </objectgroup>
