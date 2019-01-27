@@ -533,78 +533,71 @@ public class Constants {
 
     public static enum ActorAnimation {
 
-        GIANT_RAT(1280, 342, 2, 2, 1, 0),
-        INSECTS(1288, 343, 0, 0, 1, 0),
-        GIANT_BAT(1292, 344, 0, 0, 1, 0),
-        GIANT_SQUID(1296, 345, 0, 0, 1, 0),
-        SEA_SERPENT(1300, 346, 2, 2, 1, 0),
-        REAPER(1308, 347, 0, 0, 1, 0),
-        SHEEP(1312, 348, 2, 2, 1, 0),
-        DOG(1320, 349, 2, 2, 1, 0),
-        DEER(1328, 350, 2, 2, 1, 0),
-        WOLF(1336, 351, 2, 2, 1, 0),
-        GHOST(1344, 352, 0, 0, 1, 0),
-        GREMLIN(1348, 353, 0, 0, 1, 0),
-        MOUSE(1352, 354, 1, 1, 1, 0),
-        GAZER(1356, 355, 0, 0, 1, 0),
-        BIRD(1360, 356, 0, 0, 1, 0),
-        CORPSER(1364, 357, 0, 0, 1, 0),
-        SNAKE(1368, 358, 2, 2, 1, 0),
-        RABBIT(1376, 359, 0, 0, 1, 0),
-        ROT_WORMS(1380, 360, 0, 0, 1, 0),
-        GIANT_SPIDER(1384, 361, 2, 2, 1, 0),
-        TANGLE_VINE(1456, 365, 1, 2, 1, 0),
-        DAEMON(1464, 367, 2, 2, 1, 0),
-        SKELETON(1472, 368, 2, 2, 1, 0),
-        DRAKE(1480, 369, 2, 2, 1, 0),
-        HEADLESS(1488, 370, 2, 2, 1, 0),
-        TROLL(1496, 371, 2, 2, 1, 0),
-        MONGBAT(1504, 372, 2, 2, 1, 0),
-        //
-        WISP(1512, 373, 0, 0, 1, 0),
-        HYDRA(1516, 374, 0, 0, 1, 0),
-        SLIME(1520, 375, 0, 0, 0, 0),
-        ACID_SLUG(1452, 364, 0, 0, 1, 0),
-        //
-        WINGED_GARGOYLE(1392, 362, 3, 12, 4, 0),
-        GARGOYLE(1440, 363, 3, 3, 1, 0),
-        //
-        FIGHTER(1536, 376, 3, 4, 1, 0),
-        SWASHBUCKLER(1552, 377, 3, 4, 1, 0),
-        MAGE(1568, 378, 3, 4, 1, 0),
-        VILLAGER(1584, 379, 3, 4, 1, 0),
-        MERCHANT(1600, 380, 3, 4, 1, 0),
-        CHILD(1616, 381, 3, 4, 1, 0),
-        GUARD(1632, 382, 3, 4, 1, 0),
-        JESTER(1648, 383, 3, 4, 1, 0),
-        PEASANT(1664, 384, 3, 4, 1, 0),
-        FARMER(1680, 385, 3, 4, 1, 0),
-        MUSICIAN(1696, 386, 3, 4, 1, 0),
-        WOMAN(1712, 387, 3, 4, 1, 0),
-        CAT(1728, 388, 1, 1, 1, 0),
-        LORD_BRITISH(1760, 409, 3, 4, 1, 0),
-        AVATAR(1776, 410, 3, 4, 1, 0),
-        //
-        DRAGON(1792, 411, 2, 2, 1, 0),
-        SILVER_SERPENT(1856, 413, 1, 2, 1, 0),
-        CYCLOPS(1888, 424, 2, 8, 4, 0),
-        //
-        SHIP(1832, 412, 1, 2, 6, 8),
-        SKIFF(1872, 414, 1, 1, 1, 0),
-        RAFT(1876, 415, 0, 0, 0, 1),
-        //
-        GIANT_SCORPION(1952, 426, 2, 2, 2, 0),
-        GIANT_ANT(1968, 427, 2, 2, 2, 0),
-        COW(1984, 428, 2, 2, 2, 0),
-        ALLIGATOR(2000, 429, 2, 2, 2, 0),
-        HORSE(2016, 430, 2, 2, 2, 0);
+        GIANT_RAT(1280, 342, 2, 2, 1),
+        INSECTS(1288, 343, 0, 0, 1),
+        GIANT_BAT(1292, 344, 0, 0, 1),
+        GIANT_SQUID(1296, 345, 0, 0, 1),
+        SEA_SERPENT(1300, 346, 2, 2, 1),
+        REAPER(1308, 347, 0, 0, 1),
+        SHEEP(1312, 348, 2, 2, 1),
+        DOG(1320, 349, 2, 2, 1),
+        DEER(1328, 350, 2, 2, 1),
+        WOLF(1336, 351, 2, 2, 1),
+        GHOST(1344, 352, 0, 0, 1),
+        GREMLIN(1348, 353, 0, 0, 1),
+        MOUSE(1352, 354, 1, 1, 1),
+        GAZER(1356, 355, 0, 0, 1),
+        BIRD(1360, 356, 0, 0, 1),
+        CORPSER(1364, 357, 0, 0, 1),
+        SNAKE(1368, 358, 2, 2, 1),
+        RABBIT(1376, 359, 0, 0, 1),
+        ROT_WORMS(1380, 360, 0, 0, 1),
+        GIANT_SPIDER(1384, 361, 2, 2, 1),
+        TANGLE_VINE(1456, 365, 1, 2, 1),
+        DAEMON(1464, 367, 2, 2, 1),
+        SKELETON(1472, 368, 2, 2, 1),
+        DRAKE(1480, 369, 2, 2, 1),
+        HEADLESS(1488, 370, 2, 2, 1),
+        TROLL(1496, 371, 2, 2, 1),
+        MONGBAT(1504, 372, 2, 2, 1),
+        WISP(1512, 373, 0, 0, 1),
+        HYDRA(1516, 374, 0, 0, 1),
+        SLIME(1520, 375, 0, 0, 0),
+        ACID_SLUG(1452, 364, 0, 0, 1),
+        WINGED_GARGOYLE(1392, 362, 3, 12, 4),
+        GARGOYLE(1440, 363, 3, 3, 1),
+        FIGHTER(1536, 376, 3, 4, 1),
+        SWASHBUCKLER(1552, 377, 3, 4, 1),
+        MAGE(1568, 378, 3, 4, 1),
+        VILLAGER(1584, 379, 3, 4, 1),
+        MERCHANT(1600, 380, 3, 4, 1),
+        CHILD(1616, 381, 3, 4, 1),
+        GUARD(1632, 382, 3, 4, 1),
+        JESTER(1648, 383, 3, 4, 1),
+        PEASANT(1664, 384, 3, 4, 1),
+        FARMER(1680, 385, 3, 4, 1),
+        MUSICIAN(1696, 386, 3, 4, 1),
+        WOMAN(1712, 387, 3, 4, 1),
+        CAT(1728, 388, 1, 1, 1),
+        LORD_BRITISH(1760, 409, 3, 4, 1),
+        AVATAR(1776, 410, 3, 4, 1),
+        DRAGON(1792, 411, 2, 2, 1),
+        SILVER_SERPENT(1856, 413, 1, 2, 1),
+        CYCLOPS(1888, 424, 2, 8, 4),
+        SHIP(1832, 412, 1, 2, 6),
+        SKIFF(1872, 414, 1, 1, 1),
+        RAFT(1876, 415, 0, 0, 0),
+        GIANT_SCORPION(1952, 426, 2, 2, 2),
+        GIANT_ANT(1968, 427, 2, 2, 2),
+        COW(1984, 428, 2, 2, 2),
+        ALLIGATOR(2000, 429, 2, 2, 2),
+        HORSE(2016, 430, 2, 2, 2);
 
         private final int tile;
         private final int object;
         private final int framesPerDirection;
         private final int tilesPerDirection;
         private final int tilesPerFrame;
-        private final int tileStartOffset;
 
         private final Map<Direction, Animation<TextureRegion>> animMap = new HashMap<>();
         private final Map<Direction, TextureRegion> textureMap = new HashMap<>();
@@ -614,15 +607,13 @@ public class Constants {
                 int object,
                 int framesPerDirection,
                 int tilesPerDirection,
-                int tilesPerFrame,
-                int tileStartOffset) {
+                int tilesPerFrame) {
 
             this.tile = tile;
             this.object = object;
             this.framesPerDirection = framesPerDirection;
             this.tilesPerDirection = tilesPerDirection;
             this.tilesPerFrame = tilesPerFrame;
-            this.tileStartOffset = tileStartOffset;
         }
 
         public Animation<TextureRegion> getAnimation(Direction dir) {
@@ -739,7 +730,77 @@ public class Constants {
                         aa.textureMap.put(Direction.SOUTH, arr.first());
                     }
                 } else if (aa == ActorAnimation.SILVER_SERPENT) {
-
+                    TextureRegion txr = new TextureRegion(mergeTiles(null,
+                            tiles[1856], tiles[1867], tiles[1868],
+                            tiles[1866], tiles[1869], tiles[1864],
+                            tiles[1859], tiles[1865], tiles[1869]
+                    ));
+                    TextureRegion txr2 = new TextureRegion(mergeTiles(null,
+                            tiles[1870], tiles[1867], tiles[1868],
+                            tiles[1866], tiles[1869], tiles[1864],
+                            tiles[1859], tiles[1865], tiles[1869]
+                    ));
+                    TextureRegion rotated1 = rotate90(txr);
+                    TextureRegion rotated2 = rotate90(txr2);
+                    {
+                        Array<TextureRegion> arr = new Array<>();
+                        arr.add(txr);
+                        arr.add(txr2);
+                        Animation a = new Animation(.3f, arr);
+                        aa.animMap.put(Direction.NORTH, a);
+                        aa.textureMap.put(Direction.NORTH, arr.first());
+                    }
+                    {
+                        Array<TextureRegion> arr = new Array<>();
+                        arr.add(rotated1);
+                        arr.add(rotated2);
+                        Animation a = new Animation(.3f, arr);
+                        aa.animMap.put(Direction.EAST, a);
+                        aa.textureMap.put(Direction.EAST, arr.first());
+                    }
+                    {
+                        Array<TextureRegion> arr = new Array<>();
+                        arr.add(new TextureRegion(txr));
+                        arr.get(0).flip(false, true);
+                        arr.add(new TextureRegion(txr2));
+                        arr.get(1).flip(false, true);
+                        Animation a = new Animation(.3f, arr);
+                        aa.animMap.put(Direction.SOUTH, a);
+                        aa.textureMap.put(Direction.SOUTH, arr.first());
+                    }
+                    {
+                        Array<TextureRegion> arr = new Array<>();
+                        arr.add(new TextureRegion(rotated1));
+                        arr.get(0).flip(true, false);
+                        arr.add(new TextureRegion(rotated2));
+                        arr.get(1).flip(true, false);
+                        Animation a = new Animation(.3f, arr);
+                        aa.animMap.put(Direction.WEST, a);
+                        aa.textureMap.put(Direction.WEST, arr.first());
+                    }
+                } else if (aa == ActorAnimation.TANGLE_VINE) {
+                    TextureRegion txr = new TextureRegion(mergeTiles(null,
+                            null, tiles[1459], tiles[1461],
+                            tiles[1458], tiles[1456], tiles[1463],
+                            null, tiles[1460], tiles[1462]
+                    ));
+                    TextureRegion txr2 = new TextureRegion(mergeTiles(null,
+                            null, tiles[1459], tiles[1461],
+                            tiles[1458], tiles[1457], tiles[1463],
+                            null, tiles[1460], tiles[1462]
+                    ));
+                    Array<TextureRegion> arr = new Array<>();
+                    arr.add(txr);
+                    arr.add(txr2);
+                    Animation a = new Animation(.3f, arr);
+                    for (int i = 0; i < 4; i++) {
+                        aa.animMap.put(Direction.values()[i], a);
+                        aa.textureMap.put(Direction.values()[i], arr.first());
+                    }
+                } else if (aa == ActorAnimation.RAFT) {
+                    for (int i = 0; i < 4; i++) {
+                        aa.textureMap.put(Direction.values()[i], tiles[aa.tile]);
+                    }
                 } else if (aa.framesPerDirection == 0) {
                     Array<TextureRegion> arr = new Array<>();
                     for (int i = 0; i < 4; i++) {
@@ -891,6 +952,21 @@ public class Constants {
             }
             source.dispose();
             return dest;
+        }
+
+        private static TextureRegion rotate90(TextureRegion tr) {
+            Pixmap srcPix = tr.getTexture().getTextureData().consumePixmap();
+            final int width = srcPix.getWidth();
+            final int height = srcPix.getHeight();
+            Pixmap rotatedPix = new Pixmap(height, width, srcPix.getFormat());
+            for (int x = 0; x < height; x++) {
+                for (int y = 0; y < width; y++) {
+                    rotatedPix.drawPixel(x, y, srcPix.getPixel(y, x));
+                }
+            }
+            Texture t = new Texture(rotatedPix);
+            srcPix.dispose();
+            return new TextureRegion(t);
         }
 
     }
