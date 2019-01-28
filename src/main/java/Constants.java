@@ -1,15 +1,70 @@
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.loaders.FileHandleResolver;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.utils.Array;
 import java.util.HashMap;
-import java.util.Map;
 
-public class Constants {
+public interface Constants {
+
+    public static int TILE_DIM = 32;
+
+    public static enum Map {
+
+        WORLD(0,"u6world.tmx"),
+        DUNGEON1(1,"u6dungeon_1.tmx"),
+        DUNGEON2(2,"u6dungeon_2.tmx"),
+        DUNGEON3(3,"u6dungeon_3.tmx"),
+        DUNGEON4(4,"u6dungeon_4.tmx"),
+        DUNGEON5(5,"u6dungeon_5.tmx");
+
+        private int id;
+        private final String tmxFile;
+        private TiledMap tiledMap;
+
+        private Map(int id, String tmx) {
+            this.id = id;
+            this.tmxFile = tmx;
+        }
+
+        public TiledMap getTiledMap() {
+            if (this.tiledMap == null) {
+                init();
+            }
+            return this.tiledMap;
+        }
+
+        public int getHeight() {
+            TiledMapTileLayer baseLayer = (TiledMapTileLayer) tiledMap.getLayers().get("base");
+            return baseLayer.getHeight();
+        }
+
+        public int getWidth() {
+            TiledMapTileLayer baseLayer = (TiledMapTileLayer) tiledMap.getLayers().get("base");
+            return baseLayer.getWidth();
+        }
+
+        public void init() {
+            TmxMapLoader loader = new TmxMapLoader(CLASSPTH_RSLVR);
+            this.tiledMap = loader.load("data/" + this.tmxFile);
+        }
+
+    }
+
+    public static final FileHandleResolver CLASSPTH_RSLVR = new FileHandleResolver() {
+        @Override
+        public FileHandle resolve(String fileName) {
+            return Gdx.files.classpath(fileName);
+        }
+    };
 
     public static enum Objects {
         NOTHING(0),
@@ -599,8 +654,8 @@ public class Constants {
         private final int tilesPerDirection;
         private final int tilesPerFrame;
 
-        private final Map<Direction, Animation<TextureRegion>> animMap = new HashMap<>();
-        private final Map<Direction, TextureRegion> textureMap = new HashMap<>();
+        private final java.util.Map<Direction, Animation<TextureRegion>> animMap = new HashMap<>();
+        private final java.util.Map<Direction, TextureRegion> textureMap = new HashMap<>();
 
         private ActorAnimation(
                 int tile,
@@ -626,7 +681,7 @@ public class Constants {
 
         public static void init() throws Exception {
             TextureRegion[] tiles = new TextureRegion[32 * 64];
-            TextureRegion[][] tmp = TextureRegion.split(new Texture(Gdx.files.classpath("u6tiles+objects.png")), 16, 16);
+            TextureRegion[][] tmp = TextureRegion.split(new Texture(Gdx.files.classpath("data/u6tiles+objects.png")), 16, 16);
             for (int y = 0; y < 64; y++) {
                 for (int x = 0; x < 32; x++) {
                     tiles[y * 32 + x] = tmp[y][x];
