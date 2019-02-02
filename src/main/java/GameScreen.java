@@ -52,8 +52,8 @@ public class GameScreen extends BaseScreen {
 //        });
         mapPixelHeight = this.map.getHeight();
 
-        //setMapPixelCoords(newMapPixelCoords, 307, 349);
-        setMapPixelCoords(newMapPixelCoords, 83, 98);
+        setMapPixelCoords(newMapPixelCoords, 307, 349);
+        //setMapPixelCoords(newMapPixelCoords, 84, 105);
 
 //        if (this.map.getRoomIds() != null) {
 //            currentRoomId = this.map.getRoomIds()[this.map.getStartX()][this.map.getStartY()][0];
@@ -79,7 +79,8 @@ public class GameScreen extends BaseScreen {
 
     @Override
     public void setCurrentMapCoords(Vector3 v) {
-        Vector3 tmp = camera.unproject(new Vector3(TILE_DIM * 8, TILE_DIM * 818 + 16, 0), 32, 96, Ultima6.MAP_VIEWPORT_DIM, Ultima6.MAP_VIEWPORT_DIM);
+        float dy = (this.map == Constants.Map.WORLD ? TILE_DIM * 818 + 16 : TILE_DIM * 214 + 0);
+        Vector3 tmp = camera.unproject(new Vector3(TILE_DIM * 8, dy, 0), 32, 96, Ultima6.MAP_VIEWPORT_DIM, Ultima6.MAP_VIEWPORT_DIM);
         v.set(Math.round(tmp.x / TILE_DIM) - 0, ((mapPixelHeight - Math.round(tmp.y) - TILE_DIM) / TILE_DIM) - 0, 0);
     }
 
@@ -101,9 +102,11 @@ public class GameScreen extends BaseScreen {
             return;
         }
 
+        float dy = (this.map == Constants.Map.WORLD ? TILE_DIM * 992 : TILE_DIM * 248);
+
         camera.position.set(
                 newMapPixelCoords.x + TILE_DIM * 5,
-                newMapPixelCoords.y + TILE_DIM * 992,
+                newMapPixelCoords.y + dy,
                 0);
 
         camera.update();
@@ -125,7 +128,7 @@ public class GameScreen extends BaseScreen {
         Vector3 v = new Vector3();
         setCurrentMapCoords(v);
         Ultima6.font.draw(batch, String.format("%s, %s\n", v.x, v.y), 200, Ultima6.SCREEN_HEIGHT - 64);
-        
+
         batch.end();
 
         stage.act();
