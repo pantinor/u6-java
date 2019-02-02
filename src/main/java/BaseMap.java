@@ -8,52 +8,26 @@ import java.util.List;
 
 public class BaseMap {
 
-//    private int width;
-//    private int height;
-//    private final List<Portal> portals = new ArrayList<>();
+    private final List<Portal> portals = new ArrayList<>();
 //    public final List<Actor> actors = new ArrayList<>();
 //
 //    //used to keep the pace of wandering to every 2 moves instead of every move, 
 //    //otherwise cannot catch up and talk to the character
 //    private long wanderFlag = 0;
 //
-//    public int getWidth() {
-//        return width;
-//    }
-//
-//    public void setWidth(int width) {
-//        this.width = width;
-//    }
-//
-//    public int getHeight() {
-//        return height;
-//    }
-//
-//    public void setHeight(int height) {
-//        this.height = height;
-//    }
-//
-//    public void addPortal(Map map, int sx, int sy, int dx, int dy, List<Vector3> randoms, boolean elevator, boolean up) {
-//        portals.add(new Portal(map, sx, sy, dx, dy, randoms, elevator, up));
-//    }
-//
-//    public Portal getPortal(int sx, int sy) {
-//        for (Portal p : portals) {
-//            if (p.getSx() == sx && p.getSy() == sy) {
-//                return p;
-//            }
-//        }
-//        return null;
-//    }
-//    
-//    public Portal getPortal(int sx, int sy, boolean up) {
-//        for (Portal p : portals) {
-//            if (p.isElevator() && p.isUp() == up && p.getSx() == sx && p.getSy() == sy) {
-//                return p;
-//            }
-//        }
-//        return null;
-//    }
+    public void addPortal(Constants.Map map, int sx, int sy, int dx, int dy, int dz) {
+        portals.add(new Portal(map, sx, sy, dx, dy, dz));
+    }
+
+    public Portal getPortal(int sx, int sy) {
+        for (Portal p : portals) {
+            if (p.getSx() == sx && p.getSy() == sy) {
+                return p;
+            }
+        }
+        return null;
+    }
+    
 //
 //    public Actor getCreatureAt(int x, int y) {
 //        for (Actor cr : actors) {

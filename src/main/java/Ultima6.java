@@ -177,6 +177,7 @@ public class Ultima6 extends Game {
             Constants.ActorAnimation.init();
             initTileFlags();
             AVATAR = Constants.ActorAnimation.AVATAR.getAnimation(Constants.Direction.NORTH);
+            Constants.Map.WORLD.getScreen().setMapPixelCoords(Constants.Map.WORLD.getScreen().newMapPixelCoords, 307, 349);
 
 //            TextureRegion[][] expl = TextureRegion.split(new Texture(Gdx.files.classpath("assets/data/uf_FX.png")), 24, 24);
 //            EXPLMAP.put(Color.GRAY, new Animation(.1f, getTextureArray(expl, 0, 0)));
@@ -223,7 +224,7 @@ public class Ultima6 extends Game {
 
         mainGame = this;
         //startScreen = new StartScreen();
-        setScreen(new GameScreen(Constants.Map.WORLD));
+        setScreen(Constants.Map.WORLD.getScreen());
 
     }
 

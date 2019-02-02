@@ -52,12 +52,6 @@ public class GameScreen extends BaseScreen {
 //        });
         mapPixelHeight = this.map.getHeight();
 
-        setMapPixelCoords(newMapPixelCoords, 307, 349);
-        //setMapPixelCoords(newMapPixelCoords, 84, 105);
-
-//        if (this.map.getRoomIds() != null) {
-//            currentRoomId = this.map.getRoomIds()[this.map.getStartX()][this.map.getStartY()][0];
-//        }
     }
 
     @Override
@@ -165,23 +159,21 @@ public class GameScreen extends BaseScreen {
             }
             newMapPixelCoords.x = newMapPixelCoords.x - TILE_DIM;
             v.x -= 1;
-        } else if (keycode == Keys.D || keycode == Keys.U) {//elevators
+        } else if (keycode == Keys.D || keycode == Keys.U) {
 
-        } else if (keycode == Keys.E || keycode == Keys.K) {//stairs
-//            Portal p = this.map.getMap().getPortal((int) v.x, (int) v.y);
-//            if (p != null && p.getMap() != this.map && !p.isElevator()) {
-//                Vector3 dv = p.getDest();
-//                int dx = (int) dv.x;
-//                int dy = (int) dv.y;
-//                if (dx >= 0 && dy >= 0) {
-//                    if (p.getMap().getRoomIds() != null) {
-//                        p.getMap().getScreen().currentRoomId = p.getMap().getRoomIds()[dx][dy][0];
-//                    }
-//                    p.getMap().getScreen().setMapPixelCoords(p.getMap().getScreen().newMapPixelCoords, dx, dy);
-//                }
-//                Andius.mainGame.setScreen(p.getMap().getScreen());
-//            }
-//            return false;
+        } else if (keycode == Keys.E || keycode == Keys.K) {
+            Portal p = this.map.getBaseMap().getPortal((int) v.x, (int) v.y);
+            if (p != null && p.getMap() != this.map) {
+                Vector3 dv = p.getDestination();
+                int dx = (int) dv.x;
+                int dy = (int) dv.y;
+                if (dx >= 0 && dy >= 0) {
+                    p.getMap().getTiledMap();
+                    p.getMap().getScreen().setMapPixelCoords(p.getMap().getScreen().newMapPixelCoords, dx, dy);
+                    Ultima6.mainGame.setScreen(p.getMap().getScreen());
+                }
+            }
+            return false;
         } else if (keycode == Keys.G) {
 
 //            MapLayer messagesLayer = this.map.getTiledMap().getLayers().get("messages");
@@ -262,11 +254,11 @@ public class GameScreen extends BaseScreen {
             TileFlags tf = Ultima6.TILE_FLAGS.get(cell.getTile().getId());
             if (tf.isWall() || tf.isImpassable() || tf.isWet()) {
                 Sounds.play(Sound.BLOCKED);
-                //return false;
+                return false;
             }
         } else {
             Sounds.play(Sound.BLOCKED);
-            //return false;
+            return false;
         }
 
 //        MapLayer messagesLayer = this.map.getTiledMap().getLayers().get("messages");
@@ -333,30 +325,6 @@ public class GameScreen extends BaseScreen {
 //                }
 //
 //            }
-//        }
-//        Portal p = this.map.getMap().getPortal((int) nx, (int) ny);
-//        if (p != null && p.getMap() == this.map) { //go to a portal on the same map ie ali-baba map has this
-//            Vector3 dv = p.getDest();
-//            if (this.map.getRoomIds() != null) {
-//                currentRoomId = this.map.getRoomIds()[(int) dv.x][(int) dv.y][0];
-//                setRoomName();
-//            }
-//            setMapPixelCoords(newMapPixelCoords, (int) dv.x, (int) dv.y);
-//
-//            for (Actor act : this.map.getMap().actors) {//so follower can follow thru portal
-//                if (act.getMovement() == MovementBehavior.FOLLOW_AVATAR) {
-//                    int dist = Utils.movementDistance(act.getWx(), act.getWy(), (int) nx, (int) ny);
-//                    if (dist < 5) {
-//                        act.setWx((int) dv.x);
-//                        act.setWy((int) dv.y);
-//                        Vector3 pixelPos = new Vector3();
-//                        setMapPixelCoords(pixelPos, act.getWx(), act.getWy());
-//                        act.setX(pixelPos.x);
-//                        act.setY(pixelPos.y);
-//                    }
-//                }
-//            }
-//            return false;
 //        }
         return true;
     }

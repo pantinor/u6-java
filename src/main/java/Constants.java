@@ -7,11 +7,14 @@ import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.utils.Array;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public interface Constants {
 
@@ -19,16 +22,18 @@ public interface Constants {
 
     public static enum Map {
 
-        WORLD(0,"u6world.tmx"),
-        DUNGEON1(1,"u6dungeon_1.tmx"),
-        DUNGEON2(2,"u6dungeon_2.tmx"),
-        DUNGEON3(3,"u6dungeon_3.tmx"),
-        DUNGEON4(4,"u6dungeon_4.tmx"),
-        DUNGEON5(5,"u6dungeon_5.tmx");
+        WORLD(0, "u6world.tmx"),
+        DUNGEON1(1, "u6dungeon_1.tmx"),
+        DUNGEON2(2, "u6dungeon_2.tmx"),
+        DUNGEON3(3, "u6dungeon_3.tmx"),
+        DUNGEON4(4, "u6dungeon_4.tmx"),
+        DUNGEON5(5, "u6dungeon_5.tmx");
 
         private int id;
         private final String tmxFile;
         private TiledMap tiledMap;
+        private final BaseMap baseMap = new BaseMap();
+        private BaseScreen screen;
 
         private Map(int id, String tmx) {
             this.id = id;
@@ -40,6 +45,14 @@ public interface Constants {
                 init();
             }
             return this.tiledMap;
+        }
+
+        public BaseMap getBaseMap() {
+            return baseMap;
+        }
+
+        public BaseScreen getScreen() {
+            return screen;
         }
 
         public int getHeight() {
@@ -55,6 +68,34 @@ public interface Constants {
         public void init() {
             TmxMapLoader loader = new TmxMapLoader(CLASSPTH_RSLVR);
             this.tiledMap = loader.load("data/" + this.tmxFile);
+
+            this.screen = new GameScreen(this);
+
+            MapLayer portalsLayer = this.tiledMap.getLayers().get("portals");
+            if (portalsLayer != null) {
+                Iterator<MapObject> iter = portalsLayer.getObjects().iterator();
+                while (iter.hasNext()) {
+                    MapObject obj = iter.next();
+
+                    float x = obj.getProperties().get("x", Float.class);
+                    float y = obj.getProperties().get("y", Float.class);
+                    int sx = (int) (x / 16);
+                    int sy = getHeight() - 1 - (int) (y / 16);
+
+                    Object pdx = obj.getProperties().get("portal_dest_x");
+                    Object pdy = obj.getProperties().get("portal_dest_y");
+                    Object pdz = obj.getProperties().get("portal_dest_z");
+
+                    int dx = pdx != null ? Integer.parseInt((String) pdx) : -1;
+                    int dy = pdy != null ? Integer.parseInt((String) pdy) : -1;
+                    int dz = pdz != null ? Integer.parseInt((String) pdz) : -1;
+                    
+                    Map dm = Map.values()[dz];
+
+                    this.baseMap.addPortal(dm, sx, sy, dx, dy, dz);
+
+                }
+            }
         }
 
     }

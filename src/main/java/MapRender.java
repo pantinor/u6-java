@@ -224,10 +224,10 @@ public class MapRender {
             dungActorLayers[i - 1] = dungActorLayer.toString();
         }
 
-        FileUtils.writeStringToFile(new File("src/main/resources/u6world.tmx"), String.format(WORLD_TMX, ANIMATIONS,
+        FileUtils.writeStringToFile(new File("src/main/resources/data/u6world.tmx"), String.format(WORLD_TMX, ANIMATIONS,
                 worldLayer1, objectLayer.toString(), portalLayer.toString(), itemsLayer.toString(), actorLayer.toString(), onTopLayer.toString()));
         for (int i = 0; i < 5; i++) {
-            FileUtils.writeStringToFile(new File("src/main/resources/u6dungeon_" + (i + 1) + ".tmx"), String.format(DUNGEON_TMX, ANIMATIONS,
+            FileUtils.writeStringToFile(new File("src/main/resources/data/u6dungeon_" + (i + 1) + ".tmx"), String.format(DUNGEON_TMX, ANIMATIONS,
                     dLayer1[i], dungObjectLayers[i], dungPortalLayers[i], dungItemsLayers[i], dungActorLayers[i], dungOnTopLayers[i]));
 
         }

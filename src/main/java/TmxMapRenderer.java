@@ -22,12 +22,14 @@ import static com.badlogic.gdx.graphics.g2d.Batch.Y4;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.TextureMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
+import com.badlogic.gdx.maps.tiled.tiles.AnimatedTiledMapTile;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -230,15 +232,27 @@ public class TmxMapRenderer extends BatchTiledMapRenderer implements Constants {
     }
 
     @Override
-    public void renderObject(MapObject object) {
-        if (object instanceof TextureMapObject) {
-            TextureMapObject textureObj = (TextureMapObject) object;
-            if (viewBounds.contains(textureObj.getX() * unitScale + 32, textureObj.getY() * unitScale)) {
-                batch.draw(textureObj.getTextureRegion(),
-                        textureObj.getX() * unitScale, textureObj.getY() * unitScale,
-                        textureObj.getOriginX() * unitScale, textureObj.getOriginY() * unitScale,
-                        textureObj.getTextureRegion().getRegionWidth() * unitScale, textureObj.getTextureRegion().getRegionHeight() * unitScale,
-                        textureObj.getScaleX(), textureObj.getScaleY(), textureObj.getRotation());
+    public void renderObjects(MapLayer layer) {
+        for (MapObject object : layer.getObjects()) {
+            if (object instanceof TextureMapObject) {
+                TextureMapObject textureObj = (TextureMapObject) object;
+                if (viewBounds.contains(textureObj.getX() * unitScale + 32, textureObj.getY() * unitScale)) {
+                    Object gid = object.getProperties().get("gid");
+                    TiledMapTile t = this.map.getTiledMap().getTileSets().getTile((Integer) gid);
+                    if (t instanceof AnimatedTiledMapTile) {
+                        batch.draw(t.getTextureRegion(),
+                                textureObj.getX() * unitScale, textureObj.getY() * unitScale,
+                                textureObj.getOriginX() * unitScale, textureObj.getOriginY() * unitScale,
+                                textureObj.getTextureRegion().getRegionWidth() * unitScale, textureObj.getTextureRegion().getRegionHeight() * unitScale,
+                                textureObj.getScaleX(), textureObj.getScaleY(), textureObj.getRotation());
+                    } else {
+                        batch.draw(textureObj.getTextureRegion(),
+                                textureObj.getX() * unitScale, textureObj.getY() * unitScale,
+                                textureObj.getOriginX() * unitScale, textureObj.getOriginY() * unitScale,
+                                textureObj.getTextureRegion().getRegionWidth() * unitScale, textureObj.getTextureRegion().getRegionHeight() * unitScale,
+                                textureObj.getScaleX(), textureObj.getScaleY(), textureObj.getRotation());
+                    }
+                }
             }
         }
     }
