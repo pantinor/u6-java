@@ -32,6 +32,7 @@ public class TileUtils implements ApplicationListener {
 
         try {
             Constants.ActorAnimation.init();
+            Constants.PaletteCycledTiles.init();
         } catch (Exception e) {
 
         }
@@ -67,7 +68,6 @@ public class TileUtils implements ApplicationListener {
             }
         }
 
-
         x = 48;
         y = 500;
         for (Constants.ActorAnimation aa : Constants.ActorAnimation.values()) {
@@ -83,6 +83,22 @@ public class TileUtils implements ApplicationListener {
                 }
             }
         }
+
+        batch.draw((TextureRegion) Constants.PaletteCycledTiles.POT_BLUE.getAnims()[0].getKeyFrame(time, true), 100, 300, 32, 32);
+        batch.draw((TextureRegion) Constants.PaletteCycledTiles.POT_PINK.getAnims()[0].getKeyFrame(time, true), 100, 320, 32, 32);
+        
+        batch.draw((TextureRegion) Constants.PaletteCycledTiles.STARS.getAnims()[0].getKeyFrame(time, true), 30, 300, 32, 32);
+        batch.draw((TextureRegion) Constants.PaletteCycledTiles.STARS.getAnims()[1].getKeyFrame(time, true), 50, 320, 32, 32);
+        batch.draw((TextureRegion) Constants.PaletteCycledTiles.STARS.getAnims()[2].getKeyFrame(time, true), 70, 340, 32, 32);
+
+        batch.draw((TextureRegion) Constants.PaletteCycledTiles.ROCK.getAnims()[0].getKeyFrame(time, true), 30, 500, 32, 32);
+        batch.draw((TextureRegion) Constants.PaletteCycledTiles.ROCK.getAnims()[1].getKeyFrame(time, true), 50, 520, 32, 32);
+        batch.draw((TextureRegion) Constants.PaletteCycledTiles.ROCK.getAnims()[2].getKeyFrame(time, true), 70, 540, 32, 32);
+
+        batch.draw((TextureRegion) Constants.PaletteCycledTiles.FIRE.getAnims()[0].getKeyFrame(time, true), 10, 400, 32, 32);
+        batch.draw((TextureRegion) Constants.PaletteCycledTiles.FIRE.getAnims()[1].getKeyFrame(time, true), 10 + 32, 400, 32, 32);
+        batch.draw((TextureRegion) Constants.PaletteCycledTiles.FIRE.getAnims()[2].getKeyFrame(time, true), 10, 400 - 32, 32, 32);
+        batch.draw((TextureRegion) Constants.PaletteCycledTiles.FIRE.getAnims()[3].getKeyFrame(time, true), 10 + 32, 400 - 32, 32, 32);
 
         batch.end();
 

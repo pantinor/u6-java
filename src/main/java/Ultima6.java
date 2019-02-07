@@ -173,8 +173,11 @@ public class Ultima6 extends Game {
 //            heroesAtlas = new TextureAtlas(Gdx.files.classpath("assets/data/heroes-atlas.txt"));
 //            mapAtlas = new TextureAtlas(Gdx.files.classpath("assets/data/map-atlas.txt"));
 //            moongateTextures = mapAtlas.findRegions("moongate");
-            Constants.Map.WORLD.init();
+
             Constants.ActorAnimation.init();
+            Constants.PaletteCycledTiles.init();
+            Constants.Map.WORLD.init();
+
             initTileFlags();
             AVATAR = Constants.ActorAnimation.AVATAR.getAnimation(Constants.Direction.NORTH);
             Constants.Map.WORLD.getScreen().setMapPixelCoords(Constants.Map.WORLD.getScreen().newMapPixelCoords, 307, 349);
@@ -217,7 +220,6 @@ public class Ultima6 extends Game {
 //            Icons.init();
 //            Constants.Moongate.init();
 //            CONVERSATIONS = Conversations.init();
-
         } catch (Exception e) {
             e.printStackTrace();
         }

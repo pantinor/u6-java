@@ -32,35 +32,16 @@ public class LZW {
             palMap.put(i, col);
         }
 
-        ByteBuffer allbb = ByteBuffer.allocate(maptiles.length + objtiles.length);
-        allbb.put(maptiles);
-        allbb.put(objtiles);
-        allbb.rewind();
-
-        ByteBuffer tileIdxBuf = ByteBuffer.wrap(tileidx);
-        List<Tile> tiles = new ArrayList<>();
-
-        for (int i = 0; i < 2048; i++) {
-            Tile t = new Tile();
-            t.id = i;
-            t.data = new byte[256];
-
-            int tile_offset = bytesToUnsignedShort(tileIdxBuf.get(), tileIdxBuf.get()) * 16;
-            allbb.position(tile_offset);
-
-            if (masktypes[i] == U6TILE_TRANS) {
-                t.transparent = true;
-                allbb.get(t.data, 0, 256);
-            } else if (masktypes[i] == U6TILE_PLAIN) {
-                allbb.get(t.data, 0, 256);
-            } else {
-                t.transparent = true;
-                decodePixelBlockTile(allbb, t);
+        Map<Integer, BufferedImage> tiles = new HashMap<>();
+        BufferedImage im2 = ImageIO.read(new File("src\\main\\resources\\data\\u6tiles+objects.png"));
+        int idx = 0;
+        for (int y = 0; y < 64; y++) {
+            for (int x = 0; x < 32; x++) {
+                BufferedImage tile = im2.getSubimage(x * 16, y * 16, 16, 16);
+                tiles.put(idx, tile);
+                idx++;
             }
-            tiles.add(t);
         }
-        allbb.rewind();
-        tileIdxBuf.rewind();
 
         ByteBuffer bb = ByteBuffer.wrap(u6mcga);
 
@@ -75,32 +56,95 @@ public class LZW {
             dests[i] = bytesToUnsignedShort(bb.get(), bb.get());
         }
 
-        parseMask(tiles, ByteBuffer.wrap(animmask), sources, dests);
+        BufferedImage[] hybrids = parseMask(tiles, ByteBuffer.wrap(animmask), sources, dests);
 
-        tilesToPng(tiles, palMap);
+        BufferedImage output = new BufferedImage(8 * 16, 4 * 16, BufferedImage.TYPE_INT_ARGB);
+        int i = 0;
+        for (int y = 0; y < 4; y++) {
+            for (int x = 0; x < 8; x++) {
+                BufferedImage tile = hybrids[x + y * 4];
+                output.getGraphics().drawImage(tile, x * 16, y * 16, null);
+                i++;
+            }
+        }
 
-//        BufferedImage output = new BufferedImage(8 * 16, 4 * 16, BufferedImage.TYPE_INT_ARGB);
-//        int i = 0;
-//        for (int y = 0; y < 4; y++) {
-//            for (int x = 0; x < 8; x++) {
-//                BufferedImage tile = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
-//                byte[] mask = hybrids[sources[i]];
-//                byte[] original_tile = tiles.get(sources[i]).data;
-//
-//                for (int yy = 0; yy < 16; yy++) {
-//                    for (int xx = 0; xx < 16; xx++) {
-//                        //if (mask[yy * 16 + xx] != 0) {
-//                        Color color = palMap.get(original_tile[yy * 16 + xx] & 0xff);
-//                        tile.setRGB(xx, yy, color.getRGB());
-//                        //}
-//                    }
-//                }
-//                output.getGraphics().drawImage(tile, x * 16, y * 16, null);
-//                i++;
-//            }
-//        }
-//
-//        ImageIO.write(output, "PNG", new File("hybrids.png"));
+        ImageIO.write(output, "PNG", new File("hybrids.png"));
+    }
+
+    public static BufferedImage[] parseMask(Map<Integer, BufferedImage> tiles, ByteBuffer animmask, int[] sources, int[] dests) {
+
+        byte[][] animmask_vga = new byte[32][64];
+        for (int i = 0; i < 32; i++) {
+            for (int j = 0; j < 64; j++) {
+                animmask_vga[i][j] = animmask.get();
+            }
+        }
+
+        BufferedImage[] hybrids = new BufferedImage[32];
+
+        for (int i = 0; i < 32; i++) {
+
+            BufferedImage source = tiles.get(sources[i] / 2);
+            BufferedImage dest = tiles.get(dests[i] / 2);
+
+            int[] source_pixels = new int[16 * 16];
+            int[] dest_pixels = new int[16 * 16];
+
+            for (int y = 0; y < 16; y++) {
+                for (int x = 0; x < 16; x++) {
+                    source_pixels[x + y * 16] = source.getRGB(x, y);
+                }
+            }
+
+            for (int y = 0; y < 16; y++) {
+                for (int x = 0; x < 16; x++) {
+                    dest_pixels[x + y * 16] = dest.getRGB(x, y);
+                }
+            }
+
+            int copy_pos = 0;
+            int db_index = 0;
+
+            int bytes2copy = animmask_vga[i][db_index] & 0xff;
+
+            if (bytes2copy != 0) {
+                for (int j = 0; j < bytes2copy; j++) {
+                    dest_pixels[copy_pos] = source_pixels[copy_pos];
+                    copy_pos++;
+                }
+            }
+
+            db_index += 1;
+
+            int displacement = animmask_vga[i][db_index] & 0xff;
+            bytes2copy = animmask_vga[i][db_index + 1] & 0xff;
+            db_index += 2;
+
+            while ((displacement != 0) && (bytes2copy != 0)) {
+                copy_pos += displacement;
+
+                for (int j = 0; j < bytes2copy; j++) {
+                    dest_pixels[copy_pos] = source_pixels[copy_pos];
+                    copy_pos++;
+                }
+
+                displacement = animmask_vga[i][db_index] & 0xff;
+                bytes2copy = animmask_vga[i][db_index + 1] & 0xff;
+                db_index += 2;
+            }
+
+            hybrids[i] = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
+            for (int y = 0; y < 16; y++) {
+                for (int x = 0; x < 16; x++) {
+                    dest_pixels[x + y * 16] = dest.getRGB(x, y);
+                    hybrids[i].setRGB(x, y, dest_pixels[x + y * 16]);
+                }
+            }
+
+        }
+
+        return hybrids;
+
     }
 
     public static void tilesToPng(List<Tile> tiles, Map<Integer, Color> palMap) throws Exception {
@@ -127,55 +171,6 @@ public class LZW {
         ImageIO.write(output, "PNG", new File("alltiles.png"));
     }
 
-    public static void parseMask(List<Tile> tiles, ByteBuffer animmask, int[] sources, int[] dests) {
-
-        byte[][] animmask_vga = new byte[32][64];
-        for (int i = 0; i < 32; i++) {
-            for (int j = 0; j < 64; j++) {
-                animmask_vga[i][j] = animmask.get();
-            }
-        }
-
-        for (int i = 0; i < 32; i++) {
-
-            byte[] source_tile = tiles.get(sources[i] / 2).data;
-            byte[] dest_tile = tiles.get(dests[i] / 2).data;
-
-            int copy_pos = 0;
-            int db_index = 0;
-            int displacement;
-            int bytes2copy;
-
-            bytes2copy = animmask_vga[i][db_index] & 0xff;
-
-            if (bytes2copy != 0) {
-                for (int j = 0; j < bytes2copy; j++) {
-                    dest_tile[copy_pos] = source_tile[copy_pos];
-                    copy_pos++;
-                }
-            }
-            db_index++;
-
-            displacement = animmask_vga[i][db_index] & 0xff;
-            bytes2copy = animmask_vga[i][db_index + 1] & 0xff;
-            db_index += 2;
-
-            while ((displacement != 0) && (bytes2copy != 0)) {
-                copy_pos += displacement;
-
-                for (int j = 0; j < bytes2copy; j++) {
-                    dest_tile[copy_pos] = source_tile[copy_pos];
-                    copy_pos++;
-                }
-
-                displacement = animmask_vga[i][db_index] & 0xff;
-                bytes2copy = animmask_vga[i][db_index + 1] & 0xff;
-                db_index += 2;
-            }
-        }
-
-    }
-
     public static void decodePixelBlockTile(ByteBuffer tile_data, Tile tile) {
         ByteBuffer bb = ByteBuffer.wrap(tile.data);
         while (true) {
@@ -197,31 +192,6 @@ public class LZW {
             }
         }
 
-        /*
-tiledata = array('c', "\xff" * 256)
-length = unpack("B", sio.read(1))[0]
-length = length * 16 - 1    # Value is in paragraphs.
-twisted = sio.read(length) # removeme
-twisted_io = StringIO(twisted)
-tileidx = 0
-# We break on encountering a runlength of 0 [since the tile
-# can be padded with 0xED bytes], but also explicitly 
-# stop at the end of the buffer as well.
-while twisted_io.tell() < length:
-        # Convert one run of pixels
-        add, runlength = unpack("<HB", twisted_io.read(3))
-        if runlength == 0: break
-        run = array('c', twisted_io.read(runlength))
-
-        actual_add = add % 160
-        if add >= 1760:
-                actual_add += 160
-        tileidx += actual_add
-        tiledata[tileidx:runlength] = run
-        tileidx += runlength
-
-tiledata = tiledata.tostring()
-         */
     }
 
     static class Tile {

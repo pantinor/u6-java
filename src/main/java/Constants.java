@@ -15,6 +15,18 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.utils.Array;
 import java.util.HashMap;
 import java.util.Iterator;
+import org.apache.commons.io.FileUtils;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
+import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
+import com.badlogic.gdx.maps.tiled.TiledMapTileSets;
+import com.badlogic.gdx.maps.tiled.tiles.AnimatedTiledMapTile;
+import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
+import com.badlogic.gdx.utils.IntArray;
+import com.badlogic.gdx.utils.XmlReader;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import org.apache.commons.io.IOUtils;
 
 public interface Constants {
 
@@ -89,13 +101,30 @@ public interface Constants {
                     int dx = pdx != null ? Integer.parseInt((String) pdx) : -1;
                     int dy = pdy != null ? Integer.parseInt((String) pdy) : -1;
                     int dz = pdz != null ? Integer.parseInt((String) pdz) : -1;
-                    
+
                     Map dm = Map.values()[dz];
 
                     this.baseMap.addPortal(dm, sx, sy, dx, dy, dz);
 
                 }
             }
+
+            TiledMapTileSets sets = this.tiledMap.getTileSets();
+            TiledMapTileSet set = sets.getTileSet(0);
+            for (PaletteCycledTiles at : PaletteCycledTiles.values()) {
+                for (int i = 0; i < at.tiles.length; i++) {
+                    Array<StaticTiledMapTile> staticTiles = new Array<>();
+                    Object[] frames = at.getAnims()[i].getKeyFrames();
+                    for (Object frame : frames) {
+                        staticTiles.add(new StaticTiledMapTile((TextureRegion) frame));
+                    }
+                    AnimatedTiledMapTile animatedTile = new AnimatedTiledMapTile(.2f, staticTiles);
+                    animatedTile.setId(at.tiles[i] + 1);
+                    set.putTile(at.tiles[i] + 1, animatedTile);
+                }
+
+            }
+
         }
 
     }
@@ -1063,6 +1092,121 @@ public interface Constants {
             Texture t = new Texture(rotatedPix);
             srcPix.dispose();
             return new TextureRegion(t);
+        }
+
+    }
+
+    public static enum PaletteCycledTiles {
+        FIRE(0xe0, 8, 797, 683, 702, 703, 717, 719, 788, 789, 790, 791, 890, 1160, 1140, 1126, 1127, 1132, 1133, 1164),
+        LAVA(0xe0, 8, 221, 222, 223),
+        ROCK(0xe8, 8, 217, 218, 219),
+        STARS(0xe8, 8, 252, 253, 254),
+        POT_BROWN(0xf4, 4, 687),
+        POT_BLUE(0xe8, 8, 798),
+        POT_PINK(0xf0, 4, 562, 799, 1167),
+        SWAMP(0xe8, 8, 3);
+        private int palIndex;
+        private int length;
+        private int[] tiles;
+        private Animation[] anims;
+
+        private PaletteCycledTiles(int palIndex, int length, int... tiles) {
+            this.palIndex = palIndex;
+            this.length = length;
+            this.tiles = tiles;
+            this.anims = new Animation[tiles.length];
+        }
+
+        public Animation[] getAnims() {
+            return anims;
+        }
+
+        public static void init() throws Exception {
+            TextureRegion[] tiles = new TextureRegion[32 * 64];
+            TextureRegion[][] tmp = TextureRegion.split(new Texture(Gdx.files.classpath("data/u6tiles+objects.png")), 16, 16);
+            for (int y = 0; y < 64; y++) {
+                for (int x = 0; x < 32; x++) {
+                    tiles[y * 32 + x] = tmp[y][x];
+                }
+            }
+            InputStream is = Gdx.files.classpath("data/U6PAL").read();
+            byte[] palette = IOUtils.toByteArray(is);
+            java.util.Map<Integer, Integer[]> palMap = new HashMap<>();
+            for (int i = 0, j = 0; i < 256; i++, j += 3) {
+                Integer[] ints = new Integer[3];
+                ints[0] = palette[j] << 2;
+                ints[1] = palette[j + 1] << 2;
+                ints[2] = palette[j + 2] << 2;
+                palMap.put(i, ints);
+            }
+
+            for (PaletteCycledTiles t : PaletteCycledTiles.values()) {
+
+                for (int k = 0; k < t.tiles.length; k++) {
+
+                    Integer[][] cycle = new Integer[t.length][3];
+                    for (int i = 0; i < t.length; i++) {
+                        cycle[i] = palMap.get(t.palIndex + i);
+                    }
+
+                    Pixmap lastpx = pixmapFromRegion(tiles[t.tiles[k]]);
+
+                    Array<TextureRegion> frames = new Array<>();
+                    frames.add(new TextureRegion(new Texture(lastpx)));
+
+                    for (int i = t.length - 1; i > 0; i--) {
+                        Pixmap p = new Pixmap(16, 16, Format.RGBA8888);
+                        p.drawPixmap(lastpx, 0, 0);
+
+                        for (int y = 0; y < 16; y++) {
+                            for (int x = 0; x < 16; x++) {
+                                int rgba = p.getPixel(x, y);
+                                int r = ((rgba & 0xff000000) >>> 24);
+                                int g = ((rgba & 0x00ff0000) >>> 16);
+                                int b = ((rgba & 0x0000ff00) >>> 8);
+                                for (int c = 0; c < t.length; c++) {
+                                    Integer[] crgb = cycle[c];
+                                    if (r == crgb[0] && g == crgb[1] && b == crgb[2]) {
+                                        int next = (c == t.length - 1 ? 0 : c + 1);
+                                        Integer[] nextrgba = cycle[next];
+                                        p.drawPixel(x, y, (nextrgba[0] << 24) | (nextrgba[1] << 16) | (nextrgba[2] << 8) | 255);
+                                    }
+                                }
+                            }
+                        }
+
+                        frames.add(new TextureRegion(new Texture(p)));
+                        lastpx = p;
+
+                        for (int c = 0; c < t.length; c++) {
+                            Integer[] ctmp = cycle[c];
+                            int next = (c == t.length - 1 ? 0 : c + 1);
+                            cycle[c] = cycle[next];
+                            cycle[next] = ctmp;
+                        }
+                    }
+
+                    t.anims[k] = new Animation(.2f, frames);
+                }
+
+            }
+        }
+
+        private static Pixmap pixmapFromRegion(TextureRegion tr) {
+            if (tr == null) {
+                return null;
+            }
+            tr.getTexture().getTextureData().prepare();
+            Pixmap source = tr.getTexture().getTextureData().consumePixmap();
+            Pixmap dest = new Pixmap(tr.getRegionWidth(), tr.getRegionHeight(), Format.RGBA8888);
+            for (int x = 0; x < tr.getRegionWidth(); x++) {
+                for (int y = 0; y < tr.getRegionHeight(); y++) {
+                    int colorInt = source.getPixel(tr.getRegionX() + x, tr.getRegionY() + y);
+                    dest.drawPixel(x, y, colorInt);
+                }
+            }
+            source.dispose();
+            return dest;
         }
 
     }
