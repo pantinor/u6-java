@@ -176,11 +176,15 @@ public class Ultima6 extends Game {
 
             Constants.ActorAnimation.init();
             Constants.PaletteCycledTiles.init();
-            Constants.Map.WORLD.init();
 
             initTileFlags();
             AVATAR = Constants.ActorAnimation.AVATAR.getAnimation(Constants.Direction.NORTH);
+
+            Constants.Map.WORLD.init();
             Constants.Map.WORLD.getScreen().setMapPixelCoords(Constants.Map.WORLD.getScreen().newMapPixelCoords, 307, 349);
+
+            //Constants.Map.TEST.init();
+            //Constants.Map.TEST.getScreen().setMapPixelCoords(Constants.Map.TEST.getScreen().newMapPixelCoords, 4, 1);
 
 //            TextureRegion[][] expl = TextureRegion.split(new Texture(Gdx.files.classpath("assets/data/uf_FX.png")), 24, 24);
 //            EXPLMAP.put(Color.GRAY, new Animation(.1f, getTextureArray(expl, 0, 0)));

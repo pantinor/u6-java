@@ -84,21 +84,21 @@ public class TileUtils implements ApplicationListener {
             }
         }
 
-        batch.draw((TextureRegion) Constants.PaletteCycledTiles.POT_BLUE.getAnims()[0].getKeyFrame(time, true), 100, 300, 32, 32);
-        batch.draw((TextureRegion) Constants.PaletteCycledTiles.POT_PINK.getAnims()[0].getKeyFrame(time, true), 100, 320, 32, 32);
+        batch.draw((TextureRegion) Constants.PaletteCycledTiles.POT_BLUE.getAnims()[0].getKeyFrame(time, true), 10, 100, 32, 32);
+        batch.draw((TextureRegion) Constants.PaletteCycledTiles.POT_PINK.getAnims()[0].getKeyFrame(time, true), 40, 100, 32, 32);
         
-        batch.draw((TextureRegion) Constants.PaletteCycledTiles.STARS.getAnims()[0].getKeyFrame(time, true), 30, 300, 32, 32);
-        batch.draw((TextureRegion) Constants.PaletteCycledTiles.STARS.getAnims()[1].getKeyFrame(time, true), 50, 320, 32, 32);
-        batch.draw((TextureRegion) Constants.PaletteCycledTiles.STARS.getAnims()[2].getKeyFrame(time, true), 70, 340, 32, 32);
+        batch.draw((TextureRegion) Constants.PaletteCycledTiles.STARS.getAnims()[0].getKeyFrame(time, true), 80, 100, 32, 32);
+        batch.draw((TextureRegion) Constants.PaletteCycledTiles.STARS.getAnims()[1].getKeyFrame(time, true), 120, 100, 32, 32);
+        batch.draw((TextureRegion) Constants.PaletteCycledTiles.STARS.getAnims()[2].getKeyFrame(time, true), 160, 100, 32, 32);
 
-        batch.draw((TextureRegion) Constants.PaletteCycledTiles.ROCK.getAnims()[0].getKeyFrame(time, true), 30, 500, 32, 32);
-        batch.draw((TextureRegion) Constants.PaletteCycledTiles.ROCK.getAnims()[1].getKeyFrame(time, true), 50, 520, 32, 32);
-        batch.draw((TextureRegion) Constants.PaletteCycledTiles.ROCK.getAnims()[2].getKeyFrame(time, true), 70, 540, 32, 32);
+        batch.draw((TextureRegion) Constants.PaletteCycledTiles.ROCK.getAnims()[0].getKeyFrame(time, true), 200, 100, 32, 32);
+        batch.draw((TextureRegion) Constants.PaletteCycledTiles.ROCK.getAnims()[1].getKeyFrame(time, true), 240, 100, 32, 32);
+        batch.draw((TextureRegion) Constants.PaletteCycledTiles.ROCK.getAnims()[2].getKeyFrame(time, true), 280, 100, 32, 32);
 
-        batch.draw((TextureRegion) Constants.PaletteCycledTiles.FIRE.getAnims()[0].getKeyFrame(time, true), 10, 400, 32, 32);
-        batch.draw((TextureRegion) Constants.PaletteCycledTiles.FIRE.getAnims()[1].getKeyFrame(time, true), 10 + 32, 400, 32, 32);
-        batch.draw((TextureRegion) Constants.PaletteCycledTiles.FIRE.getAnims()[2].getKeyFrame(time, true), 10, 400 - 32, 32, 32);
-        batch.draw((TextureRegion) Constants.PaletteCycledTiles.FIRE.getAnims()[3].getKeyFrame(time, true), 10 + 32, 400 - 32, 32, 32);
+        batch.draw((TextureRegion) Constants.PaletteCycledTiles.FIRE.getAnims()[0].getKeyFrame(time, true), 320, 100, 32, 32);
+        batch.draw((TextureRegion) Constants.PaletteCycledTiles.FIRE.getAnims()[1].getKeyFrame(time, true), 360, 100, 32, 32);
+        batch.draw((TextureRegion) Constants.PaletteCycledTiles.FIRE.getAnims()[2].getKeyFrame(time, true), 400, 100, 32, 32);
+        batch.draw((TextureRegion) Constants.PaletteCycledTiles.FIRE.getAnims()[3].getKeyFrame(time, true), 440, 100, 32, 32);
 
         batch.end();
 

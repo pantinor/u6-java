@@ -351,8 +351,13 @@ public class MapRender {
                         if (obj.object == Constants.Objects.LADDER.getId()) {
                             if (frame == 0) {
                                 obj.name = "DOWN_LADDER";
-                                obj.portal_dest_x = (x & 0x07) | (x >> 2 & 0xF8);
-                                obj.portal_dest_y = (y & 0x07) | (y >> 2 & 0xF8);
+                                if (z == 0) {
+                                    obj.portal_dest_x = (x & 0x07) | (x >> 2 & 0xF8);
+                                    obj.portal_dest_y = (y & 0x07) | (y >> 2 & 0xF8);
+                                } else {
+                                    obj.portal_dest_x = x;
+                                    obj.portal_dest_y = y;
+                                }
                                 obj.portal_dest_z = z + 1;
                             } else {
                                 obj.name = "UP_LADDER";

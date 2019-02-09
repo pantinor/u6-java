@@ -15,16 +15,10 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.utils.Array;
 import java.util.HashMap;
 import java.util.Iterator;
-import org.apache.commons.io.FileUtils;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSets;
 import com.badlogic.gdx.maps.tiled.tiles.AnimatedTiledMapTile;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
-import com.badlogic.gdx.utils.IntArray;
-import com.badlogic.gdx.utils.XmlReader;
-import java.io.FileInputStream;
 import java.io.InputStream;
 import org.apache.commons.io.IOUtils;
 
@@ -35,6 +29,7 @@ public interface Constants {
     public static enum Map {
 
         WORLD(0, "u6world.tmx"),
+        //TEST(0, "test.tmx"),
         DUNGEON1(1, "u6dungeon_1.tmx"),
         DUNGEON2(2, "u6dungeon_2.tmx"),
         DUNGEON3(3, "u6dungeon_3.tmx"),
@@ -1176,6 +1171,7 @@ public interface Constants {
                         }
 
                         frames.add(new TextureRegion(new Texture(p)));
+                        lastpx.dispose();
                         lastpx = p;
 
                         for (int c = 0; c < t.length; c++) {

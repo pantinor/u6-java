@@ -7,7 +7,11 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
+import com.badlogic.gdx.maps.tiled.TiledMapTileSets;
+import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -118,7 +122,7 @@ public class GameScreen extends BaseScreen {
         batch.draw(Ultima6.backGround, 0, 0);
         batch.draw((TextureRegion) Ultima6.AVATAR.getKeyFrame(time, true), TILE_DIM * 11, TILE_DIM * 11, TILE_DIM, TILE_DIM);
         //Andius.HUD.render(batch, Andius.CTX);
-
+    
         Vector3 v = new Vector3();
         setCurrentMapCoords(v);
         Ultima6.font.draw(batch, String.format("%s, %s\n", v.x, v.y), 200, Ultima6.SCREEN_HEIGHT - 64);
@@ -251,10 +255,29 @@ public class GameScreen extends BaseScreen {
         TiledMapTileLayer layer = (TiledMapTileLayer) this.map.getTiledMap().getLayers().get("base");
         TiledMapTileLayer.Cell cell = layer.getCell(nx, this.map.getHeight() - 1 - ny);
         if (cell != null) {
-            TileFlags tf = Ultima6.TILE_FLAGS.get(cell.getTile().getId());
+            TileFlags tf = Ultima6.TILE_FLAGS.get(cell.getTile().getId() - 1);
             if (tf.isWall() || tf.isImpassable() || tf.isWet()) {
-                Sounds.play(Sound.BLOCKED);
-                return false;
+                TileFlags otf = null;
+                MapLayer objLayer = this.map.getTiledMap().getLayers().get("objects");
+                for (Object obj : objLayer.getObjects()) {
+                    TiledMapTileMapObject tmo = (TiledMapTileMapObject) obj;
+                    float ox = ((Float) tmo.getProperties().get("x")) / 16;
+                    float oy = ((Float) tmo.getProperties().get("y")) / 16;
+                    if (ox == nx && oy == this.map.getHeight() - 1 - ny) {
+                        int gid = (Integer) tmo.getProperties().get("gid");
+                        otf = Ultima6.TILE_FLAGS.get(gid - 1);
+                        break;
+                    }
+                }
+                if (otf != null) {
+                    if (otf.isWall() || otf.isImpassable() || otf.isWet()) {
+                        Sounds.play(Sound.BLOCKED);
+                        return false;
+                    }
+                } else {
+                    Sounds.play(Sound.BLOCKED);
+                    return false;
+                }
             }
         } else {
             Sounds.play(Sound.BLOCKED);

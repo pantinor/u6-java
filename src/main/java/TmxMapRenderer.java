@@ -28,6 +28,8 @@ import com.badlogic.gdx.maps.objects.TextureMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
+import com.badlogic.gdx.maps.tiled.TiledMapTileSets;
 import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.tiles.AnimatedTiledMapTile;
 import java.util.ArrayList;
@@ -106,6 +108,8 @@ public class TmxMapRenderer extends BatchTiledMapRenderer implements Constants {
         float y = row2 * layerTileHeight;
         float startX = col1 * layerTileWidth;
 
+        TiledMapTileSet set = this.getMap().getTileSets().getTileSet(0);
+
         for (int row = row2; row >= row1; row--) {
 
             float x = startX;
@@ -113,10 +117,11 @@ public class TmxMapRenderer extends BatchTiledMapRenderer implements Constants {
 
                 TiledMapTileLayer.Cell cell = layer.getCell(col, row);
 
-//                if (cell == null || !shouldRenderCell(this.map.getScreen().currentRoomId(), col, layerHeight - row - 1)) {
-//                    x += layerTileWidth;
-//                    continue;
-//                }
+                if (cell == null) {
+                    x += layerTileWidth;
+                    continue;
+                }
+
                 TiledMapTile tile = cell.getTile();
 
                 if (tile != null) {
@@ -125,6 +130,12 @@ public class TmxMapRenderer extends BatchTiledMapRenderer implements Constants {
                     final int rotations = cell.getRotation();
 
                     TextureRegion region = tile.getTextureRegion();
+
+                    int id = tile.getId();
+                    TiledMapTile anim = set.getTile(id);
+                    if (anim != null && anim instanceof AnimatedTiledMapTile) {
+                        region = anim.getTextureRegion();
+                    }
 
                     float x1 = x + tile.getOffsetX() * unitScale;
                     float y1 = y + tile.getOffsetY() * unitScale;
