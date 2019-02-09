@@ -1,4 +1,5 @@
 
+import Constants.TILE_DIM;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputMultiplexer;
@@ -9,8 +10,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
-import com.badlogic.gdx.maps.tiled.TiledMapTileSets;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -23,12 +22,12 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class GameScreen extends BaseScreen {
 
-    private final Map map;
+    private final Constants.Map map;
     private final TmxMapRenderer renderer;
     private final Batch batch;
     private final Viewport mapViewPort;
 
-    public GameScreen(Map map) {
+    public GameScreen(Constants.Map map) {
 
         this.map = map;
 

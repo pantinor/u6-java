@@ -11,6 +11,7 @@ import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.utils.Array;
 import java.util.HashMap;
@@ -22,9 +23,9 @@ import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import java.io.InputStream;
 import org.apache.commons.io.IOUtils;
 
-public interface Constants {
+public class Constants {
 
-    public static int TILE_DIM = 32;
+    public static final int TILE_DIM = 32;
 
     public static enum Map {
 
@@ -104,6 +105,7 @@ public interface Constants {
                 }
             }
 
+            TiledMapTileLayer baseLayer = (TiledMapTileLayer) this.tiledMap.getLayers().get("base");
             TiledMapTileSets sets = this.tiledMap.getTileSets();
             TiledMapTileSet set = sets.getTileSet(0);
             for (PaletteCycledTiles at : PaletteCycledTiles.values()) {
@@ -116,6 +118,17 @@ public interface Constants {
                     AnimatedTiledMapTile animatedTile = new AnimatedTiledMapTile(.2f, staticTiles);
                     animatedTile.setId(at.tiles[i] + 1);
                     set.putTile(at.tiles[i] + 1, animatedTile);
+
+                    for (int y = 0; y < baseLayer.getHeight(); y++) {
+                        for (int x = 0; x < baseLayer.getWidth(); x++) {
+                            Cell cell = baseLayer.getCell(x, y);
+                            if (cell != null) {
+                                if (cell.getTile().getId() == at.tiles[i] + 1) {
+                                    cell.setTile(animatedTile);
+                                }
+                            }
+                        }
+                    }
                 }
 
             }
@@ -1057,49 +1070,48 @@ public interface Constants {
 
         }
 
-        private static Pixmap pixmapFromRegion(TextureRegion tr) {
-            if (tr == null) {
-                return null;
-            }
-            tr.getTexture().getTextureData().prepare();
-            Pixmap source = tr.getTexture().getTextureData().consumePixmap();
-            Pixmap dest = new Pixmap(tr.getRegionWidth(), tr.getRegionHeight(), Format.RGBA8888);
-            for (int x = 0; x < tr.getRegionWidth(); x++) {
-                for (int y = 0; y < tr.getRegionHeight(); y++) {
-                    int colorInt = source.getPixel(tr.getRegionX() + x, tr.getRegionY() + y);
-                    dest.drawPixel(x, y, colorInt);
-                }
-            }
-            source.dispose();
-            return dest;
-        }
+    }
 
-        private static TextureRegion rotate90(TextureRegion tr) {
-            Pixmap srcPix = tr.getTexture().getTextureData().consumePixmap();
-            final int width = srcPix.getWidth();
-            final int height = srcPix.getHeight();
-            Pixmap rotatedPix = new Pixmap(height, width, srcPix.getFormat());
-            for (int x = 0; x < height; x++) {
-                for (int y = 0; y < width; y++) {
-                    rotatedPix.drawPixel(x, y, srcPix.getPixel(y, x));
-                }
-            }
-            Texture t = new Texture(rotatedPix);
-            srcPix.dispose();
-            return new TextureRegion(t);
+    private static Pixmap pixmapFromRegion(TextureRegion tr) {
+        if (tr == null) {
+            return null;
         }
+        tr.getTexture().getTextureData().prepare();
+        Pixmap source = tr.getTexture().getTextureData().consumePixmap();
+        Pixmap dest = new Pixmap(tr.getRegionWidth(), tr.getRegionHeight(), Format.RGBA8888);
+        for (int x = 0; x < tr.getRegionWidth(); x++) {
+            for (int y = 0; y < tr.getRegionHeight(); y++) {
+                int colorInt = source.getPixel(tr.getRegionX() + x, tr.getRegionY() + y);
+                dest.drawPixel(x, y, colorInt);
+            }
+        }
+        source.dispose();
+        return dest;
+    }
 
+    private static TextureRegion rotate90(TextureRegion tr) {
+        Pixmap srcPix = tr.getTexture().getTextureData().consumePixmap();
+        final int width = srcPix.getWidth();
+        final int height = srcPix.getHeight();
+        Pixmap rotatedPix = new Pixmap(height, width, srcPix.getFormat());
+        for (int x = 0; x < height; x++) {
+            for (int y = 0; y < width; y++) {
+                rotatedPix.drawPixel(x, y, srcPix.getPixel(y, x));
+            }
+        }
+        Texture t = new Texture(rotatedPix);
+        srcPix.dispose();
+        return new TextureRegion(t);
     }
 
     public static enum PaletteCycledTiles {
-        FIRE(0xe0, 8, 797, 683, 702, 703, 717, 719, 788, 789, 790, 791, 890, 1160, 1140, 1126, 1127, 1132, 1133, 1164),
-        LAVA(0xe0, 8, 221, 222, 223),
-        ROCK(0xe8, 8, 217, 218, 219),
-        STARS(0xe8, 8, 252, 253, 254),
-        POT_BROWN(0xf4, 4, 687),
-        POT_BLUE(0xe8, 8, 798),
-        POT_PINK(0xf0, 4, 562, 799, 1167),
-        SWAMP(0xe8, 8, 3);
+
+        FIRE_CYCLES(0xe0, 8, 221, 222, 223, 797, 602, 603, 683, 702, 703, 717, 719, 788, 789, 790, 791, 890, 1160, 1140, 1126, 1127, 1132, 1133, 1164),
+        BLUE_CYCLES(0xe8, 8, 3, 217, 218, 219, 252, 253, 254, 798, 604, 605),
+        BROWN_CYCLES(0xf4, 4, 687),
+        PINK_CYCLES(0xf0, 4, 562, 799, 1167),
+        GREEN_CYCLES(0xf8, 4, 1165);
+
         private int palIndex;
         private int length;
         private int[] tiles;
@@ -1114,6 +1126,14 @@ public interface Constants {
 
         public Animation[] getAnims() {
             return anims;
+        }
+
+        public int getLength() {
+            return length;
+        }
+
+        public int[] getTiles() {
+            return tiles;
         }
 
         public static void init() throws Exception {
@@ -1174,9 +1194,9 @@ public interface Constants {
                         lastpx.dispose();
                         lastpx = p;
 
-                        for (int c = 0; c < t.length; c++) {
+                        for (int c = t.length - 1; c >= 0; c--) {
                             Integer[] ctmp = cycle[c];
-                            int next = (c == t.length - 1 ? 0 : c + 1);
+                            int next = (c == 0 ? t.length - 1 : c - 1);
                             cycle[c] = cycle[next];
                             cycle[next] = ctmp;
                         }
@@ -1186,23 +1206,6 @@ public interface Constants {
                 }
 
             }
-        }
-
-        private static Pixmap pixmapFromRegion(TextureRegion tr) {
-            if (tr == null) {
-                return null;
-            }
-            tr.getTexture().getTextureData().prepare();
-            Pixmap source = tr.getTexture().getTextureData().consumePixmap();
-            Pixmap dest = new Pixmap(tr.getRegionWidth(), tr.getRegionHeight(), Format.RGBA8888);
-            for (int x = 0; x < tr.getRegionWidth(); x++) {
-                for (int y = 0; y < tr.getRegionHeight(); y++) {
-                    int colorInt = source.getPixel(tr.getRegionX() + x, tr.getRegionY() + y);
-                    dest.drawPixel(x, y, colorInt);
-                }
-            }
-            source.dispose();
-            return dest;
         }
 
     }
