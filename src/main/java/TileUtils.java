@@ -84,21 +84,19 @@ public class TileUtils implements ApplicationListener {
             }
         }
 
-        batch.draw((TextureRegion) Constants.PaletteCycledTiles.POT_BLUE.getAnims()[0].getKeyFrame(time, true), 10, 100, 32, 32);
-        batch.draw((TextureRegion) Constants.PaletteCycledTiles.POT_PINK.getAnims()[0].getKeyFrame(time, true), 40, 100, 32, 32);
-        
-        batch.draw((TextureRegion) Constants.PaletteCycledTiles.STARS.getAnims()[0].getKeyFrame(time, true), 80, 100, 32, 32);
-        batch.draw((TextureRegion) Constants.PaletteCycledTiles.STARS.getAnims()[1].getKeyFrame(time, true), 120, 100, 32, 32);
-        batch.draw((TextureRegion) Constants.PaletteCycledTiles.STARS.getAnims()[2].getKeyFrame(time, true), 160, 100, 32, 32);
 
-        batch.draw((TextureRegion) Constants.PaletteCycledTiles.ROCK.getAnims()[0].getKeyFrame(time, true), 200, 100, 32, 32);
-        batch.draw((TextureRegion) Constants.PaletteCycledTiles.ROCK.getAnims()[1].getKeyFrame(time, true), 240, 100, 32, 32);
-        batch.draw((TextureRegion) Constants.PaletteCycledTiles.ROCK.getAnims()[2].getKeyFrame(time, true), 280, 100, 32, 32);
-
-        batch.draw((TextureRegion) Constants.PaletteCycledTiles.FIRE.getAnims()[0].getKeyFrame(time, true), 320, 100, 32, 32);
-        batch.draw((TextureRegion) Constants.PaletteCycledTiles.FIRE.getAnims()[1].getKeyFrame(time, true), 360, 100, 32, 32);
-        batch.draw((TextureRegion) Constants.PaletteCycledTiles.FIRE.getAnims()[2].getKeyFrame(time, true), 400, 100, 32, 32);
-        batch.draw((TextureRegion) Constants.PaletteCycledTiles.FIRE.getAnims()[3].getKeyFrame(time, true), 440, 100, 32, 32);
+        x = 32;
+        y = 100;
+        for (Constants.PaletteCycledTiles at : Constants.PaletteCycledTiles.values()) {
+            for (int j = 0; j < at.getAnims().length; j++) {
+                batch.draw((TextureRegion) at.getAnims()[j].getKeyFrame(time, true), x, y, 32, 32);
+                x += 40;
+                if (x > 1500) {
+                    x = 40;
+                    y -= 40;
+                }
+            }
+        }
 
         batch.end();
 
