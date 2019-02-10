@@ -237,7 +237,7 @@ public class Ultima6 extends Game {
     }
 
     private static void initTileFlags() throws Exception {
-        InputStream is = Ultima6.class.getResourceAsStream("data/TILEFLAG");
+        InputStream is = Gdx.files.classpath("data/TILEFLAG").read();
         LittleEndianDataInputStream dis = new LittleEndianDataInputStream(is);
 
         byte[] f1 = new byte[2048];
