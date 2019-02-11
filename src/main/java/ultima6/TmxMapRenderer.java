@@ -22,6 +22,7 @@ import static com.badlogic.gdx.graphics.g2d.Batch.Y3;
 import static com.badlogic.gdx.graphics.g2d.Batch.Y4;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
@@ -31,65 +32,22 @@ import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.tiles.AnimatedTiledMapTile;
-import java.util.ArrayList;
-import java.util.List;
 import ultima6.Constants.Map;
 
 public class TmxMapRenderer extends BatchTiledMapRenderer {
 
     private final Map map;
-    float stateTime = 0;
-    List<CreatureLayer> creatureLayers = new ArrayList<>();
-
-    public interface CreatureLayer {
-
-        public void render(float time);
-    }
-
-    public void registerCreatureLayer(CreatureLayer layer) {
-        creatureLayers.add(layer);
-    }
-
-    public void unregisterCreatureLayer(CreatureLayer layer) {
-        creatureLayers.remove(layer);
-    }
+    private float stateTime = 0;
 
     public TmxMapRenderer(Map map, TiledMap tiledMap, float unitScale) {
         super(tiledMap, unitScale);
         this.map = map;
     }
 
-//    public boolean shouldRenderCell(int roomId, int x, int y) {
-//        if (this.map.getRoomIds() == null || roomId <= 0) {
-//            return true;
-//        }
-//        if (this.map.getRoomIds()[x][y][0] == roomId || this.map.getRoomIds()[x][y][1] == roomId || this.map.getRoomIds()[x][y][2] == roomId) {
-//            return true;
-//        }
-//        return false;
-//    }
-//    
-//    @Override
-//    public void render() {
-//        beginRender();
-//        for (MapLayer layer : map.getTiledMap().getLayers()) {
-//            if (layer instanceof TiledMapTileLayer && layer.isVisible()) {
-//                renderTileLayer((TiledMapTileLayer) layer);
-//            }
-//        }
-//        endRender();
-//    }
     @Override
     public void renderTileLayer(TiledMapTileLayer layer) {
 
-        stateTime += Gdx.graphics.getDeltaTime() / 4;
-
-        if (layer.getName().equals("creature")) {
-            for (CreatureLayer cl : creatureLayers) {
-                cl.render(stateTime);
-            }
-            return;
-        }
+        this.stateTime += Gdx.graphics.getDeltaTime() / 4;
 
         final Color batchColor = batch.getColor();
         final float color = Color.toFloatBits(batchColor.r, batchColor.g, batchColor.b, batchColor.a * layer.getOpacity());
@@ -236,6 +194,40 @@ public class TmxMapRenderer extends BatchTiledMapRenderer {
 
     @Override
     public void renderObjects(MapLayer layer) {
+
+        if (layer.getName().equals("actors")) {
+            for (Actor a : this.map.getBaseMap().getActors()) {
+                if (viewBounds.contains(a.getX() * unitScale + 32, a.getY() * unitScale)) {
+                    if (a.isSitting()) {
+                        TextureRegion tr = a.getSittingTexture();
+                        batch.draw(tr, a.getX() * unitScale, a.getY() * unitScale,
+                                tr.getRegionWidth() * unitScale, tr.getRegionHeight() * unitScale);
+                    } else if (!a.isMoving()) {
+                        TextureRegion tr = a.getTexture();
+                        batch.draw(tr, a.getX() * unitScale, a.getY() * unitScale,
+                                tr.getRegionWidth() * unitScale, tr.getRegionHeight() * unitScale);
+                    } else {
+                        Animation anim = a.getAnimation();
+                        if (anim == null) {
+                            continue;
+                        }
+                        TextureRegion tr = (TextureRegion) anim.getKeyFrame(this.stateTime, true);
+                        float x = a.getX();
+                        float y = a.getY();
+                        if (tr.getRegionWidth() > 16) {
+                            x -= 16;
+                        }
+                        if (tr.getRegionHeight() > 16) {
+                            y -= 16;
+                        }
+                        batch.draw(tr, x * unitScale, y * unitScale,
+                                tr.getRegionWidth() * unitScale, tr.getRegionHeight() * unitScale);
+                    }
+                }
+            }
+            return;
+        }
+
         for (MapObject object : layer.getObjects()) {
             if (object instanceof TextureMapObject) {
                 TextureMapObject textureObj = (TextureMapObject) object;

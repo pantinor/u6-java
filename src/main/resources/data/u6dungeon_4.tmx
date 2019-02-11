@@ -9332,21 +9332,24 @@
  </objectgroup>
  <objectgroup name="items"/>
  <objectgroup name="actors">
-  <object id="175" name="FIGHTER" gid="1546" x="3120" y="3792" width="16" height="16">
+  <object id="175" name="Gorn" gid="1546" x="3120" y="3792" width="16" height="16">
    <properties>
     <property name="frame" value="9"/>
+    <property name="npc" value="131"/>
     <property name="object" value="376"/>
    </properties>
   </object>
-  <object id="176" name="VILLAGER" gid="1594" x="3664" y="3840" width="16" height="16">
+  <object id="176" name="Captain John" gid="1594" x="3664" y="3840" width="16" height="16">
    <properties>
     <property name="frame" value="9"/>
+    <property name="npc" value="183"/>
     <property name="object" value="379"/>
    </properties>
   </object>
-  <object id="177" name="PEASANT" gid="1674" x="1296" y="496" width="16" height="16">
+  <object id="177" name="Ybarra" gid="1674" x="1296" y="496" width="16" height="16">
    <properties>
     <property name="frame" value="9"/>
+    <property name="npc" value="185"/>
     <property name="object" value="384"/>
    </properties>
   </object>

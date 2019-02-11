@@ -9187,9 +9187,10 @@
  </objectgroup>
  <objectgroup name="items"/>
  <objectgroup name="actors">
-  <object id="172" name="HORSE" gid="2021" x="3120" y="3920" width="16" height="16">
+  <object id="172" name="Pushme Pullyu" gid="2021" x="3120" y="3920" width="16" height="16">
    <properties>
     <property name="frame" value="4"/>
+    <property name="npc" value="130"/>
     <property name="object" value="430"/>
    </properties>
   </object>

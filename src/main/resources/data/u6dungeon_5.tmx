@@ -3932,87 +3932,101 @@
  </objectgroup>
  <objectgroup name="items"/>
  <objectgroup name="actors">
-  <object id="178" name="GARGOYLE2" gid="1448" x="3440" y="3568" width="16" height="16">
+  <object id="178" name="Beh Lem" gid="1448" x="3440" y="3568" width="16" height="16">
    <properties>
     <property name="frame" value="7"/>
+    <property name="npc" value="164"/>
     <property name="object" value="363"/>
    </properties>
   </object>
-  <object id="179" name="GARGOYLE1" gid="1420" x="2336" y="2032" width="16" height="16">
+  <object id="179" name="Bolesh" gid="1420" x="2336" y="2032" width="16" height="16">
    <properties>
     <property name="frame" value="27"/>
+    <property name="npc" value="165"/>
     <property name="object" value="362"/>
    </properties>
   </object>
-  <object id="180" name="GARGOYLE1" gid="1420" x="1424" y="2384" width="16" height="16">
+  <object id="180" name="Caretaker" gid="1420" x="1424" y="2384" width="16" height="16">
    <properties>
     <property name="frame" value="27"/>
+    <property name="npc" value="166"/>
     <property name="object" value="362"/>
    </properties>
   </object>
-  <object id="181" name="GARGOYLE1" gid="1420" x="1472" y="2384" width="16" height="16">
+  <object id="181" name="Draxinusom" gid="1420" x="1472" y="2384" width="16" height="16">
    <properties>
     <property name="frame" value="27"/>
+    <property name="npc" value="167"/>
     <property name="object" value="362"/>
    </properties>
   </object>
-  <object id="182" name="GARGOYLE1" gid="1420" x="2288" y="2480" width="16" height="16">
+  <object id="182" name="Naxatilor" gid="1420" x="2288" y="2480" width="16" height="16">
    <properties>
     <property name="frame" value="27"/>
+    <property name="npc" value="168"/>
     <property name="object" value="362"/>
    </properties>
   </object>
-  <object id="183" name="GARGOYLE1" gid="1420" x="3312" y="2640" width="16" height="16">
+  <object id="183" name="Valkadesh" gid="1420" x="3312" y="2640" width="16" height="16">
    <properties>
     <property name="frame" value="27"/>
+    <property name="npc" value="169"/>
     <property name="object" value="362"/>
    </properties>
   </object>
-  <object id="184" name="GARGOYLE1" gid="1420" x="3264" y="1616" width="16" height="16">
+  <object id="184" name="Lensmaker" gid="1420" x="3264" y="1616" width="16" height="16">
    <properties>
     <property name="frame" value="27"/>
+    <property name="npc" value="170"/>
     <property name="object" value="362"/>
    </properties>
   </object>
-  <object id="185" name="GARGOYLE1" gid="1420" x="960" y="3152" width="16" height="16">
+  <object id="185" name="Snake_Charmer" gid="1420" x="960" y="3152" width="16" height="16">
    <properties>
     <property name="frame" value="27"/>
+    <property name="npc" value="171"/>
     <property name="object" value="362"/>
    </properties>
   </object>
-  <object id="186" name="GARGOYLE1" gid="1420" x="1472" y="1488" width="16" height="16">
+  <object id="186" name="Goodscrafter" gid="1420" x="1472" y="1488" width="16" height="16">
    <properties>
     <property name="frame" value="27"/>
+    <property name="npc" value="172"/>
     <property name="object" value="362"/>
    </properties>
   </object>
-  <object id="187" name="GARGOYLE1" gid="1420" x="2336" y="2112" width="16" height="16">
+  <object id="187" name="Healer" gid="1420" x="2336" y="2112" width="16" height="16">
    <properties>
     <property name="frame" value="27"/>
+    <property name="npc" value="173"/>
     <property name="object" value="362"/>
    </properties>
   </object>
-  <object id="188" name="GARGOYLE1" gid="1420" x="2752" y="1568" width="16" height="16">
+  <object id="188" name="Weaponsmith" gid="1420" x="2752" y="1568" width="16" height="16">
    <properties>
     <property name="frame" value="27"/>
+    <property name="npc" value="174"/>
     <property name="object" value="362"/>
    </properties>
   </object>
-  <object id="189" name="GARGOYLE1" gid="1420" x="1408" y="1488" width="16" height="16">
+  <object id="189" name="Foodmaker" gid="1420" x="1408" y="1488" width="16" height="16">
    <properties>
     <property name="frame" value="27"/>
+    <property name="npc" value="175"/>
     <property name="object" value="362"/>
    </properties>
   </object>
-  <object id="190" name="GARGOYLE1" gid="1420" x="1552" y="1376" width="16" height="16">
+  <object id="190" name="Farmer Nash" gid="1420" x="1552" y="1376" width="16" height="16">
    <properties>
     <property name="frame" value="27"/>
+    <property name="npc" value="176"/>
     <property name="object" value="362"/>
    </properties>
   </object>
-  <object id="191" name="GARGOYLE1" gid="1420" x="2672" y="1488" width="16" height="16">
+  <object id="191" name="Farmer Krill" gid="1420" x="2672" y="1488" width="16" height="16">
    <properties>
     <property name="frame" value="27"/>
+    <property name="npc" value="177"/>
     <property name="object" value="362"/>
    </properties>
   </object>

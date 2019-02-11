@@ -1,6 +1,5 @@
 package ultima6;
 
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.files.FileHandle;
@@ -104,6 +103,42 @@ public class Constants {
 
                     this.baseMap.addPortal(dm, sx, sy, dx, dy, dz);
 
+                }
+            }
+
+            MapLayer npcLayer = this.tiledMap.getLayers().get("actors");
+            if (npcLayer != null) {
+                Iterator<MapObject> iter = npcLayer.getObjects().iterator();
+                while (iter.hasNext()) {
+                    MapObject obj = iter.next();
+                    String name = obj.getName();
+                    Object tmp = obj.getProperties().get("npc");
+                    if (tmp == null || name.equals("AVATAR")) {
+                        continue;
+                    }
+                    int npc = Integer.valueOf((String) tmp);
+                    int tile = obj.getProperties().get("gid", Integer.class) - 1;
+                    float x = obj.getProperties().get("x", Float.class);
+                    float y = obj.getProperties().get("y", Float.class);
+                    int sx = (int) (x / TILE_DIM);
+                    int sy = (int) (y / TILE_DIM);
+
+                    if (tile == 684 || tile == 685) {
+                        tile = 1648;//chuckles sleeping at start
+                    }
+
+                    ActorAnimation icon = ActorAnimation.find(tile);
+
+                    //System.out.printf("Loading actor: %s %d %d %s on map %s.\n", name, id, tile, icon, this);
+                    Actor actor = new Actor(icon, npc, name);
+
+                    boolean sitting = icon.isSittingTile(tile);
+
+                    actor.set(sx, getHeight() - 1 - sy, x, y, sitting);
+
+                    actor.setDir(icon.direction(tile));
+
+                    this.baseMap.addActor(actor);
                 }
             }
 
@@ -608,60 +643,6 @@ public class Constants {
     public static int MOVETYPE_U6_AIR_HIGH = 5; // dragons
     public static int MOVETYPE_U6_ETHEREAL = 6;
 
-    public static final String[] DUNGEONS = new String[]{
-        "Deceit",
-        "Despise",
-        "Destard",
-        "Wrong",
-        "Covetous",
-        "Shame",
-        "Hythloth",
-        "GSA",
-        "Control",
-        "Passion",
-        "Diligence",
-        "Tomb of Kings",
-        "Ant Mound",
-        "Swamp Cave",
-        "Spider Cave",
-        "Cyclops Cave",
-        "Heftimus Cave",
-        "Heroes' Hole",
-        "Pirate Cave",
-        "Buccaneer's Cave"
-    };
-
-    // Red moongate teleport locations.
-    public static int[][] RedMoongate = new int[][]{
-        {0x0, 0x0, 0x0},
-        {0x383, 0x1f3, 0x0},
-        {0x3a7, 0x106, 0x0},
-        {0x1b3, 0x18b, 0x0},
-        {0x1f7, 0x166, 0x0},
-        {0x93, 0x373, 0x0},
-        {0x397, 0x3a6, 0x0},
-        {0x44, 0x2d, 0x5},
-        {0x133, 0x160, 0x0},
-        {0xbc, 0x2d, 0x5},
-        {0x9f, 0x3ae, 0x0},
-        {0x2e3, 0x2bb, 0x0},
-        {0x0, 0x0, 0x0},
-        {0x0, 0x0, 0x0},
-        {0x0, 0x0, 0x0},
-        {0xe3, 0x83, 0x0},
-        {0x17, 0x16, 0x1},
-        {0x80, 0x56, 0x5},
-        {0x6c, 0xdd, 0x5},
-        {0x39b, 0x36c, 0x0},
-        {0x127, 0x26, 0x0},
-        {0x4b, 0x1fb, 0x0},
-        {0x147, 0x336, 0x0},
-        {0x183, 0x313, 0x0},
-        {0x33f, 0xa6, 0x0},
-        {0x29b, 0x43, 0x0}
-
-    };
-
     public static enum Direction {
         NORTH, EAST, SOUTH, WEST;
     }
@@ -726,7 +707,8 @@ public class Constants {
         GIANT_ANT(1968, 427, 2, 2, 2),
         COW(1984, 428, 2, 2, 2),
         ALLIGATOR(2000, 429, 2, 2, 2),
-        HORSE(2016, 430, 2, 2, 2);
+        HORSE(2016, 430, 2, 2, 2),
+        STOCKS(903, 263, 0, 0, 1);
 
         private final int tile;
         private final int object;
@@ -736,6 +718,7 @@ public class Constants {
 
         private final java.util.Map<Direction, Animation<TextureRegion>> animMap = new HashMap<>();
         private final java.util.Map<Direction, TextureRegion> textureMap = new HashMap<>();
+        private final java.util.Map<Direction, TextureRegion> sittingTextureMap = new HashMap<>();
 
         private ActorAnimation(
                 int tile,
@@ -751,12 +734,64 @@ public class Constants {
             this.tilesPerFrame = tilesPerFrame;
         }
 
+        public static ActorAnimation find(int tile) {
+            for (ActorAnimation aa : ActorAnimation.values()) {
+                if (aa.tilesPerDirection > 0) {
+                    if (tile >= aa.tile && tile < aa.tile + aa.tilesPerDirection * 4) {
+                        return aa;
+                    }
+                } else if (tile >= aa.tile && tile <= aa.tile + 4) {
+                    return aa;
+                }
+            }
+            return null;
+        }
+
+        public Direction direction(int tile) {
+            Direction dir = Direction.NORTH;
+            if (tile >= this.tile && tile < this.tile + this.tilesPerDirection) {
+                dir = Direction.NORTH;
+            }
+            if (tile >= this.tile + this.tilesPerDirection && tile < this.tile + this.tilesPerDirection * 2) {
+                dir = Direction.EAST;
+            }
+            if (tile >= this.tile + this.tilesPerDirection * 2 && tile < this.tile + this.tilesPerDirection * 3) {
+                dir = Direction.SOUTH;
+            }
+            if (tile >= this.tile + this.tilesPerDirection * 3 && tile < this.tile + this.tilesPerDirection * 4) {
+                dir = Direction.WEST;
+            }
+            return dir;
+        }
+
+        public boolean isSittingTile(int tile) {
+            if (this.framesPerDirection == 3) {
+                if (tile == this.tile + this.tilesPerDirection - 1) {
+                    return true;
+                }
+                if (tile == this.tile + this.tilesPerDirection * 2 - 1) {
+                    return true;
+                }
+                if (tile == this.tile + this.tilesPerDirection * 3 - 1) {
+                    return true;
+                }
+                if (tile == this.tile + this.tilesPerDirection * 4 - 1) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public Animation<TextureRegion> getAnimation(Direction dir) {
             return this.animMap.get(dir);
         }
 
         public TextureRegion getTexture(Direction dir) {
             return this.textureMap.get(dir);
+        }
+
+        public TextureRegion getSittingTexture(Direction dir) {
+            return this.sittingTextureMap.get(dir);
         }
 
         public static void init() throws Exception {
@@ -778,6 +813,17 @@ public class Constants {
                                 tiles[aa.tile + 16 + 2 * i], tiles[aa.tile + 17 + 2 * i]
                         ));
                         aa.textureMap.put(Direction.values()[i], tr);
+                    }
+                } else if (aa == ActorAnimation.STOCKS) {
+                    TextureRegion tr1 = new TextureRegion(mergeTiles(Direction.WEST, tiles[312], tiles[314]));
+                    TextureRegion tr2 = new TextureRegion(mergeTiles(Direction.WEST, tiles[313], tiles[315]));
+                    Array<TextureRegion> arr = new Array<>();
+                    arr.add(tr1);
+                    arr.add(tr2);
+                    Animation a = new Animation(.3f, arr);
+                    for (int i = 0; i < 4; i++) {
+                        aa.animMap.put(Direction.values()[i], a);
+                        aa.textureMap.put(Direction.values()[i], arr.first());
                     }
                 } else if (aa == ActorAnimation.HYDRA) {
                     int[] t = new int[]{1920, 1921, 1922, 1923};
@@ -984,6 +1030,19 @@ public class Constants {
                             aa.textureMap.put(Direction.values()[i], arr.first());
 
                         }
+                    }
+
+                    if (aa.framesPerDirection == 3 && aa.tilesPerDirection == 4) {
+
+                        aa.textureMap.put(Direction.NORTH, tiles[aa.tile + 4 - 1 - 2]);
+                        aa.textureMap.put(Direction.EAST, tiles[aa.tile + 8 - 1 - 2]);
+                        aa.textureMap.put(Direction.SOUTH, tiles[aa.tile + 12 - 1 - 2]);
+                        aa.textureMap.put(Direction.WEST, tiles[aa.tile + 16 - 1 - 2]);
+
+                        aa.sittingTextureMap.put(Direction.NORTH, tiles[aa.tile + 4 - 1]);
+                        aa.sittingTextureMap.put(Direction.EAST, tiles[aa.tile + 8 - 1]);
+                        aa.sittingTextureMap.put(Direction.SOUTH, tiles[aa.tile + 12 - 1]);
+                        aa.sittingTextureMap.put(Direction.WEST, tiles[aa.tile + 16 - 1]);
                     }
                 }
 
@@ -1211,5 +1270,59 @@ public class Constants {
         }
 
     }
+
+    public static final String[] DUNGEONS = new String[]{
+        "Deceit",
+        "Despise",
+        "Destard",
+        "Wrong",
+        "Covetous",
+        "Shame",
+        "Hythloth",
+        "GSA",
+        "Control",
+        "Passion",
+        "Diligence",
+        "Tomb of Kings",
+        "Ant Mound",
+        "Swamp Cave",
+        "Spider Cave",
+        "Cyclops Cave",
+        "Heftimus Cave",
+        "Heroes' Hole",
+        "Pirate Cave",
+        "Buccaneer's Cave"
+    };
+
+    // Red moongate teleport locations.
+    public static int[][] RedMoongate = new int[][]{
+        {0x0, 0x0, 0x0},
+        {0x383, 0x1f3, 0x0},
+        {0x3a7, 0x106, 0x0},
+        {0x1b3, 0x18b, 0x0},
+        {0x1f7, 0x166, 0x0},
+        {0x93, 0x373, 0x0},
+        {0x397, 0x3a6, 0x0},
+        {0x44, 0x2d, 0x5},
+        {0x133, 0x160, 0x0},
+        {0xbc, 0x2d, 0x5},
+        {0x9f, 0x3ae, 0x0},
+        {0x2e3, 0x2bb, 0x0},
+        {0x0, 0x0, 0x0},
+        {0x0, 0x0, 0x0},
+        {0x0, 0x0, 0x0},
+        {0xe3, 0x83, 0x0},
+        {0x17, 0x16, 0x1},
+        {0x80, 0x56, 0x5},
+        {0x6c, 0xdd, 0x5},
+        {0x39b, 0x36c, 0x0},
+        {0x127, 0x26, 0x0},
+        {0x4b, 0x1fb, 0x0},
+        {0x147, 0x336, 0x0},
+        {0x183, 0x313, 0x0},
+        {0x33f, 0xa6, 0x0},
+        {0x29b, 0x43, 0x0}
+
+    };
 
 }

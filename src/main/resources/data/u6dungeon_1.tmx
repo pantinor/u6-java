@@ -9513,14 +9513,16 @@
   </object>
  </objectgroup>
  <objectgroup name="actors">
-  <object id="170" name="PEASANT" gid="1674" x="1088" y="1856" width="16" height="16">
+  <object id="170" name="Daros" gid="1674" x="1088" y="1856" width="16" height="16">
    <properties>
     <property name="frame" value="9"/>
+    <property name="npc" value="184"/>
     <property name="object" value="384"/>
    </properties>
   </object>
-  <object id="171" name="NOTHING" gid="1" x="368" y="384" width="16" height="16">
+  <object id="171" name="Sacrifice" gid="1" x="368" y="384" width="16" height="16">
    <properties>
+    <property name="npc" value="196"/>
     <property name="object" value="0"/>
    </properties>
   </object>

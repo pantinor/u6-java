@@ -9099,14 +9099,16 @@
  </objectgroup>
  <objectgroup name="items"/>
  <objectgroup name="actors">
-  <object id="173" name="WOMAN" gid="1722" x="1856" y="1072" width="16" height="16">
+  <object id="173" name="Phoenix" gid="1722" x="1856" y="1072" width="16" height="16">
    <properties>
     <property name="frame" value="9"/>
+    <property name="npc" value="182"/>
     <property name="object" value="387"/>
    </properties>
   </object>
   <object id="174" name="NOTHING" gid="1" x="1328" y="3520" width="16" height="16">
    <properties>
+    <property name="npc" value="188"/>
     <property name="object" value="0"/>
    </properties>
   </object>

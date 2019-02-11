@@ -69,6 +69,22 @@ public class TileUtils implements ApplicationListener {
 
             }
         }
+        
+        x = 48;
+        y = 664;
+        for (Constants.ActorAnimation aa : Constants.ActorAnimation.values()) {
+            for (Constants.Direction d : Constants.Direction.values()) {
+                TextureRegion tr = aa.getSittingTexture(d);
+                if (tr != null) {
+                    batch.draw(tr, x, y);
+                }
+                x += 24;
+                if (x > 1500) {
+                    x = 24;
+                    y -= 24;
+                }
+            }
+        }
 
         x = 48;
         y = 500;

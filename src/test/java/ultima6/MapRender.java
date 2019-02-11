@@ -1,16 +1,18 @@
 package ultima6;
 
-
 import java.io.FileInputStream;
 import org.apache.commons.io.IOUtils;
 import com.google.common.io.LittleEndianDataInputStream;
 import java.io.File;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.zip.GZIPInputStream;
 import org.apache.commons.io.FileUtils;
-import ultima6.Constants;
+import ultima6.Conversations.Conversation;
 
 public class MapRender {
 
@@ -406,6 +408,7 @@ public class MapRender {
         int frame;
         int tile;
         int object;
+        int npc;
         int status;
         int quality;
         int quantity;
@@ -422,6 +425,7 @@ public class MapRender {
                     + (quantity > 0 ? "    <property name=\"qty\" value=\"" + quantity + "\"/>\n" : "")
                     + (quality > 0 ? "    <property name=\"quality\" value=\"" + quality + "\"/>\n" : "")
                     + (status > 0 ? "    <property name=\"status\" value=\"" + status + "\"/>\n" : "")
+                    + (npc > 0 ? "    <property name=\"npc\" value=\"" + npc + "\"/>\n" : "")
                     + (portal_dest_x > 0 || portal_dest_y > 0
                             ? "    <property name=\"portal_dest_x\" value=\"" + portal_dest_x + "\"/>\n"
                             + "    <property name=\"portal_dest_y\" value=\"" + portal_dest_y + "\"/>\n"
@@ -433,7 +437,31 @@ public class MapRender {
     }
 
     private static U6Object[] readObjList(int[] basetiles) throws Exception {
-        FileInputStream is = new FileInputStream("D:\\ultima\\ULTIMA6\\SAVEGAME\\OBJLIST");
+
+        InputStream is = new GZIPInputStream(new FileInputStream("src\\main\\resources\\data\\conversations"));
+        byte[] conv = IOUtils.toByteArray(is);
+        is.close();
+
+        Conversations convs = new Conversations();
+
+        ByteBuffer bba = ByteBuffer.wrap(conv);
+        while (bba.position() < bba.limit()) {
+            short len = bba.getShort();
+            byte[] data = new byte[len];
+            bba.get(data);
+            StringBuilder sb = new StringBuilder();
+            byte b = 0;
+            for (int i = 2; i < 20; i++) {
+                b = data[i];
+                if (b == (byte) 0xf1) {
+                    break;
+                }
+                sb.append((char) b);
+            }
+            convs.put(data[1] & 0xff, sb.toString(), data);
+        }
+
+        is = new FileInputStream("D:\\ultima\\ULTIMA6\\SAVEGAME\\OBJLIST");
         LittleEndianDataInputStream dis = new LittleEndianDataInputStream(is);
         dis.skipBytes(0x100);
         U6Object[] objects = new U6Object[256];
@@ -442,6 +470,7 @@ public class MapRender {
             int h = dis.readUnsignedByte();
             int d1 = dis.readUnsignedByte();
             int d2 = dis.readUnsignedByte();
+            obj.npc = i;
             obj.x = ((d1 & 0x3) << 8 | h);
             obj.y = ((d2 & 0xf) << 6 | (d1 >> 2));
             obj.z = (d2 >> 4);
@@ -453,7 +482,8 @@ public class MapRender {
             int object = b1;
             object += (b2 & 0x3) << 8;
             int frame = (b2 & 0xfc) >> 2;
-            objects[i].name = Constants.Objects.getName(object);
+            Conversation c = convs.get(objects[i].npc);
+            objects[i].name = c != null ? c.getName() : Constants.Objects.getName(object);
             objects[i].object = object;
             objects[i].frame = frame;
             objects[i].tile = basetiles[objects[i].object] + objects[i].frame;

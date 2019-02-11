@@ -1,6 +1,5 @@
 package ultima6;
 
-
 import static ultima6.Constants.TILE_DIM;
 import static ultima6.Constants.Direction;
 import ultima6.Constants.Map;
@@ -19,10 +18,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-//import utils.PartyDeathException;
-//import utils.TmxMapRenderer;
-//import utils.TmxMapRenderer.CreatureLayer;
-//import utils.Utils;
+import ultima6.Conversations.Conversation;
 
 public class GameScreen extends BaseScreen {
 
@@ -46,24 +42,12 @@ public class GameScreen extends BaseScreen {
 //        addButtons(this.map);
         renderer = new TmxMapRenderer(this.map, this.map.getTiledMap(), 2f);
 
-//        renderer.registerCreatureLayer(new CreatureLayer() {
-//            @Override
-//            public void render(float time) {
-//                renderer.getBatch().draw(Andius.game_scr_avatar.getKeyFrame(time, true), newMapPixelCoords.x, newMapPixelCoords.y - TILE_DIM + 8);
-//                for (Actor cr : GameScreen.this.map.getMap().actors) {
-//                    if (renderer.shouldRenderCell(currentRoomId, cr.getWx(), cr.getWy())) {
-//                        renderer.getBatch().draw(cr.getAnimation().getKeyFrame(time, true), cr.getX(), cr.getY() + 8);
-//                    }
-//                }
-//            }
-//        });
         mapPixelHeight = this.map.getHeight();
 
     }
 
     @Override
     public void show() {
-        //setRoomName();
         //this.map.syncRemovedActors(CTX.saveGame);
         Gdx.input.setInputProcessor(new InputMultiplexer(this, stage));
     }
@@ -125,7 +109,7 @@ public class GameScreen extends BaseScreen {
         batch.draw(Ultima6.backGround, 0, 0);
         batch.draw((TextureRegion) Ultima6.AVATAR.getKeyFrame(time, true), TILE_DIM * 11, TILE_DIM * 11, TILE_DIM, TILE_DIM);
         //Andius.HUD.render(batch, Andius.CTX);
-    
+
         Vector3 v = new Vector3();
         setCurrentMapCoords(v);
         Ultima6.font.draw(batch, String.format("%s, %s\n", v.x, v.y), 200, Ultima6.SCREEN_HEIGHT - 64);
@@ -224,7 +208,14 @@ public class GameScreen extends BaseScreen {
 //                return false;
 //            }
         } else if (keycode == Keys.T) {
+            Actor a = this.map.getBaseMap().getActorAt((int) v.x, (int) v.y);
+            if (a != null) {
+                Conversation c = Ultima6.CONVS.get(a.getId());
+                if (c != null) {
+                    new ConversationDialog(this, c).show(this.stage);
+                }
 
+            }
         }
 
         finishTurn((int) v.x, (int) v.y);
@@ -266,7 +257,7 @@ public class GameScreen extends BaseScreen {
                     TiledMapTileMapObject tmo = (TiledMapTileMapObject) obj;
                     float ox = ((Float) tmo.getProperties().get("x")) / 16;
                     float oy = ((Float) tmo.getProperties().get("y")) / 16;
-                    if (ox == nx && oy == this.map.getHeight() - 1 - ny) {
+                    if (ox == nx && oy == this.map.getHeight() - 1 - ny && !tf.isWall()) {
                         int gid = (Integer) tmo.getProperties().get("gid");
                         otf = Ultima6.TILE_FLAGS.get(gid - 1);
                         break;
@@ -275,16 +266,16 @@ public class GameScreen extends BaseScreen {
                 if (otf != null) {
                     if (otf.isWall() || otf.isImpassable() || otf.isWet()) {
                         Sounds.play(Sound.BLOCKED);
-                        return false;
+                        //return false;
                     }
                 } else {
                     Sounds.play(Sound.BLOCKED);
-                    return false;
+                    //return false;
                 }
             }
         } else {
             Sounds.play(Sound.BLOCKED);
-            return false;
+            //return false;
         }
 
 //        MapLayer messagesLayer = this.map.getTiledMap().getLayers().get("messages");

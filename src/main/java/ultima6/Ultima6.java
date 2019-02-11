@@ -1,6 +1,5 @@
 package ultima6;
 
-
 import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -22,7 +21,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.utils.Array;
 import com.google.common.io.LittleEndianDataInputStream;
 import java.io.InputStream;
+import java.nio.ByteBuffer;
 import java.util.HashMap;
+import java.util.zip.GZIPInputStream;
+import org.apache.commons.io.IOUtils;
 //import utils.Hud;
 
 public class Ultima6 extends Game {
@@ -47,6 +49,7 @@ public class Ultima6 extends Game {
 
     public static Ultima6 mainGame;
     //public static StartScreen startScreen;
+    public static final Conversations CONVS = new Conversations();
 
     public static Skin skin;
 
@@ -59,7 +62,7 @@ public class Ultima6 extends Game {
     public static Animation AVATAR;
 
     //public static Hud HUD;
-    //public static Conversations CONVERSATIONS;
+    
 //    public static TextureRegion[] faceTiles = new TextureRegion[6 * 6];
 //    public static TextureRegion[] invIcons = new TextureRegion[67 * 12];
 //
@@ -180,6 +183,7 @@ public class Ultima6 extends Game {
             Constants.PaletteCycledTiles.init();
 
             initTileFlags();
+            initConversations();
             AVATAR = Constants.ActorAnimation.AVATAR.getAnimation(Constants.Direction.NORTH);
 
             Constants.Map.WORLD.init();
@@ -187,7 +191,6 @@ public class Ultima6 extends Game {
 
             //Constants.Map.TEST.init();
             //Constants.Map.TEST.getScreen().setMapPixelCoords(Constants.Map.TEST.getScreen().newMapPixelCoords, 4, 1);
-
 //            TextureRegion[][] expl = TextureRegion.split(new Texture(Gdx.files.classpath("assets/data/uf_FX.png")), 24, 24);
 //            EXPLMAP.put(Color.GRAY, new Animation(.1f, getTextureArray(expl, 0, 0)));
 //            EXPLMAP.put(Color.BLUE, new Animation(.1f, getTextureArray(expl, 0, 5)));
@@ -280,6 +283,31 @@ public class Ultima6 extends Game {
 
             TILE_FLAGS.put(i, tf);
 
+        }
+
+    }
+
+    private static void initConversations() throws Exception {
+
+        GZIPInputStream is = new GZIPInputStream(Gdx.files.classpath("data/conversations").read());
+        byte[] conv = IOUtils.toByteArray(is);
+        is.close();
+
+        ByteBuffer bba = ByteBuffer.wrap(conv);
+        while (bba.position() < bba.limit()) {
+            short len = bba.getShort();
+            byte[] data = new byte[len];
+            bba.get(data);
+            StringBuilder sb = new StringBuilder();
+            byte b = 0;
+            for (int i = 2; i < 20; i++) {
+                b = data[i];
+                if (b == (byte) 0xf1) {
+                    break;
+                }
+                sb.append((char) b);
+            }
+            CONVS.put(data[1] & 0xff, sb.toString(), data);
         }
 
     }
