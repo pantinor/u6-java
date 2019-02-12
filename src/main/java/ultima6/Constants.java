@@ -120,16 +120,19 @@ public class Constants {
                     int tile = obj.getProperties().get("gid", Integer.class) - 1;
                     float x = obj.getProperties().get("x", Float.class);
                     float y = obj.getProperties().get("y", Float.class);
-                    int sx = (int) (x / TILE_DIM);
-                    int sy = (int) (y / TILE_DIM);
+                    int sx = (int) (x / 16);
+                    int sy = (int) (y / 16);
 
                     if (tile == 684 || tile == 685) {
                         tile = 1648;//chuckles sleeping at start
                     }
+                    if (tile == 0) {
+                        tile = 416;//an empty tile for shrines to show the force field
+                    }
 
                     ActorAnimation icon = ActorAnimation.find(tile);
+                    System.out.printf("Loading actor: %s %d %d %s\n", name, npc, tile, icon);
 
-                    //System.out.printf("Loading actor: %s %d %d %s on map %s.\n", name, id, tile, icon, this);
                     Actor actor = new Actor(icon, npc, name);
 
                     boolean sitting = icon.isSittingTile(tile);
@@ -138,6 +141,7 @@ public class Constants {
 
                     actor.setDir(icon.direction(tile));
 
+                    //System.out.printf("Loading actor: %s %d %d %s at [%d] [%d]\n", name, npc, tile, icon, sx, getHeight() - 1 - sy);
                     this.baseMap.addActor(actor);
                 }
             }
@@ -648,7 +652,7 @@ public class Constants {
     }
 
     public static enum ActorAnimation {
-
+        FORCE_FIELD(416, 51, 0, 0, 1),//shrines tile 0 -> 416 empty tile
         GIANT_RAT(1280, 342, 2, 2, 1),
         INSECTS(1288, 343, 0, 0, 1),
         GIANT_BAT(1292, 344, 0, 0, 1),
@@ -978,7 +982,7 @@ public class Constants {
                         aa.animMap.put(Direction.values()[i], a);
                         aa.textureMap.put(Direction.values()[i], arr.first());
                     }
-                } else if (aa == ActorAnimation.RAFT) {
+                } else if (aa == ActorAnimation.RAFT || aa == ActorAnimation.FORCE_FIELD) {
                     for (int i = 0; i < 4; i++) {
                         aa.textureMap.put(Direction.values()[i], tiles[aa.tile]);
                     }

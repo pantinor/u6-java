@@ -1,10 +1,13 @@
 package ultima6;
 
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 public class Conversations {
 
@@ -115,8 +118,10 @@ public class Conversations {
         return this.conversations.get(id);
     }
 
-    public void put(int id, String name, byte[] data) {
-        this.conversations.put(id, new Conversation(id, name, data));
+    public Conversation put(int id, String name, byte[] data) {
+        Conversation c = new Conversation(id, name, data);
+        this.conversations.put(id, c);
+        return c;
     }
 
     public Iterator<Conversation> iter() {
@@ -128,50 +133,220 @@ public class Conversations {
         private final int id;
         private final String name;
         private final byte[] data;
+        private final ByteBuffer bb;
         private String description;
-        private final Map<String, String> topics = new HashMap<>();
+        private TextureRegion portait;
 
         public Conversation(int id, String name, byte[] data) {
             this.id = id;
             this.name = name;
             this.data = data;
+            this.bb = ByteBuffer.wrap(data);
+        }
 
-            List<Tuple> ops = new ArrayList<>();
-            int lastlen = 0;
-            for (int i = 0; i < data.length; i++) {
-                U6OP op = U6OP.find(data[i]);
+        public String process(String input) {
+            String keywords = null, answer = null;
+            while (bb.position() < bb.limit()) {
+                byte b = bb.get();
+                U6OP op = U6OP.find(b);
                 if (op != null) {
-                    ops.add(new Tuple(op, i, lastlen));
-                    lastlen = 0;
-                } else {
-                    lastlen++;
+                    switch (op) {
+                        case ENDANSWERS:
+                            break;
+                        case KEYWORDS:
+                            keywords = getFormattedText();
+                            break;
+                        case SLOOK:
+                            this.description = getFormattedText();
+                            break;
+                        case SCONVERSE:
+                            break;
+                        case SPREFIX:
+                            break;
+                        case ANSWER:
+                            answer = getFormattedText();
+                            if (matchKeywords(input, keywords)) {
+                                return answer;
+                            }
+                            break;
+                        case ASK:
+                            break;
+                        case ASKC:
+                            break;
+                        case INPUT:
+                            break;
+                        case GT:
+                            break;
+                        case GE:
+                            break;
+                        case LT:
+                            break;
+                        case LE:
+                            break;
+                        case NE:
+                            break;
+                        case EQ:
+                            break;
+                        case ADD:
+                            break;
+                        case SUB:
+                            break;
+                        case MUL:
+                            break;
+                        case LOR:
+                            break;
+                        case LAND:
+                            break;
+                        case CANCARRY:
+                            break;
+                        case WEIGHT:
+                            break;
+                        case HORSED:
+                            break;
+                        case RAND:
+                            break;
+                        case EVAL:
+                            break;
+                        case FLAG:
+                            break;
+                        case VAR:
+                            break;
+                        case SVAR:
+                            break;
+                        case DATA:
+                            break;
+                        case OBJCOUNT:
+                            break;
+                        case INPARTY:
+                            break;
+                        case OBJINPARTY:
+                            break;
+                        case JOIN:
+                            break;
+                        case LEAVE:
+                            break;
+                        case ONE_BYTE:
+                            break;
+                        case TWO_BYTE:
+                            break;
+                        case FOUR_BYTE:
+                            break;
+                        case NPCNEARBY:
+                            break;
+                        case WOUNDED:
+                            break;
+                        case POISONED:
+                            break;
+                        case NPC:
+                            break;
+                        case EXP:
+                            break;
+                        case LVL:
+                            break;
+                        case STR:
+                            break;
+                        case INT:
+                            break;
+                        case DEX:
+                            break;
+                        case HORSE:
+                            break;
+                        case IF:
+                            break;
+                        case ENDIF:
+                            break;
+                        case ELSE:
+                            break;
+                        case SETF:
+                            break;
+                        case CLEARF:
+                            break;
+                        case DECL:
+                            break;
+                        case ASSIGN:
+                            break;
+                        case JUMP:
+                            break;
+                        case DPRINT:
+                            break;
+                        case BYE:
+                            break;
+                        case NEW:
+                            break;
+                        case DELETE:
+                            break;
+                        case INVENTORY:
+                            break;
+                        case PORTRAIT:
+                            break;
+                        case ADDKARMA:
+                            break;
+                        case SUBKARMA:
+                            break;
+                        case GIVE:
+                            break;
+                        case WAIT:
+                            break;
+                        case WORKTYPE:
+                            break;
+                        case SETNAME:
+                            break;
+                        case HEAL:
+                            break;
+                        case CURE:
+                            break;
+                        case INPUTNUM:
+                            break;
+                        case SIDENT:
+                            break;
+                        case SLEEP:
+                            break;
+                        case OBJINACTOR:
+                            break;
+                        case RESURRECT:
+                            break;
+                        case INPUTSTR:
+                            break;
+                        case DIV:
+                            break;
+                        case INDEXOF:
+                            break;
+                        case ENDOFLIST:
+                            break;
+                        default:
+                            break;
+
+                    }
                 }
             }
 
-            for (int i = 0; i < ops.size(); i++) {
-                Tuple t = ops.get(i);
-                if ((t.op == U6OP.ANSWER || t.op == U6OP.KEYWORDS || t.op == U6OP.SLOOK) && (i + 1 < ops.size())) {
-                    Tuple t2 = ops.get(i + 1);
-                    t.val = normalize(new String(data, t.idx + 1, t2.lastlen));
-                }
-            }
-
-            for (int i = 0; i < ops.size(); i++) {
-                Tuple t = ops.get(i);
-                if (t.val != null && t.val.length() > 0) {
-                    if (t.op == U6OP.KEYWORDS) {
-                        topics.put(t.val, ops.get(i + 1).val);
-                    }
-                    if (t.op == U6OP.SLOOK) {
-                        this.description = t.val;
-                    }
-                }
-            }
+            return "I cannot help thee with that.";
 
         }
 
-        private String normalize(String sb) {
-            return sb.replace("\\", "").replace("\"", "").replace("\'", "'").replace("\n", "").replace("*", " ").trim();
+        private boolean matchKeywords(String input, String keywords) {
+            StringTokenizer st = new StringTokenizer(keywords, ",");
+            while (st.hasMoreTokens()) {
+                String tok = st.nextToken().trim().toLowerCase();
+                if (input.toLowerCase().contains(tok)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private String getFormattedText() {
+            int start = bb.position();
+            do {
+                byte next = bb.get();
+            } while (bb.position() < bb.limit() && U6OP.find(bb.get(bb.position())) == null);
+            String val = new String(bb.array(), start, bb.position() - start);
+            return prepare(val);
+        }
+
+        private String prepare(String s) {
+            s = s.replace("$N", this.name);
+            return s.replace("\\", "").replace("\"", "").replace("\'", "'").replace("\n", "").replace("*", " ").trim();
         }
 
         public int getId() {
@@ -182,25 +357,18 @@ public class Conversations {
             return name;
         }
 
-        @Override
-        public String toString() {
-            return "Conversation{" + "id=" + id + ", name=" + name + ", description=" + description + ", topics=" + topics + '}';
+        public String getDescription() {
+            return description;
         }
 
-    }
-
-    private static class Tuple {
-
-        U6OP op;
-        int idx;
-        int lastlen;
-        String val;
-
-        Tuple(U6OP op, int idx, int lastlen) {
-            this.op = op;
-            this.idx = idx;
-            this.lastlen = lastlen;
+        public TextureRegion getPortait() {
+            return portait;
         }
+
+        public void setPortait(TextureRegion portait) {
+            this.portait = portait;
+        }
+
     }
 
 }

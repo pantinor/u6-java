@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -25,45 +26,47 @@ import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.zip.GZIPInputStream;
 import org.apache.commons.io.IOUtils;
+import ultima6.Constants.Direction;
+import ultima6.Conversations.Conversation;
 //import utils.Hud;
 
 public class Ultima6 extends Game {
-
+    
     public static final int SCREEN_WIDTH = 1024;
     public static final int SCREEN_HEIGHT = 768;
-
+    
     public static final int MAP_VIEWPORT_DIM = 624;
 
     //public static Context CTX;
     public static Texture backGround;
     public static TextureAtlas heroesAtlas;
     public static TextureAtlas mapAtlas;
-
+    
     public static Array<TextureAtlas.AtlasRegion> moongateTextures = new Array<>();
-
+    
     public static BitmapFont font;
     public static BitmapFont smallFont;
     public static BitmapFont largeFont;
     public static BitmapFont hudLogFont;
     public static BitmapFont titleFont;
-
+    
     public static Ultima6 mainGame;
     //public static StartScreen startScreen;
     public static final Conversations CONVS = new Conversations();
-
+    
     public static Skin skin;
-
+    
     public static boolean playMusic = true;
     public static float musicVolume = 0.1f;
     public static Music music;
-
-    public static final java.util.Map<Integer, TileFlags> TILE_FLAGS = new HashMap<>();
-
-    public static Animation AVATAR;
-
-    //public static Hud HUD;
     
-//    public static TextureRegion[] faceTiles = new TextureRegion[6 * 6];
+    public static final java.util.Map<Integer, TileFlags> TILE_FLAGS = new HashMap<>();
+    
+    public static TextureRegion AVATAR;
+    public static Direction currentDirection = Direction.NORTH;
+    //public static Hud HUD;
+
+    public static TextureRegion[] faceTiles = new TextureRegion[13 * 16];
 //    public static TextureRegion[] invIcons = new TextureRegion[67 * 12];
 //
 //    public static java.util.List<Item> ITEMS;
@@ -74,39 +77,40 @@ public class Ultima6 extends Game {
 //    public static final java.util.Map<Integer, java.util.List<Monster>> MONSTER_LEVELS = new HashMap<>();
 //
 //    public static java.util.List<Reward> REWARDS;
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
+        
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
         cfg.title = "Ultima6";
         cfg.width = SCREEN_WIDTH;
         cfg.height = SCREEN_HEIGHT;
         cfg.addIcon("data/ankh.png", Files.FileType.Classpath);
         new LwjglApplication(new Ultima6(), cfg);
-
+        
     }
-
+    
     @Override
     public void create() {
-
+        
         font = new BitmapFont();
-
+        
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.classpath("fonts/gnuolane.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-
+        
         parameter.size = 16;
         hudLogFont = generator.generateFont(parameter);
-
+        
         parameter.size = 18;
         font = generator.generateFont(parameter);
-
+        
         parameter.size = 24;
         largeFont = generator.generateFont(parameter);
-
+        
         parameter.size = 72;
         titleFont = generator.generateFont(parameter);
-
+        
         generator.dispose();
-
+        
         skin = new Skin(Gdx.files.classpath("skin/uiskin.json"));
         skin.remove("default-font", BitmapFont.class);
         skin.add("default-font", font, BitmapFont.class);
@@ -157,15 +161,8 @@ public class Ultima6 extends Game {
 
 //        HUD = new Hud();
         try {
-
+            
             backGround = new Texture(Gdx.files.classpath("data/frame.png"));
-//
-//            TextureRegion[][] trs = TextureRegion.split(new Texture(Gdx.files.classpath("assets/data/uf_portraits_example.png")), 48, 48);
-//            for (int row = 0; row < 6; row++) {
-//                for (int col = 0; col < 6; col++) {
-//                    faceTiles[row * 6 + col] = trs[row][col];
-//                }
-//            }
 //
 //            TextureRegion[][] inv = TextureRegion.split(new Texture(Gdx.files.classpath("assets/data/inventory.png")), 44, 44);
 //            Texture tx = new Texture(Gdx.files.classpath("assets/data/inventory.png"));
@@ -181,11 +178,11 @@ public class Ultima6 extends Game {
 
             Constants.ActorAnimation.init();
             Constants.PaletteCycledTiles.init();
-
+            
             initTileFlags();
             initConversations();
-            AVATAR = Constants.ActorAnimation.AVATAR.getAnimation(Constants.Direction.NORTH);
-
+            AVATAR = Constants.ActorAnimation.AVATAR.getTexture(Constants.Direction.NORTH);
+            
             Constants.Map.WORLD.init();
             Constants.Map.WORLD.getScreen().setMapPixelCoords(Constants.Map.WORLD.getScreen().newMapPixelCoords, 307, 349);
 
@@ -232,41 +229,41 @@ public class Ultima6 extends Game {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        
         mainGame = this;
         //startScreen = new StartScreen();
         setScreen(Constants.Map.WORLD.getScreen());
-
+        
     }
-
+    
     private static void initTileFlags() throws Exception {
         InputStream is = Gdx.files.classpath("data/TILEFLAG").read();
         LittleEndianDataInputStream dis = new LittleEndianDataInputStream(is);
-
+        
         byte[] f1 = new byte[2048];
         byte[] f2 = new byte[2048];
         byte[] none = new byte[2048];
         byte[] f3 = new byte[2048];
-
+        
         dis.read(f1);
         dis.read(f2);
         dis.read(none);
         dis.read(f3);
-
+        
         for (int i = 0; i < 2048; i++) {
-
+            
             TileFlags tf = new TileFlags();
-
+            
             tf.setWet((f1[i] & 0x1) != 0);
             tf.setImpassable((f1[i] & 0x2) != 0);
             tf.setWall((f1[i] & 0x4) != 0);
             tf.setDamaging((f1[i] & 0x8) != 0);
-
+            
             tf.setSides((((f1[i] & 0x10) != 0 ? "w" : "")
                     + ((f1[i] & 0x20) != 0 ? "s" : "")
                     + ((f1[i] & 0x40) != 0 ? "e" : "")
                     + ((f1[i] & 0x80) != 0 ? "n" : "")));
-
+            
             tf.setLightlsb((f2[i] & 0x1) != 0);
             tf.setLightmsb((f2[i] & 0x2) != 0);
             tf.setBoundary((f2[i] & 0x4) != 0);
@@ -275,24 +272,31 @@ public class Ultima6 extends Game {
             tf.setNoshootthru((f2[i] & 0x20) != 0);
             tf.setVsize(((f2[i] & 0x40) != 0 ? 2 : 1));
             tf.setHsize(((f2[i] & 0x80) != 0 ? 2 : 1));
-
+            
             tf.setWarm((f3[i] & 0x1) != 0);
             tf.setSupport((f3[i] & 0x2) != 0);
             tf.setBreakthruable((f3[i] & 0x4) != 0);
             tf.setBackground((f3[i] & 0x20) != 0);
-
+            
             TILE_FLAGS.put(i, tf);
-
+            
         }
-
+        
     }
-
+    
     private static void initConversations() throws Exception {
-
+        
+        TextureRegion[][] trs = TextureRegion.split(new Texture(Gdx.files.classpath("data/Portraits.gif")), 56, 64);
+        for (int y = 0; y < 13; y++) {
+            for (int x = 0; x < 16; x++) {
+                faceTiles[y * 16 + x] = trs[y][x];
+            }
+        }
+        
         GZIPInputStream is = new GZIPInputStream(Gdx.files.classpath("data/conversations").read());
         byte[] conv = IOUtils.toByteArray(is);
         is.close();
-
+        
         ByteBuffer bba = ByteBuffer.wrap(conv);
         while (bba.position() < bba.limit()) {
             short len = bba.getShort();
@@ -307,9 +311,11 @@ public class Ultima6 extends Game {
                 }
                 sb.append((char) b);
             }
-            CONVS.put(data[1] & 0xff, sb.toString(), data);
+            int npc = data[1] & 0xff;
+            Conversation c = CONVS.put(npc, sb.toString(), data);
+            c.setPortait(faceTiles[npc - 1]);
         }
-
+        
     }
-
+    
 }
