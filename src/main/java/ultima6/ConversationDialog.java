@@ -2,9 +2,12 @@ package ultima6;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Event;
+import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -13,17 +16,17 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeOut;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.FocusListener;
-import java.awt.Color;
 import ultima6.Conversations.Conversation;
+import ultima6.Conversations.OutputStream;
 
 public class ConversationDialog extends Window {
 
     public static int WIDTH = 400;
     public static int HEIGHT = 400;
-    public static final Color BASE_YELLOW = new Color(252, 244, 192);
 
     Actor previousKeyboardFocus, previousScrollFocus;
     private final FocusListener focusListener;
@@ -41,7 +44,7 @@ public class ConversationDialog extends Window {
         }
     };
 
-    public ConversationDialog(GameScreen screen, Conversation conv) {
+    public ConversationDialog(GameScreen screen, Player player, Conversation conv) {
         super("", Ultima6.skin.get("dialog", Window.WindowStyle.class));
         this.screen = screen;
         this.conv = conv;
@@ -59,22 +62,38 @@ public class ConversationDialog extends Window {
         scrollPane = new LogScrollPane(Ultima6.skin, new Table(), WIDTH);
         scrollPane.setHeight(HEIGHT);
 
+        TextButton close = new TextButton("X", Ultima6.skin);
+        close.addListener(new EventListener() {
+            @Override
+            public boolean handle(Event event) {
+                if (event.toString().equals("touchDown")) {
+                    hide();
+                }
+                return false;
+            }
+        });
+
+        getTitleTable().add(close).height(getPadTop());
+
+        OutputStream output = new OutputStream() {
+            @Override
+            public void print(String text, Color color) {
+                scrollPane.add(text, color);
+            }
+
+            @Override
+            public void close() {
+                hide();
+            }
+        };
+
         input = new TextField("", Ultima6.skin);
         input.setTextFieldListener(new TextField.TextFieldListener() {
             @Override
             public void keyTyped(TextField tf, char key) {
-
                 if (key == '\r') {
-
-                    if (tf.getText().length() == 0) {
-                        hide();
-                        return;
-                    }
-
                     String input = tf.getText();
-
-                    scrollPane.add(conv.process(input));
-
+                    conv.process(player, input, output);
                     tf.setText("");
                 }
             }
@@ -112,7 +131,7 @@ public class ConversationDialog extends Window {
             }
         };
 
-        scrollPane.add("You meet " + conv.getDescription());
+        //conv.process(player, "", output);
 
     }
 

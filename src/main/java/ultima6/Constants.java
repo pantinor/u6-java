@@ -131,7 +131,7 @@ public class Constants {
                     }
 
                     ActorAnimation icon = ActorAnimation.find(tile);
-                    System.out.printf("Loading actor: %s %d %d %s\n", name, npc, tile, icon);
+                    //System.out.printf("Loading actor: %s %d %d %s\n", name, npc, tile, icon);
 
                     Actor actor = new Actor(icon, npc, name);
 
