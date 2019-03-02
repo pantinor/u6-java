@@ -20,6 +20,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.FocusListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import ultima6.Conversations.Conversation;
 import ultima6.Conversations.OutputStream;
 
@@ -35,6 +36,7 @@ public class ConversationDialog extends Window {
     private final Table internalTable;
     private final TextField input;
     private final LogScrollPane scrollPane;
+    private final Image portrait = new Image();
 
     protected InputListener ignoreTouchDown = new InputListener() {
         @Override
@@ -45,7 +47,7 @@ public class ConversationDialog extends Window {
     };
 
     public ConversationDialog(GameScreen screen, Player player, Conversation conv) {
-        super("", Ultima6.skin.get("dialog", Window.WindowStyle.class));
+        super(conv.getName(), Ultima6.skin.get("dialog", Window.WindowStyle.class));
         this.screen = screen;
         this.conv = conv;
 
@@ -85,6 +87,11 @@ public class ConversationDialog extends Window {
             public void close() {
                 hide();
             }
+
+            @Override
+            public void setPortrait(int npc) {
+                portrait.setDrawable(new TextureRegionDrawable(Ultima6.faceTiles[npc - 1]));
+            }
         };
 
         input = new TextField("", Ultima6.skin);
@@ -99,7 +106,9 @@ public class ConversationDialog extends Window {
             }
         });
 
-        internalTable.add(new Image(conv.getPortait()));
+        portrait.setDrawable(new TextureRegionDrawable(conv.getPortait()));
+                
+        internalTable.add(this.portrait);
         internalTable.row();
         internalTable.add(scrollPane).maxWidth(WIDTH).width(WIDTH);
         internalTable.row();
@@ -131,7 +140,7 @@ public class ConversationDialog extends Window {
             }
         };
 
-        //conv.process(player, "", output);
+        scrollPane.add(conv.getDescription());
 
     }
 
