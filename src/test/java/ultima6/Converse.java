@@ -7,23 +7,24 @@ import java.io.FileOutputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.StringTokenizer;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 import javax.xml.bind.DatatypeConverter;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.CharUtils;
+import static org.testng.Assert.assertEquals;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 import ultima6.Conversations.Conversation;
 import ultima6.Conversations.OutputStream;
 
 public class Converse {
 
-    public static void main2(String[] args) throws Exception {
+    public static void aggregateDecompressedConvs(String[] args) throws Exception {
         File dir = new File("D:\\Nuvie\\tools\\conv");
         File[] files = dir.listFiles();
 
@@ -48,7 +49,7 @@ public class Converse {
     }
 
     public static void main(String[] args) throws Exception {
-        
+
         Party party = new Party();
         Player player = new Player();
         player.setName("Paul");
@@ -108,12 +109,12 @@ public class Converse {
             System.out.println(debug(t.data()));
 
             Map<Integer, Integer> iVars = new HashMap<>();
-            for (int i = 0; i < 30; i++) {
-                iVars.put(i, 0);
+            for (int i = 0; i < 64; i++) {
+                iVars.put(i, i);
             }
             Map<Integer, String> sVars = new HashMap<>();
-            for (int i = 0; i < 30; i++) {
-                sVars.put(i, "");
+            for (int i = 0; i < 64; i++) {
+                sVars.put(i, "" + i);
             }
             ByteBuffer bb = ByteBuffer.allocate(t.data().length + 5);
             bb.order(ByteOrder.LITTLE_ENDIAN);
@@ -138,14 +139,6 @@ public class Converse {
     }
 
     public static void main1(String[] args) throws Exception {
-
-        byte[] test = DatatypeConverter.parseHexBinary("A100B2D30186A7B05F0B0000A2");
-        ByteTokenizer testbt = new ByteTokenizer(test,
-                new byte[]{U6OP.IF.code(), U6OP.ELSE.code(), U6OP.ENDIF.code()},
-                new byte[]{U6OP.JUMP.code(), U6OP.ONE_BYTE.code(), U6OP.TWO_BYTE.code(), U6OP.FOUR_BYTE.code()}
-        );
-        int c = testbt.countTokens();
-        byte[] first = testbt.nexToken();
 
         GZIPInputStream is = new GZIPInputStream(new FileInputStream("src\\main\\resources\\data\\conversations"));
         byte[] tmp = IOUtils.toByteArray(is);
@@ -235,6 +228,91 @@ public class Converse {
             bb.get();
         }
         return sb.toString();
+    }
+
+    private static ByteBuffer parse(String text) {
+
+        List<Byte> bytes = new ArrayList<>();
+
+        StringTokenizer t = new StringTokenizer(text, "[]");
+        while (t.hasMoreTokens()) {
+            String st = t.nextToken();
+            try {
+                U6OP op = U6OP.valueOf(st);
+                bytes.add(op.code());
+            } catch (Exception e) {
+                bytes.add(DatatypeConverter.parseHexBinary(st)[0]);
+            }
+        }
+
+        ByteBuffer bb = ByteBuffer.allocate(bytes.size());
+        bb.order(ByteOrder.LITTLE_ENDIAN);
+        for (Byte b : bytes) {
+            bb.put(b);
+        }
+        bb.flip();
+        return bb;
+    }
+
+    @DataProvider
+    public static Object[][] declares() {
+        return new Object[][]{
+            //{"[DECL][02][VAR][ASSIGN][ONE_BYTE][01][17][VAR][ONE_BYTE][01][ADD][RAND][EVAL]", 2, 4},
+            {"[DECL][01][VAR][ASSIGN][ONE_BYTE][EB][00][FLAG][EVAL]", 1, 0},
+            {"[DECL][02][VAR][ASSIGN][01][VAR][CANCARRY][ONE_BYTE][59][ONE_BYTE][01][WEIGHT][DIV][EVAL]", 2, 10},
+            {"[DECL][00][VAR][ASSIGN][FOUR_BYTE][9F][0D][00][00][ONE_BYTE][23][INDEXOF][EVAL]", 0, 1},
+            {"[DECL][07][VAR][ASSIGN][FOUR_BYTE][B9][12][00][00][06][VAR][DATA][ONE_BYTE][02][DIV][EVAL]", 7, 0},
+            {"[DECL][00][SVAR][ASSIGN][22][SVAR][EVAL]", 0, "34"},
+            {"[DECL][00][VAR][ASSIGN][01][VAR][ONE_BYTE][0A][MUL][EVAL]", 0, 10},
+            {"[DECL][10][VAR][ASSIGN][ONE_BYTE][06][EVAL]", 16, 6},
+            {"[DECL][09][VAR][ASSIGN][TWO_BYTE][A6][01][ONE_BYTE][01][WEIGHT][EVAL]", 9, 10},
+            {"[DECL][FOUR_BYTE][06][13][00][00][02][VAR][DATA][ASSIGN][00][VAR][EVAL]", 0, 0},
+            {"[DECL][08][VAR][ASSIGN][05][VAR][ONE_BYTE][01][SUB][EVAL]", 8, 4},
+            {"[DECL][08][VAR][ASSIGN][07][VAR][17][VAR][ONE_BYTE][03][ADD][DIV][EVAL]", 8, 10}, //
+        //
+        };
+    }
+
+    @Test(dataProvider = "declares")
+    public void testDeclare(String decl, Integer varName, Object expectedValue) throws Exception {
+
+        Party party = new Party();
+        Player player = new Player();
+        player.setName("Paul");
+        player.setParty(party);
+        party.add(player);
+
+        Map<Integer, Integer> iVars = new HashMap<>();
+        for (int i = 0; i < 64; i++) {
+            iVars.put(i, i);
+        }
+        Map<Integer, String> sVars = new HashMap<>();
+        for (int i = 0; i < 64; i++) {
+            sVars.put(i, "" + i);
+        }
+
+        ByteBuffer bb = parse(decl);
+        bb.get();//decl
+        Conversations.declare(player, iVars, sVars, bb, new OutputStream() {
+            @Override
+            public void print(String string, Color color) {
+            }
+
+            @Override
+            public void close() {
+            }
+
+            @Override
+            public void setPortrait(int npc) {
+            }
+        });
+
+        if (expectedValue instanceof String) {
+            assertEquals(sVars.get(varName), expectedValue);
+        } else {
+            assertEquals(iVars.get(varName), expectedValue);
+        }
+
     }
 
 }

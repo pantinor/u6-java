@@ -4,8 +4,10 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Stack;
@@ -89,7 +91,7 @@ public class Conversations {
                 this.iVars.put(i, 0);
             }
             for (int i = 0; i < 64; i++) {
-                this.sVars.put(i, null);
+                this.sVars.put(i, "");
             }
         }
 
@@ -202,7 +204,7 @@ public class Conversations {
 
         }
 
-        public void debugOutput() {
+        private void debugOutput() {
             bb.rewind();
             while (bb.position() < bb.limit()) {
                 byte b = bb.get();
@@ -233,10 +235,10 @@ public class Conversations {
     }
 
     public static void declare(Player player, Map<Integer, Integer> iVars, Map<Integer, String> sVars, ByteBuffer bb, OutputStream output) {
-        
+
         int var_name = 0;
         int four_bytes = 0;
-        
+
         if (bb.get(bb.position()) == U6OP.FOUR_BYTE.code()) {
             bb.get();
             four_bytes = bb.getInt();
@@ -265,8 +267,8 @@ public class Conversations {
             bb.get();
         }
 
-        Stack<Object> values = new Stack<>();
-        Stack<U6OP> operations = new Stack<>();
+        List<Object> values = new ArrayList<>();
+        List<U6OP> operations = new ArrayList<>();
         while (bb.position() < bb.limit()) {
             if (bb.get(bb.position()) == U6OP.EVAL.code()) {
                 bb.get();
@@ -282,10 +284,14 @@ public class Conversations {
             } else if (bb.get(bb.position()) == U6OP.TWO_BYTE.code()) {
                 bb.get();
                 value = bb.getShort() & 0xff;
-            } else if (bb.get(bb.position() + 1) == U6OP.VAR.code() || bb.get(bb.position() + 1) == U6OP.SVAR.code()) {
+            } else if (bb.position() + 1 < bb.limit() && bb.get(bb.position() + 1) == U6OP.VAR.code()) {
                 int ind = bb.get() & 0xff;
                 value = iVars.get(ind);
-                bb.get(); //VAR or SVAR
+                bb.get();
+            } else if (bb.position() + 1 < bb.limit() && bb.get(bb.position() + 1) == U6OP.SVAR.code()) {
+                int ind = bb.get() & 0xff;
+                value = sVars.get(ind);
+                bb.get();
             } else {
                 U6OP op = U6OP.get(bb);
                 if (op != null) {
@@ -301,66 +307,144 @@ public class Conversations {
             }
         }
 
-        Object result = null;
-        while (values.size() > 0) {
-            if (values.size() >= 2) {
-                Object value2 = values.pop();
-                Object value1 = values.pop();
-                result = assign(player, operations.pop(), value1, value2, result);
-                if (result != null && values.isEmpty()) {
-                    if (stringType) {
-                        sVars.put(var_name, "" + result);
-                    } else {
-                        iVars.put(var_name, (Integer) result);
-                    }
-                } else {
+        while (operations.size() > 0) {
+            U6OP op = operations.remove(0);
+            Object result = assign(player, op, values);
+            values.add(0, result);//insert at beginning instead of end
+        }
 
-                }
-            } else {
-                Object value1 = values.pop();
-                if (stringType) {
-                    sVars.put(var_name, "" + value1);
-                } else {
-                    iVars.put(var_name, (Integer) value1);
-                }
-            }
+        Object finalValue = values.remove(0);
+        if (stringType) {
+            sVars.put(var_name, "" + finalValue);
+        } else {
+            iVars.put(var_name, (Integer) finalValue);
         }
 
     }
 
-    private static Object assign(Player player, U6OP op, Object value1, Object value2, Object result) {
+    private static Object assign(Player player, U6OP op, List<Object> values) {
+        Object result = null;
         if (op == U6OP.RAND) {
-            result = randomBetween((Integer) value1, (Integer) value2);
+            Integer v1 = (Integer) values.remove(0);
+            Integer v2 = (Integer) values.remove(0);
+            result = randomBetween(v1, v2);
         } else if (op == U6OP.ADD) {
-            result = (Integer) value1 + (Integer) value2;
+            Integer v1 = (Integer) values.remove(0);
+            Integer v2 = (Integer) values.remove(0);
+            result = v1 + v2;
         } else if (op == U6OP.SUB) {
-            result = (Integer) value1 - (Integer) value2;
+            Integer v1 = (Integer) values.remove(0);
+            Integer v2 = (Integer) values.remove(0);
+            result = v1 - v2;
         } else if (op == U6OP.MUL) {
-            result = (Integer) value1 * (Integer) value2;
+            Integer v1 = (Integer) values.remove(0);
+            Integer v2 = (Integer) values.remove(0);
+            result = v1 * v2;
         } else if (op == U6OP.DIV) {
-            result = (Integer) value1 / (Integer) value2;
+            Integer v1 = (Integer) values.remove(0);
+            Integer v2 = (Integer) values.remove(0);
+            result = v1 / v2;
         } else if (op == U6OP.FLAG) {
-            result = player.getFlag((Integer) value2) ? 1 : 0; //value1 would be the npc id - ignored
+            Integer npc = (Integer) values.remove(0);
+            Integer flag = 0;
+            if (values.size() > 0) {
+                flag = (Integer) values.remove(0);
+            }
+            result = player.getFlag(flag) ? 1 : 0;
         } else if (op == U6OP.NPC) {
+            Integer partyIdx = (Integer) values.remove(0);
+            Integer unused = (Integer) values.remove(0);
+            result = 0;//todo
+            //The NPC number of party member val1.
         } else if (op == U6OP.CANCARRY) {
+            Integer npc = (Integer) values.remove(0);
+            result = 100;//todo
+            //weight that npc can carry
         } else if (op == U6OP.OBJINPARTY) {
+            Integer obj = (Integer) values.remove(0);
+            Integer quality = (Integer) values.remove(0);
+            result = 0xFFFF;//todo
+            //0xFFFF if object val1 with quality val2 is in party inventory, 0x8001 if not ??
         } else if (op == U6OP.OBJCOUNT) {
+            Integer npc = (Integer) values.remove(0);
+            Integer obj = (Integer) values.remove(0);
+            result = 1;//todo
+            //The total quantity of objects of type val2 in the inventory of NPC val1.
         } else if (op == U6OP.STR) {
+            Integer npc = (Integer) values.remove(0);
+            Integer amt = (Integer) values.remove(0);
+            result = 10;//todo
+            //The sum of NPC val1 Strength plus val2
         } else if (op == U6OP.INT) {
+            Integer npc = (Integer) values.remove(0);
+            Integer amt = (Integer) values.remove(0);
+            result = 10;
+            //The sum of NPC val1 Intelli plus val2
         } else if (op == U6OP.DEX) {
+            Integer npc = (Integer) values.remove(0);
+            Integer amt = (Integer) values.remove(0);
+            result = 10;//todo
+            //The sum of NPC val1 Dexterity plus val2
         } else if (op == U6OP.LVL) {
+            Integer npc = (Integer) values.remove(0);
+            Integer amt = (Integer) values.remove(0);
+            result = 1;//todo
+            //The sum of NPC val1 level plus val2
         } else if (op == U6OP.EXP) {
+            Integer npc = (Integer) values.remove(0);
+            Integer amt = (Integer) values.remove(0);
+            result = 1000;//todo
+            //The sum of NPC val1 experience plus val2
         } else if (op == U6OP.OBJINACTOR) {
-        } else if (op == U6OP.INDEXOF) {
+            Integer npc = (Integer) values.remove(0);
+            Integer obj = (Integer) values.remove(0);
+            result = 1;
+            //is object val2 in npc val1
         } else if (op == U6OP.WEIGHT) {
+            Integer obj = (Integer) values.remove(0);
+            Integer amt = (Integer) values.remove(0);
+            result = 10;//todo
+            //Weight of object val1, of quantity val2.
         } else if (op == U6OP.JOIN) {
+            Integer npc = (Integer) values.remove(0);
+            result = 0;//todo
+            //0 if the npc val1 is able and did join the party, 
+            //1 if the party is not on land, 2 if the party is too large, 
+            //3 if npc is already in the party
         } else if (op == U6OP.LEAVE) {
+            Integer npc = (Integer) values.remove(0);
+            result = 0;//todo
+            //0 if the npc val1 left the party, 1 if the party is not on land, 2 if npc is not in the party
         } else if (op == U6OP.NPCNEARBY) {
+            Integer npc = (Integer) values.remove(0);
+            result = 0;//todo
+            //1 if NPC val1 is in proximity to self, 0 if not.
         } else if (op == U6OP.WOUNDED) {
+            Integer npc = (Integer) values.remove(0);
+            result = 0;//todo
+            //1 if NPC val1 is wounded, 0 if current HP equals maximum HP.
         } else if (op == U6OP.POISONED) {
-        } else if (op == U6OP.INPARTY) {
+            Integer npc = (Integer) values.remove(0);
+            result = 0;//todo
+            //1 if NPC val1 "poisoned" flag is true, 0 if it is false.
+        } else if (op == U6OP.NPCINPARTY) {
+            Integer npc = (Integer) values.remove(0);
+            result = 1;//todo
+            //1 if NPC val1 is in the Avatar's party, 0 if not.
         } else if (op == U6OP.HORSED) {
+            Integer npc = (Integer) values.remove(0);
+            result = 0;//todo
+            //1 if npc val1 is riding a horse, 0 if on foot.
         } else if (op == U6OP.DATA) {
+            Integer db = (Integer) values.remove(0);
+            Integer idx = (Integer) values.remove(0);
+            result = 1;//todo
+            //Data (string or integer) from the DB section at val1, index val2.
+        } else if (op == U6OP.INDEXOF) {
+            Integer db = (Integer) values.remove(0);
+            Integer idx = (Integer) values.remove(0);
+            result = 1;//todo
+            //dereference to a database name
         } else {
             System.err.printf("unknown op in declare [%s]\n", op);
         }
@@ -449,26 +533,13 @@ public class Conversations {
         return s.replace("\\", "").replace("\"", "").replace("\'", "'").replace("\n", "").trim();
     }
 
-    private static int randomBetween(int low, int high) {
-        return RAND.nextInt(high - low) + low;
+    private static int randomBetween(int v1, int v2) {
+        if (v2 > v1) {
+            return RAND.nextInt(v2 - v1) + v1;
+        } else {
+            //due to bug in u6 conversations for RAND op, they have put the low number as val2 at least once I saw
+            return RAND.nextInt(v1 - v2) + v2;
+        }
     }
 
-    private static String toCamelCase(String s) {
-        if (s == null) {
-            return null;
-        }
-
-        s = s.replace("_", " ");
-
-        final StringBuilder ret = new StringBuilder(s.length());
-
-        for (String word : s.split(" ")) {
-            if (!word.isEmpty()) {
-                ret.append(word.substring(0, 1).toUpperCase());
-                ret.append(word.substring(1).toLowerCase());
-            }
-        }
-
-        return ret.toString();
-    }
 }

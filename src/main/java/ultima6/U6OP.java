@@ -25,7 +25,7 @@ public enum U6OP {
     SVAR((byte) 0xb3),
     DATA((byte) 0xb4),
     OBJCOUNT((byte) 0xbb),
-    INPARTY((byte) 0xc6),
+    NPCINPARTY((byte) 0xc6),
     OBJINPARTY((byte) 0xc7),
     JOIN((byte) 0xca),
     LEAVE((byte) 0xcc),
