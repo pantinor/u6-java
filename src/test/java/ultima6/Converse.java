@@ -19,6 +19,7 @@ import org.apache.commons.io.IOUtils;
 import static org.testng.Assert.assertEquals;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import ultima6.Conversations.Conditional;
 import ultima6.Conversations.Conversation;
 import ultima6.Conversations.OutputStream;
 
@@ -48,7 +49,7 @@ public class Converse {
         gz.close();
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main2(String[] args) throws Exception {
 
         Party party = new Party();
         Player player = new Player();
@@ -138,7 +139,13 @@ public class Converse {
 
     }
 
-    public static void main1(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
+
+        Party party = new Party();
+        Player player = new Player();
+        player.setName("Paul");
+        player.setParty(party);
+        party.add(player);
 
         GZIPInputStream is = new GZIPInputStream(new FileInputStream("src\\main\\resources\\data\\conversations"));
         byte[] tmp = IOUtils.toByteArray(is);
@@ -194,22 +201,33 @@ public class Converse {
 
         }
 
-        for (ByteTokenizer t : conditions) {
-            System.out.println("");
+        for (ByteTokenizer tok : conditions) {
+            System.out.println(debug(tok.data()));
 
-            if (t.countTokens() == 0 || t.countTokens() > 2) {
-                //System.out.println(t.countTokens());
-                //System.out.println(DatatypeConverter.printHexBinary(t.data()));
-                continue;
+            Map<Integer, Integer> iVars = new HashMap<>();
+            for (int i = 0; i < 64; i++) {
+                iVars.put(i, i);
+            }
+            Map<Integer, String> sVars = new HashMap<>();
+            for (int i = 0; i < 64; i++) {
+                sVars.put(i, "" + i);
             }
 
-            byte[] expr = t.nexToken();
-            System.out.println(debug(expr));
+            Conditional cond = new Conditional(tok);
 
-            if (t.hasMoreTokens()) {
-                byte[] elseExpr = t.nexToken();
-                System.out.println(debug(elseExpr));
-            }
+            cond.evaluate(player, iVars, sVars, new OutputStream() {
+                @Override
+                public void print(String string, Color color) {
+                }
+
+                @Override
+                public void close() {
+                }
+
+                @Override
+                public void setPortrait(int npc) {
+                }
+            });
         }
 
     }
@@ -312,6 +330,60 @@ public class Converse {
         } else {
             assertEquals(iVars.get(varName), expectedValue);
         }
+
+    }
+
+    @DataProvider
+    public static Object[][] conditions() {
+        return new Object[][]{
+            //{"[IF][07][VAR][EVAL][ENDIF]", true},
+            //{"[IF][05][VAR][ONE_BYTE][0B][GT][03][VAR][CANCARRY][LAND][FOUR_BYTE][81][0A][00][00][00][VAR][DATA][ONE_BYTE][01][WEIGHT][GE][EVAL][NEW][03][VAR][EVAL][FOUR_BYTE][81][0A][00][00][00][VAR][DATA][EVAL][ONE_BYTE][00][EVAL][ONE_BYTE][01][EVAL][2C][20][70][6C][75][73][20][6F][6E][65][20][66][6F][72][20][6C][75][63][6B][21][22][ELSE][2C][20][24][59][2E][22][ENDIF]", true},
+            //{"[IF][17][VAR][EVAL][73][ENDIF]", true},
+            //{"[IF][ONE_BYTE][EB][00][FLAG][ONE_BYTE][00][EQ][EVAL][72][65][2E][22][SETF][ONE_BYTE][EB][EVAL][00][EVAL][ELSE][2E][22][ENDIF]", true},
+            //{"[IF][23][SVAR][19][SVAR][EQ][EVAL][22][ELSE][22][ENDIF]", false}, 
+            {"[IF][03][VAR][CANCARRY][ONE_BYTE][58][FOUR_BYTE][5D][07][00][00][09][SVAR][DATA][WEIGHT][ADD][ONE_BYTE][95][ONE_BYTE][01][WEIGHT][LT][EVAL][ENDIF]", true}, //{"[IF][00][VAR][17][VAR][LE][EVAL][JUMP][AB][02][00][00][ENDIF]", true}, //
+        };
+    }
+
+    @Test(dataProvider = "conditions")
+    public void testConditions(String text, Object expectedValue) throws Exception {
+
+        Party party = new Party();
+        Player player = new Player();
+        player.setName("Paul");
+        player.setParty(party);
+        party.add(player);
+
+        Map<Integer, Integer> iVars = new HashMap<>();
+        for (int i = 0; i < 64; i++) {
+            iVars.put(i, i);
+        }
+        Map<Integer, String> sVars = new HashMap<>();
+        for (int i = 0; i < 64; i++) {
+            sVars.put(i, "" + i);
+        }
+
+        ByteBuffer bb = parse(text);
+        ByteTokenizer tok = new ByteTokenizer(bb, 0, bb.limit(),
+                new byte[]{U6OP.IF.code(), U6OP.ELSE.code(), U6OP.ENDIF.code()},
+                new byte[]{U6OP.JUMP.code(), U6OP.ONE_BYTE.code(), U6OP.TWO_BYTE.code(), U6OP.FOUR_BYTE.code()}
+        );
+        Conditional cond = new Conditional(tok);
+        boolean eval = cond.evaluate(player, iVars, sVars, new OutputStream() {
+            @Override
+            public void print(String string, Color color) {
+            }
+
+            @Override
+            public void close() {
+            }
+
+            @Override
+            public void setPortrait(int npc) {
+            }
+        });
+
+        assertEquals(eval, expectedValue);
 
     }
 

@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Random;
 import java.util.Stack;
 import java.util.StringTokenizer;
@@ -16,7 +17,7 @@ import org.apache.commons.lang3.CharUtils;
 
 public class Conversations {
 
-    public static final byte SELF = (byte) 0xeb;
+    public static final int SELF = 235;
     public static final Random RAND = new Random();
 
     private final Map<Integer, Conversation> conversations = new HashMap<>();
@@ -120,7 +121,7 @@ public class Conversations {
                                 new byte[]{U6OP.JUMP.code(), U6OP.ONE_BYTE.code(), U6OP.TWO_BYTE.code(), U6OP.FOUR_BYTE.code()}
                         );
                         Conditional cond = new Conditional(tok);
-                        cond.evaluate(player, bb, iVars, sVars, output);
+                        cond.evaluate(player, iVars, sVars, output);
                     }
                     if (op == U6OP.ASK) {
                         matchesKeywords = null;
@@ -234,6 +235,93 @@ public class Conversations {
 
     }
 
+    public static class Conditional {
+
+        private final byte[] ifBlock;
+        private final byte[] elseBlock;
+
+        public Conditional(ByteTokenizer t) {
+
+            if (t.countTokens() == 0 || t.countTokens() > 2) {
+                throw new IllegalArgumentException("Must have if with optional else block. tokens: " + t.countTokens());
+            }
+
+            ifBlock = t.nexToken();
+
+            if (t.hasMoreTokens()) {
+                elseBlock = t.nexToken();
+            } else {
+                elseBlock = null;
+            }
+        }
+
+        public boolean evaluate(Player player, Map<Integer, Integer> iVars, Map<Integer, String> sVars, OutputStream output) {
+
+            ByteBuffer bb = ByteBuffer.wrap(ifBlock);
+            bb.order(ByteOrder.LITTLE_ENDIAN);
+
+            Stack<Object> values = new Stack<>();
+            Stack<OpWrapper> operations = new Stack<>();
+            while (bb.position() < bb.limit()) {
+                if (bb.get(bb.position()) == U6OP.EVAL.code()) {
+                    bb.get();
+                    break;
+                }
+                if (bb.get(bb.position()) == U6OP.FOUR_BYTE.code()) {
+                    bb.get();
+                    values.push(bb.getInt());
+                } else if (bb.get(bb.position()) == U6OP.ONE_BYTE.code()) {
+                    bb.get();
+                    int v = bb.get() & 0xff;
+                    values.push(v);
+                    if (v == SELF && bb.get(bb.position()) == 0) {
+                        values.push(0);//flag 0
+                    }
+                } else if (bb.get(bb.position()) == U6OP.TWO_BYTE.code()) {
+                    bb.get();
+                    values.push(bb.getShort() & 0xff);
+                } else if (bb.position() + 1 < bb.limit() && bb.get(bb.position() + 1) == U6OP.VAR.code()) {
+                    int ind = bb.get() & 0xff;
+                    values.push(iVars.get(ind));
+                    bb.get();
+                } else if (bb.position() + 1 < bb.limit() && bb.get(bb.position() + 1) == U6OP.SVAR.code()) {
+                    int ind = bb.get() & 0xff;
+                    values.push(sVars.get(ind));
+                    bb.get();
+                } else {
+                    U6OP op = U6OP.get(bb);
+                    if (op != null) {
+                        OpWrapper wrapper = new OpWrapper();
+                        wrapper.op = op;
+                        for (int i = 0; i < op.argCount(); i++) {
+                            if (values.size() > 0) {
+                                wrapper.args.add(values.pop());
+                            } else if (operations.size() > 0) {
+                                wrapper.args.add(operations.pop());
+                            }
+                        }
+                        operations.push(wrapper);
+                        bb.get();
+                    } else {
+                        System.err.printf("unknown byte in declare [%s]\n", String.format("[%02X]", bb.get(bb.position())));
+                        bb.get();
+                    }
+                }
+            }
+
+            Object finalEval = null;
+            if (operations.size() > 0) {
+                OpWrapper wrapper = operations.pop();
+                finalEval = eval(player, wrapper.op, wrapper.args);
+            } else {
+                finalEval = (Integer) values.pop() > 0 ? 1 : 0;
+            }
+
+            return (Integer) finalEval > 0;
+        }
+
+    }
+
     public static void declare(Player player, Map<Integer, Integer> iVars, Map<Integer, String> sVars, ByteBuffer bb, OutputStream output) {
 
         int var_name = 0;
@@ -274,23 +362,26 @@ public class Conversations {
                 bb.get();
                 break;
             }
-            Object value = null;
             if (bb.get(bb.position()) == U6OP.FOUR_BYTE.code()) {
                 bb.get();
-                value = bb.getInt();
+                values.add(bb.getInt());
             } else if (bb.get(bb.position()) == U6OP.ONE_BYTE.code()) {
                 bb.get();
-                value = bb.get() & 0xff;
+                int v = bb.get() & 0xff;
+                values.add(v);
+                if (v == SELF && bb.get(bb.position()) == 0) {
+                    values.add(0);//flag 0
+                }
             } else if (bb.get(bb.position()) == U6OP.TWO_BYTE.code()) {
                 bb.get();
-                value = bb.getShort() & 0xff;
+                values.add(bb.getShort() & 0xff);
             } else if (bb.position() + 1 < bb.limit() && bb.get(bb.position() + 1) == U6OP.VAR.code()) {
                 int ind = bb.get() & 0xff;
-                value = iVars.get(ind);
+                values.add(iVars.get(ind));
                 bb.get();
             } else if (bb.position() + 1 < bb.limit() && bb.get(bb.position() + 1) == U6OP.SVAR.code()) {
                 int ind = bb.get() & 0xff;
-                value = sVars.get(ind);
+                values.add(sVars.get(ind));
                 bb.get();
             } else {
                 U6OP op = U6OP.get(bb);
@@ -298,19 +389,28 @@ public class Conversations {
                     operations.add(op);
                     bb.get();
                 } else {
-                    System.err.printf("unknown byte in declare [%s]\n", String.format("[%02X]", bb.get(bb.position())));
-                    bb.get();
+                    bb.get();//ignore
                 }
-            }
-            if (value != null) {
-                values.add(value);
             }
         }
 
+        /**
+         * A single argument may be more than one value, mixed with special
+         * value (or stack) opcodes. These extended argument lists must be
+         * resolved down to one value per argument, before executing the command
+         * opcode. This can be done by arranging all data and opcodes (for one
+         * argument) onto a stack, executing each opcode with the preceding
+         * value as input (removing the values & code from the stack), and
+         * pushing the results back onto the stack. The resultant data may
+         * become input for another opcode, so it is important that operations
+         * are executed from the "inner-most" values - or left to right. The
+         * argument is resolved when only one value remains on the stack. Repeat
+         * for each.
+         */
         while (operations.size() > 0) {
             U6OP op = operations.remove(0);
-            Object result = assign(player, op, values);
-            values.add(0, result);//insert at beginning instead of end
+            Object result = eval(player, op, values);
+            values.add(0, result);
         }
 
         Object finalValue = values.remove(0);
@@ -322,131 +422,171 @@ public class Conversations {
 
     }
 
-    private static Object assign(Player player, U6OP op, List<Object> values) {
+    private static Object eval(Player player, U6OP op, List<Object> values) {
         Object result = null;
-        if (op == U6OP.RAND) {
-            Integer v1 = (Integer) values.remove(0);
-            Integer v2 = (Integer) values.remove(0);
+        
+        Stack<Object> args = new Stack<>();
+        for (Object v : values) {
+            if (v instanceof OpWrapper) {
+                OpWrapper wrapper = (OpWrapper) v;
+                args.push(eval(player, wrapper.op, wrapper.args));
+            } else {
+                args.push(v);
+            }
+        }
+
+        if (op == U6OP.EQ) {
+            Object v1 = args.pop();
+            Object v2 = args.pop();
+            result = Objects.equals(v1, v2) ? 1 : 0;
+        } else if (op == U6OP.NE) {
+            Object v1 = args.pop();
+            Object v2 = args.pop();
+            result = !Objects.equals(v1, v2) ? 1 : 0;
+        } else if (op == U6OP.GT) {
+            Integer v1 = (Integer) args.pop();
+            Integer v2 = (Integer) args.pop();
+            result = v1 > v2 ? 1 : 0;
+        } else if (op == U6OP.LT) {
+            Integer v1 = (Integer) args.pop();
+            Integer v2 = (Integer) args.pop();
+            result = v1 < v2 ? 1 : 0;
+        } else if (op == U6OP.GE) {
+            Integer v1 = (Integer) args.pop();
+            Integer v2 = (Integer) args.pop();
+            result = v1 >= v2 ? 1 : 0;
+        } else if (op == U6OP.LE) {
+            Integer v1 = (Integer) args.pop();
+            Integer v2 = (Integer) args.pop();
+            result = v1 <= v2 ? 1 : 0;
+        } else if (op == U6OP.LAND) {
+            Integer v1 = (Integer) args.pop();
+            Integer v2 = (Integer) args.pop();
+            result = (v1 > 0 && v2 > 0) ? 1 : 0;
+        } else if (op == U6OP.LOR) {
+            Integer v1 = (Integer) args.pop();
+            Integer v2 = (Integer) args.pop();
+            result = (v1 > 0 || v2 > 0) ? 1 : 0;
+        } else if (op == U6OP.RAND) {
+            Integer v1 = (Integer) args.pop();
+            Integer v2 = (Integer) args.pop();
             result = randomBetween(v1, v2);
         } else if (op == U6OP.ADD) {
-            Integer v1 = (Integer) values.remove(0);
-            Integer v2 = (Integer) values.remove(0);
+            Integer v1 = (Integer) args.pop();
+            Integer v2 = (Integer) args.pop();
             result = v1 + v2;
         } else if (op == U6OP.SUB) {
-            Integer v1 = (Integer) values.remove(0);
-            Integer v2 = (Integer) values.remove(0);
+            Integer v1 = (Integer) args.pop();
+            Integer v2 = (Integer) args.pop();
             result = v1 - v2;
         } else if (op == U6OP.MUL) {
-            Integer v1 = (Integer) values.remove(0);
-            Integer v2 = (Integer) values.remove(0);
+            Integer v1 = (Integer) args.pop();
+            Integer v2 = (Integer) args.pop();
             result = v1 * v2;
         } else if (op == U6OP.DIV) {
-            Integer v1 = (Integer) values.remove(0);
-            Integer v2 = (Integer) values.remove(0);
+            Integer v1 = (Integer) args.pop();
+            Integer v2 = (Integer) args.pop();
             result = v1 / v2;
         } else if (op == U6OP.FLAG) {
-            Integer npc = (Integer) values.remove(0);
-            Integer flag = 0;
-            if (values.size() > 0) {
-                flag = (Integer) values.remove(0);
-            }
+            Integer npc = (Integer) args.pop();
+            Integer flag = (Integer) args.pop();
             result = player.getFlag(flag) ? 1 : 0;
         } else if (op == U6OP.NPC) {
-            Integer partyIdx = (Integer) values.remove(0);
-            Integer unused = (Integer) values.remove(0);
+            Integer partyIdx = (Integer) args.pop();
+            Integer unused = (Integer) args.pop();
             result = 0;//todo
             //The NPC number of party member val1.
         } else if (op == U6OP.CANCARRY) {
-            Integer npc = (Integer) values.remove(0);
+            Integer npc = (Integer) args.pop();
             result = 100;//todo
             //weight that npc can carry
         } else if (op == U6OP.OBJINPARTY) {
-            Integer obj = (Integer) values.remove(0);
-            Integer quality = (Integer) values.remove(0);
+            Integer obj = (Integer) args.pop();
+            Integer quality = (Integer) args.pop();
             result = 0xFFFF;//todo
             //0xFFFF if object val1 with quality val2 is in party inventory, 0x8001 if not ??
         } else if (op == U6OP.OBJCOUNT) {
-            Integer npc = (Integer) values.remove(0);
-            Integer obj = (Integer) values.remove(0);
+            Integer npc = (Integer) args.pop();
+            Integer obj = (Integer) args.pop();
             result = 1;//todo
             //The total quantity of objects of type val2 in the inventory of NPC val1.
         } else if (op == U6OP.STR) {
-            Integer npc = (Integer) values.remove(0);
-            Integer amt = (Integer) values.remove(0);
+            Integer npc = (Integer) args.pop();
+            Integer amt = (Integer) args.pop();
             result = 10;//todo
             //The sum of NPC val1 Strength plus val2
         } else if (op == U6OP.INT) {
-            Integer npc = (Integer) values.remove(0);
-            Integer amt = (Integer) values.remove(0);
+            Integer npc = (Integer) args.pop();
+            Integer amt = (Integer) args.pop();
             result = 10;
             //The sum of NPC val1 Intelli plus val2
         } else if (op == U6OP.DEX) {
-            Integer npc = (Integer) values.remove(0);
-            Integer amt = (Integer) values.remove(0);
+            Integer npc = (Integer) args.pop();
+            Integer amt = (Integer) args.pop();
             result = 10;//todo
             //The sum of NPC val1 Dexterity plus val2
         } else if (op == U6OP.LVL) {
-            Integer npc = (Integer) values.remove(0);
-            Integer amt = (Integer) values.remove(0);
+            Integer npc = (Integer) args.pop();
+            Integer amt = (Integer) args.pop();
             result = 1;//todo
             //The sum of NPC val1 level plus val2
         } else if (op == U6OP.EXP) {
-            Integer npc = (Integer) values.remove(0);
-            Integer amt = (Integer) values.remove(0);
+            Integer npc = (Integer) args.pop();
+            Integer amt = (Integer) args.pop();
             result = 1000;//todo
             //The sum of NPC val1 experience plus val2
         } else if (op == U6OP.OBJINACTOR) {
-            Integer npc = (Integer) values.remove(0);
-            Integer obj = (Integer) values.remove(0);
+            Integer npc = (Integer) args.pop();
+            Integer obj = (Integer) args.pop();
             result = 1;
             //is object val2 in npc val1
         } else if (op == U6OP.WEIGHT) {
-            Integer obj = (Integer) values.remove(0);
-            Integer amt = (Integer) values.remove(0);
+            Integer obj = (Integer) args.pop();
+            Integer amt = (Integer) args.pop();
             result = 10;//todo
             //Weight of object val1, of quantity val2.
         } else if (op == U6OP.JOIN) {
-            Integer npc = (Integer) values.remove(0);
+            Integer npc = (Integer) args.pop();
             result = 0;//todo
             //0 if the npc val1 is able and did join the party, 
             //1 if the party is not on land, 2 if the party is too large, 
             //3 if npc is already in the party
         } else if (op == U6OP.LEAVE) {
-            Integer npc = (Integer) values.remove(0);
+            Integer npc = (Integer) args.pop();
             result = 0;//todo
             //0 if the npc val1 left the party, 1 if the party is not on land, 2 if npc is not in the party
         } else if (op == U6OP.NPCNEARBY) {
-            Integer npc = (Integer) values.remove(0);
+            Integer npc = (Integer) args.pop();
             result = 0;//todo
             //1 if NPC val1 is in proximity to self, 0 if not.
         } else if (op == U6OP.WOUNDED) {
-            Integer npc = (Integer) values.remove(0);
+            Integer npc = (Integer) args.pop();
             result = 0;//todo
             //1 if NPC val1 is wounded, 0 if current HP equals maximum HP.
         } else if (op == U6OP.POISONED) {
-            Integer npc = (Integer) values.remove(0);
+            Integer npc = (Integer) args.pop();
             result = 0;//todo
             //1 if NPC val1 "poisoned" flag is true, 0 if it is false.
         } else if (op == U6OP.NPCINPARTY) {
-            Integer npc = (Integer) values.remove(0);
+            Integer npc = (Integer) args.pop();
             result = 1;//todo
             //1 if NPC val1 is in the Avatar's party, 0 if not.
         } else if (op == U6OP.HORSED) {
-            Integer npc = (Integer) values.remove(0);
+            Integer npc = (Integer) args.pop();
             result = 0;//todo
             //1 if npc val1 is riding a horse, 0 if on foot.
         } else if (op == U6OP.DATA) {
-            Integer db = (Integer) values.remove(0);
-            Integer idx = (Integer) values.remove(0);
+            Integer db = (Integer) args.pop();
+            Object idx = args.pop();
             result = 1;//todo
             //Data (string or integer) from the DB section at val1, index val2.
         } else if (op == U6OP.INDEXOF) {
-            Integer db = (Integer) values.remove(0);
-            Integer idx = (Integer) values.remove(0);
+            Integer db = (Integer) args.pop();
+            Integer idx = (Integer) args.pop();
             result = 1;//todo
             //dereference to a database name
         } else {
-            System.err.printf("unknown op in declare [%s]\n", op);
+            throw new IllegalArgumentException(String.format("unknown op in declare [%s]", op));
         }
         return result;
     }
@@ -499,6 +639,12 @@ public class Conversations {
 
         public void setPortrait(int npc);
 
+    }
+
+    public static class OpWrapper {
+
+        private final List<Object> args = new ArrayList<>();
+        U6OP op;
     }
 
     private static String consumeText(ByteBuffer bb) {
