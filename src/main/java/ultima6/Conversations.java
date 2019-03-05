@@ -274,8 +274,8 @@ public class Conversations {
                     bb.get();
                     int v = bb.get() & 0xff;
                     values.push(v);
-                    if (v == SELF && bb.get(bb.position()) == 0) {
-                        values.push(0);//flag 0
+                    if (bb.get(bb.position() + 1) == U6OP.FLAG.code()) {
+                        values.push(bb.get() & 0xff);//npc
                     }
                 } else if (bb.get(bb.position()) == U6OP.TWO_BYTE.code()) {
                     bb.get();
@@ -355,8 +355,8 @@ public class Conversations {
             bb.get();
         }
 
-        List<Object> values = new ArrayList<>();
-        List<U6OP> operations = new ArrayList<>();
+        Stack<Object> values = new Stack<>();
+        Stack<OpWrapper> operations = new Stack<>();
         while (bb.position() < bb.limit()) {
             if (bb.get(bb.position()) == U6OP.EVAL.code()) {
                 bb.get();
@@ -364,56 +364,54 @@ public class Conversations {
             }
             if (bb.get(bb.position()) == U6OP.FOUR_BYTE.code()) {
                 bb.get();
-                values.add(bb.getInt());
+                values.push(bb.getInt());
             } else if (bb.get(bb.position()) == U6OP.ONE_BYTE.code()) {
                 bb.get();
                 int v = bb.get() & 0xff;
-                values.add(v);
-                if (v == SELF && bb.get(bb.position()) == 0) {
-                    values.add(0);//flag 0
+                values.push(v);
+                if (bb.get(bb.position() + 1) == U6OP.FLAG.code()) {
+                    values.push(bb.get() & 0xff);//npc
                 }
             } else if (bb.get(bb.position()) == U6OP.TWO_BYTE.code()) {
                 bb.get();
-                values.add(bb.getShort() & 0xff);
+                values.push(bb.getShort() & 0xff);
             } else if (bb.position() + 1 < bb.limit() && bb.get(bb.position() + 1) == U6OP.VAR.code()) {
                 int ind = bb.get() & 0xff;
-                values.add(iVars.get(ind));
+                values.push(iVars.get(ind));
                 bb.get();
             } else if (bb.position() + 1 < bb.limit() && bb.get(bb.position() + 1) == U6OP.SVAR.code()) {
                 int ind = bb.get() & 0xff;
-                values.add(sVars.get(ind));
+                values.push(sVars.get(ind));
                 bb.get();
             } else {
                 U6OP op = U6OP.get(bb);
                 if (op != null) {
-                    operations.add(op);
+                    OpWrapper wrapper = new OpWrapper();
+                    wrapper.op = op;
+                    for (int i = 0; i < op.argCount(); i++) {
+                        if (values.size() > 0) {
+                            wrapper.args.add(values.pop());
+                        } else if (operations.size() > 0) {
+                            wrapper.args.add(operations.pop());
+                        }
+                    }
+                    operations.push(wrapper);
                     bb.get();
                 } else {
-                    bb.get();//ignore
+                    System.err.printf("unknown byte in declare [%s]\n", String.format("[%02X]", bb.get(bb.position())));
+                    bb.get();
                 }
             }
         }
 
-        /**
-         * A single argument may be more than one value, mixed with special
-         * value (or stack) opcodes. These extended argument lists must be
-         * resolved down to one value per argument, before executing the command
-         * opcode. This can be done by arranging all data and opcodes (for one
-         * argument) onto a stack, executing each opcode with the preceding
-         * value as input (removing the values & code from the stack), and
-         * pushing the results back onto the stack. The resultant data may
-         * become input for another opcode, so it is important that operations
-         * are executed from the "inner-most" values - or left to right. The
-         * argument is resolved when only one value remains on the stack. Repeat
-         * for each.
-         */
-        while (operations.size() > 0) {
-            U6OP op = operations.remove(0);
-            Object result = eval(player, op, values);
-            values.add(0, result);
+        Object finalValue = null;
+        if (operations.size() > 0) {
+            OpWrapper wrapper = operations.pop();
+            finalValue = eval(player, wrapper.op, wrapper.args);
+        } else {
+            finalValue = values.pop();
         }
 
-        Object finalValue = values.remove(0);
         if (stringType) {
             sVars.put(var_name, "" + finalValue);
         } else {
@@ -424,7 +422,7 @@ public class Conversations {
 
     private static Object eval(Player player, U6OP op, List<Object> values) {
         Object result = null;
-        
+
         Stack<Object> args = new Stack<>();
         for (Object v : values) {
             if (v instanceof OpWrapper) {

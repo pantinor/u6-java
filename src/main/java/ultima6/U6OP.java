@@ -79,7 +79,7 @@ public enum U6OP {
     OBJINACTOR((byte) 0x9F, 2),
     RESURRECT((byte) 0xD6, 1),
     INPUTSTR((byte) 0xF9, 2),
-    INDEXOF((byte) 0xB7, 1),
+    INDEXOF((byte) 0xB7, 2),
     ENDOFLIST((byte) 0xB8, 0);
 
     private byte code;

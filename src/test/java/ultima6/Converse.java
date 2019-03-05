@@ -282,11 +282,11 @@ public class Converse {
             {"[DECL][07][VAR][ASSIGN][FOUR_BYTE][B9][12][00][00][06][VAR][DATA][ONE_BYTE][02][DIV][EVAL]", 7, 0},
             {"[DECL][00][SVAR][ASSIGN][22][SVAR][EVAL]", 0, "34"},
             {"[DECL][00][VAR][ASSIGN][01][VAR][ONE_BYTE][0A][MUL][EVAL]", 0, 10},
-            {"[DECL][10][VAR][ASSIGN][ONE_BYTE][06][EVAL]", 16, 6},
+            {"[DECL][10][VAR][ASSIGN][ONE_BYTE][06][EVAL][00]", 16, 6},
             {"[DECL][09][VAR][ASSIGN][TWO_BYTE][A6][01][ONE_BYTE][01][WEIGHT][EVAL]", 9, 10},
             {"[DECL][FOUR_BYTE][06][13][00][00][02][VAR][DATA][ASSIGN][00][VAR][EVAL]", 0, 0},
             {"[DECL][08][VAR][ASSIGN][05][VAR][ONE_BYTE][01][SUB][EVAL]", 8, 4},
-            {"[DECL][08][VAR][ASSIGN][07][VAR][17][VAR][ONE_BYTE][03][ADD][DIV][EVAL]", 8, 10}, //
+            {"[DECL][08][VAR][ASSIGN][02][VAR][17][VAR][ONE_BYTE][03][ADD][DIV][EVAL]", 8, 13}, //
         //
         };
     }
@@ -336,12 +336,14 @@ public class Converse {
     @DataProvider
     public static Object[][] conditions() {
         return new Object[][]{
-            //{"[IF][07][VAR][EVAL][ENDIF]", true},
-            //{"[IF][05][VAR][ONE_BYTE][0B][GT][03][VAR][CANCARRY][LAND][FOUR_BYTE][81][0A][00][00][00][VAR][DATA][ONE_BYTE][01][WEIGHT][GE][EVAL][NEW][03][VAR][EVAL][FOUR_BYTE][81][0A][00][00][00][VAR][DATA][EVAL][ONE_BYTE][00][EVAL][ONE_BYTE][01][EVAL][2C][20][70][6C][75][73][20][6F][6E][65][20][66][6F][72][20][6C][75][63][6B][21][22][ELSE][2C][20][24][59][2E][22][ENDIF]", true},
-            //{"[IF][17][VAR][EVAL][73][ENDIF]", true},
-            //{"[IF][ONE_BYTE][EB][00][FLAG][ONE_BYTE][00][EQ][EVAL][72][65][2E][22][SETF][ONE_BYTE][EB][EVAL][00][EVAL][ELSE][2E][22][ENDIF]", true},
-            //{"[IF][23][SVAR][19][SVAR][EQ][EVAL][22][ELSE][22][ENDIF]", false}, 
-            {"[IF][03][VAR][CANCARRY][ONE_BYTE][58][FOUR_BYTE][5D][07][00][00][09][SVAR][DATA][WEIGHT][ADD][ONE_BYTE][95][ONE_BYTE][01][WEIGHT][LT][EVAL][ENDIF]", true}, //{"[IF][00][VAR][17][VAR][LE][EVAL][JUMP][AB][02][00][00][ENDIF]", true}, //
+            {"[IF][ONE_BYTE][EB][00][FLAG][ONE_BYTE][EB][01][FLAG][ONE_BYTE][00][EQ][LAND][EVAL][ENDIF]", true},
+            {"[IF][ONE_BYTE][EB][00][FLAG][EVAL][ENDIF]", false},
+            {"[IF][07][VAR][EVAL][ENDIF]", true},
+            {"[IF][05][VAR][ONE_BYTE][0B][GT][03][VAR][CANCARRY][LAND][FOUR_BYTE][81][0A][00][00][00][VAR][DATA][ONE_BYTE][01][WEIGHT][GE][EVAL][NEW][03][VAR][EVAL][FOUR_BYTE][81][0A][00][00][00][VAR][DATA][EVAL][ONE_BYTE][00][EVAL][ONE_BYTE][01][EVAL][22][ELSE][22][ENDIF]", true},
+            {"[IF][17][VAR][EVAL][73][ENDIF]", true},
+            {"[IF][ONE_BYTE][EB][00][FLAG][ONE_BYTE][00][EQ][EVAL][72][65][2E][22][SETF][ONE_BYTE][EB][EVAL][00][EVAL][ELSE][2E][22][ENDIF]", true},
+            {"[IF][23][SVAR][19][SVAR][EQ][EVAL][22][ELSE][22][ENDIF]", false}, 
+            {"[IF][03][VAR][CANCARRY][ONE_BYTE][58][FOUR_BYTE][5D][07][00][00][09][SVAR][DATA][WEIGHT][ADD][ONE_BYTE][95][ONE_BYTE][01][WEIGHT][LT][EVAL][ENDIF]", false}, //{"[IF][00][VAR][17][VAR][LE][EVAL][JUMP][AB][02][00][00][ENDIF]", true}, //
         };
     }
 
