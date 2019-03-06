@@ -17,7 +17,7 @@ import org.apache.commons.lang3.CharUtils;
 
 public class Conversations {
 
-    public static final int SELF = 235;
+    //public static final int SELF = 235;
     public static final Random RAND = new Random();
 
     private final Map<Integer, Conversation> conversations = new HashMap<>();
@@ -98,9 +98,7 @@ public class Conversations {
 
         public void process(Player player, String input, OutputStream output) {
 
-            output.print(input, Color.RED);
-
-            Boolean matchesKeywords = null;
+            output.print(input, Color.YELLOW);
 
             while (bb.position() < bb.limit()) {
                 U6OP op = U6OP.get(bb);
@@ -113,63 +111,29 @@ public class Conversations {
                         setFlag(player, this.bb);
                     }
                     if (op == U6OP.IF) {
-                        int start = bb.position() - 1;
-                        seek(bb, U6OP.ENDIF);
-                        int end = bb.position();
-                        ByteTokenizer tok = new ByteTokenizer(bb, start, end - start + 1,
-                                new byte[]{U6OP.IF.code(), U6OP.ELSE.code(), U6OP.ENDIF.code()},
-                                new byte[]{U6OP.JUMP.code(), U6OP.ONE_BYTE.code(), U6OP.TWO_BYTE.code(), U6OP.FOUR_BYTE.code()}
-                        );
-                        Conditional cond = new Conditional(tok);
-                        cond.evaluate(player, iVars, sVars, output);
+                        condition(player, iVars, sVars, bb, output);
                     }
                     if (op == U6OP.ASK) {
-                        matchesKeywords = null;
-                    }
-                    if (op == U6OP.ENDANSWERS) {
-                        matchesKeywords = null;
                         break;
                     }
                     if (op == U6OP.KEYWORDS) {
                         String keywords = consumeText(this.bb);
-                        if (inputMatches(input, keywords)) {
-                            matchesKeywords = true;
-                        } else {
-                            matchesKeywords = false;
+                        boolean matched = inputMatches(input, keywords);
+                        //output.print(input + " matching " + keywords, matched ? Color.GREEN : Color.RED);
+                        if (!matched) {
+                            seek(bb, U6OP.KEYWORDS, U6OP.ENDANSWERS);
                         }
                     }
                     if (op == U6OP.ANSWER) {
                         String answer = consumeText(this.bb);
-                        if (answer.length() < 1) {
-                            //ignore
-                        } else if (matchesKeywords) {
+                        if (!answer.isEmpty()) {
                             output.print(answer, null);
-                        }
-                    }
-                    if (op == U6OP.WAIT) {
-                        if (matchesKeywords == null) {
-                            output.print("...", Color.YELLOW);
-                            break;
-                        } else if (matchesKeywords) {
-                            output.print("...", Color.YELLOW);
-                            break;
-                        } else {
-                            //ignore
                         }
                     }
                     if (op == U6OP.JUMP) {
                         int jump = bb.getInt();
-                        if (matchesKeywords == null) {
-                            bb.position(jump);
-                            //output.print("jumped to " + jump, Color.PINK);
-                        } else if (matchesKeywords) {
-                            bb.position(jump);
-                            //output.print("jumped to " + jump, Color.PINK);
-                            break;
-                        } else {
-                            //ignore
-                        }
-                        matchesKeywords = null;
+                        bb.position(jump);
+                        //output.print("Jumped to " + jump, Color.PINK);
                     }
                     if (op == U6OP.NEW) {
                         newObject(player, this.bb);
@@ -189,41 +153,10 @@ public class Conversations {
                     bb.get();//skip
                 } else {
                     String text = consumeText(this.bb);
-                    if (text.length() < 1) {
-                        //ignore
-                    } else if (matchesKeywords == null) {
+                    if (!text.isEmpty()) {
                         output.print(text, null);
                         break;
-                    } else if (matchesKeywords) {
-                        output.print(text, null);
-                        break;
-                    } else {
-                        //ignore
                     }
-                }
-            }
-
-        }
-
-        private void debugOutput() {
-            bb.rewind();
-            while (bb.position() < bb.limit()) {
-                byte b = bb.get();
-                U6OP op = U6OP.find(b);
-                if (op != null) {
-                    if (op == U6OP.IF || op == U6OP.ASK || op == U6OP.DECL) {
-                        System.out.println("");
-                    }
-                    if (op == U6OP.JUMP) {
-                        System.out.printf("\n%d:%s[%s] --> [%d]", bb.position(), op, String.format("%02X", b), bb.getInt());
-                    } else {
-                        System.out.printf("\n%d:%s[%s]", bb.position(), op, String.format("%02X", b));
-                    }
-
-                } else {
-                    boolean ascii = CharUtils.isAsciiPrintable((char) b);
-                    System.out.print(ascii ? (char) b : String.format("[%02X]", b));
-                    //System.out.print(String.format("%02X", b));
                 }
             }
 
@@ -235,91 +168,26 @@ public class Conversations {
 
     }
 
-    public static class Conditional {
+    public static void condition(Player player, Map<Integer, Integer> iVars, Map<Integer, String> sVars, ByteBuffer bb, OutputStream output) {
 
-        private final byte[] ifBlock;
-        private final byte[] elseBlock;
+        Stack<Object> values = new Stack<>();
+        Stack<OpWrapper> operations = new Stack<>();
 
-        public Conditional(ByteTokenizer t) {
+        marshall(bb, values, operations, iVars, sVars);
 
-            if (t.countTokens() == 0 || t.countTokens() > 2) {
-                throw new IllegalArgumentException("Must have if with optional else block. tokens: " + t.countTokens());
-            }
-
-            ifBlock = t.nexToken();
-
-            if (t.hasMoreTokens()) {
-                elseBlock = t.nexToken();
-            } else {
-                elseBlock = null;
-            }
+        Object finalEval = null;
+        if (operations.size() > 0) {
+            OpWrapper wrapper = operations.pop();
+            finalEval = eval(player, wrapper.op, wrapper.args);
+        } else {
+            finalEval = (Integer) values.pop() > 0 ? 1 : 0;
         }
 
-        public boolean evaluate(Player player, Map<Integer, Integer> iVars, Map<Integer, String> sVars, OutputStream output) {
-
-            ByteBuffer bb = ByteBuffer.wrap(ifBlock);
-            bb.order(ByteOrder.LITTLE_ENDIAN);
-
-            Stack<Object> values = new Stack<>();
-            Stack<OpWrapper> operations = new Stack<>();
-            while (bb.position() < bb.limit()) {
-                if (bb.get(bb.position()) == U6OP.EVAL.code()) {
-                    bb.get();
-                    break;
-                }
-                if (bb.get(bb.position()) == U6OP.FOUR_BYTE.code()) {
-                    bb.get();
-                    values.push(bb.getInt());
-                } else if (bb.get(bb.position()) == U6OP.ONE_BYTE.code()) {
-                    bb.get();
-                    int v = bb.get() & 0xff;
-                    values.push(v);
-                    if (bb.get(bb.position() + 1) == U6OP.FLAG.code()) {
-                        values.push(bb.get() & 0xff);//npc
-                    }
-                } else if (bb.get(bb.position()) == U6OP.TWO_BYTE.code()) {
-                    bb.get();
-                    values.push(bb.getShort() & 0xff);
-                } else if (bb.position() + 1 < bb.limit() && bb.get(bb.position() + 1) == U6OP.VAR.code()) {
-                    int ind = bb.get() & 0xff;
-                    values.push(iVars.get(ind));
-                    bb.get();
-                } else if (bb.position() + 1 < bb.limit() && bb.get(bb.position() + 1) == U6OP.SVAR.code()) {
-                    int ind = bb.get() & 0xff;
-                    values.push(sVars.get(ind));
-                    bb.get();
-                } else {
-                    U6OP op = U6OP.get(bb);
-                    if (op != null) {
-                        OpWrapper wrapper = new OpWrapper();
-                        wrapper.op = op;
-                        for (int i = 0; i < op.argCount(); i++) {
-                            if (values.size() > 0) {
-                                wrapper.args.add(values.pop());
-                            } else if (operations.size() > 0) {
-                                wrapper.args.add(operations.pop());
-                            }
-                        }
-                        operations.push(wrapper);
-                        bb.get();
-                    } else {
-                        System.err.printf("unknown byte in declare [%s]\n", String.format("[%02X]", bb.get(bb.position())));
-                        bb.get();
-                    }
-                }
-            }
-
-            Object finalEval = null;
-            if (operations.size() > 0) {
-                OpWrapper wrapper = operations.pop();
-                finalEval = eval(player, wrapper.op, wrapper.args);
-            } else {
-                finalEval = (Integer) values.pop() > 0 ? 1 : 0;
-            }
-
-            return (Integer) finalEval > 0;
+        if ((Integer) finalEval > 0) {
+            //nothing
+        } else {
+            seek(bb, U6OP.ELSE, U6OP.ENDIF);
         }
-
     }
 
     public static void declare(Player player, Map<Integer, Integer> iVars, Map<Integer, String> sVars, ByteBuffer bb, OutputStream output) {
@@ -357,6 +225,26 @@ public class Conversations {
 
         Stack<Object> values = new Stack<>();
         Stack<OpWrapper> operations = new Stack<>();
+
+        marshall(bb, values, operations, iVars, sVars);
+
+        Object finalValue = null;
+        if (operations.size() > 0) {
+            OpWrapper wrapper = operations.pop();
+            finalValue = eval(player, wrapper.op, wrapper.args);
+        } else {
+            finalValue = values.pop();
+        }
+
+        if (stringType) {
+            sVars.put(var_name, "" + finalValue);
+        } else {
+            iVars.put(var_name, (Integer) finalValue);
+        }
+
+    }
+
+    private static void marshall(ByteBuffer bb, Stack<Object> values, Stack<OpWrapper> operations, Map<Integer, Integer> iVars, Map<Integer, String> sVars) {
         while (bb.position() < bb.limit()) {
             if (bb.get(bb.position()) == U6OP.EVAL.code()) {
                 bb.get();
@@ -398,26 +286,11 @@ public class Conversations {
                     operations.push(wrapper);
                     bb.get();
                 } else {
-                    System.err.printf("unknown byte in declare [%s]\n", String.format("[%02X]", bb.get(bb.position())));
+                    System.err.printf("unknown byte in marshall [%s]\n", String.format("[%02X]", bb.get(bb.position())));
                     bb.get();
                 }
             }
         }
-
-        Object finalValue = null;
-        if (operations.size() > 0) {
-            OpWrapper wrapper = operations.pop();
-            finalValue = eval(player, wrapper.op, wrapper.args);
-        } else {
-            finalValue = values.pop();
-        }
-
-        if (stringType) {
-            sVars.put(var_name, "" + finalValue);
-        } else {
-            iVars.put(var_name, (Integer) finalValue);
-        }
-
     }
 
     private static Object eval(Player player, U6OP op, List<Object> values) {
@@ -468,7 +341,12 @@ public class Conversations {
         } else if (op == U6OP.RAND) {
             Integer v1 = (Integer) args.pop();
             Integer v2 = (Integer) args.pop();
-            result = randomBetween(v1, v2);
+            if (v2 > v1) {
+                result = RAND.nextInt(v2 - v1) + v1;
+            } else {
+                //due to bug in u6 conversations for RAND op, they have put the low number as val2 at least once I saw
+                result = RAND.nextInt(v1 - v2) + v2;
+            }
         } else if (op == U6OP.ADD) {
             Integer v1 = (Integer) args.pop();
             Integer v2 = (Integer) args.pop();
@@ -584,7 +462,7 @@ public class Conversations {
             result = 1;//todo
             //dereference to a database name
         } else {
-            throw new IllegalArgumentException(String.format("unknown op in declare [%s]", op));
+            throw new IllegalArgumentException(String.format("unknown op in eval function [%s]", op));
         }
         return result;
     }
@@ -619,30 +497,16 @@ public class Conversations {
         player.addItem(obj, quantity, quality);
     }
 
-    public static void seek(ByteBuffer bb, U6OP op) {
+    private static void seek(ByteBuffer bb, U6OP... ops) {
         while (bb.position() < bb.limit()) {
             U6OP tmp = U6OP.get(bb);
-            if (op == tmp) {
-                break;
+            for (U6OP op : ops) {
+                if (op == tmp) {
+                    return;
+                }
             }
             bb.get();
         }
-    }
-
-    public interface OutputStream {
-
-        public void print(String string, Color color);
-
-        public void close();
-
-        public void setPortrait(int npc);
-
-    }
-
-    public static class OpWrapper {
-
-        private final List<Object> args = new ArrayList<>();
-        U6OP op;
     }
 
     private static String consumeText(ByteBuffer bb) {
@@ -677,13 +541,20 @@ public class Conversations {
         return s.replace("\\", "").replace("\"", "").replace("\'", "'").replace("\n", "").trim();
     }
 
-    private static int randomBetween(int v1, int v2) {
-        if (v2 > v1) {
-            return RAND.nextInt(v2 - v1) + v1;
-        } else {
-            //due to bug in u6 conversations for RAND op, they have put the low number as val2 at least once I saw
-            return RAND.nextInt(v1 - v2) + v2;
-        }
+    public interface OutputStream {
+
+        public void print(String string, Color color);
+
+        public void close();
+
+        public void setPortrait(int npc);
+
+    }
+
+    private static class OpWrapper {
+
+        private final List<Object> args = new ArrayList<>();
+        U6OP op;
     }
 
 }

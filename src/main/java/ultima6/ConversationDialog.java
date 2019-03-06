@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.FocusListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
@@ -35,6 +36,7 @@ public class ConversationDialog extends Window {
     private final Conversation conv;
     private final Table internalTable;
     private final TextField input;
+    private final Label debug;
     private final LogScrollPane scrollPane;
     private final Image portrait = new Image();
 
@@ -94,6 +96,8 @@ public class ConversationDialog extends Window {
             }
         };
 
+        debug = new Label("", Ultima6.skin);
+        
         input = new TextField("", Ultima6.skin);
         input.setTextFieldListener(new TextField.TextFieldListener() {
             @Override
@@ -101,6 +105,7 @@ public class ConversationDialog extends Window {
                 if (key == '\r') {
                     String input = tf.getText();
                     conv.process(player, input, output);
+                    debug.setText("" + conv.data().position());
                     tf.setText("");
                 }
             }
@@ -113,6 +118,8 @@ public class ConversationDialog extends Window {
         internalTable.add(scrollPane).maxWidth(WIDTH).width(WIDTH);
         internalTable.row();
         internalTable.add(input).maxWidth(WIDTH).width(WIDTH);
+        internalTable.row();
+        internalTable.add(debug).maxWidth(WIDTH).width(WIDTH);
 
         focusListener = new FocusListener() {
             @Override

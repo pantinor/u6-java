@@ -191,7 +191,7 @@ public class Ultima6 extends Game {
             PARTY.add(PLAYER);
 
             Constants.Map.WORLD.init();
-            Constants.Map.WORLD.getScreen().setMapPixelCoords(Constants.Map.WORLD.getScreen().newMapPixelCoords, 380, 430);
+            Constants.Map.WORLD.getScreen().setMapPixelCoords(Constants.Map.WORLD.getScreen().newMapPixelCoords, 307, 349);
 
             //Constants.Map.TEST.init();
             //Constants.Map.TEST.getScreen().setMapPixelCoords(Constants.Map.TEST.getScreen().newMapPixelCoords, 4, 1);
