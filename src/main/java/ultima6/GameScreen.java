@@ -246,7 +246,7 @@ public class GameScreen extends BaseScreen {
             if (a != null) {
                 Conversation c = Ultima6.CONVS.get(a.getId());
                 if (c != null) {
-                    new ConversationDialog(this, Ultima6.PLAYER, c).show(this.stage);
+                    new ConversationDialog(this, Ultima6.PARTY, c).show(this.stage);
                 }
 
             }

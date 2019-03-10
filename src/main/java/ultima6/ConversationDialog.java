@@ -47,7 +47,7 @@ public class ConversationDialog extends Window {
         }
     };
 
-    public ConversationDialog(GameScreen screen, Player player, Conversation conv) {
+    public ConversationDialog(GameScreen screen, Party party, Conversation conv) {
         super(conv.getName(), Ultima6.skin.get("dialog", Window.WindowStyle.class));
         this.screen = screen;
         this.conv = conv;
@@ -67,6 +67,7 @@ public class ConversationDialog extends Window {
             @Override
             public boolean handle(Event event) {
                 if (event.toString().equals("touchDown")) {
+                    conv.reset();
                     hide();
                 }
                 return false;
@@ -83,6 +84,7 @@ public class ConversationDialog extends Window {
 
             @Override
             public void close() {
+                conv.reset();
                 hide();
             }
 
@@ -100,7 +102,7 @@ public class ConversationDialog extends Window {
             public void keyTyped(TextField tf, char key) {
                 if (key == '\r') {
                     String input = tf.getText();
-                    conv.process(player, input, output);
+                    conv.process(party, input, output);
                     debug.setText("" + conv.data().position());
                     tf.setText("");
                 }

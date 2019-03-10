@@ -1,6 +1,7 @@
 package ultima6;
 
 import com.badlogic.gdx.graphics.Color;
+import com.google.common.io.LittleEndianDataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -66,10 +67,12 @@ public class Converse {
     public static void main(String[] args) throws Exception {
 
         Party party = new Party();
-        Player player = new Player();
-        player.setName("Paul");
-        player.setParty(party);
+
+        Player player = new Player(1, "avatar");
         party.add(player);
+
+        Player player2 = new Player(2, "dupre");
+        party.add(player2);
 
         GZIPInputStream is = new GZIPInputStream(new FileInputStream("src\\main\\resources\\data\\conversations"));
         byte[] tmp = IOUtils.toByteArray(is);
@@ -99,40 +102,43 @@ public class Converse {
 
             Conversation conv = iter.next();
 
-            if (!conv.getName().equals("Kytyn")) {
+            if (!conv.getName().equals("Iolo")) {
                 continue;
             }
 
             ByteBuffer bb = conv.data();
 
-            debugOutput(bb);
-
-            Map<Integer, Integer> iVars = new HashMap<>();
-            for (int i = 0; i < 64; i++) {
-                iVars.put(i, i);
-            }
-            Map<Integer, String> sVars = new HashMap<>();
-            for (int i = 0; i < 64; i++) {
-                sVars.put(i, "" + i);
-            }
+            boolean printCriteria = false;
 
             while (bb.position() < bb.limit()) {
                 U6OP op = U6OP.get(bb);
                 if (op != null) {
-                    if (op == U6OP.IF) {
-                        Conversations.condition(player, iVars, sVars, bb, OUTPUT);
-                    } else if (op == U6OP.DECL) {
-                        Conversations.declare(player, iVars, sVars, bb, OUTPUT);
-                    } else {
-                        bb.get();
+                    if (op == U6OP.WORKTYPE) {
+                        printCriteria = true;
                     }
-                } else {
-                    bb.get();
                 }
+                bb.get();
             }
 
-            break;
-
+//            bb.rewind();
+//
+//            while (bb.position() < bb.limit()) {
+//                U6OP op = U6OP.get(bb);
+//                if (op != null) {
+//                    if (op == U6OP.IF) {
+//                        Conversations.condition(party, conv, bb, OUTPUT);
+//                    } else if (op == U6OP.DECL) {
+//                        Conversations.declare(party, conv, bb, OUTPUT);
+//                    } else {
+//                        bb.get();
+//                    }
+//                } else {
+//                    bb.get();
+//                }
+//            }
+            if (printCriteria) {
+                debugOutput(bb);
+            }
         }
 
     }
@@ -156,22 +162,29 @@ public class Converse {
     private static void debugOutput(ByteBuffer bb) {
         bb.rewind();
         while (bb.position() < bb.limit()) {
-            byte b = bb.get();
-            U6OP op = U6OP.find(b);
+            U6OP op = U6OP.get(bb);
             if (op != null) {
-                if (op == U6OP.IF || op == U6OP.ASK || op == U6OP.DECL) {
-                    System.out.println("");
-                }
-                if (op == U6OP.JUMP) {
-                    System.out.printf("\n%d:%s[%s] --> [%d]", bb.position(), op, String.format("%02X", b), bb.getInt());
-                } else {
-                    System.out.printf("\n%d:%s[%s]", bb.position(), op, String.format("%02X", b));
+                
+                bb.get();
+                
+                if (op == U6OP.IF || op == U6OP.ASK || op == U6OP.DECL || op == U6OP.KEYWORDS || op == U6OP.ASKC || op == U6OP.ENDANSWERS) {
+                    System.out.println("" + bb.position());
                 }
 
+                if (op == U6OP.JUMP) {
+                    System.out.printf("[%s to %d]", op, bb.getInt());
+                } else {
+                    System.out.printf("[%s]", op);
+                }
+
+                if (op == U6OP.ENDANSWERS || op == U6OP.ENDIF || op == U6OP.ASK) {
+                    System.out.println("");
+                }
+                
             } else {
-                boolean ascii = CharUtils.isAsciiPrintable((char) b);
-                System.out.print(ascii ? (char) b : String.format("[%02X]", b));
-                //System.out.print(String.format("%02X", b));
+                boolean ascii = CharUtils.isAsciiPrintable((char) bb.get(bb.position()));
+                System.out.print(ascii ? (char) bb.get(bb.position()) : String.format("[%02X]", bb.get(bb.position())));
+                bb.get();
             }
         }
 
@@ -205,17 +218,32 @@ public class Converse {
     }
 
     @DataProvider
-    public static Object[][] declares() {
+    public static Object[][] declares() throws Exception {
+        FileInputStream is = new FileInputStream("target/classes/data/TILEFLAG");
+        LittleEndianDataInputStream dis = new LittleEndianDataInputStream(is);
+
+        byte[] f1 = new byte[2048];
+        byte[] f2 = new byte[2048];
+        byte[] none = new byte[1024];
+        byte[] f3 = new byte[2048];
+
+        dis.read(f1);
+        dis.read(f2);
+        dis.read(Ultima6.OBJ_WEIGHTS);
+        dis.read(none);
+        dis.read(f3);
+
         return new Object[][]{
             //{"[DECL][02][VAR][ASSIGN][ONE_BYTE][01][17][VAR][ONE_BYTE][01][ADD][RAND][EVAL]", 2, 4},
             {"[DECL][01][VAR][ASSIGN][ONE_BYTE][EB][00][FLAG][EVAL]", 1, 0},
-            {"[DECL][02][VAR][ASSIGN][01][VAR][CANCARRY][ONE_BYTE][59][ONE_BYTE][01][WEIGHT][DIV][EVAL]", 2, 10},
+            {"[DECL][02][VAR][ASSIGN][01][VAR][CANCARRY][ONE_BYTE][59][ONE_BYTE][01][WEIGHT][DIV][EVAL]", 2, 36},
             {"[DECL][00][VAR][ASSIGN][FOUR_BYTE][9F][0D][00][00][ONE_BYTE][23][INDEXOF][EVAL]", 0, 1},
             {"[DECL][07][VAR][ASSIGN][FOUR_BYTE][B9][12][00][00][06][VAR][DATA][ONE_BYTE][02][DIV][EVAL]", 7, 0},
             {"[DECL][00][SVAR][ASSIGN][22][SVAR][EVAL]", 0, "34"},
+            {"[DECL][00][VAR][ASSIGN][18][VAR][ONE_BYTE][01][ADD][ONE_BYTE][08][MUL][EVAL]", 0, 200},
             {"[DECL][00][VAR][ASSIGN][01][VAR][ONE_BYTE][0A][MUL][EVAL]", 0, 10},
             {"[DECL][10][VAR][ASSIGN][ONE_BYTE][06][EVAL][00]", 16, 6},
-            {"[DECL][09][VAR][ASSIGN][TWO_BYTE][A6][01][ONE_BYTE][01][WEIGHT][EVAL]", 9, 10},
+            {"[DECL][09][VAR][ASSIGN][TWO_BYTE][A6][01][ONE_BYTE][01][WEIGHT][EVAL]", 9, 120},
             {"[DECL][FOUR_BYTE][06][13][00][00][02][VAR][DATA][ASSIGN][00][VAR][EVAL]", 0, 0},
             {"[DECL][08][VAR][ASSIGN][05][VAR][ONE_BYTE][01][SUB][EVAL]", 8, 4},
             {"[DECL][08][VAR][ASSIGN][02][VAR][17][VAR][ONE_BYTE][03][ADD][DIV][EVAL]", 8, 13}, //
@@ -227,30 +255,21 @@ public class Converse {
     public void testDeclare(String decl, Integer varName, Object expectedValue) throws Exception {
 
         Party party = new Party();
-        Player player = new Player();
-        player.setName("Paul");
-        player.setParty(party);
+
+        Player player = new Player(1, "avatar");
         party.add(player);
 
-        Map<Integer, Integer> iVars = new HashMap<>();
-        for (int i = 0; i < 64; i++) {
-            iVars.put(i, i);
-        }
-        Map<Integer, String> sVars = new HashMap<>();
-        for (int i = 0; i < 64; i++) {
-            sVars.put(i, "" + i);
-        }
+        Player player2 = new Player(2, "dupre");
+        party.add(player2);
 
         ByteBuffer bb = parse(decl);
         bb.get();//decl
 
-        Conversations.declare(player, iVars, sVars, bb, OUTPUT);
+        Conversation conv = new Conversation(1, "test");
 
-        if (expectedValue instanceof String) {
-            assertEquals(sVars.get(varName), expectedValue);
-        } else {
-            assertEquals(iVars.get(varName), expectedValue);
-        }
+        Conversations.declare(party, conv, bb, OUTPUT);
+
+        assertEquals(conv.getVar(varName, expectedValue instanceof String), expectedValue);
 
     }
 
@@ -273,10 +292,12 @@ public class Converse {
     public void testConditions(String text, Object expectedValue) throws Exception {
 
         Party party = new Party();
-        Player player = new Player();
-        player.setName("Paul");
-        player.setParty(party);
+
+        Player player = new Player(1, "avatar");
         party.add(player);
+
+        Player player2 = new Player(2, "dupre");
+        party.add(player2);
 
         Map<Integer, Integer> iVars = new HashMap<>();
         for (int i = 0; i < 64; i++) {
@@ -290,7 +311,9 @@ public class Converse {
         ByteBuffer bb = parse(text);
         bb.get();//if
 
-        Conversations.condition(player, iVars, sVars, bb, OUTPUT);
+        Conversation conv = new Conversation(1, "test");
+
+        Conversations.condition(party, conv, bb, OUTPUT);
 
         //assertEquals(eval, expectedValue);
     }

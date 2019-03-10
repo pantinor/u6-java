@@ -9,7 +9,6 @@ public class Player {
     private int id;
     private String name;
     private final BitSet flags = new BitSet();
-    private Party party;
     private final List<InventoryItem> inventory = new ArrayList<>();
 
     private int strength = 18;
@@ -23,6 +22,11 @@ public class Player {
     private int alignment;
     private int body_armor_class;
     private int readied_armor_class;
+
+    public Player(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public int getId() {
         return this.id;
@@ -44,12 +48,8 @@ public class Player {
         this.flags.set(idx);
     }
 
-    public Party getParty() {
-        return this.party;
-    }
-
-    public void setParty(Party party) {
-        this.party = party;
+    public void clearFlag(int idx) {
+        this.flags.clear(idx);
     }
 
     public int getStrength() {
@@ -108,7 +108,7 @@ public class Player {
         }
         return false;
     }
-    
+
     public int quantity(int id) {
         for (InventoryItem i : this.inventory) {
             if (i.id == id) {
@@ -134,10 +134,10 @@ public class Player {
         return i;
     }
 
-    public InventoryItem removeItem(int id, int quantity) {
+    public InventoryItem removeItem(int id, int quantity, int quality) {
         InventoryItem ret = null;
         for (InventoryItem ii : this.inventory) {
-            if (ii.id == id) {
+            if (ii.id == id && ii.quality == quality) {
                 ii.quantity = ii.quantity - quantity;
                 break;
             }
@@ -186,6 +186,14 @@ public class Player {
         }
 
         @Override
+        public int hashCode() {
+            int hash = 7;
+            hash = 53 * hash + this.id;
+            hash = 53 * hash + this.quality;
+            return hash;
+        }
+
+        @Override
         public boolean equals(Object obj) {
             if (this == obj) {
                 return true;
@@ -198,6 +206,9 @@ public class Player {
             }
             final InventoryItem other = (InventoryItem) obj;
             if (this.id != other.id) {
+                return false;
+            }
+            if (this.quality != other.quality) {
                 return false;
             }
             return true;

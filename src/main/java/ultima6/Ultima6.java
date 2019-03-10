@@ -68,20 +68,10 @@ public class Ultima6 extends Game {
     public static Direction currentDirection = Direction.NORTH;
 
     public static Party PARTY = new Party();
-    public static Player PLAYER = new Player();
+    public static Player PLAYER = new Player(1, "Avatar");
     //public static Hud HUD;
 
     public static TextureRegion[] faceTiles = new TextureRegion[13 * 16];
-//    public static TextureRegion[] invIcons = new TextureRegion[67 * 12];
-//
-//    public static java.util.List<Item> ITEMS;
-//    public static final java.util.Map<String, Item> ITEMS_MAP = new HashMap<>();
-//
-//    public static java.util.List<Monster> MONSTERS;
-//    public static final java.util.Map<String, Monster> MONSTER_MAP = new HashMap<>();
-//    public static final java.util.Map<Integer, java.util.List<Monster>> MONSTER_LEVELS = new HashMap<>();
-//
-//    public static java.util.List<Reward> REWARDS;
 
     public static void main(String[] args) {
 
@@ -164,22 +154,9 @@ public class Ultima6 extends Game {
             tfs.font = largeFont;
         }
 
-//        HUD = new Hud();
         try {
 
             backGround = new Texture(Gdx.files.classpath("data/frame.png"));
-//
-//            TextureRegion[][] inv = TextureRegion.split(new Texture(Gdx.files.classpath("assets/data/inventory.png")), 44, 44);
-//            Texture tx = new Texture(Gdx.files.classpath("assets/data/inventory.png"));
-//            for (int row = 0; row < tx.getHeight() / 44; row++) {
-//                for (int col = 0; col < tx.getWidth() / 44; col++) {
-//                    invIcons[row * tx.getWidth() / 44 + col] = inv[row][col];
-//                }
-//            }
-//
-//            heroesAtlas = new TextureAtlas(Gdx.files.classpath("assets/data/heroes-atlas.txt"));
-//            mapAtlas = new TextureAtlas(Gdx.files.classpath("assets/data/map-atlas.txt"));
-//            moongateTextures = mapAtlas.findRegions("moongate");
 
             Constants.ActorAnimation.init();
             Constants.PaletteCycledTiles.init();
@@ -188,53 +165,12 @@ public class Ultima6 extends Game {
             initConversations();
             AVATAR = Constants.ActorAnimation.AVATAR.getTexture(Constants.Direction.NORTH);
 
-            PLAYER.setName("Paul");
-            PLAYER.setParty(PARTY);
             PARTY.add(PLAYER);
 
             Constants.Map.WORLD.init();
-            Constants.Map.WORLD.getScreen().setMapPixelCoords(Constants.Map.WORLD.getScreen().newMapPixelCoords, 286, 410);
+            Constants.Map.WORLD.getScreen().setMapPixelCoords(Constants.Map.WORLD.getScreen().newMapPixelCoords, 307, 352);
 
-            //Constants.Map.TEST.init();
-            //Constants.Map.TEST.getScreen().setMapPixelCoords(Constants.Map.TEST.getScreen().newMapPixelCoords, 4, 1);
-//            TextureRegion[][] expl = TextureRegion.split(new Texture(Gdx.files.classpath("assets/data/uf_FX.png")), 24, 24);
-//            EXPLMAP.put(Color.GRAY, new Animation(.1f, getTextureArray(expl, 0, 0)));
-//            EXPLMAP.put(Color.BLUE, new Animation(.1f, getTextureArray(expl, 0, 5)));
-//            EXPLMAP.put(Color.RED, new Animation(.1f, getTextureArray(expl, 1, 0)));
-//            EXPLMAP.put(Color.GREEN, new Animation(.1f, getTextureArray(expl, 1, 5)));
-//            EXPLMAP.put(Color.PURPLE, new Animation(.1f, getTextureArray(expl, 4, 5)));
-//            EXPLMAP.put(Color.YELLOW, new Animation(.1f, getTextureArray(expl, 5, 5)));
-//            InputStream is = this.getClass().getResourceAsStream("/assets/json/items-json.txt");
-//            String json = IOUtils.toString(is);
-//
-//            is = this.getClass().getResourceAsStream("/assets/json/rewards-json.txt");
-//            String json2 = IOUtils.toString(is);
-//
-//            is = this.getClass().getResourceAsStream("/assets/json/monsters-json.txt");
-//            String json3 = IOUtils.toString(is);
-//
-//            GsonBuilder builder = new GsonBuilder();
-//            Gson gson = builder.create();
-//            ITEMS = gson.fromJson(json, new TypeToken<java.util.List<Item>>() {
-//            }.getType());
-//            for (Item i : ITEMS) {
-//                ITEMS_MAP.put(i.name, i);
-//            }
-//            REWARDS = gson.fromJson(json2, new TypeToken<java.util.List<Reward>>() {
-//            }.getType());
-//            MONSTERS = gson.fromJson(json3, new TypeToken<java.util.List<Monster>>() {
-//            }.getType());
-//            for (int i = 0; i < 11; i++) {
-//                MONSTER_LEVELS.put(i, new ArrayList<>());
-//            }
-//            for (Monster m : MONSTERS) {
-//                MONSTER_MAP.put(m.name, m);
-//                MONSTER_LEVELS.get(m.getLevel()).add(m);
-//            }
-//
-//            Icons.init();
-//            Constants.Moongate.init();
-//            CONVERSATIONS = Conversations.init();
+         
         } catch (Exception e) {
             e.printStackTrace();
         }
