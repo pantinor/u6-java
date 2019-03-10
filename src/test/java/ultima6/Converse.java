@@ -99,7 +99,7 @@ public class Converse {
 
             Conversation conv = iter.next();
 
-            if (conv.getId() != 5) {
+            if (!conv.getName().equals("Kytyn")) {
                 continue;
             }
 
@@ -194,13 +194,13 @@ public class Converse {
 
         ByteBuffer bb = ByteBuffer.allocate(bytes.size());
         bb.order(ByteOrder.LITTLE_ENDIAN);
-        
+
         for (Byte b : bytes) {
             bb.put(b);
         }
-        
+
         bb.flip();
-        
+
         return bb;
     }
 
@@ -243,7 +243,7 @@ public class Converse {
 
         ByteBuffer bb = parse(decl);
         bb.get();//decl
-        
+
         Conversations.declare(player, iVars, sVars, bb, OUTPUT);
 
         if (expectedValue instanceof String) {
@@ -289,7 +289,7 @@ public class Converse {
 
         ByteBuffer bb = parse(text);
         bb.get();//if
-        
+
         Conversations.condition(player, iVars, sVars, bb, OUTPUT);
 
         //assertEquals(eval, expectedValue);

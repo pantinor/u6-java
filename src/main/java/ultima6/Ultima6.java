@@ -61,6 +61,8 @@ public class Ultima6 extends Game {
     public static Music music;
 
     public static final java.util.Map<Integer, TileFlags> TILE_FLAGS = new HashMap<>();
+    public static final byte[] OBJ_WEIGHTS = new byte[1024];
+
 
     public static TextureRegion AVATAR;
     public static Direction currentDirection = Direction.NORTH;
@@ -191,7 +193,7 @@ public class Ultima6 extends Game {
             PARTY.add(PLAYER);
 
             Constants.Map.WORLD.init();
-            Constants.Map.WORLD.getScreen().setMapPixelCoords(Constants.Map.WORLD.getScreen().newMapPixelCoords, 307, 349);
+            Constants.Map.WORLD.getScreen().setMapPixelCoords(Constants.Map.WORLD.getScreen().newMapPixelCoords, 286, 410);
 
             //Constants.Map.TEST.init();
             //Constants.Map.TEST.getScreen().setMapPixelCoords(Constants.Map.TEST.getScreen().newMapPixelCoords, 4, 1);
@@ -249,11 +251,12 @@ public class Ultima6 extends Game {
 
         byte[] f1 = new byte[2048];
         byte[] f2 = new byte[2048];
-        byte[] none = new byte[2048];
+        byte[] none = new byte[1024];
         byte[] f3 = new byte[2048];
 
         dis.read(f1);
         dis.read(f2);
+        dis.read(OBJ_WEIGHTS);
         dis.read(none);
         dis.read(f3);
 

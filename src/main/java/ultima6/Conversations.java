@@ -55,6 +55,7 @@ public class Conversations {
             this.bb.order(ByteOrder.LITTLE_ENDIAN);
 
             seek(bb, U6OP.SLOOK);
+            bb.get();
             this.description = consumeText(bb);
 
             reset();
@@ -370,12 +371,10 @@ public class Conversations {
         } else if (op == U6OP.NPC) {
             Integer partyIdx = (Integer) args.pop();
             Integer unused = (Integer) args.pop();
-            result = 0;//todo
-            //The NPC number of party member val1.
+            result = player.getParty().getNPC(partyIdx).getId();
         } else if (op == U6OP.CANCARRY) {
             Integer npc = (Integer) args.pop();
-            result = 100;//todo
-            //weight that npc can carry
+            result = player.getParty().getPlayer(npc).canCarryWeight();
         } else if (op == U6OP.OBJINPARTY) {
             Integer obj = (Integer) args.pop();
             Integer quality = (Integer) args.pop();
@@ -384,43 +383,35 @@ public class Conversations {
         } else if (op == U6OP.OBJCOUNT) {
             Integer npc = (Integer) args.pop();
             Integer obj = (Integer) args.pop();
-            result = 1;//todo
-            //The total quantity of objects of type val2 in the inventory of NPC val1.
+            result = player.getParty().getPlayer(npc).quantity(obj);
         } else if (op == U6OP.STR) {
             Integer npc = (Integer) args.pop();
             Integer amt = (Integer) args.pop();
-            result = 10;//todo
-            //The sum of NPC val1 Strength plus val2
+            result = player.getParty().getPlayer(npc).getStrength() + amt;
         } else if (op == U6OP.INT) {
             Integer npc = (Integer) args.pop();
             Integer amt = (Integer) args.pop();
-            result = 10;
-            //The sum of NPC val1 Intelli plus val2
+            result = player.getParty().getPlayer(npc).getIntelligence() + amt;
         } else if (op == U6OP.DEX) {
             Integer npc = (Integer) args.pop();
             Integer amt = (Integer) args.pop();
-            result = 10;//todo
-            //The sum of NPC val1 Dexterity plus val2
+            result = player.getParty().getPlayer(npc).getDex() + amt;
         } else if (op == U6OP.LVL) {
             Integer npc = (Integer) args.pop();
             Integer amt = (Integer) args.pop();
-            result = 1;//todo
-            //The sum of NPC val1 level plus val2
+            result = player.getParty().getPlayer(npc).getLevel() + amt;
         } else if (op == U6OP.EXP) {
             Integer npc = (Integer) args.pop();
             Integer amt = (Integer) args.pop();
-            result = 1000;//todo
-            //The sum of NPC val1 experience plus val2
+            result = player.getParty().getPlayer(npc).getExp() + amt;
         } else if (op == U6OP.OBJINACTOR) {
             Integer npc = (Integer) args.pop();
             Integer obj = (Integer) args.pop();
-            result = 1;
-            //is object val2 in npc val1
+            result = player.getParty().getPlayer(npc).hasItem(obj) ? 1 : 0;
         } else if (op == U6OP.WEIGHT) {
             Integer obj = (Integer) args.pop();
             Integer amt = (Integer) args.pop();
-            result = 10;//todo
-            //Weight of object val1, of quantity val2.
+            result = Ultima6.OBJ_WEIGHTS[obj] * amt;
         } else if (op == U6OP.JOIN) {
             Integer npc = (Integer) args.pop();
             result = 0;//todo

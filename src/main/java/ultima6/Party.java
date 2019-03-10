@@ -15,21 +15,17 @@ public class Party {
         this.players.remove(player);
     }
 
-    public boolean isInParty(int npc) {
+    public Player getPlayer(int npc) {
         for (Player player : players) {
             if (player.getId() == npc) {
-                return true;
+                return player;
             }
         }
-        return false;
+        return null;
     }
-
-    public boolean isInParty(Player player) {
-        if (players.contains(player)) {
-            return true;
-        } else {
-            return false;
-        }
+    
+    public Player getNPC(int idx) {
+         return players.get(idx) != null ? players.get(idx) : null;
     }
 
     public boolean isObjectInParty(int objId) {

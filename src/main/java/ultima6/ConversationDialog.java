@@ -27,14 +27,13 @@ import ultima6.Conversations.OutputStream;
 
 public class ConversationDialog extends Window {
 
-    public static int WIDTH = 400;
-    public static int HEIGHT = 400;
+    public static int WIDTH = 350;
+    public static int HEIGHT = 327;
 
     Actor previousKeyboardFocus, previousScrollFocus;
     private final FocusListener focusListener;
     private final GameScreen screen;
     private final Conversation conv;
-    private final Table internalTable;
     private final TextField input;
     private final Label debug;
     private final LogScrollPane scrollPane;
@@ -57,11 +56,8 @@ public class ConversationDialog extends Window {
         setModal(true);
         defaults().pad(5);
 
-        this.internalTable = new Table(Ultima6.skin);
-        this.internalTable.defaults().pad(5);
-
-        add(this.internalTable).expand().fill();
-        row();
+        portrait.setScale(2.0f);
+        portrait.setDrawable(new TextureRegionDrawable(conv.getPortait()));
 
         scrollPane = new LogScrollPane(Ultima6.skin, new Table(), WIDTH);
         scrollPane.setHeight(HEIGHT);
@@ -97,7 +93,7 @@ public class ConversationDialog extends Window {
         };
 
         debug = new Label("", Ultima6.skin);
-        
+
         input = new TextField("", Ultima6.skin);
         input.setTextFieldListener(new TextField.TextFieldListener() {
             @Override
@@ -110,16 +106,24 @@ public class ConversationDialog extends Window {
                 }
             }
         });
-
-        portrait.setDrawable(new TextureRegionDrawable(conv.getPortait()));
                 
-        internalTable.add(this.portrait);
-        internalTable.row();
-        internalTable.add(scrollPane).maxWidth(WIDTH).width(WIDTH);
-        internalTable.row();
-        internalTable.add(input).maxWidth(WIDTH).width(WIDTH);
-        internalTable.row();
-        internalTable.add(debug).maxWidth(WIDTH).width(WIDTH);
+        add().height(55).minHeight(55).maxHeight(55);//padding
+        row();
+        
+        add(this.portrait);
+        row();
+
+        add(scrollPane).maxWidth(WIDTH).width(WIDTH).expand().fill().colspan(2);
+        row();
+        
+        add(new Label("you say:", Ultima6.skin)).maxWidth(50).width(50);
+        add(input).expand().fill();
+        row();
+        
+        //add(debug).fill();
+        //row();
+        
+        //debugAll();
 
         focusListener = new FocusListener() {
             @Override
@@ -147,7 +151,7 @@ public class ConversationDialog extends Window {
             }
         };
 
-        scrollPane.add(conv.getDescription());
+        scrollPane.add("You see " + conv.getDescription());
 
     }
 
