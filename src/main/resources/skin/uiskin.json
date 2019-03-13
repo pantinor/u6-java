@@ -8,6 +8,7 @@ com.badlogic.gdx.graphics.Color: {
 	white: { a: 1, b: 1, g: 1, r: 1 },
 	blue: { a: 1, b: 1, g: 0, r: 0 },
 	red: { a: 1, b: 0, g: 0, r: 1 },
+	orange: { a: 1, b: 0, g: 0.56, r: 0.98 },
 	black: { a: 1, b: 0, g: 0, r: 0 }
 },
 com.badlogic.gdx.scenes.scene2d.ui.Skin$TintedDrawable: {
@@ -58,15 +59,15 @@ com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle: {
 	default-horizontal: { background: default-slider, knob: default-slider-knob }
 },
 com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
-	default: { font: default-font, fontColor: white, background: clear },
-	larger: { font: default-font, fontColor: white, background: clear },
-	hudLogFont: { font: default-font, fontColor: white, background: clear },
-	hudSmallFont: { font: default-font, fontColor: white, background: clear },
-	black-font: { font: default-font, fontColor: black }
+	default: { font: default-font, fontColor: orange, background: clear },
+	larger: { font: default-font, fontColor: orange, background: clear },
+	hudLogFont: { font: default-font, fontColor: orange, background: clear },
+	hudSmallFont: { font: default-font, fontColor: orange, background: clear },
+	black-font: { font: default-font, fontColor: orange }
 },
 com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle: {
-	default: { selection: selection, background: dimmest, font: default-font, fontColor: white, cursor: cursor },
-	larger: { selection: selection, background: dimmest, font: default-font, fontColor: white, cursor: cursor }
+	default: { selection: selection, background: dimmest, font: default-font, fontColor: orange, cursor: cursor },
+	larger: { selection: selection, background: dimmest, font: default-font, fontColor: orange, cursor: cursor }
 },
 com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle: {
 	default: { checkboxOn: journal-check-on, checkboxOff: journal-check-off, font: default-font, fontColor: white }

@@ -27,6 +27,7 @@ public class GameScreen extends BaseScreen {
     private final TmxMapRenderer renderer;
     private final Batch batch;
     private final Viewport mapViewPort;
+    private final HUD hud;
 
     public GameScreen(Map map) {
 
@@ -36,11 +37,12 @@ public class GameScreen extends BaseScreen {
 
         stage = new Stage(viewport);
 
+        hud = new HUD(this, Ultima6.skin);
+
         camera = new OrthographicCamera(Ultima6.MAP_VIEWPORT_DIM, Ultima6.MAP_VIEWPORT_DIM);
 
         mapViewPort = new ScreenViewport(camera);
 
-//        addButtons(this.map);
         renderer = new TmxMapRenderer(this.map, this.map.getTiledMap(), 2f);
 
         mapPixelHeight = this.map.getHeight();
@@ -49,8 +51,7 @@ public class GameScreen extends BaseScreen {
 
     @Override
     public void show() {
-        //this.map.syncRemovedActors(CTX.saveGame);
-        Gdx.input.setInputProcessor(new InputMultiplexer(this, stage));
+        Gdx.input.setInputProcessor(new InputMultiplexer(this));
     }
 
     @Override
@@ -109,7 +110,6 @@ public class GameScreen extends BaseScreen {
 
         batch.draw(Ultima6.backGround, 0, 0);
         batch.draw((TextureRegion) Ultima6.AVATAR, TILE_DIM * 11, TILE_DIM * 11, TILE_DIM, TILE_DIM);
-        //Andius.HUD.render(batch, Andius.CTX);
 
         Vector3 v = new Vector3();
         setCurrentMapCoords(v);
@@ -187,7 +187,6 @@ public class GameScreen extends BaseScreen {
             }
             return false;
         } else if (keycode == Keys.G) {
-
 //            MapLayer messagesLayer = this.map.getTiledMap().getLayers().get("messages");
 //            if (messagesLayer != null) {
 //                Iterator<MapObject> iter = messagesLayer.getObjects().iterator();
@@ -246,7 +245,8 @@ public class GameScreen extends BaseScreen {
             if (a != null) {
                 Conversation c = Ultima6.CONVS.get(a.getId());
                 if (c != null) {
-                    new ConversationDialog(this, Ultima6.PARTY, c).show(this.stage);
+                    this.stage.addActor(this.hud);
+                    this.hud.set(stage, Ultima6.PARTY, c);
                 }
 
             }
@@ -380,38 +380,12 @@ public class GameScreen extends BaseScreen {
         return true;
     }
 
-//    @Override
-//    public void endCombat(boolean isWon, andius.objects.Actor opponent) {
-//        if (isWon) {
-//            this.map.getMap().removeCreature(opponent);
-//        }
-//    }
-//
-//    @Override
-//    public void finishTurn(int x, int y) {
-//
-//        if (this.map.getRoomIds() != null && this.map.getRoomIds()[x][y][1] == 0) {
-//            this.currentRoomId = this.map.getRoomIds()[x][y][0];
-//            setRoomName();
-//        }
-//
-//        try {
-//            this.map.getMap().moveObjects(this.map, this, x, y);
-//        } catch (PartyDeathException t) {
-//            partyDeath();
-//        }
-//    }
-//
-//    @Override
-//    public void partyDeath() {
-//    }
     @Override
     public void finishTurn(int currentX, int currentY) {
     }
 
     @Override
     public void log(String s) {
-        //Andius.HUD.add(s);
     }
 
 }

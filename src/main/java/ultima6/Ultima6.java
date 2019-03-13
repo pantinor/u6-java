@@ -7,7 +7,6 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -28,7 +27,6 @@ import java.util.zip.GZIPInputStream;
 import org.apache.commons.io.IOUtils;
 import ultima6.Constants.Direction;
 import ultima6.Conversations.Conversation;
-//import utils.Hud;
 
 public class Ultima6 extends Game {
 
@@ -63,13 +61,11 @@ public class Ultima6 extends Game {
     public static final java.util.Map<Integer, TileFlags> TILE_FLAGS = new HashMap<>();
     public static final byte[] OBJ_WEIGHTS = new byte[1024];
 
-
     public static TextureRegion AVATAR;
     public static Direction currentDirection = Direction.NORTH;
 
     public static Party PARTY = new Party();
     public static Player PLAYER = new Player(1, "Avatar");
-    //public static Hud HUD;
 
     public static TextureRegion[] faceTiles = new TextureRegion[13 * 16];
 
@@ -86,8 +82,6 @@ public class Ultima6 extends Game {
 
     @Override
     public void create() {
-
-        font = new BitmapFont();
 
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.classpath("fonts/gnuolane.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
@@ -107,52 +101,41 @@ public class Ultima6 extends Game {
         generator.dispose();
 
         skin = new Skin(Gdx.files.classpath("skin/uiskin.json"));
+        
         skin.remove("default-font", BitmapFont.class);
         skin.add("default-font", font, BitmapFont.class);
         skin.add("larger-font", largeFont, BitmapFont.class);
         skin.add("title-font", titleFont, BitmapFont.class);
+        
         smallFont = skin.get("verdana-10", BitmapFont.class);
         skin.add("small-font", smallFont, BitmapFont.class);
-        {
-            Label.LabelStyle ls = skin.get("default", Label.LabelStyle.class);
-            ls.font = font;
-            Label.LabelStyle ls2 = skin.get("hudLogFont", Label.LabelStyle.class);
-            ls2.font = hudLogFont;
-            Label.LabelStyle ls3 = skin.get("hudSmallFont", Label.LabelStyle.class);
-            ls3.font = smallFont;
-            TextButton.TextButtonStyle tbs = skin.get("default", TextButton.TextButtonStyle.class);
-            tbs.font = font;
-            TextButton.TextButtonStyle tbsred = skin.get("red", TextButton.TextButtonStyle.class);
-            tbsred.font = font;
-            TextButton.TextButtonStyle tbsbr = skin.get("brown", TextButton.TextButtonStyle.class);
-            tbsbr.font = font;
-            SelectBox.SelectBoxStyle sbs = skin.get("default", SelectBox.SelectBoxStyle.class);
-            sbs.font = font;
-            sbs.listStyle.font = font;
-            CheckBox.CheckBoxStyle cbs = skin.get("default", CheckBox.CheckBoxStyle.class);
-            cbs.font = font;
-            List.ListStyle lis = skin.get("default", List.ListStyle.class);
-            lis.font = font;
-            TextField.TextFieldStyle tfs = skin.get("default", TextField.TextFieldStyle.class);
-            tfs.font = font;
-        }
-        {
-            Label.LabelStyle ls = skin.get("larger", Label.LabelStyle.class);
-            ls.font = largeFont;
-            TextButton.TextButtonStyle tbs = skin.get("larger", TextButton.TextButtonStyle.class);
-            tbs.font = largeFont;
-            TextButton.TextButtonStyle tbsred = skin.get("red-larger", TextButton.TextButtonStyle.class);
-            tbsred.font = largeFont;
-            TextButton.TextButtonStyle tbsbr = skin.get("brown-larger", TextButton.TextButtonStyle.class);
-            tbsbr.font = largeFont;
-            SelectBox.SelectBoxStyle sbs = skin.get("larger", SelectBox.SelectBoxStyle.class);
-            sbs.font = largeFont;
-            sbs.listStyle.font = largeFont;
-            List.ListStyle lis = skin.get("larger", List.ListStyle.class);
-            lis.font = largeFont;
-            TextField.TextFieldStyle tfs = skin.get("larger", TextField.TextFieldStyle.class);
-            tfs.font = largeFont;
-        }
+
+        Label.LabelStyle ls = skin.get("default", Label.LabelStyle.class);
+        ls.font = font;
+        Label.LabelStyle ls2 = skin.get("hudLogFont", Label.LabelStyle.class);
+        ls2.font = hudLogFont;
+        Label.LabelStyle ls3 = skin.get("hudSmallFont", Label.LabelStyle.class);
+        ls3.font = smallFont;
+
+        TextButton.TextButtonStyle tbs = skin.get("default", TextButton.TextButtonStyle.class);
+        tbs.font = font;
+        TextButton.TextButtonStyle tbsred = skin.get("red", TextButton.TextButtonStyle.class);
+        tbsred.font = font;
+        TextButton.TextButtonStyle tbsbr = skin.get("brown", TextButton.TextButtonStyle.class);
+        tbsbr.font = font;
+
+        SelectBox.SelectBoxStyle sbs = skin.get("default", SelectBox.SelectBoxStyle.class);
+        sbs.font = font;
+        sbs.listStyle.font = font;
+
+        CheckBox.CheckBoxStyle cbs = skin.get("default", CheckBox.CheckBoxStyle.class);
+        cbs.font = font;
+
+        List.ListStyle lis = skin.get("default", List.ListStyle.class);
+        lis.font = font;
+
+        TextField.TextFieldStyle tfs = skin.get("default", TextField.TextFieldStyle.class);
+        tfs.font = font;
 
         try {
 
@@ -170,7 +153,6 @@ public class Ultima6 extends Game {
             Constants.Map.WORLD.init();
             Constants.Map.WORLD.getScreen().setMapPixelCoords(Constants.Map.WORLD.getScreen().newMapPixelCoords, 307, 352);
 
-         
         } catch (Exception e) {
             e.printStackTrace();
         }

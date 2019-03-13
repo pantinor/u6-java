@@ -90,7 +90,8 @@ public class ConversationDialog extends Window {
 
             @Override
             public void setPortrait(int npc) {
-                portrait.setDrawable(new TextureRegionDrawable(Ultima6.faceTiles[npc - 1]));
+                int idx = npc - 1 < Ultima6.faceTiles.length ? npc - 1 : 0;
+                portrait.setDrawable(new TextureRegionDrawable(Ultima6.faceTiles[idx]));
             }
         };
 

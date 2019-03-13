@@ -65,26 +65,16 @@ public class MakeFrame {
 
         }
 
-        for (int i = 0; i < 6; i++) {
+        {
             g2d.setColor(YELLOW_2);
-            g2d.fillRect(688 + 2, 64 + 2 + (i * (32 + 6)), 32 + 2 * 2, 32 + 2 * 2);
+            g2d.fillRect(690, 66, 300, 226);
 
             g2d.setColor(YELLOW_3);
-            g2d.fillRect(688 + 3, 64 + 3 + (i * (32 + 6)), 32 + 1 * 2, 32 + 1 * 2);
+            g2d.fillRect(691, 67, 298, 224);
 
             g2d.setColor(BASE_YELLOW);
-            g2d.fillRect(688 + 4, 64 + 4 + (i * (32 + 6)), 32 + 0 * 2, 32 + 0 * 2);
-        }
+            g2d.fillRect(692, 68, 296, 222);
 
-        for (int i = 0; i < 6; i++) {
-            g2d.setColor(YELLOW_2);
-            g2d.fillRect(726 + 2, 64 + 2 + (i * (32 + 6)), 258 + 2 * 2, 32 + 2 * 2);
-
-            g2d.setColor(YELLOW_3);
-            g2d.fillRect(726 + 3, 64 + 3 + (i * (32 + 6)), 258 + 1 * 2, 32 + 1 * 2);
-
-            g2d.setColor(BASE_YELLOW);
-            g2d.fillRect(726 + 4, 64 + 4 + (i * (32 + 6)), 258 + 0 * 2, 32 + 0 * 2);
         }
 
         {
@@ -99,7 +89,7 @@ public class MakeFrame {
 
         }
 
-        ImageIO.write(output, "PNG", new File("frame.png"));
+        ImageIO.write(output, "PNG", new File("src/main/resources/data/frame.png"));
     }
 
 }

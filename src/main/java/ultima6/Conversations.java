@@ -137,7 +137,7 @@ public class Conversations {
 
         public void process(Party party, String input, OutputStream output) {
 
-            output.print(input, Color.YELLOW);
+            output.print(input, Color.RED);
 
             while (bb.position() < bb.limit()) {
                 U6OP op = U6OP.get(bb);
@@ -198,10 +198,10 @@ public class Conversations {
                         objectMgmt(this, party, this.bb, true);
                     }
                     if (op == U6OP.PORTRAIT) {
-                        bb.get();
-                        int npc = bb.get() & 0xff;
+                        Stack<Object> values = new Stack<>();
+                        marshall(bb, values, null, this);
+                        int npc = (int) values.pop();
                         output.setPortrait(npc == 0xeb ? this.id : npc);
-                        bb.get();//eval
                     }
                     if (op == U6OP.BYE) {
                         output.close();

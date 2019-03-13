@@ -14,6 +14,7 @@ public class LogScrollPane extends ScrollPane {
     private final Table internalTable;
     private final int width;
     private final Skin skin;
+    private static final Color ORANGE = new Color(0.98f, 0.56f, 0, 1);
 
     public LogScrollPane(Skin skin, Table table, int width) {
 
@@ -29,7 +30,7 @@ public class LogScrollPane extends ScrollPane {
     }
 
     public void add(String text) {
-        add(text, Color.WHITE, true);
+        add(text, Color.ORANGE, true);
     }
     
     public void add(String text, Color color) {
@@ -42,7 +43,7 @@ public class LogScrollPane extends ScrollPane {
             return;
         }
 
-        LabelStyle ls = new LabelStyle(this.skin.get("default-font", BitmapFont.class), color != null ? color : Color.WHITE);
+        LabelStyle ls = new LabelStyle(this.skin.get("default-font", BitmapFont.class), color != null ? color : Color.ORANGE);
 
         Label label = new Label(text, ls);
         label.setWrap(true);
