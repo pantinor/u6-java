@@ -14,12 +14,26 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.Stack;
 import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.apache.commons.lang3.CharUtils;
 
 public class Conversations {
 
-    //public static final int SELF = 235;
     public static final Random RAND = new Random();
+
+    public static final int GLOBAL_VAR_SEX = 0x10;
+    public static final int GLOBAL_VAR_KARMA = 0x14;
+    public static final int GLOBAL_VAR_GARGF = 0x15;
+    public static final int GLOBAL_VAR_NPC_NAME = 0x17;
+    public static final int GLOBAL_VAR_PARTYLIVE = 0x17;
+    public static final int GLOBAL_VAR_PARTYALL = 0x18;
+    public static final int GLOBAL_VAR_HP = 0x19;
+    public static final int GLOBAL_VAR_PLAYER_NAME = 0x19;
+    public static final int GLOBAL_VAR_QUESTF = 0x1A;
+    public static final int GLOBAL_VAR_WORKTYPE = 0x20;
+    public static final int GLOBAL_VAR_YSTRING = 0x22;
+    public static final int GLOBAL_VAR_INPUT = 0x23;
 
     private final Map<Integer, Conversation> conversations = new HashMap<>();
 
@@ -75,8 +89,6 @@ public class Conversations {
             seek(bb, U6OP.SLOOK);
             bb.get();
             this.description = consumeText(bb);
-
-            reset();
         }
 
         public int getId() {
@@ -111,7 +123,7 @@ public class Conversations {
             this.flags.clear(idx);
         }
 
-        public void reset() {
+        public void init(Player player, Party party) {
             this.bb.rewind();
             while (this.bb.position() < this.bb.limit()) {
                 U6OP op = U6OP.find(this.bb.get());
@@ -125,6 +137,17 @@ public class Conversations {
             for (int i = 0; i < 64; i++) {
                 this.sVars.put(i, "");
             }
+
+            this.iVars.put(GLOBAL_VAR_SEX, 0);
+            this.iVars.put(GLOBAL_VAR_KARMA, player.getKarma());
+            this.iVars.put(GLOBAL_VAR_GARGF, 0);
+            this.iVars.put(GLOBAL_VAR_PARTYLIVE, 1);
+            this.iVars.put(GLOBAL_VAR_PARTYALL, 1);
+            this.iVars.put(GLOBAL_VAR_HP, player.getHp());
+            this.sVars.put(GLOBAL_VAR_NPC_NAME, this.name);
+            this.sVars.put(GLOBAL_VAR_PLAYER_NAME, player.getName());
+            this.iVars.put(GLOBAL_VAR_QUESTF, 0);
+            this.iVars.put(GLOBAL_VAR_WORKTYPE, 0);
         }
 
         public Object getVar(Integer idx, boolean strVal) {
@@ -135,7 +158,7 @@ public class Conversations {
             }
         }
 
-        public void process(Party party, String input, OutputStream output) {
+        public void process(Player avatar, Party party, String input, OutputStream output) {
 
             output.print(input, Color.RED);
 
@@ -159,7 +182,7 @@ public class Conversations {
                         break;
                     }
                     if (op == U6OP.KEYWORDS) {
-                        String keywords = consumeText(this.bb);
+                        String keywords = consumeText(this, avatar, party, this.bb);
                         boolean matched = inputMatches(input, keywords);
                         //output.print(input + " matching " + keywords, matched ? Color.GREEN : Color.RED);
                         if (!matched) {
@@ -167,7 +190,7 @@ public class Conversations {
                         }
                     }
                     if (op == U6OP.ANSWER) {
-                        String answer = consumeText(this.bb);
+                        String answer = consumeText(this, avatar, party, this.bb);
                         if (!answer.isEmpty()) {
                             output.print(answer, null);
                         }
@@ -210,7 +233,7 @@ public class Conversations {
                 } else if (bb.get(bb.position()) == (byte) 0x0A) {
                     bb.get();//skip
                 } else {
-                    String text = consumeText(this.bb);
+                    String text = consumeText(this, avatar, party, this.bb);
                     if (!text.isEmpty()) {
                         output.print(text, null);
                         break;
@@ -581,7 +604,57 @@ public class Conversations {
             byte next = bb.get();
         } while (bb.position() < bb.limit() && U6OP.find(bb.get(bb.position())) == null);
         String val = new String(bb.array(), start, bb.position() - start);
-        return prepareText(val);
+        return val;
+    }
+
+    private static String consumeText(Conversation conv, Player player, Party party, ByteBuffer bb) {
+        U6OP op = U6OP.get(bb);
+        if (op != null) {
+            return "";
+        }
+        int start = bb.position();
+        do {
+            byte next = bb.get();
+        } while (bb.position() < bb.limit() && U6OP.find(bb.get(bb.position())) == null);
+        String val = new String(bb.array(), start, bb.position() - start);
+        
+        val = val.replace("$G", "milord");
+        val = val.replace("$P", player.getName());
+        val = val.replace("$N", conv.getName());
+        val = val.replace("$T", "morning");
+        
+        {
+            Pattern p = Pattern.compile("#[0-9]+");
+            Matcher m = p.matcher(val);
+
+            StringBuffer sb = new StringBuffer();
+            while (m.find()) {
+                String matchedText = m.group();
+                int num = Integer.parseInt(matchedText.substring(1));
+                Object var = conv.getVar(num, false);
+                m.appendReplacement(sb, "" + var);
+            }
+            m.appendTail(sb);
+            val = sb.toString();
+        }
+        
+        {
+            Pattern p = Pattern.compile("$[0-9]+");
+            Matcher m = p.matcher(val);
+
+            StringBuffer sb = new StringBuffer();
+            while (m.find()) {
+                String matchedText = m.group();
+                int num = Integer.parseInt(matchedText.substring(1));
+                Object var = conv.getVar(num, true);
+                m.appendReplacement(sb, "" + var);
+            }
+            m.appendTail(sb);
+            val = sb.toString();
+        }
+        
+
+        return val;
     }
 
     private static boolean inputMatches(String input, String keywords) {
@@ -596,11 +669,6 @@ public class Conversations {
             }
         }
         return false;
-    }
-
-    private static String prepareText(String s) {
-
-        return s.replace("\\", "").replace("\"", "").replace("\'", "'").replace("\n", "").trim();
     }
 
     public interface OutputStream {

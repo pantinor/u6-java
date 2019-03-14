@@ -19,7 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import ultima6.Conversations.Conversation;
-import static ultima6.Ultima6.AVATAR;
+import static ultima6.Ultima6.AVATAR_TEXTURE;
 
 public class GameScreen extends BaseScreen {
 
@@ -109,7 +109,7 @@ public class GameScreen extends BaseScreen {
         batch.begin();
 
         batch.draw(Ultima6.backGround, 0, 0);
-        batch.draw((TextureRegion) Ultima6.AVATAR, TILE_DIM * 11, TILE_DIM * 11, TILE_DIM, TILE_DIM);
+        batch.draw((TextureRegion) Ultima6.AVATAR_TEXTURE, TILE_DIM * 11, TILE_DIM * 11, TILE_DIM, TILE_DIM);
 
         Vector3 v = new Vector3();
         setCurrentMapCoords(v);
@@ -130,7 +130,7 @@ public class GameScreen extends BaseScreen {
         if (keycode == Keys.UP) {
             if (Ultima6.currentDirection != Direction.NORTH) {
                 Ultima6.currentDirection = Direction.NORTH;
-                AVATAR = Constants.ActorAnimation.AVATAR.getTexture(Constants.Direction.NORTH);
+                AVATAR_TEXTURE = Constants.ActorAnimation.AVATAR.getTexture(Constants.Direction.NORTH);
                 return false;
             }
             if (!preMove(v, Direction.NORTH)) {
@@ -141,7 +141,7 @@ public class GameScreen extends BaseScreen {
         } else if (keycode == Keys.DOWN) {
             if (Ultima6.currentDirection != Direction.SOUTH) {
                 Ultima6.currentDirection = Direction.SOUTH;
-                AVATAR = Constants.ActorAnimation.AVATAR.getTexture(Constants.Direction.SOUTH);
+                AVATAR_TEXTURE = Constants.ActorAnimation.AVATAR.getTexture(Constants.Direction.SOUTH);
                 return false;
             }
             if (!preMove(v, Direction.SOUTH)) {
@@ -152,7 +152,7 @@ public class GameScreen extends BaseScreen {
         } else if (keycode == Keys.RIGHT) {
             if (Ultima6.currentDirection != Direction.EAST) {
                 Ultima6.currentDirection = Direction.EAST;
-                AVATAR = Constants.ActorAnimation.AVATAR.getTexture(Constants.Direction.EAST);
+                AVATAR_TEXTURE = Constants.ActorAnimation.AVATAR.getTexture(Constants.Direction.EAST);
                 return false;
             }
             if (!preMove(v, Direction.EAST)) {
@@ -163,7 +163,7 @@ public class GameScreen extends BaseScreen {
         } else if (keycode == Keys.LEFT) {
             if (Ultima6.currentDirection != Direction.WEST) {
                 Ultima6.currentDirection = Direction.WEST;
-                AVATAR = Constants.ActorAnimation.AVATAR.getTexture(Constants.Direction.WEST);
+                AVATAR_TEXTURE = Constants.ActorAnimation.AVATAR.getTexture(Constants.Direction.WEST);
                 return false;
             }
             if (!preMove(v, Direction.WEST)) {
@@ -246,7 +246,7 @@ public class GameScreen extends BaseScreen {
                 Conversation c = Ultima6.CONVS.get(a.getId());
                 if (c != null) {
                     this.stage.addActor(this.hud);
-                    this.hud.set(stage, Ultima6.PARTY, c);
+                    this.hud.set(stage, Ultima6.AVATAR, Ultima6.PARTY, c);
                 }
 
             }

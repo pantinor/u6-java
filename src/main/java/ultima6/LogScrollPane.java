@@ -30,7 +30,7 @@ public class LogScrollPane extends ScrollPane {
     }
 
     public void add(String text) {
-        add(text, Color.ORANGE, true);
+        add(text, Color.BLACK, true);
     }
     
     public void add(String text, Color color) {
@@ -43,7 +43,7 @@ public class LogScrollPane extends ScrollPane {
             return;
         }
 
-        LabelStyle ls = new LabelStyle(this.skin.get("default-font", BitmapFont.class), color != null ? color : Color.ORANGE);
+        LabelStyle ls = new LabelStyle(this.skin.get("default-font", BitmapFont.class), color != null ? color : Color.BLACK);
 
         Label label = new Label(text, ls);
         label.setWrap(true);

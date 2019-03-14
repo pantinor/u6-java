@@ -13,6 +13,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 import javax.xml.bind.DatatypeConverter;
@@ -164,9 +166,9 @@ public class Converse {
         while (bb.position() < bb.limit()) {
             U6OP op = U6OP.get(bb);
             if (op != null) {
-                
+
                 bb.get();
-                
+
                 if (op == U6OP.IF || op == U6OP.ASK || op == U6OP.DECL || op == U6OP.KEYWORDS || op == U6OP.ASKC || op == U6OP.ENDANSWERS) {
                     System.out.println("" + bb.position());
                 }
@@ -180,7 +182,7 @@ public class Converse {
                 if (op == U6OP.ENDANSWERS || op == U6OP.ENDIF || op == U6OP.ASK) {
                     System.out.println("");
                 }
-                
+
             } else {
                 boolean ascii = CharUtils.isAsciiPrintable((char) bb.get(bb.position()));
                 System.out.print(ascii ? (char) bb.get(bb.position()) : String.format("[%02X]", bb.get(bb.position())));
@@ -316,6 +318,29 @@ public class Converse {
         Conversations.condition(party, conv, bb, OUTPUT);
 
         //assertEquals(eval, expectedValue);
+    }
+
+    @Test
+    public void testMatcher() {
+
+        Map<Integer, String> vars = new HashMap<>();
+        for (int i = 0; i < 64; i++) {
+            vars.put(i, "test-" + i);
+        }
+
+        Pattern p = Pattern.compile("#[0-9]+");
+        Matcher m = p.matcher("some text #5 was here after #63.");
+
+        StringBuffer sb = new StringBuffer();
+        while (m.find()) {
+            String matchedText = m.group();
+            int num = Integer.parseInt(matchedText.substring(1));
+            String var = vars.get(num);
+            m.appendReplacement(sb, "" + var);
+        }
+        m.appendTail(sb);
+        System.out.println(sb.toString());
+        assertEquals(sb.toString(), "some text test-5 was here after test-63.");
     }
 
 }

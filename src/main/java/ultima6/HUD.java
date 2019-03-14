@@ -53,7 +53,6 @@ public class HUD extends Table {
 
             @Override
             public void close() {
-                conv.reset();
                 HUD.this.remove();
                 Gdx.input.setInputProcessor(new InputMultiplexer(HUD.this.screen));
             }
@@ -86,25 +85,29 @@ public class HUD extends Table {
 
     }
 
-    public void set(Stage stage, Party party, Conversation conv) {
+    public void set(Stage stage, Player avatar, Party party, Conversation conv) {
 
         this.conv = conv;
+        
+        this.conv.init(avatar, party);
+        
+        this.scrollPane.clear();
 
-        portrait.setDrawable(new TextureRegionDrawable(conv.getPortait()));
+        this.portrait.setDrawable(new TextureRegionDrawable(conv.getPortait()));
 
-        input.setTextFieldListener(new TextField.TextFieldListener() {
+        this.input.setTextFieldListener(new TextField.TextFieldListener() {
             @Override
             public void keyTyped(TextField tf, char key) {
                 if (key == '\r') {
                     String input = tf.getText();
-                    conv.process(party, input, output);
+                    conv.process(avatar, party, input, output);
                     debug.setText("" + conv.data().position());
                     tf.setText("");
                 }
             }
         });
 
-        scrollPane.add("You see " + conv.getDescription());
+        this.scrollPane.add("You see " + conv.getDescription());
 
         stage.setKeyboardFocus(input);
         Gdx.input.setInputProcessor(new InputMultiplexer(stage));

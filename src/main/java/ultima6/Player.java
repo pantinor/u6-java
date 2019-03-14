@@ -18,6 +18,8 @@ public class Player {
     private int level = 1;
     private int exp = 0;
     private int magic = 18;
+
+    private int karma = 0;
     private int combat_mode;
     private int alignment;
     private int body_armor_class;
@@ -98,6 +100,14 @@ public class Player {
 
     public void setExp(int exp) {
         this.exp = exp;
+    }
+
+    public int getKarma() {
+        return karma;
+    }
+
+    public void setKarma(int karma) {
+        this.karma = karma;
     }
 
     public boolean hasItem(int id) {

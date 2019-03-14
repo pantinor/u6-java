@@ -61,11 +61,11 @@ public class Ultima6 extends Game {
     public static final java.util.Map<Integer, TileFlags> TILE_FLAGS = new HashMap<>();
     public static final byte[] OBJ_WEIGHTS = new byte[1024];
 
-    public static TextureRegion AVATAR;
+    public static TextureRegion AVATAR_TEXTURE;
     public static Direction currentDirection = Direction.NORTH;
 
     public static Party PARTY = new Party();
-    public static Player PLAYER = new Player(1, "Avatar");
+    public static Player AVATAR = new Player(1, "Avatar");
 
     public static TextureRegion[] faceTiles = new TextureRegion[13 * 16];
 
@@ -146,9 +146,9 @@ public class Ultima6 extends Game {
 
             initTileFlags();
             initConversations();
-            AVATAR = Constants.ActorAnimation.AVATAR.getTexture(Constants.Direction.NORTH);
+            AVATAR_TEXTURE = Constants.ActorAnimation.AVATAR.getTexture(Constants.Direction.NORTH);
 
-            PARTY.add(PLAYER);
+            PARTY.add(AVATAR);
 
             Constants.Map.WORLD.init();
             Constants.Map.WORLD.getScreen().setMapPixelCoords(Constants.Map.WORLD.getScreen().newMapPixelCoords, 307, 352);
