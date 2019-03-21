@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -22,7 +23,9 @@ import com.badlogic.gdx.utils.Array;
 import com.google.common.io.LittleEndianDataInputStream;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.zip.GZIPInputStream;
 import org.apache.commons.io.IOUtils;
 import ultima6.Constants.Direction;
@@ -60,12 +63,14 @@ public class Ultima6 extends Game {
 
     public static final java.util.Map<Integer, TileFlags> TILE_FLAGS = new HashMap<>();
     public static final byte[] OBJ_WEIGHTS = new byte[1024];
+    public static final java.util.Map<Integer, java.util.List<Schedule>> SCHEDULES = new HashMap<>();
 
     public static TextureRegion AVATAR_TEXTURE;
     public static Direction currentDirection = Direction.NORTH;
 
     public static Party PARTY = new Party();
     public static Player AVATAR = new Player(1, "Avatar");
+    public static final Clock CLOCK = new Clock();
 
     public static TextureRegion[] faceTiles = new TextureRegion[13 * 16];
 
@@ -91,6 +96,7 @@ public class Ultima6 extends Game {
 
         parameter.size = 18;
         font = generator.generateFont(parameter);
+        font.setColor(Color.BLACK);
 
         parameter.size = 24;
         largeFont = generator.generateFont(parameter);
@@ -101,12 +107,12 @@ public class Ultima6 extends Game {
         generator.dispose();
 
         skin = new Skin(Gdx.files.classpath("skin/uiskin.json"));
-        
+
         skin.remove("default-font", BitmapFont.class);
         skin.add("default-font", font, BitmapFont.class);
         skin.add("larger-font", largeFont, BitmapFont.class);
         skin.add("title-font", titleFont, BitmapFont.class);
-        
+
         smallFont = skin.get("verdana-10", BitmapFont.class);
         skin.add("small-font", smallFont, BitmapFont.class);
 
@@ -146,6 +152,8 @@ public class Ultima6 extends Game {
 
             initTileFlags();
             initConversations();
+            initSchedules();
+
             AVATAR_TEXTURE = Constants.ActorAnimation.AVATAR.getTexture(Constants.Direction.NORTH);
 
             PARTY.add(AVATAR);
@@ -244,6 +252,62 @@ public class Ultima6 extends Game {
             c.setPortait(faceTiles[npc - 1]);
         }
 
+    }
+
+    private static void initSchedules() throws Exception {
+        InputStream is = Gdx.files.classpath("data/SCHEDULE").read();
+        LittleEndianDataInputStream dis = new LittleEndianDataInputStream(is);
+
+        int[] sched_offsets = new int[256];
+        int[] num_schedules = new int[256];
+
+        for (int i = 0; i < 256; i++) {
+            sched_offsets[i] = dis.readShort() & 0xff;
+        }
+        int total_schedules = dis.readShort() & 0xff;
+        for (int i = 0; i < 256; i++) {
+            if (sched_offsets[i] > (total_schedules - 1)) {
+                num_schedules[i] = 0;
+            } else if (i == 256 - 1) {
+                num_schedules[i] = total_schedules - sched_offsets[i];
+            } else if (sched_offsets[i + 1] > (total_schedules - 1)) {
+                num_schedules[i] = total_schedules - sched_offsets[i];
+            } else {
+                num_schedules[i] = sched_offsets[i + 1] - sched_offsets[i];
+            }
+        }
+
+        byte[] data = new byte[total_schedules * 5];
+        dis.read(data);
+
+        for (int i = 0; i < 256; i++) {
+            int idx = sched_offsets[i] * 5;
+            int num = num_schedules[i];
+            if (num > 0) {
+                java.util.List<Schedule> scheds = new ArrayList<>();
+                for (int j = 0; j < num; j++) {
+                    Schedule sched = new Schedule();
+                    byte hour = data[idx];
+                    sched.setHour(hour & 0x1f);
+                    sched.setDayOfWeek(hour >> 5);
+                    sched.setWorktype(data[idx + 1] & 0xff);
+
+                    int x = data[idx + 2];
+                    x += (data[idx + 3] & 0x3) << 8;
+                    int y = (data[idx + 3] & 0xfc) >> 2;
+                    y += (data[idx + 4] & 0xf) << 6;
+                    int z = (data[idx + 4] & 0xf0) >> 4;
+
+                    sched.setX(x);
+                    sched.setY(y);
+                    sched.setZ(z);
+                    scheds.add(sched);
+                    idx += 5;
+                    System.out.printf("npc[%d] - %s\n", i, sched);
+                }
+                SCHEDULES.put(i, scheds);
+            }
+        }
     }
 
 }

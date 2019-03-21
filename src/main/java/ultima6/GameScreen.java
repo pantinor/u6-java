@@ -16,10 +16,13 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import ultima6.Conversations.Conversation;
 import static ultima6.Ultima6.AVATAR_TEXTURE;
+import static ultima6.Ultima6.CLOCK;
 
 public class GameScreen extends BaseScreen {
 
@@ -46,6 +49,11 @@ public class GameScreen extends BaseScreen {
         renderer = new TmxMapRenderer(this.map, this.map.getTiledMap(), 2f);
 
         mapPixelHeight = this.map.getHeight();
+        
+        SequenceAction seq1 = Actions.action(SequenceAction.class);
+        seq1.addAction(Actions.delay(15f));
+        seq1.addAction(Actions.run(CLOCK));
+        stage.addAction(Actions.forever(seq1));
 
     }
 
@@ -113,7 +121,7 @@ public class GameScreen extends BaseScreen {
 
         Vector3 v = new Vector3();
         setCurrentMapCoords(v);
-        Ultima6.font.draw(batch, String.format("%s, %s\n", v.x, v.y), 200, Ultima6.SCREEN_HEIGHT - 64);
+        Ultima6.font.draw(batch, String.format("%s  [%.0f, %.0f]\n", CLOCK.getTimeString(), v.x, v.y), 200, Ultima6.SCREEN_HEIGHT - 24);
 
         batch.end();
 
