@@ -1,6 +1,7 @@
 package ultima6;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.ai.pfa.indexed.IndexedAStarPathFinder;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -23,6 +24,8 @@ import com.badlogic.gdx.maps.tiled.tiles.AnimatedTiledMapTile;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import java.io.InputStream;
 import org.apache.commons.io.IOUtils;
+import ultima6.LocationGraph.TileConnection;
+import ultima6.LocationGraph.Location;
 
 public class Constants {
 
@@ -44,6 +47,9 @@ public class Constants {
         private final BaseMap baseMap = new BaseMap();
         private BaseScreen screen;
 
+        private IndexedAStarPathFinder<Location> pathfinder;
+        private Location[][] nodes;
+
         private Map(int id, String tmx) {
             this.id = id;
             this.tmxFile = tmx;
@@ -62,6 +68,14 @@ public class Constants {
 
         public BaseScreen getScreen() {
             return screen;
+        }
+
+        public IndexedAStarPathFinder<Location> getPathfinder() {
+            return pathfinder;
+        }
+
+        public Location[][] getNodes() {
+            return nodes;
         }
 
         public int getHeight() {
@@ -147,6 +161,42 @@ public class Constants {
             }
 
             TiledMapTileLayer baseLayer = (TiledMapTileLayer) this.tiledMap.getLayers().get("base");
+
+            int numRows = getHeight();
+            int numCols = getWidth();
+            this.nodes = new Location[numCols][numRows];
+            Array<Location> indexedNodes = new Array<>(numCols * numRows);
+            int index = 0;
+            for (int y = 0; y < numRows; y++) {
+                for (int x = 0; x < numCols; x++, index++) {
+                    TiledMapTileLayer.Cell cell = baseLayer.getCell(x, numRows - 1 - y);
+                    if (cell != null) {
+                        TileFlags tf = Ultima6.TILE_FLAGS.get(cell.getTile().getId() - 1);
+                        nodes[x][y] = new Location(index, x, y, tf);
+                        indexedNodes.add(nodes[x][y]);
+                    }
+                }
+            }
+            for (int y = 0; y < numRows; y++) {
+                for (int x = 0; x < numCols; x++) {
+                    if (x + 1 < nodes.length) {
+                        nodes[x][y].getConnections().add(new TileConnection(nodes[x][y], nodes[x + 1][y]));
+                    }
+                    if (x - 1 >= 0) {
+                        nodes[x][y].getConnections().add(new TileConnection(nodes[x][y], nodes[x - 1][y]));
+                    }
+                    if (y + 1 < nodes[x].length) {
+                        nodes[x][y].getConnections().add(new TileConnection(nodes[x][y], nodes[x][y + 1]));
+                    }
+                    if (y - 1 >= 0) {
+                        nodes[x][y].getConnections().add(new TileConnection(nodes[x][y], nodes[x][y - 1]));
+                    }
+                }
+            }
+            
+            LocationGraph graph = new LocationGraph(indexedNodes);
+            this.pathfinder = new IndexedAStarPathFinder<>(graph);
+
             TiledMapTileSets sets = this.tiledMap.getTileSets();
             TiledMapTileSet set = sets.getTileSet(0);
             for (PaletteCycledTiles at : PaletteCycledTiles.values()) {

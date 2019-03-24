@@ -6,6 +6,8 @@ import ultima6.Constants.Map;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.ai.pfa.DefaultGraphPath;
+import com.badlogic.gdx.ai.pfa.GraphPath;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -49,10 +51,11 @@ public class GameScreen extends BaseScreen {
         renderer = new TmxMapRenderer(this.map, this.map.getTiledMap(), 2f);
 
         mapPixelHeight = this.map.getHeight();
-        
+
         SequenceAction seq1 = Actions.action(SequenceAction.class);
         seq1.addAction(Actions.delay(15f));
         seq1.addAction(Actions.run(CLOCK));
+        seq1.addAction(Actions.run(new ScheduleRunner()));
         stage.addAction(Actions.forever(seq1));
 
     }
@@ -394,6 +397,67 @@ public class GameScreen extends BaseScreen {
 
     @Override
     public void log(String s) {
+    }
+
+    public class ScheduleRunner implements Runnable {
+
+        @Override
+        public void run() {
+
+            SequenceAction seq = Actions.action(SequenceAction.class);
+
+            for (Integer npc : Ultima6.SCHEDULES.keySet()) {
+                for (Actor actor : map.getBaseMap().getActors()) {
+                    if (actor.getId() == npc) {
+                        for (Schedule sched : Ultima6.SCHEDULES.get(npc)) {
+                            if (sched.getHour() == Ultima6.CLOCK.getHour() && Ultima6.CLOCK.getMinute() == 0) {
+
+                                GraphPath<LocationGraph.Location> path = new DefaultGraphPath<>();
+
+                                map.getPathfinder().searchNodePath(
+                                        map.getNodes()[actor.getWx()][actor.getWy()],
+                                        map.getNodes()[sched.getX()][sched.getY()],
+                                        new LocationGraph.ManhattanDistance(),
+                                        path);
+
+                                for (int i = 0; i < path.getCount(); i++) {
+                                    LocationRunner run = new LocationRunner(actor, path.get(i));
+                                    seq.addAction(Actions.delay(1f));
+                                    seq.addAction(Actions.run(run));
+                                }
+
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+
+            seq.addAction(Actions.removeAction(seq));
+            stage.addAction(seq);
+        }
+
+    }
+
+    public class LocationRunner implements Runnable {
+
+        final Actor actor;
+        final LocationGraph.Location loc;
+
+        public LocationRunner(Actor actor, LocationGraph.Location loc) {
+            this.actor = actor;
+            this.loc = loc;
+        }
+
+        @Override
+        public void run() {
+            actor.setWx(loc.getX());
+            actor.setWy(loc.getY());
+            actor.setX(loc.getX() * 16);
+            actor.setY((map.getHeight() - 1 - loc.getY()) * 16);
+        }
+
     }
 
 }

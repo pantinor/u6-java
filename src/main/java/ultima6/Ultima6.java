@@ -160,7 +160,7 @@ public class Ultima6 extends Game {
 
             Constants.Map.WORLD.init();
             Constants.Map.WORLD.getScreen().setMapPixelCoords(Constants.Map.WORLD.getScreen().newMapPixelCoords, 307, 352);
-
+            CLOCK.incMinute(1 * 60 * 11 + 59);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -262,9 +262,9 @@ public class Ultima6 extends Game {
         int[] num_schedules = new int[256];
 
         for (int i = 0; i < 256; i++) {
-            sched_offsets[i] = dis.readShort() & 0xff;
+            sched_offsets[i] = dis.readUnsignedShort();
         }
-        int total_schedules = dis.readShort() & 0xff;
+        int total_schedules = dis.readUnsignedShort();
         for (int i = 0; i < 256; i++) {
             if (sched_offsets[i] > (total_schedules - 1)) {
                 num_schedules[i] = 0;
@@ -277,33 +277,34 @@ public class Ultima6 extends Game {
             }
         }
 
-        byte[] data = new byte[total_schedules * 5];
-        dis.read(data);
-
         for (int i = 0; i < 256; i++) {
-            int idx = sched_offsets[i] * 5;
             int num = num_schedules[i];
             if (num > 0) {
                 java.util.List<Schedule> scheds = new ArrayList<>();
                 for (int j = 0; j < num; j++) {
                     Schedule sched = new Schedule();
-                    byte hour = data[idx];
+                    int hour = dis.readUnsignedByte();
                     sched.setHour(hour & 0x1f);
                     sched.setDayOfWeek(hour >> 5);
-                    sched.setWorktype(data[idx + 1] & 0xff);
+                    sched.setWorktype(dis.readUnsignedByte());
+                    
+                    int b1 = dis.readUnsignedByte();
+                    int b2 = dis.readUnsignedByte();
+                    int b3 = dis.readUnsignedByte();
 
-                    int x = data[idx + 2];
-                    x += (data[idx + 3] & 0x3) << 8;
-                    int y = (data[idx + 3] & 0xfc) >> 2;
-                    y += (data[idx + 4] & 0xf) << 6;
-                    int z = (data[idx + 4] & 0xf0) >> 4;
+                    int x = b1;
+                    x += (b2 & 0x3) << 8;
+                    int y = (b2 & 0xfc) >> 2;
+                    y += (b3 & 0xf) << 6;
+                    int z = (b3 & 0xf0) >> 4;
 
                     sched.setX(x);
                     sched.setY(y);
                     sched.setZ(z);
+                    
                     scheds.add(sched);
-                    idx += 5;
-                    System.out.printf("npc[%d] - %s\n", i, sched);
+                    
+                    //System.out.printf("npc[%d] - %s\n", i, sched);
                 }
                 SCHEDULES.put(i, scheds);
             }
