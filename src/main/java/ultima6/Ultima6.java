@@ -160,7 +160,10 @@ public class Ultima6 extends Game {
 
             Constants.Map.WORLD.init();
             Constants.Map.WORLD.getScreen().setMapPixelCoords(Constants.Map.WORLD.getScreen().newMapPixelCoords, 307, 352);
+
             CLOCK.incMinute(1 * 60 * 11 + 59);
+            CLOCK.setDayMonth(1, 1, 1);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -287,7 +290,7 @@ public class Ultima6 extends Game {
                     sched.setHour(hour & 0x1f);
                     sched.setDayOfWeek(hour >> 5);
                     sched.setWorktype(dis.readUnsignedByte());
-                    
+
                     int b1 = dis.readUnsignedByte();
                     int b2 = dis.readUnsignedByte();
                     int b3 = dis.readUnsignedByte();
@@ -301,9 +304,9 @@ public class Ultima6 extends Game {
                     sched.setX(x);
                     sched.setY(y);
                     sched.setZ(z);
-                    
+
                     scheds.add(sched);
-                    
+
                     //System.out.printf("npc[%d] - %s\n", i, sched);
                 }
                 SCHEDULES.put(i, scheds);

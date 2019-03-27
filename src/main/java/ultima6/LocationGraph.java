@@ -81,7 +81,7 @@ public class LocationGraph implements IndexedGraph<LocationGraph.Location> {
 
             TileFlags tf = toNode.getFlags();
             if (tf.isWall() || tf.isImpassable() || tf.isWet()) {
-                return 2f;
+                return 10f;
             }
 
             return 1f;

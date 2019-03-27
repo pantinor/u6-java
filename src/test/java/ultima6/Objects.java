@@ -11,7 +11,7 @@ import java.io.FileInputStream;
 public class Objects {
 
     public static void main(String[] args) throws Exception {
-        
+
         FileInputStream is = new FileInputStream("src/main/resources/data/TILEFLAG");
         LittleEndianDataInputStream dis = new LittleEndianDataInputStream(is);
 
@@ -26,14 +26,19 @@ public class Objects {
         dis.read(weights);
         dis.read(none);
         dis.read(f3);
-        
+
         for (Constants.Objects obj : Constants.Objects.values()) {
             int weight = weights[obj.getId()] & 0xff;
-            System.out.printf("%s [%d]\n", obj, weight);
+            //System.out.printf("%s [%d]\n", obj, weight);
         }
-        
-        
-        
+
+        Clock clock = new Clock();
+        clock.setDayMonth(1, 1, 1);
+        for (int i = 0; i < 24 * 8; i++) {
+            clock.incMinute(60);
+            System.out.println(clock.getTimeString());
+        }
+
     }
 
 }

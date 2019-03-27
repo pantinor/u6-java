@@ -1,6 +1,6 @@
 package ultima6;
 
-public class Clock implements Runnable {
+public class Clock {
 
     public static final int TICKS_PER_MINUTE = 4;
     public static final int NUM_TIMERS = 16;
@@ -11,16 +11,12 @@ public class Clock implements Runnable {
     private int month;
     private int year;
     private int dayOfWeek;
+    private int ticks;
     private int moveCounter; // player steps taken since start
     private int timeCounter; // game minutes
     private final int[] timers = new int[NUM_TIMERS];
     private int numTimers;
     private int restCounter; //hours until the party will heal again while resting.
-
-    @Override
-    public void run() {
-        incMinute(1);
-    }
 
     public int getMinute() {
         return minute;
@@ -38,6 +34,12 @@ public class Clock implements Runnable {
         return month;
     }
 
+    public void setDayMonth(int day, int dow, int month) {
+        this.day = day;
+        this.month = month;
+        this.dayOfWeek = dow;
+    }
+
     public int getYear() {
         return year;
     }
@@ -46,12 +48,15 @@ public class Clock implements Runnable {
         return dayOfWeek;
     }
 
-    public void incMoveCounter() {
+    public boolean incMoveCounter() {
         moveCounter++;
-    }
-
-    public void incMoveCounterByMinute() {
-        moveCounter += TICKS_PER_MINUTE;
+        ticks++;
+        if (ticks == 4) {
+            incMinute(1);
+            ticks = 0;
+            return true;
+        }
+        return false;
     }
 
     public void incMinute(int amount) {
@@ -151,7 +156,7 @@ public class Clock implements Runnable {
             tmp_hour = hour;
         }
 
-        String ret = String.format("%02d:%02d %cM", tmp_hour, minute, c);
+        String ret = String.format("%02d:%02d %cM %d %d", tmp_hour, minute, c, day, dayOfWeek);
 
         return ret;
     }
