@@ -254,6 +254,12 @@ public class GameScreen extends BaseScreen {
                 a = this.map.getBaseMap().getActorAt((int) v.x - 1, (int) v.y);
             }
             if (a != null) {
+                int npc = a.getId();
+                if (npc == 373) {
+                    npc = 201; //wisp
+                } else if (npc == 382) {
+                    npc = 202; //guard
+                }
                 Conversation c = Ultima6.CONVS.get(a.getId());
                 if (c != null) {
                     this.stage.addActor(this.hud);

@@ -248,6 +248,1007 @@
    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
   </data>
  </layer>
+ <objectgroup name="eggs">
+  <object id="9" name="EGG" gid="1257" x="1840" y="64" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="66"/>
+   </properties>
+  </object>
+  <object id="11" name="EGG" gid="1257" x="1968" y="64" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="33"/>
+   </properties>
+  </object>
+  <object id="30" name="EGG" gid="1257" x="2352" y="64" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="66"/>
+   </properties>
+  </object>
+  <object id="31" name="EGG" gid="1257" x="2480" y="64" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="80"/>
+   </properties>
+  </object>
+  <object id="41" name="EGG" gid="1257" x="1376" y="112" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="66"/>
+   </properties>
+  </object>
+  <object id="55" name="EGG" gid="1257" x="992" y="160" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="50"/>
+   </properties>
+  </object>
+  <object id="59" name="EGG" gid="1257" x="816" y="176" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="50"/>
+   </properties>
+  </object>
+  <object id="63" name="EGG" gid="1257" x="1168" y="176" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="33"/>
+   </properties>
+  </object>
+  <object id="74" name="EGG" gid="1257" x="2704" y="192" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1057"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="80" name="EGG" gid="1257" x="3408" y="224" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1090"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="120" name="EGG" gid="1257" x="3392" y="320" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1090"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="123" name="EGG" gid="1257" x="3280" y="336" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1090"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="135" name="EGG" gid="1257" x="3792" y="352" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1090"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="139" name="EGG" gid="1257" x="3088" y="368" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1090"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="192" name="EGG" gid="1257" x="3632" y="448" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1090"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="193" name="EGG" gid="1257" x="944" y="464" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="322"/>
+    <property name="quality" value="1"/>
+   </properties>
+  </object>
+  <object id="234" name="EGG" gid="1257" x="3088" y="544" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1090"/>
+    <property name="quality" value="4"/>
+    <property name="spawn" value="GIANT_SPIDER"/>
+   </properties>
+  </object>
+  <object id="236" name="EGG" gid="1257" x="3360" y="560" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1090"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="241" name="EGG" gid="1257" x="2992" y="576" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1090"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="268" name="EGG" gid="1257" x="1424" y="672" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1090"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="271" name="EGG" gid="1257" x="3888" y="688" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1090"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="273" name="EGG" gid="1257" x="1840" y="704" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="33"/>
+   </properties>
+  </object>
+  <object id="274" name="EGG" gid="1257" x="1968" y="704" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1074"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="275" name="EGG" gid="1257" x="2096" y="704" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="66"/>
+   </properties>
+  </object>
+  <object id="290" name="EGG" gid="1257" x="2480" y="704" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="66"/>
+   </properties>
+  </object>
+  <object id="291" name="EGG" gid="1257" x="2832" y="704" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1090"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="292" name="EGG" gid="1257" x="3072" y="704" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1090"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="293" name="EGG" gid="1257" x="3232" y="704" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1090"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="300" name="EGG" gid="1257" x="48" y="800" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="10"/>
+   </properties>
+  </object>
+  <object id="301" name="EGG" gid="1257" x="1680" y="800" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="10"/>
+   </properties>
+  </object>
+  <object id="315" name="EGG" gid="1257" x="96" y="832" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="33"/>
+   </properties>
+  </object>
+  <object id="318" name="EGG" gid="1257" x="3488" y="832" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1090"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="325" name="EGG" gid="1257" x="192" y="864" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="20"/>
+   </properties>
+  </object>
+  <object id="328" name="EGG" gid="1257" x="864" y="864" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="10"/>
+   </properties>
+  </object>
+  <object id="330" name="EGG" gid="1257" x="1216" y="864" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="10"/>
+   </properties>
+  </object>
+  <object id="331" name="EGG" gid="1257" x="1968" y="864" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="10"/>
+   </properties>
+  </object>
+  <object id="332" name="EGG" gid="1257" x="1984" y="864" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="10"/>
+   </properties>
+  </object>
+  <object id="333" name="EGG" gid="1257" x="2496" y="864" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="10"/>
+   </properties>
+  </object>
+  <object id="341" name="EGG" gid="1257" x="2096" y="944" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="66"/>
+   </properties>
+  </object>
+  <object id="347" name="EGG" gid="1257" x="832" y="976" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="50"/>
+   </properties>
+  </object>
+  <object id="350" name="EGG" gid="1257" x="3008" y="976" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1090"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="354" name="EGG" gid="1257" x="96" y="1008" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1090"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="355" name="EGG" gid="1257" x="1712" y="1008" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="75"/>
+   </properties>
+  </object>
+  <object id="358" name="EGG" gid="1257" x="640" y="1024" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1090"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="360" name="EGG" gid="1257" x="1200" y="1056" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="75"/>
+   </properties>
+  </object>
+  <object id="371" name="EGG" gid="1257" x="432" y="1072" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1074"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="382" name="EGG" gid="1257" x="1968" y="1088" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="75"/>
+   </properties>
+  </object>
+  <object id="392" name="EGG" gid="1257" x="3248" y="1088" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1090"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="491" name="EGG" gid="1257" x="1200" y="1216" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1099"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="502" name="EGG" gid="1257" x="3632" y="1216" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="33"/>
+   </properties>
+  </object>
+  <object id="505" name="EGG" gid="1257" x="2912" y="1232" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1090"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="514" name="EGG" gid="1257" x="112" y="1296" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1090"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="536" name="EGG" gid="1257" x="640" y="1328" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="10"/>
+   </properties>
+  </object>
+  <object id="559" name="EGG" gid="1257" x="4016" y="1360" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1054"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="560" name="EGG" gid="1257" x="1984" y="1376" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="75"/>
+   </properties>
+  </object>
+  <object id="582" name="EGG" gid="1257" x="992" y="1456" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="10"/>
+   </properties>
+  </object>
+  <object id="606" name="EGG" gid="1257" x="3008" y="1472" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1054"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="612" name="EGG" gid="1257" x="704" y="1488" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="100"/>
+   </properties>
+  </object>
+  <object id="627" name="EGG" gid="1257" x="304" y="1504" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="33"/>
+   </properties>
+  </object>
+  <object id="628" name="EGG" gid="1257" x="432" y="1504" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="10"/>
+   </properties>
+  </object>
+  <object id="632" name="EGG" gid="1257" x="1984" y="1504" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="50"/>
+   </properties>
+  </object>
+  <object id="637" name="EGG" gid="1257" x="32" y="1520" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="10"/>
+   </properties>
+  </object>
+  <object id="691" name="EGG" gid="1257" x="2272" y="1568" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1124"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="722" name="EGG" gid="1257" x="1200" y="1600" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1099"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="724" name="EGG" gid="1257" x="1584" y="1600" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1099"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="725" name="EGG" gid="1257" x="2240" y="1600" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="612"/>
+    <property name="quality" value="2"/>
+   </properties>
+  </object>
+  <object id="734" name="EGG" gid="1257" x="1984" y="1616" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="75"/>
+   </properties>
+  </object>
+  <object id="761" name="EGG" gid="1257" x="2848" y="1632" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="50"/>
+   </properties>
+  </object>
+  <object id="763" name="EGG" gid="1257" x="336" y="1648" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1074"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="764" name="EGG" gid="1257" x="592" y="1648" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="10"/>
+   </properties>
+  </object>
+  <object id="886" name="EGG" gid="1257" x="2656" y="1776" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="50"/>
+   </properties>
+  </object>
+  <object id="898" name="EGG" gid="1257" x="112" y="1808" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="33"/>
+   </properties>
+  </object>
+  <object id="904" name="EGG" gid="1257" x="2832" y="1824" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="50"/>
+   </properties>
+  </object>
+  <object id="922" name="EGG" gid="1257" x="544" y="1856" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1074"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="931" name="EGG" gid="1257" x="304" y="1872" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1074"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="983" name="EGG" gid="1257" x="1104" y="1952" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="356"/>
+    <property name="quality" value="1"/>
+    <property name="spawn" value="TORCH"/>
+   </properties>
+  </object>
+  <object id="1023" name="EGG" gid="1257" x="1712" y="1984" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="75"/>
+   </properties>
+  </object>
+  <object id="1029" name="EGG" gid="1257" x="48" y="2000" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="50"/>
+   </properties>
+  </object>
+  <object id="1084" name="EGG" gid="1257" x="720" y="2080" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="10"/>
+   </properties>
+  </object>
+  <object id="1099" name="EGG" gid="1257" x="3120" y="2096" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="75"/>
+   </properties>
+  </object>
+  <object id="1105" name="EGG" gid="1257" x="1072" y="2112" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="50"/>
+   </properties>
+  </object>
+  <object id="1106" name="EGG" gid="1257" x="1248" y="2112" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="33"/>
+   </properties>
+  </object>
+  <object id="1109" name="EGG" gid="1257" x="432" y="2128" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="356"/>
+    <property name="quality" value="1"/>
+   </properties>
+  </object>
+  <object id="1111" name="EGG" gid="1257" x="2240" y="2128" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="331"/>
+    <property name="quality" value="1"/>
+    <property name="spawn" value="GUARD"/>
+   </properties>
+  </object>
+  <object id="1170" name="EGG" gid="1257" x="864" y="2256" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="50"/>
+   </properties>
+  </object>
+  <object id="1171" name="EGG" gid="1257" x="2608" y="2256" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1074"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="1180" name="EGG" gid="1257" x="688" y="2272" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="322"/>
+    <property name="quality" value="1"/>
+   </properties>
+  </object>
+  <object id="1181" name="EGG" gid="1257" x="1408" y="2272" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="33"/>
+   </properties>
+  </object>
+  <object id="1182" name="EGG" gid="1257" x="1696" y="2272" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="33"/>
+   </properties>
+  </object>
+  <object id="1187" name="EGG" gid="1257" x="944" y="2304" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="33"/>
+   </properties>
+  </object>
+  <object id="1205" name="EGG" gid="1257" x="864" y="2352" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="50"/>
+   </properties>
+  </object>
+  <object id="1220" name="EGG" gid="1257" x="3248" y="2368" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1090"/>
+    <property name="quality" value="4"/>
+    <property name="spawn" value="GARLIC"/>
+   </properties>
+  </object>
+  <object id="1221" name="EGG" gid="1257" x="3888" y="2368" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1090"/>
+    <property name="quality" value="4"/>
+    <property name="spawn" value="BLOOD_MOSS"/>
+   </properties>
+  </object>
+  <object id="1226" name="EGG" gid="1257" x="2496" y="2384" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="50"/>
+   </properties>
+  </object>
+  <object id="1231" name="EGG" gid="1257" x="2656" y="2384" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="50"/>
+   </properties>
+  </object>
+  <object id="1256" name="EGG" gid="1257" x="3520" y="2432" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="75"/>
+   </properties>
+  </object>
+  <object id="1258" name="EGG" gid="1257" x="896" y="2448" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="33"/>
+   </properties>
+  </object>
+  <object id="1266" name="EGG" gid="1257" x="864" y="2464" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="50"/>
+   </properties>
+  </object>
+  <object id="1269" name="EGG" gid="1257" x="2736" y="2464" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="50"/>
+   </properties>
+  </object>
+  <object id="1284" name="EGG" gid="1257" x="720" y="2512" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="10"/>
+   </properties>
+  </object>
+  <object id="1285" name="EGG" gid="1257" x="752" y="2512" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="50"/>
+   </properties>
+  </object>
+  <object id="1287" name="EGG" gid="1257" x="1200" y="2512" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="50"/>
+   </properties>
+  </object>
+  <object id="1288" name="EGG" gid="1257" x="1600" y="2512" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="50"/>
+   </properties>
+  </object>
+  <object id="1294" name="EGG" gid="1257" x="2096" y="2528" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="33"/>
+   </properties>
+  </object>
+  <object id="1315" name="EGG" gid="1257" x="304" y="2624" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="50"/>
+    <property name="spawn" value="BLOOD"/>
+   </properties>
+  </object>
+  <object id="1322" name="EGG" gid="1257" x="1712" y="2640" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="33"/>
+   </properties>
+  </object>
+  <object id="1331" name="EGG" gid="1257" x="3888" y="2656" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="66"/>
+    <property name="spawn" value="MEAT"/>
+   </properties>
+  </object>
+  <object id="1333" name="EGG" gid="1257" x="736" y="2672" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1090"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="1334" name="EGG" gid="1257" x="928" y="2672" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1090"/>
+    <property name="quality" value="4"/>
+    <property name="spawn" value="GOLD_COIN"/>
+   </properties>
+  </object>
+  <object id="1339" name="EGG" gid="1257" x="2512" y="2672" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1099"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="1344" name="EGG" gid="1257" x="2912" y="2672" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="66"/>
+    <property name="spawn" value="WATER_VASE"/>
+   </properties>
+  </object>
+  <object id="1345" name="EGG" gid="1257" x="3072" y="2672" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="75"/>
+   </properties>
+  </object>
+  <object id="1376" name="EGG" gid="1257" x="1440" y="2720" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="33"/>
+   </properties>
+  </object>
+  <object id="1398" name="EGG" gid="1257" x="832" y="2752" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1124"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="1404" name="EGG" gid="1257" x="2224" y="2752" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="33"/>
+   </properties>
+  </object>
+  <object id="1405" name="EGG" gid="1257" x="2480" y="2752" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="100"/>
+   </properties>
+  </object>
+  <object id="1468" name="EGG" gid="1257" x="896" y="2832" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1090"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="1470" name="EGG" gid="1257" x="2912" y="2848" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="66"/>
+   </properties>
+  </object>
+  <object id="1491" name="EGG" gid="1257" x="1456" y="2912" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="33"/>
+   </properties>
+  </object>
+  <object id="1492" name="EGG" gid="1257" x="4000" y="2912" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="50"/>
+   </properties>
+  </object>
+  <object id="1493" name="EGG" gid="1257" x="688" y="2928" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1099"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="1494" name="EGG" gid="1257" x="1632" y="2928" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="33"/>
+   </properties>
+  </object>
+  <object id="1499" name="EGG" gid="1257" x="1968" y="2992" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="33"/>
+   </properties>
+  </object>
+  <object id="1503" name="EGG" gid="1257" x="272" y="3008" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="50"/>
+   </properties>
+  </object>
+  <object id="1509" name="EGG" gid="1257" x="3648" y="3008" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="611"/>
+    <property name="quality" value="2"/>
+   </properties>
+  </object>
+  <object id="1510" name="EGG" gid="1257" x="944" y="3024" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="66"/>
+   </properties>
+  </object>
+  <object id="1515" name="EGG" gid="1257" x="2496" y="3040" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="33"/>
+   </properties>
+  </object>
+  <object id="1517" name="EGG" gid="1257" x="704" y="3072" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1099"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="1528" name="EGG" gid="1257" x="1584" y="3152" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="66"/>
+   </properties>
+  </object>
+  <object id="1536" name="EGG" gid="1257" x="1712" y="3248" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="50"/>
+   </properties>
+  </object>
+  <object id="1541" name="EGG" gid="1257" x="3760" y="3264" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="50"/>
+    <property name="spawn" value="INKWELL"/>
+   </properties>
+  </object>
+  <object id="1551" name="EGG" gid="1257" x="3360" y="3296" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="66"/>
+   </properties>
+  </object>
+  <object id="1560" name="EGG" gid="1257" x="1712" y="3392" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="66"/>
+   </properties>
+  </object>
+  <object id="1564" name="EGG" gid="1257" x="2480" y="3408" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1074"/>
+    <property name="quality" value="4"/>
+    <property name="spawn" value="BOLT"/>
+   </properties>
+  </object>
+  <object id="1568" name="EGG" gid="1257" x="128" y="3472" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="33"/>
+    <property name="spawn" value="JAR_OF_HONEY"/>
+   </properties>
+  </object>
+  <object id="1589" name="EGG" gid="1257" x="3008" y="3536" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="66"/>
+   </properties>
+  </object>
+  <object id="1608" name="EGG" gid="1257" x="1744" y="3584" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1074"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="1626" name="EGG" gid="1257" x="2096" y="3632" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1099"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="1627" name="EGG" gid="1257" x="1968" y="3648" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1124"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="1630" name="EGG" gid="1257" x="2640" y="3648" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1099"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="1641" name="EGG" gid="1257" x="3248" y="3648" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="100"/>
+   </properties>
+  </object>
+  <object id="1678" name="EGG" gid="1257" x="768" y="3728" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="66"/>
+   </properties>
+  </object>
+  <object id="1684" name="EGG" gid="1257" x="1744" y="3744" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="1074"/>
+    <property name="quality" value="4"/>
+   </properties>
+  </object>
+  <object id="1736" name="EGG" gid="1257" x="2736" y="3792" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="66"/>
+   </properties>
+  </object>
+  <object id="1752" name="EGG" gid="1257" x="1120" y="3808" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="33"/>
+   </properties>
+  </object>
+  <object id="1753" name="EGG" gid="1257" x="1360" y="3808" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="33"/>
+   </properties>
+  </object>
+  <object id="1765" name="EGG" gid="1257" x="4000" y="3808" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="66"/>
+   </properties>
+  </object>
+  <object id="1766" name="EGG" gid="1257" x="160" y="3824" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="587"/>
+    <property name="quality" value="2"/>
+   </properties>
+  </object>
+  <object id="1780" name="EGG" gid="1257" x="2992" y="3904" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="100"/>
+   </properties>
+  </object>
+  <object id="1789" name="EGG" gid="1257" x="3248" y="3904" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="100"/>
+   </properties>
+  </object>
+  <object id="1790" name="EGG" gid="1257" x="2480" y="3920" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="50"/>
+   </properties>
+  </object>
+  <object id="1792" name="EGG" gid="1257" x="1680" y="3952" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="75"/>
+   </properties>
+  </object>
+  <object id="1804" name="EGG" gid="1257" x="3616" y="4016" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="50"/>
+   </properties>
+  </object>
+  <object id="1806" name="EGG" gid="1257" x="2992" y="4032" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="66"/>
+   </properties>
+  </object>
+  <object id="1811" name="EGG" gid="1257" x="64" y="4048" width="16" height="16">
+   <properties>
+    <property name="object" value="335"/>
+    <property name="qty" value="66"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup name="objects">
   <object id="1" name="SWITCH" gid="735" x="2224" y="16" width="16" height="16">
    <properties>
@@ -294,22 +1295,10 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-  <object id="9" name="EGG" gid="1257" x="1840" y="64" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-   </properties>
-  </object>
   <object id="10" name="GEM" gid="596" x="1888" y="64" width="16" height="16">
    <properties>
     <property name="object" value="77"/>
     <property name="qty" value="5"/>
-   </properties>
-  </object>
-  <object id="11" name="EGG" gid="1257" x="1968" y="64" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="33"/>
    </properties>
   </object>
   <object id="12" name="DEAD_CYCLOPS" gid="1276" x="2096" y="64" width="16" height="16">
@@ -346,18 +1335,6 @@
     <property name="object" value="175"/>
    </properties>
   </object>
-  <object id="30" name="EGG" gid="1257" x="2352" y="64" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-   </properties>
-  </object>
-  <object id="31" name="EGG" gid="1257" x="2480" y="64" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="80"/>
-   </properties>
-  </object>
   <object id="32" name="SECRET_DOOR" gid="1255" x="2528" y="64" width="16" height="16">
    <properties>
     <property name="frame" value="2"/>
@@ -389,12 +1366,6 @@
    <properties>
     <property name="object" value="77"/>
     <property name="qty" value="2"/>
-   </properties>
-  </object>
-  <object id="41" name="EGG" gid="1257" x="1376" y="112" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
    </properties>
   </object>
   <object id="42" name="PORTCULLIS" gid="1150" x="1968" y="112" width="16" height="16">
@@ -438,12 +1409,6 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-  <object id="55" name="EGG" gid="1257" x="992" y="160" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
-   </properties>
-  </object>
   <object id="56" name="WALKWAY" gid="999" x="1072" y="160" width="16" height="16">
    <properties>
     <property name="frame" value="6"/>
@@ -462,12 +1427,6 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-  <object id="59" name="EGG" gid="1257" x="816" y="176" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
-   </properties>
-  </object>
   <object id="60" name="WALKWAY" gid="998" x="1072" y="176" width="16" height="16">
    <properties>
     <property name="frame" value="5"/>
@@ -484,12 +1443,6 @@
    <properties>
     <property name="frame" value="1"/>
     <property name="object" value="165"/>
-   </properties>
-  </object>
-  <object id="63" name="EGG" gid="1257" x="1168" y="176" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="33"/>
    </properties>
   </object>
   <object id="64" name="STALAGMITE" gid="721" x="1536" y="176" width="16" height="16">
@@ -545,13 +1498,6 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-  <object id="74" name="EGG" gid="1257" x="2704" y="192" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="33"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
   <object id="75" name="STALAGMITE" gid="722" x="832" y="208" width="16" height="16">
    <properties>
     <property name="frame" value="1"/>
@@ -579,13 +1525,6 @@
   <object id="79" name="STALAGMITE" gid="721" x="1472" y="208" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
-   </properties>
-  </object>
-  <object id="80" name="EGG" gid="1257" x="3408" y="224" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-    <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="81" name="STALAGMITE" gid="721" x="3488" y="240" width="16" height="16">
@@ -705,13 +1644,6 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-  <object id="120" name="EGG" gid="1257" x="3392" y="320" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
   <object id="121" name="STONE" gid="1160" x="352" y="336" width="16" height="16">
    <properties>
     <property name="object" value="315"/>
@@ -720,13 +1652,6 @@
   <object id="122" name="STONE" gid="1160" x="400" y="336" width="16" height="16">
    <properties>
     <property name="object" value="315"/>
-   </properties>
-  </object>
-  <object id="123" name="EGG" gid="1257" x="3280" y="336" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-    <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="124" name="MONOLITH" gid="1188" x="288" y="352" width="16" height="16">
@@ -795,13 +1720,6 @@
     <property name="quality" value="55"/>
    </properties>
   </object>
-  <object id="135" name="EGG" gid="1257" x="3792" y="352" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
   <object id="136" name="STONE" gid="1160" x="320" y="368" width="16" height="16">
    <properties>
     <property name="object" value="315"/>
@@ -818,16 +1736,10 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-  <object id="139" name="EGG" gid="1257" x="3088" y="368" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
   <object id="142" name="SHRINE" gid="1745" x="368" y="384" width="16" height="16">
    <properties>
     <property name="object" value="393"/>
+    <property name="quality" value="198"/>
    </properties>
   </object>
   <object id="143" name="STALAGMITE" gid="722" x="2992" y="384" width="16" height="16">
@@ -1002,20 +1914,6 @@
   <object id="191" name="HOLE" gid="1143" x="2992" y="448" width="16" height="16">
    <properties>
     <property name="object" value="308"/>
-   </properties>
-  </object>
-  <object id="192" name="EGG" gid="1257" x="3632" y="448" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
-  <object id="193" name="EGG" gid="1257" x="944" y="464" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-    <property name="quality" value="1"/>
    </properties>
   </object>
   <object id="194" name="STALAGMITE" gid="721" x="1136" y="464" width="16" height="16">
@@ -1238,23 +2136,9 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-  <object id="234" name="EGG" gid="1257" x="3088" y="544" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
   <object id="235" name="STALAGMITE" gid="721" x="1184" y="560" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
-   </properties>
-  </object>
-  <object id="236" name="EGG" gid="1257" x="3360" y="560" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-    <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="237" name="GOLD_NUGGET" gid="610" x="1104" y="576" width="16" height="16">
@@ -1276,13 +2160,6 @@
   <object id="240" name="STALAGMITE" gid="721" x="1504" y="576" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
-   </properties>
-  </object>
-  <object id="241" name="EGG" gid="1257" x="2992" y="576" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-    <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="242" name="STALAGMITE" gid="721" x="1136" y="592" width="16" height="16">
@@ -1398,13 +2275,6 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-  <object id="268" name="EGG" gid="1257" x="1424" y="672" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
   <object id="269" name="STALAGMITE" gid="721" x="1536" y="672" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
@@ -1416,36 +2286,10 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-  <object id="271" name="EGG" gid="1257" x="3888" y="688" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
   <object id="272" name="GOLD_NUGGET" gid="610" x="960" y="704" width="16" height="16">
    <properties>
     <property name="object" value="89"/>
     <property name="qty" value="1"/>
-   </properties>
-  </object>
-  <object id="273" name="EGG" gid="1257" x="1840" y="704" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="33"/>
-   </properties>
-  </object>
-  <object id="274" name="EGG" gid="1257" x="1968" y="704" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
-  <object id="275" name="EGG" gid="1257" x="2096" y="704" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
    </properties>
   </object>
   <object id="276" name="ELECTRIC_FIELD" gid="736" x="2144" y="704" width="16" height="16">
@@ -1456,33 +2300,6 @@
   <object id="287" name="ELECTRIC_FIELD" gid="736" x="2304" y="704" width="16" height="16">
    <properties>
     <property name="object" value="175"/>
-   </properties>
-  </object>
-  <object id="290" name="EGG" gid="1257" x="2480" y="704" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-   </properties>
-  </object>
-  <object id="291" name="EGG" gid="1257" x="2832" y="704" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
-  <object id="292" name="EGG" gid="1257" x="3072" y="704" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
-  <object id="293" name="EGG" gid="1257" x="3232" y="704" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-    <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="295" name="GOLD_NUGGET" gid="610" x="896" y="720" width="16" height="16">
@@ -1513,18 +2330,6 @@
    <properties>
     <property name="frame" value="5"/>
     <property name="object" value="339"/>
-   </properties>
-  </object>
-  <object id="300" name="EGG" gid="1257" x="48" y="800" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="10"/>
-   </properties>
-  </object>
-  <object id="301" name="EGG" gid="1257" x="1680" y="800" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="10"/>
    </properties>
   </object>
   <object id="302" name="BACKPACK" gid="624" x="3728" y="800" width="16" height="16">
@@ -1593,23 +2398,10 @@
     <property name="qty" value="1"/>
    </properties>
   </object>
-  <object id="315" name="EGG" gid="1257" x="96" y="832" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="33"/>
-   </properties>
-  </object>
   <object id="316" name="STALAGMITE" gid="722" x="752" y="832" width="16" height="16">
    <properties>
     <property name="frame" value="1"/>
     <property name="object" value="165"/>
-   </properties>
-  </object>
-  <object id="318" name="EGG" gid="1257" x="3488" y="832" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-    <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="319" name="PICK" gid="628" x="3792" y="832" width="16" height="16">
@@ -1640,12 +2432,6 @@
     <property name="qty" value="10"/>
    </properties>
   </object>
-  <object id="325" name="EGG" gid="1257" x="192" y="864" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="20"/>
-   </properties>
-  </object>
   <object id="326" name="STALAGMITE" gid="721" x="320" y="864" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
@@ -1656,39 +2442,9 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-  <object id="328" name="EGG" gid="1257" x="864" y="864" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="10"/>
-   </properties>
-  </object>
   <object id="329" name="STALAGMITE" gid="721" x="1056" y="864" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
-   </properties>
-  </object>
-  <object id="330" name="EGG" gid="1257" x="1216" y="864" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="10"/>
-   </properties>
-  </object>
-  <object id="331" name="EGG" gid="1257" x="1968" y="864" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="10"/>
-   </properties>
-  </object>
-  <object id="332" name="EGG" gid="1257" x="1984" y="864" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="10"/>
-   </properties>
-  </object>
-  <object id="333" name="EGG" gid="1257" x="2496" y="864" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="10"/>
    </properties>
   </object>
   <object id="334" name="OPEN_BARREL" gid="754" x="3744" y="864" width="16" height="16">
@@ -1727,22 +2483,10 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-  <object id="341" name="EGG" gid="1257" x="2096" y="944" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-   </properties>
-  </object>
   <object id="342" name="GOLD_NUGGET" gid="610" x="1792" y="960" width="16" height="16">
    <properties>
     <property name="object" value="89"/>
     <property name="qty" value="1"/>
-   </properties>
-  </object>
-  <object id="347" name="EGG" gid="1257" x="832" y="976" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
    </properties>
   </object>
   <object id="348" name="STALAGMITE" gid="721" x="1072" y="976" width="16" height="16">
@@ -1753,13 +2497,6 @@
   <object id="349" name="STALAGMITE" gid="721" x="1760" y="976" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
-   </properties>
-  </object>
-  <object id="350" name="EGG" gid="1257" x="3008" y="976" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-    <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="351" name="STALAGMITE" gid="721" x="944" y="992" width="16" height="16">
@@ -1778,36 +2515,10 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-  <object id="354" name="EGG" gid="1257" x="96" y="1008" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
-  <object id="355" name="EGG" gid="1257" x="1712" y="1008" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="75"/>
-   </properties>
-  </object>
   <object id="356" name="STALAGMITE" gid="722" x="2016" y="1008" width="16" height="16">
    <properties>
     <property name="frame" value="1"/>
     <property name="object" value="165"/>
-   </properties>
-  </object>
-  <object id="358" name="EGG" gid="1257" x="640" y="1024" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
-  <object id="360" name="EGG" gid="1257" x="1200" y="1056" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="75"/>
    </properties>
   </object>
   <object id="361" name="STALAGMITE" gid="722" x="1424" y="1056" width="16" height="16">
@@ -1861,13 +2572,6 @@
     <property name="object" value="172"/>
    </properties>
   </object>
-  <object id="371" name="EGG" gid="1257" x="432" y="1072" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
   <object id="373" name="STALAGMITE" gid="722" x="960" y="1072" width="16" height="16">
    <properties>
     <property name="frame" value="1"/>
@@ -1916,12 +2620,6 @@
     <property name="qty" value="1"/>
    </properties>
   </object>
-  <object id="382" name="EGG" gid="1257" x="1968" y="1088" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="75"/>
-   </properties>
-  </object>
   <object id="383" name="PORTCULLIS" gid="1152" x="2400" y="1088" width="16" height="16">
    <properties>
     <property name="frame" value="3"/>
@@ -1950,13 +2648,6 @@
    <properties>
     <property name="frame" value="1"/>
     <property name="object" value="165"/>
-   </properties>
-  </object>
-  <object id="392" name="EGG" gid="1257" x="3248" y="1088" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-    <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="393" name="STALAGMITE" gid="721" x="3664" y="1088" width="16" height="16">
@@ -2340,13 +3031,6 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-  <object id="491" name="EGG" gid="1257" x="1200" y="1216" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="75"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
   <object id="492" name="STALAGMITE" gid="722" x="1680" y="1216" width="16" height="16">
    <properties>
     <property name="frame" value="1"/>
@@ -2380,19 +3064,6 @@
    <properties>
     <property name="frame" value="3"/>
     <property name="object" value="310"/>
-   </properties>
-  </object>
-  <object id="502" name="EGG" gid="1257" x="3632" y="1216" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="33"/>
-   </properties>
-  </object>
-  <object id="505" name="EGG" gid="1257" x="2912" y="1232" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-    <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="506" name="REMAINS" gid="728" x="3360" y="1232" width="16" height="16">
@@ -2441,13 +3112,6 @@
    <properties>
     <property name="frame" value="3"/>
     <property name="object" value="168"/>
-   </properties>
-  </object>
-  <object id="514" name="EGG" gid="1257" x="112" y="1296" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-    <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="519" name="REMAINS" gid="726" x="3904" y="1296" width="16" height="16">
@@ -2551,12 +3215,6 @@
     <property name="object" value="168"/>
    </properties>
   </object>
-  <object id="536" name="EGG" gid="1257" x="640" y="1328" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="10"/>
-   </properties>
-  </object>
   <object id="537" name="CAULDRON1" gid="687" x="1728" y="1328" width="16" height="16">
    <properties>
     <property name="object" value="147"/>
@@ -2638,19 +3296,6 @@
    <properties>
     <property name="frame" value="3"/>
     <property name="object" value="168"/>
-   </properties>
-  </object>
-  <object id="559" name="EGG" gid="1257" x="4016" y="1360" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="30"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
-  <object id="560" name="EGG" gid="1257" x="1984" y="1376" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="75"/>
    </properties>
   </object>
   <object id="561" name="STALAGMITE" gid="721" x="2128" y="1376" width="16" height="16">
@@ -2772,12 +3417,6 @@
     <property name="object" value="103"/>
    </properties>
   </object>
-  <object id="582" name="EGG" gid="1257" x="992" y="1456" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="10"/>
-   </properties>
-  </object>
   <object id="583" name="HORSESHOES" gid="793" x="1312" y="1456" width="16" height="16">
    <properties>
     <property name="object" value="202"/>
@@ -2883,13 +3522,6 @@
     <property name="object" value="178"/>
    </properties>
   </object>
-  <object id="606" name="EGG" gid="1257" x="3008" y="1472" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="30"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
   <object id="608" name="REMAINS" gid="728" x="3840" y="1472" width="16" height="16">
    <properties>
     <property name="frame" value="3"/>
@@ -2905,12 +3537,6 @@
   <object id="611" name="BAG" gid="756" x="656" y="1488" width="16" height="16">
    <properties>
     <property name="object" value="188"/>
-   </properties>
-  </object>
-  <object id="612" name="EGG" gid="1257" x="704" y="1488" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="100"/>
    </properties>
   </object>
   <object id="617" name="WATER_VASE" gid="702" x="1440" y="1488" width="16" height="16">
@@ -2935,18 +3561,6 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-  <object id="627" name="EGG" gid="1257" x="304" y="1504" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="33"/>
-   </properties>
-  </object>
-  <object id="628" name="EGG" gid="1257" x="432" y="1504" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="10"/>
-   </properties>
-  </object>
   <object id="629" name="WOODEN_LADDER" gid="631" x="672" y="1504" width="16" height="16">
    <properties>
     <property name="object" value="106"/>
@@ -2960,12 +3574,6 @@
   <object id="631" name="STALAGMITE" gid="721" x="848" y="1504" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
-   </properties>
-  </object>
-  <object id="632" name="EGG" gid="1257" x="1984" y="1504" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
    </properties>
   </object>
   <object id="633" name="BOOK_STAND" gid="1194" x="3488" y="1504" width="16" height="16">
@@ -2989,12 +3597,6 @@
   <object id="636" name="BOOK_STAND" gid="1193" x="3536" y="1504" width="16" height="16">
    <properties>
     <property name="object" value="325"/>
-   </properties>
-  </object>
-  <object id="637" name="EGG" gid="1257" x="32" y="1520" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="10"/>
    </properties>
   </object>
   <object id="638" name="OPEN_BARREL" gid="754" x="656" y="1520" width="16" height="16">
@@ -3207,13 +3809,6 @@
     <property name="qty" value="1"/>
    </properties>
   </object>
-  <object id="691" name="EGG" gid="1257" x="2272" y="1568" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="100"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
   <object id="692" name="STALAGMITE" gid="721" x="2640" y="1568" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
@@ -3383,30 +3978,9 @@
     <property name="object" value="103"/>
    </properties>
   </object>
-  <object id="722" name="EGG" gid="1257" x="1200" y="1600" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="75"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
   <object id="723" name="BUCKET" gid="743" x="1456" y="1600" width="16" height="16">
    <properties>
     <property name="object" value="178"/>
-   </properties>
-  </object>
-  <object id="724" name="EGG" gid="1257" x="1584" y="1600" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="75"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
-  <object id="725" name="EGG" gid="1257" x="2240" y="1600" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="100"/>
-    <property name="quality" value="2"/>
    </properties>
   </object>
   <object id="726" name="STALAGMITE" gid="722" x="2832" y="1600" width="16" height="16">
@@ -3442,12 +4016,6 @@
   <object id="733" name="STALAGMITE" gid="721" x="112" y="1616" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
-   </properties>
-  </object>
-  <object id="734" name="EGG" gid="1257" x="1984" y="1616" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="75"/>
    </properties>
   </object>
   <object id="735" name="STALAGMITE" gid="721" x="2448" y="1616" width="16" height="16">
@@ -3547,28 +4115,9 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-  <object id="761" name="EGG" gid="1257" x="2848" y="1632" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
-   </properties>
-  </object>
   <object id="762" name="BACKPACK" gid="624" x="32" y="1648" width="16" height="16">
    <properties>
     <property name="object" value="99"/>
-   </properties>
-  </object>
-  <object id="763" name="EGG" gid="1257" x="336" y="1648" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
-  <object id="764" name="EGG" gid="1257" x="592" y="1648" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="10"/>
    </properties>
   </object>
   <object id="765" name="GOLD_NUGGET" gid="610" x="1904" y="1648" width="16" height="16">
@@ -4081,12 +4630,6 @@
     <property name="qty" value="1"/>
    </properties>
   </object>
-  <object id="886" name="EGG" gid="1257" x="2656" y="1776" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
-   </properties>
-  </object>
   <object id="887" name="BOOKSHELF" gid="818" x="3488" y="1776" width="16" height="16">
    <properties>
     <property name="frame" value="1"/>
@@ -4138,12 +4681,6 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-  <object id="898" name="EGG" gid="1257" x="112" y="1808" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="33"/>
-   </properties>
-  </object>
   <object id="899" name="STALAGMITE" gid="721" x="128" y="1808" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
@@ -4157,12 +4694,6 @@
   <object id="903" name="STALAGMITE" gid="721" x="2752" y="1824" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
-   </properties>
-  </object>
-  <object id="904" name="EGG" gid="1257" x="2832" y="1824" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
    </properties>
   </object>
   <object id="905" name="OPEN_CRATE" gid="760" x="1200" y="1840" width="16" height="16">
@@ -4248,13 +4779,6 @@
     <property name="object" value="325"/>
    </properties>
   </object>
-  <object id="922" name="EGG" gid="1257" x="544" y="1856" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
   <object id="923" name="GOLD_NUGGET" gid="610" x="848" y="1856" width="16" height="16">
    <properties>
     <property name="object" value="89"/>
@@ -4287,13 +4811,6 @@
   <object id="930" name="STALAGMITE" gid="721" x="64" y="1872" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
-   </properties>
-  </object>
-  <object id="931" name="EGG" gid="1257" x="304" y="1872" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
-    <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="932" name="STALAGMITE" gid="721" x="800" y="1872" width="16" height="16">
@@ -4495,13 +5012,6 @@
    <properties>
     <property name="frame" value="4"/>
     <property name="object" value="282"/>
-   </properties>
-  </object>
-  <object id="983" name="EGG" gid="1257" x="1104" y="1952" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="100"/>
-    <property name="quality" value="1"/>
    </properties>
   </object>
   <object id="984" name="BOOK" gid="691" x="3472" y="1952" width="16" height="16">
@@ -4727,12 +5237,6 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-  <object id="1023" name="EGG" gid="1257" x="1712" y="1984" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="75"/>
-   </properties>
-  </object>
   <object id="1025" name="STALAGMITE" gid="722" x="2736" y="1984" width="16" height="16">
    <properties>
     <property name="frame" value="1"/>
@@ -4749,12 +5253,6 @@
    <properties>
     <property name="frame" value="3"/>
     <property name="object" value="168"/>
-   </properties>
-  </object>
-  <object id="1029" name="EGG" gid="1257" x="48" y="2000" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
    </properties>
   </object>
   <object id="1030" name="CASK" gid="757" x="272" y="2000" width="16" height="16">
@@ -4964,12 +5462,6 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-  <object id="1084" name="EGG" gid="1257" x="720" y="2080" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="10"/>
-   </properties>
-  </object>
   <object id="1085" name="REMAINS" gid="728" x="2960" y="2080" width="16" height="16">
    <properties>
     <property name="frame" value="3"/>
@@ -5045,12 +5537,6 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-  <object id="1099" name="EGG" gid="1257" x="3120" y="2096" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="75"/>
-   </properties>
-  </object>
   <object id="1100" name="REMAINS" gid="726" x="3264" y="2096" width="16" height="16">
    <properties>
     <property name="frame" value="1"/>
@@ -5075,41 +5561,15 @@
     <property name="object" value="168"/>
    </properties>
   </object>
-  <object id="1105" name="EGG" gid="1257" x="1072" y="2112" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
-   </properties>
-  </object>
-  <object id="1106" name="EGG" gid="1257" x="1248" y="2112" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="33"/>
-   </properties>
-  </object>
   <object id="1108" name="STALAGMITE" gid="721" x="2032" y="2112" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
-   </properties>
-  </object>
-  <object id="1109" name="EGG" gid="1257" x="432" y="2128" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="100"/>
-    <property name="quality" value="1"/>
    </properties>
   </object>
   <object id="1110" name="STALAGMITE" gid="722" x="2048" y="2128" width="16" height="16">
    <properties>
     <property name="frame" value="1"/>
     <property name="object" value="165"/>
-   </properties>
-  </object>
-  <object id="1111" name="EGG" gid="1257" x="2240" y="2128" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="75"/>
-    <property name="quality" value="1"/>
    </properties>
   </object>
   <object id="1112" name="REMAINS" gid="728" x="3232" y="2128" width="16" height="16">
@@ -5362,19 +5822,6 @@
     <property name="qty" value="1"/>
    </properties>
   </object>
-  <object id="1170" name="EGG" gid="1257" x="864" y="2256" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
-   </properties>
-  </object>
-  <object id="1171" name="EGG" gid="1257" x="2608" y="2256" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
   <object id="1172" name="REMAINS" gid="728" x="3360" y="2256" width="16" height="16">
    <properties>
     <property name="frame" value="3"/>
@@ -5423,25 +5870,6 @@
     <property name="qty" value="1"/>
    </properties>
   </object>
-  <object id="1180" name="EGG" gid="1257" x="688" y="2272" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-    <property name="quality" value="1"/>
-   </properties>
-  </object>
-  <object id="1181" name="EGG" gid="1257" x="1408" y="2272" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="33"/>
-   </properties>
-  </object>
-  <object id="1182" name="EGG" gid="1257" x="1696" y="2272" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="33"/>
-   </properties>
-  </object>
   <object id="1183" name="REMAINS" gid="728" x="3728" y="2272" width="16" height="16">
    <properties>
     <property name="frame" value="3"/>
@@ -5463,12 +5891,6 @@
    <properties>
     <property name="frame" value="1"/>
     <property name="object" value="165"/>
-   </properties>
-  </object>
-  <object id="1187" name="EGG" gid="1257" x="944" y="2304" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="33"/>
    </properties>
   </object>
   <object id="1188" name="REMAINS" gid="728" x="3104" y="2304" width="16" height="16">
@@ -5572,12 +5994,6 @@
     <property name="object" value="168"/>
    </properties>
   </object>
-  <object id="1205" name="EGG" gid="1257" x="864" y="2352" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
-   </properties>
-  </object>
   <object id="1206" name="GOLD_NUGGET" gid="610" x="992" y="2352" width="16" height="16">
    <properties>
     <property name="object" value="89"/>
@@ -5655,20 +6071,6 @@
     <property name="object" value="286"/>
    </properties>
   </object>
-  <object id="1220" name="EGG" gid="1257" x="3248" y="2368" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
-  <object id="1221" name="EGG" gid="1257" x="3888" y="2368" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
   <object id="1222" name="STALAGMITE" gid="722" x="672" y="2384" width="16" height="16">
    <properties>
     <property name="frame" value="1"/>
@@ -5685,12 +6087,6 @@
    <properties>
     <property name="frame" value="1"/>
     <property name="object" value="165"/>
-   </properties>
-  </object>
-  <object id="1226" name="EGG" gid="1257" x="2496" y="2384" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
    </properties>
   </object>
   <object id="1227" name="WALKWAY" gid="998" x="2512" y="2384" width="16" height="16">
@@ -5715,12 +6111,6 @@
    <properties>
     <property name="frame" value="8"/>
     <property name="object" value="286"/>
-   </properties>
-  </object>
-  <object id="1231" name="EGG" gid="1257" x="2656" y="2384" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
    </properties>
   </object>
   <object id="1232" name="WALKWAY" gid="998" x="2864" y="2384" width="16" height="16">
@@ -5853,21 +6243,9 @@
     <property name="qty" value="1"/>
    </properties>
   </object>
-  <object id="1256" name="EGG" gid="1257" x="3520" y="2432" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="75"/>
-   </properties>
-  </object>
   <object id="1257" name="STALAGMITE" gid="721" x="3584" y="2432" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
-   </properties>
-  </object>
-  <object id="1258" name="EGG" gid="1257" x="896" y="2448" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="33"/>
    </properties>
   </object>
   <object id="1259" name="STALAGMITE" gid="722" x="960" y="2448" width="16" height="16">
@@ -5910,12 +6288,6 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-  <object id="1266" name="EGG" gid="1257" x="864" y="2464" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
-   </properties>
-  </object>
   <object id="1267" name="GOLD_NUGGET" gid="610" x="928" y="2464" width="16" height="16">
    <properties>
     <property name="object" value="89"/>
@@ -5925,12 +6297,6 @@
   <object id="1268" name="STALAGMITE" gid="721" x="2592" y="2464" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
-   </properties>
-  </object>
-  <object id="1269" name="EGG" gid="1257" x="2736" y="2464" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
    </properties>
   </object>
   <object id="1271" name="STALAGMITE" gid="721" x="2768" y="2480" width="16" height="16">
@@ -5999,34 +6365,10 @@
     <property name="qty" value="1"/>
    </properties>
   </object>
-  <object id="1284" name="EGG" gid="1257" x="720" y="2512" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="10"/>
-   </properties>
-  </object>
-  <object id="1285" name="EGG" gid="1257" x="752" y="2512" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
-   </properties>
-  </object>
   <object id="1286" name="GOLD_NUGGET" gid="610" x="880" y="2512" width="16" height="16">
    <properties>
     <property name="object" value="89"/>
     <property name="qty" value="1"/>
-   </properties>
-  </object>
-  <object id="1287" name="EGG" gid="1257" x="1200" y="2512" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
-   </properties>
-  </object>
-  <object id="1288" name="EGG" gid="1257" x="1600" y="2512" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
    </properties>
   </object>
   <object id="1289" name="FUMAROLE" gid="731" x="3104" y="2512" width="16" height="16">
@@ -6048,12 +6390,6 @@
    <properties>
     <property name="object" value="89"/>
     <property name="qty" value="1"/>
-   </properties>
-  </object>
-  <object id="1294" name="EGG" gid="1257" x="2096" y="2528" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="33"/>
    </properties>
   </object>
   <object id="1295" name="FUMAROLE" gid="731" x="3136" y="2528" width="16" height="16">
@@ -6155,12 +6491,6 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-  <object id="1315" name="EGG" gid="1257" x="304" y="2624" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
-   </properties>
-  </object>
   <object id="1317" name="STALAGMITE" gid="722" x="2640" y="2624" width="16" height="16">
    <properties>
     <property name="frame" value="1"/>
@@ -6189,12 +6519,6 @@
    <properties>
     <property name="frame" value="4"/>
     <property name="object" value="309"/>
-   </properties>
-  </object>
-  <object id="1322" name="EGG" gid="1257" x="1712" y="2640" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="33"/>
    </properties>
   </object>
   <object id="1323" name="STALAGMITE" gid="721" x="2544" y="2640" width="16" height="16">
@@ -6228,29 +6552,9 @@
     <property name="object" value="286"/>
    </properties>
   </object>
-  <object id="1331" name="EGG" gid="1257" x="3888" y="2656" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-   </properties>
-  </object>
   <object id="1332" name="STALAGMITE" gid="721" x="4016" y="2656" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
-   </properties>
-  </object>
-  <object id="1333" name="EGG" gid="1257" x="736" y="2672" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
-  <object id="1334" name="EGG" gid="1257" x="928" y="2672" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-    <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="1335" name="BONES" gid="1145" x="1536" y="2672" width="16" height="16">
@@ -6277,13 +6581,6 @@
     <property name="object" value="309"/>
    </properties>
   </object>
-  <object id="1339" name="EGG" gid="1257" x="2512" y="2672" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="75"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
   <object id="1340" name="WALKWAY" gid="996" x="2592" y="2672" width="16" height="16">
    <properties>
     <property name="frame" value="3"/>
@@ -6306,18 +6603,6 @@
    <properties>
     <property name="frame" value="3"/>
     <property name="object" value="286"/>
-   </properties>
-  </object>
-  <object id="1344" name="EGG" gid="1257" x="2912" y="2672" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-   </properties>
-  </object>
-  <object id="1345" name="EGG" gid="1257" x="3072" y="2672" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="75"/>
    </properties>
   </object>
   <object id="1346" name="STEPS2" gid="945" x="784" y="2688" width="16" height="16">
@@ -6482,12 +6767,6 @@
     <property name="object" value="276"/>
    </properties>
   </object>
-  <object id="1376" name="EGG" gid="1257" x="1440" y="2720" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="33"/>
-   </properties>
-  </object>
   <object id="1377" name="STEPS2" gid="952" x="752" y="2736" width="16" height="16">
    <properties>
     <property name="frame" value="7"/>
@@ -6598,13 +6877,6 @@
     <property name="object" value="32"/>
    </properties>
   </object>
-  <object id="1398" name="EGG" gid="1257" x="832" y="2752" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="100"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
   <object id="1399" name="FLOOR2" gid="544" x="832" y="2752" width="16" height="16">
    <properties>
     <property name="object" value="32"/>
@@ -6629,18 +6901,6 @@
    <properties>
     <property name="frame" value="3"/>
     <property name="object" value="276"/>
-   </properties>
-  </object>
-  <object id="1404" name="EGG" gid="1257" x="2224" y="2752" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="33"/>
-   </properties>
-  </object>
-  <object id="1405" name="EGG" gid="1257" x="2480" y="2752" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="100"/>
    </properties>
   </object>
   <object id="1406" name="STALAGMITE" gid="722" x="2656" y="2752" width="16" height="16">
@@ -6981,23 +7241,10 @@
     <property name="object" value="276"/>
    </properties>
   </object>
-  <object id="1468" name="EGG" gid="1257" x="896" y="2832" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
   <object id="1469" name="STALAGMITE" gid="722" x="3392" y="2832" width="16" height="16">
    <properties>
     <property name="frame" value="1"/>
     <property name="object" value="165"/>
-   </properties>
-  </object>
-  <object id="1470" name="EGG" gid="1257" x="2912" y="2848" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
    </properties>
   </object>
   <object id="1471" name="STALAGMITE" gid="721" x="32" y="2864" width="16" height="16">
@@ -7089,31 +7336,6 @@
     <property name="object" value="309"/>
    </properties>
   </object>
-  <object id="1491" name="EGG" gid="1257" x="1456" y="2912" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="33"/>
-   </properties>
-  </object>
-  <object id="1492" name="EGG" gid="1257" x="4000" y="2912" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
-   </properties>
-  </object>
-  <object id="1493" name="EGG" gid="1257" x="688" y="2928" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="75"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
-  <object id="1494" name="EGG" gid="1257" x="1632" y="2928" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="33"/>
-   </properties>
-  </object>
   <object id="1495" name="SPIKES" gid="732" x="3488" y="2944" width="16" height="16">
    <properties>
     <property name="object" value="172"/>
@@ -7134,12 +7356,6 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-  <object id="1499" name="EGG" gid="1257" x="1968" y="2992" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="33"/>
-   </properties>
-  </object>
   <object id="1500" name="SIGN" gid="1241" x="2880" y="2992" width="16" height="16">
    <properties>
     <property name="object" value="332"/>
@@ -7155,12 +7371,6 @@
   <object id="1502" name="STALAGMITE" gid="721" x="48" y="3008" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
-   </properties>
-  </object>
-  <object id="1503" name="EGG" gid="1257" x="272" y="3008" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
    </properties>
   </object>
   <object id="1504" name="SIGN" gid="1242" x="2560" y="3008" width="16" height="16">
@@ -7192,19 +7402,6 @@
     <property name="qty" value="1"/>
    </properties>
   </object>
-  <object id="1509" name="EGG" gid="1257" x="3648" y="3008" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="99"/>
-    <property name="quality" value="2"/>
-   </properties>
-  </object>
-  <object id="1510" name="EGG" gid="1257" x="944" y="3024" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-   </properties>
-  </object>
   <object id="1511" name="FUMAROLE" gid="731" x="3136" y="3024" width="16" height="16">
    <properties>
     <property name="object" value="171"/>
@@ -7227,22 +7424,9 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-  <object id="1515" name="EGG" gid="1257" x="2496" y="3040" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="33"/>
-   </properties>
-  </object>
   <object id="1516" name="SPIKES" gid="732" x="2992" y="3056" width="16" height="16">
    <properties>
     <property name="object" value="172"/>
-   </properties>
-  </object>
-  <object id="1517" name="EGG" gid="1257" x="704" y="3072" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="75"/>
-    <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="1518" name="SPIKES" gid="732" x="2992" y="3072" width="16" height="16">
@@ -7296,12 +7480,6 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-  <object id="1528" name="EGG" gid="1257" x="1584" y="3152" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-   </properties>
-  </object>
   <object id="1529" name="STALAGMITE" gid="721" x="3968" y="3152" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
@@ -7334,12 +7512,6 @@
     <property name="quality" value="115"/>
    </properties>
   </object>
-  <object id="1536" name="EGG" gid="1257" x="1712" y="3248" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
-   </properties>
-  </object>
   <object id="1537" name="DEAD_BODY" gid="1272" x="2864" y="3248" width="16" height="16">
    <properties>
     <property name="frame" value="9"/>
@@ -7362,12 +7534,6 @@
    <properties>
     <property name="frame" value="8"/>
     <property name="object" value="286"/>
-   </properties>
-  </object>
-  <object id="1541" name="EGG" gid="1257" x="3760" y="3264" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
    </properties>
   </object>
   <object id="1542" name="STALAGMITE" gid="721" x="192" y="3280" width="16" height="16">
@@ -7421,12 +7587,6 @@
     <property name="object" value="286"/>
    </properties>
   </object>
-  <object id="1551" name="EGG" gid="1257" x="3360" y="3296" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-   </properties>
-  </object>
   <object id="1552" name="STALAGMITE" gid="721" x="704" y="3312" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
@@ -7465,22 +7625,9 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-  <object id="1560" name="EGG" gid="1257" x="1712" y="3392" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-   </properties>
-  </object>
   <object id="1563" name="STALAGMITE" gid="721" x="96" y="3408" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
-   </properties>
-  </object>
-  <object id="1564" name="EGG" gid="1257" x="2480" y="3408" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
-    <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="1565" name="STALAGMITE" gid="721" x="720" y="3424" width="16" height="16">
@@ -7497,12 +7644,6 @@
   <object id="1567" name="FUMAROLE" gid="731" x="3536" y="3456" width="16" height="16">
    <properties>
     <property name="object" value="171"/>
-   </properties>
-  </object>
-  <object id="1568" name="EGG" gid="1257" x="128" y="3472" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="33"/>
    </properties>
   </object>
   <object id="1569" name="STEPS2" gid="953" x="3088" y="3488" width="16" height="16">
@@ -7601,12 +7742,6 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-  <object id="1589" name="EGG" gid="1257" x="3008" y="3536" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-   </properties>
-  </object>
   <object id="1590" name="STEPS2" gid="948" x="3088" y="3536" width="16" height="16">
    <properties>
     <property name="frame" value="3"/>
@@ -7695,13 +7830,6 @@
   <object id="1607" name="STALAGMITE" gid="721" x="1312" y="3584" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
-   </properties>
-  </object>
-  <object id="1608" name="EGG" gid="1257" x="1744" y="3584" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
-    <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="1609" name="STALAGMITE" gid="721" x="512" y="3600" width="16" height="16">
@@ -7800,30 +7928,9 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-  <object id="1626" name="EGG" gid="1257" x="2096" y="3632" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="75"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
-  <object id="1627" name="EGG" gid="1257" x="1968" y="3648" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="100"/>
-    <property name="quality" value="4"/>
-   </properties>
-  </object>
   <object id="1629" name="HOLE" gid="1143" x="2608" y="3648" width="16" height="16">
    <properties>
     <property name="object" value="308"/>
-   </properties>
-  </object>
-  <object id="1630" name="EGG" gid="1257" x="2640" y="3648" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="75"/>
-    <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="1631" name="INVISIBILITY_RING" gid="896" x="2864" y="3648" width="16" height="16">
@@ -7847,12 +7954,6 @@
    <properties>
     <property name="frame" value="3"/>
     <property name="object" value="310"/>
-   </properties>
-  </object>
-  <object id="1641" name="EGG" gid="1257" x="3248" y="3648" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="100"/>
    </properties>
   </object>
   <object id="1642" name="FUMAROLE" gid="731" x="3504" y="3648" width="16" height="16">
@@ -8015,12 +8116,6 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-  <object id="1678" name="EGG" gid="1257" x="768" y="3728" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-   </properties>
-  </object>
   <object id="1679" name="STEPS1" gid="932" x="3088" y="3728" width="16" height="16">
    <properties>
     <property name="frame" value="3"/>
@@ -8048,13 +8143,6 @@
   <object id="1683" name="FUMAROLE" gid="731" x="3776" y="3728" width="16" height="16">
    <properties>
     <property name="object" value="171"/>
-   </properties>
-  </object>
-  <object id="1684" name="EGG" gid="1257" x="1744" y="3744" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
-    <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="1685" name="STEPS2" gid="953" x="2832" y="3744" width="16" height="16">
@@ -8302,12 +8390,6 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-  <object id="1736" name="EGG" gid="1257" x="2736" y="3792" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-   </properties>
-  </object>
   <object id="1737" name="STEPS2" gid="948" x="2832" y="3792" width="16" height="16">
    <properties>
     <property name="frame" value="3"/>
@@ -8387,18 +8469,6 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-  <object id="1752" name="EGG" gid="1257" x="1120" y="3808" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="33"/>
-   </properties>
-  </object>
-  <object id="1753" name="EGG" gid="1257" x="1360" y="3808" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="33"/>
-   </properties>
-  </object>
   <object id="1754" name="STALAGMITE" gid="721" x="1600" y="3808" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
@@ -8464,19 +8534,6 @@
     <property name="object" value="276"/>
    </properties>
   </object>
-  <object id="1765" name="EGG" gid="1257" x="4000" y="3808" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
-   </properties>
-  </object>
-  <object id="1766" name="EGG" gid="1257" x="160" y="3824" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="75"/>
-    <property name="quality" value="2"/>
-   </properties>
-  </object>
   <object id="1767" name="STALAGMITE" gid="721" x="3568" y="3824" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
@@ -8521,12 +8578,6 @@
     <property name="object" value="165"/>
    </properties>
   </object>
-  <object id="1780" name="EGG" gid="1257" x="2992" y="3904" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="100"/>
-   </properties>
-  </object>
   <object id="1781" name="PORTCULLIS" gid="1152" x="3040" y="3904" width="16" height="16">
    <properties>
     <property name="frame" value="3"/>
@@ -8549,24 +8600,6 @@
    <properties>
     <property name="frame" value="3"/>
     <property name="object" value="310"/>
-   </properties>
-  </object>
-  <object id="1789" name="EGG" gid="1257" x="3248" y="3904" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="100"/>
-   </properties>
-  </object>
-  <object id="1790" name="EGG" gid="1257" x="2480" y="3920" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
-   </properties>
-  </object>
-  <object id="1792" name="EGG" gid="1257" x="1680" y="3952" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="75"/>
    </properties>
   </object>
   <object id="1793" name="ELECTRIC_FIELD" gid="736" x="3120" y="3984" width="16" height="16">
@@ -8616,21 +8649,9 @@
     <property name="object" value="276"/>
    </properties>
   </object>
-  <object id="1804" name="EGG" gid="1257" x="3616" y="4016" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="50"/>
-   </properties>
-  </object>
   <object id="1805" name="FUMAROLE" gid="731" x="3712" y="4016" width="16" height="16">
    <properties>
     <property name="object" value="171"/>
-   </properties>
-  </object>
-  <object id="1806" name="EGG" gid="1257" x="2992" y="4032" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
    </properties>
   </object>
   <object id="1807" name="STEPS2" gid="948" x="3088" y="4032" width="16" height="16">
@@ -8648,12 +8669,6 @@
   <object id="1810" name="FUMAROLE" gid="731" x="4032" y="4032" width="16" height="16">
    <properties>
     <property name="object" value="171"/>
-   </properties>
-  </object>
-  <object id="1811" name="EGG" gid="1257" x="64" y="4048" width="16" height="16">
-   <properties>
-    <property name="object" value="335"/>
-    <property name="qty" value="66"/>
    </properties>
   </object>
   <object id="1812" name="STEPS2" gid="948" x="3088" y="4048" width="16" height="16">
@@ -9520,12 +9535,6 @@
     <property name="object" value="384"/>
    </properties>
   </object>
-  <object id="171" name="Sacrifice" gid="1" x="368" y="384" width="16" height="16">
-   <properties>
-    <property name="npc" value="196"/>
-    <property name="object" value="0"/>
-   </properties>
-  </object>
  </objectgroup>
  <objectgroup name="on_top">
   <object id="17" name="DOORWAY" gid="1092" x="2144" y="64" width="16" height="16">
@@ -9546,12 +9555,14 @@
    <properties>
     <property name="frame" value="11"/>
     <property name="object" value="300"/>
+    <property name="quality" value="255"/>
    </properties>
   </object>
   <object id="20" name="STEEL_DOOR" gid="1083" x="2176" y="48" width="16" height="16">
    <properties>
     <property name="frame" value="11"/>
     <property name="object" value="300"/>
+    <property name="quality" value="255"/>
    </properties>
   </object>
   <object id="21" name="DOORWAY" gid="1092" x="2176" y="64" width="16" height="16">
@@ -9570,12 +9581,14 @@
    <properties>
     <property name="frame" value="11"/>
     <property name="object" value="300"/>
+    <property name="quality" value="255"/>
    </properties>
   </object>
   <object id="24" name="STEEL_DOOR" gid="1083" x="2272" y="48" width="16" height="16">
    <properties>
     <property name="frame" value="11"/>
     <property name="object" value="300"/>
+    <property name="quality" value="255"/>
    </properties>
   </object>
   <object id="25" name="DOORWAY" gid="1092" x="2272" y="64" width="16" height="16">
@@ -9932,12 +9945,14 @@
    <properties>
     <property name="frame" value="11"/>
     <property name="object" value="300"/>
+    <property name="quality" value="255"/>
    </properties>
   </object>
   <object id="280" name="STEEL_DOOR" gid="1083" x="2176" y="688" width="16" height="16">
    <properties>
     <property name="frame" value="11"/>
     <property name="object" value="300"/>
+    <property name="quality" value="255"/>
    </properties>
   </object>
   <object id="281" name="DOORWAY" gid="1092" x="2176" y="704" width="16" height="16">
@@ -9956,12 +9971,14 @@
    <properties>
     <property name="frame" value="11"/>
     <property name="object" value="300"/>
+    <property name="quality" value="255"/>
    </properties>
   </object>
   <object id="284" name="STEEL_DOOR" gid="1083" x="2272" y="688" width="16" height="16">
    <properties>
     <property name="frame" value="11"/>
     <property name="object" value="300"/>
+    <property name="quality" value="255"/>
    </properties>
   </object>
   <object id="285" name="DOORWAY" gid="1092" x="2272" y="704" width="16" height="16">

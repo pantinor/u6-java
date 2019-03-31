@@ -94,6 +94,9 @@ public class Constants {
 
             this.screen = new GameScreen(this);
 
+            MapLayer eggLayer = this.tiledMap.getLayers().get("eggs");
+            eggLayer.setVisible(false);
+
             MapLayer portalsLayer = this.tiledMap.getLayers().get("portals");
             if (portalsLayer != null) {
                 Iterator<MapObject> iter = portalsLayer.getObjects().iterator();
@@ -193,7 +196,7 @@ public class Constants {
                     }
                 }
             }
-            
+
             LocationGraph graph = new LocationGraph(indexedNodes);
             this.pathfinder = new IndexedAStarPathFinder<>(graph);
 
@@ -302,13 +305,13 @@ public class Constants {
         LOCK_PICK(63),
         KEY(64),
         BLACK_PEARL(65),
-        BIT_OF_BLOOD_MOSS(66),
-        BULB_OF_GARLIC(67),
-        GINSENG_ROOT(68),
-        MANDRAKE_ROOT(69),
-        NIGHTSHADE_MUSHROOM(70),
-        STRAND_OF_SPIDERSILK(71),
-        BIT_OF_SULFUROUS_ASH(72),
+        BLOOD_MOSS(66),
+        GARLIC(67),
+        GINSENG(68),
+        MANDRAKE(69),
+        NIGHTSHADE(70),
+        SPIDER_SILK(71),
+        SULFUROUS_ASH(72),
         MOONSTONE(73),
         ANKH_AMULET(74),
         SNAKE_AMULET(75),
@@ -364,8 +367,8 @@ public class Constants {
         HANGER(125),
         DRESS(126),
         SKILLET(127),
-        LOAF_OF_BREAD(128),
-        PORTION_OF_MEAT(129),
+        BREAD(128),
+        MEAT_PORTION(129),
         ROLLS(130),
         CAKE(131),
         CHEESE(132),
@@ -687,7 +690,32 @@ public class Constants {
             }
             return null;
         }
+
+        public static Objects get(int id) {
+            for (Objects obj : Objects.values()) {
+                if (obj.id == id) {
+                    return obj;
+                }
+            }
+            return null;
+        }
     }
+
+    public static int OBJ_STATUS_OK_TO_TAKE = 0x1;
+    public static int OBJ_STATUS_INVISIBLE = 0x2;
+    public static int OBJ_STATUS_CHARMED = 0x4;
+    public static int OBJ_STATUS_ON_MAP = 0x0;
+    public static int OBJ_STATUS_IN_CONTAINER = 0x8;
+    public static int OBJ_STATUS_IN_INVENTORY = 0x10;
+    public static int OBJ_STATUS_READIED = 0x18;
+    public static int OBJ_STATUS_MASK_GET = 0x18;
+    public static int OBJ_STATUS_MASK_SET = 0xE7;
+    public static int OBJ_STATUS_TEMPORARY = 0x20;
+    public static int OBJ_STATUS_EGG_ACTIVE = 0x40;
+    public static int OBJ_STATUS_BROKEN = 0x40;
+    public static int OBJ_STATUS_MUTANT = 0x40;
+    public static int OBJ_STATUS_CURSED = 0x40;
+    public static int OBJ_STATUS_LIT = 0x80;
 
     public static int MOVETYPE_U6_NONE = 0;
     public static int MOVETYPE_U6_LAND = 1;
