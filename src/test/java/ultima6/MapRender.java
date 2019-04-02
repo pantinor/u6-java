@@ -144,36 +144,19 @@ public class MapRender {
             basetiles[i] = dis.readUnsignedShort();
         }
 
-        List<U6Object> worldObjects = new ArrayList<>();
-        for (int y = 0; y < 8; y++) {
-            for (int x = 0; x < 8; x++) {
-                worldObjects.addAll(readObjBlock(x, y, basetiles, tileflags));
-            }
-        }
+        count = 1;
 
         StringBuilder objectLayer = new StringBuilder();
         StringBuilder portalLayer = new StringBuilder();
         StringBuilder itemsLayer = new StringBuilder();
         StringBuilder onTopLayer = new StringBuilder();
         StringBuilder eggLayer = new StringBuilder();
-        count = 1;
-        for (int i = 0; i < worldObjects.size(); i++) {
-            U6Object obj = worldObjects.get(i);
-            if (obj.object == Constants.Objects.EGG.getId()) {
-                U6Object spawn = worldObjects.get(i + 1);
-                eggLayer.append(obj.toString(count++, !spawn.on_map ? spawn.name : null));
-            } else if (!obj.on_map || obj.status > 1) {
-                //nothing
-            } else if (obj.object == Constants.Objects.MINE_SHAFT.getId() || obj.object == Constants.Objects.LADDER.getId()) {
-                portalLayer.append(obj.toString(count++));
-            } else if (obj.on_top) {
-                onTopLayer.append(obj.toString(count++));
-            } else if (obj.status == 1 || obj.object == Constants.Objects.MOONSTONE.getId()) {
-                itemsLayer.append(obj.toString(count++));
-            } else {
-                objectLayer.append(obj.toString(count++));
-            }
 
+        for (int y = 0; y < 8; y++) {
+            for (int x = 0; x < 8; x++) {
+                List<U6Object> worldObjects = readObjBlock(x, y, basetiles, tileflags);
+                count = setObjects(count, worldObjects, eggLayer, portalLayer, onTopLayer, itemsLayer, objectLayer);
+            }
         }
 
         String[] dungObjectLayers = new String[5];
@@ -193,23 +176,8 @@ public class MapRender {
             StringBuilder dungEggLayer = new StringBuilder();
 
             count = 1;
-            for (int j = 0; j < dungeonObjects.size(); j++) {
-                U6Object obj = dungeonObjects.get(j);
-                if (obj.object == Constants.Objects.EGG.getId()) {
-                    U6Object spawn = worldObjects.get(j + 1);
-                    dungEggLayer.append(obj.toString(count++, !spawn.on_map ? spawn.name : null));
-                } else if (!obj.on_map || obj.status > 1) {
-                    //nothing
-                } else if (obj.object == Constants.Objects.MINE_SHAFT.getId() || obj.object == Constants.Objects.LADDER.getId()) {
-                    dungPortalLayer.append(obj.toString(count++));
-                } else if (obj.on_top) {
-                    dungOnTopLayer.append(obj.toString(count++));
-                } else if (obj.status == 1 || obj.object == Constants.Objects.MOONSTONE.getId()) {
-                    dungItemLayer.append(obj.toString(count++));
-                } else {
-                    dungObjectLayer.append(obj.toString(count++));
-                }
-            }
+            setObjects(count, dungeonObjects, dungEggLayer, dungPortalLayer, dungOnTopLayer, dungItemLayer, dungObjectLayer);
+
             dungObjectLayers[i] = dungObjectLayer.toString();
             dungOnTopLayers[i] = dungOnTopLayer.toString();
             dungItemsLayers[i] = dungItemLayer.toString();
@@ -246,10 +214,9 @@ public class MapRender {
                     dLayer1[i], dungEggLayers[i], dungObjectLayers[i], dungPortalLayers[i], dungItemsLayers[i], dungActorLayers[i], dungOnTopLayers[i]));
 
         }
-
     }
 
-    private static List<Map<String, Object>> readTileFlags() throws Exception {
+    public static List<Map<String, Object>> readTileFlags() throws Exception {
         FileInputStream is = new FileInputStream("D:\\ultima\\ULTIMA6\\TILEFLAG");
         LittleEndianDataInputStream dis = new LittleEndianDataInputStream(is);
 
@@ -299,21 +266,21 @@ public class MapRender {
 
     }
 
-    private static List<U6Object> readObjBlock(int idx, int idy, int[] basetiles, List<Map<String, Object>> tileflags) throws Exception {
+    public static List<U6Object> readObjBlock(int idx, int idy, int[] basetiles, List<Map<String, Object>> tileflags) throws Exception {
         String chars = "ABCDEFGH";
         FileInputStream is = new FileInputStream("D:\\ultima\\ULTIMA6\\SAVEGAME\\OBJBLK" + chars.charAt(idy) + chars.charAt(idx));
         LittleEndianDataInputStream dis = new LittleEndianDataInputStream(is);
-        return readObjBlock(0, basetiles, tileflags, dis);
+        return readObjBlock(basetiles, tileflags, dis);
     }
 
-    private static List<U6Object> readObjBlockDungeon(int idx, int[] basetiles, List<Map<String, Object>> tileflags) throws Exception {
+    public static List<U6Object> readObjBlockDungeon(int idx, int[] basetiles, List<Map<String, Object>> tileflags) throws Exception {
         String chars = "ABCDEFGH";
         FileInputStream is = new FileInputStream("D:\\ultima\\ULTIMA6\\SAVEGAME\\OBJBLK" + chars.charAt(idx) + "I");
         LittleEndianDataInputStream dis = new LittleEndianDataInputStream(is);
-        return readObjBlock(idx + 1, basetiles, tileflags, dis);
+        return readObjBlock(basetiles, tileflags, dis);
     }
 
-    private static List<U6Object> readObjBlock(int idz, int[] basetiles, List<Map<String, Object>> tileflags, LittleEndianDataInputStream dis) throws Exception {
+    public static List<U6Object> readObjBlock(int[] basetiles, List<Map<String, Object>> tileflags, LittleEndianDataInputStream dis) throws Exception {
 
         int count = dis.readUnsignedShort();
 
@@ -343,81 +310,81 @@ public class MapRender {
 
             boolean on_map = (status & Constants.OBJ_STATUS_MASK_GET) == 0;
 
-            if (z == idz) {
+            int tile = basetiles[object] + frame;
+            int objtile = tile;
 
-                int tile = basetiles[object] + frame;
-                int objtile = tile;
+            int vsize = (Integer) tileflags.get(objtile).get("vsize");
+            int hsize = (Integer) tileflags.get(objtile).get("hsize");
+            boolean on_top = (Boolean) tileflags.get(objtile).get("ontop");
 
-                int vsize = (Integer) tileflags.get(objtile).get("vsize");
-                int hsize = (Integer) tileflags.get(objtile).get("hsize");
-                boolean on_top = (Boolean) tileflags.get(objtile).get("ontop");
+            for (int vs = 0; vs < vsize; vs++) {
+                for (int hs = 0; hs < hsize; hs++) {
+                    U6Object obj = new U6Object();
+                    obj.id = i;
+                    obj.x = x - hs;
+                    obj.y = y - vs;
+                    obj.z = z;
+                    obj.frame = frame;
+                    obj.object = object;
+                    obj.tile = tile;
+                    obj.quality = quality;
+                    obj.quantity = quantity;
+                    obj.status = status;
+                    obj.on_top = on_top;
+                    obj.on_map = on_map;
 
-                for (int vs = 0; vs < vsize; vs++) {
-                    for (int hs = 0; hs < hsize; hs++) {
-                        U6Object obj = new U6Object();
-                        obj.x = x - hs;
-                        obj.y = y - vs;
-                        obj.z = z;
-                        obj.frame = frame;
-                        obj.object = object;
-                        obj.tile = tile;
-                        obj.quality = quality;
-                        obj.quantity = quantity;
+                    if (isStackable(object)) {
+                        obj.quantity = ((quality << 8) + quantity) & 0x000000ff;
+                    }
 
-                        if (isStackable(object)) {
-                            obj.quantity = (quality << 8) + quantity;
-                        }
-
-                        obj.name = Constants.Objects.getName(object);
-                        if (obj.object == Constants.Objects.LADDER.getId()) {
-                            if (frame == 0) {
-                                obj.name = "DOWN_LADDER";
-                                if (z == 0) {
-                                    obj.portal_dest_x = (x & 0x07) | (x >> 2 & 0xF8);
-                                    obj.portal_dest_y = (y & 0x07) | (y >> 2 & 0xF8);
-                                } else {
-                                    obj.portal_dest_x = x;
-                                    obj.portal_dest_y = y;
-                                }
-                                obj.portal_dest_z = z + 1;
-                            } else {
-                                obj.name = "UP_LADDER";
-                                if (z == 1) {
-                                    obj.portal_dest_x = x / 8 * 8 * 4 + ((quality & 0x03) * 8) + (x - x / 8 * 8);
-                                    obj.portal_dest_y = y / 8 * 8 * 4 + ((quality >> 2 & 0x03) * 8) + (y - y / 8 * 8);
-                                } else {
-                                    obj.portal_dest_x = x;
-                                    obj.portal_dest_y = y;
-                                }
-                                obj.portal_dest_z = z - 1;
-                            }
-                        }
-                        if (obj.object == Constants.Objects.MINE_SHAFT.getId()) {
+                    obj.name = Constants.Objects.getName(object);
+                    if (obj.object == Constants.Objects.LADDER.getId()) {
+                        if (frame == 0) {
+                            obj.name = "DOWN_LADDER";
                             if (z == 0) {
                                 obj.portal_dest_x = (x & 0x07) | (x >> 2 & 0xF8);
                                 obj.portal_dest_y = (y & 0x07) | (y >> 2 & 0xF8);
-                                obj.portal_dest_z = z + 1;
                             } else {
                                 obj.portal_dest_x = x;
                                 obj.portal_dest_y = y;
-                                obj.portal_dest_z = z - 1;
                             }
+                            obj.portal_dest_z = z + 1;
+                        } else {
+                            obj.name = "UP_LADDER";
+                            if (z == 1) {
+                                obj.portal_dest_x = x / 8 * 8 * 4 + ((quality & 0x03) * 8) + (x - x / 8 * 8);
+                                obj.portal_dest_y = y / 8 * 8 * 4 + ((quality >> 2 & 0x03) * 8) + (y - y / 8 * 8);
+                            } else {
+                                obj.portal_dest_x = x;
+                                obj.portal_dest_y = y;
+                            }
+                            obj.portal_dest_z = z - 1;
                         }
-                        obj.status = status;
-                        obj.on_top = on_top;
-                        obj.on_map = on_map;
-                        objects.add(obj);
-                        tile--;
                     }
-                }
+                    if (obj.object == Constants.Objects.MINE_SHAFT.getId()) {
+                        if (z == 0) {
+                            obj.portal_dest_x = (x & 0x07) | (x >> 2 & 0xF8);
+                            obj.portal_dest_y = (y & 0x07) | (y >> 2 & 0xF8);
+                            obj.portal_dest_z = z + 1;
+                        } else {
+                            obj.portal_dest_x = x;
+                            obj.portal_dest_y = y;
+                            obj.portal_dest_z = z - 1;
+                        }
+                    }
 
+                    objects.add(obj);
+                    tile--;
+                }
             }
+
         }
         return objects;
     }
 
-    static class U6Object {
+    public static class U6Object {
 
+        int id;
         String name;
         int x;
         int y;
@@ -435,11 +402,23 @@ public class MapRender {
         int portal_dest_y;
         int portal_dest_z;
 
-        public String toString(int id) {
-            return toString(id, null);
+        List<U6Object> contents = new ArrayList<>();
+
+        @Override
+        public String toString() {
+            return name + ", id=" + id + ", x=" + x + ", y=" + y + ", z=" + z + ", frame=" + frame + ", tile=" + tile + ", object="
+                    + object + ", npc=" + npc + ", status=" + status + ", quality=" + quality + ", quantity="
+                    + quantity + ", on_top=" + on_top + ", on_map=" + on_map;
         }
 
-        public String toString(int id, String spawn) {
+        public String toString(int id) {
+
+            StringBuilder contentProperties = new StringBuilder();
+            for (int j = 0; j < contents.size(); j++) {
+                U6Object obj = contents.get(j);
+                contentProperties.append(String.format("    <property name=\"stack-%d\" value=\"%s,%d,%d,%d\"/>\n", j, obj.name, obj.quantity, obj.quality, obj.status));
+            }
+
             return "<object id=\"" + id + "\" name=\"" + name + "\" gid=\"" + (tile + 1) + "\" x=\"" + ((x) * 16)
                     + "\" y=\"" + ((y + 1) * 16) + "\" width=\"16\" height=\"16\">\n"
                     + "   <properties>\n"
@@ -449,18 +428,18 @@ public class MapRender {
                     + (quality > 0 ? "    <property name=\"quality\" value=\"" + quality + "\"/>\n" : "")
                     + (status > 0 ? "    <property name=\"status\" value=\"" + status + "\"/>\n" : "")
                     + (npc > 0 ? "    <property name=\"npc\" value=\"" + npc + "\"/>\n" : "")
-                    + (spawn != null ? "    <property name=\"spawn\" value=\"" + spawn + "\"/>\n" : "")
                     + (portal_dest_x > 0 || portal_dest_y > 0
                             ? "    <property name=\"portal_dest_x\" value=\"" + portal_dest_x + "\"/>\n"
                             + "    <property name=\"portal_dest_y\" value=\"" + portal_dest_y + "\"/>\n"
                             + "    <property name=\"portal_dest_z\" value=\"" + portal_dest_z + "\"/>\n"
                             : "")
+                    + (contents.size() > 0 ? contentProperties : "")
                     + "   </properties>\n"
                     + "  </object>\n";
         }
     }
 
-    private static boolean isStackable(int id) {
+    public static boolean isStackable(int id) {
         Constants.Objects obj = Constants.Objects.get(id);
         switch (obj) {
             case TORCH:
@@ -492,7 +471,52 @@ public class MapRender {
 
     }
 
-    private static U6Object[] readObjList(int[] basetiles) throws Exception {
+    public static int setObjects(int count, List<U6Object> objects, StringBuilder eggLayer, StringBuilder portalLayer,
+            StringBuilder onTopLayer, StringBuilder itemLayer, StringBuilder objectLayer) {
+
+        for (int j = 0; j < objects.size(); j++) {
+            U6Object obj = objects.get(j);
+            if (!obj.on_map || obj.status > 1) {
+                U6Object container = findContainer(objects, obj.x);
+                if (container != null) {
+                    container.contents.add(obj);
+                } else {
+                    System.out.printf("%s cannot find container for id %d\n", obj.name, obj.x);
+                }
+            }
+        }
+
+        for (int j = 0; j < objects.size(); j++) {
+            U6Object obj = objects.get(j);
+            if (obj.object == Constants.Objects.EGG.getId()) {
+                eggLayer.append(obj.toString(count++));
+            } else if (!obj.on_map || obj.status > 1) {
+                //nothing
+            } else if (obj.object == Constants.Objects.MINE_SHAFT.getId() || obj.object == Constants.Objects.LADDER.getId()) {
+                portalLayer.append(obj.toString(count++));
+            } else if (obj.on_top) {
+                onTopLayer.append(obj.toString(count++));
+            } else if (obj.status == 1 || obj.object == Constants.Objects.MOONSTONE.getId()) {
+                itemLayer.append(obj.toString(count++));
+            } else {
+                objectLayer.append(obj.toString(count++));
+            }
+        }
+
+        return count;
+    }
+
+    public static U6Object findContainer(List<U6Object> objects, int id) {
+        for (int j = 0; j < objects.size(); j++) {
+            U6Object obj = objects.get(j);
+            if (obj.id == id) {
+                return obj;
+            }
+        }
+        return null;
+    }
+
+    public static U6Object[] readObjList(int[] basetiles) throws Exception {
 
         InputStream is = new GZIPInputStream(new FileInputStream("src\\main\\resources\\data\\conversations"));
         byte[] conv = IOUtils.toByteArray(is);
@@ -547,7 +571,7 @@ public class MapRender {
         return objects;
     }
 
-    static class AnimData {
+    public static class AnimData {
 
         int count;
         int[] tiles;
@@ -557,7 +581,7 @@ public class MapRender {
 
     }
 
-    private static AnimData readAnimData() throws Exception {
+    public static AnimData readAnimData() throws Exception {
 
         /*
           <tile id="115">

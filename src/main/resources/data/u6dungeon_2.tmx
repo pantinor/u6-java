@@ -253,551 +253,658 @@
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="33"/>
+    <property name="stack-0" value="GHOST,8,8,8"/>
+    <property name="stack-1" value="MAGE,1,4,8"/>
    </properties>
   </object>
   <object id="18" name="EGG" gid="1257" x="1968" y="64" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="33"/>
+    <property name="stack-0" value="CHILD,1,8,8"/>
    </properties>
   </object>
   <object id="19" name="EGG" gid="1257" x="2224" y="64" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="100"/>
+    <property name="stack-0" value="GUARD,1,8,8"/>
+    <property name="stack-1" value="SLIME,5,8,8"/>
    </properties>
   </object>
   <object id="20" name="EGG" gid="1257" x="2480" y="64" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="33"/>
+    <property name="stack-0" value="GIANT_SPIDER,1,8,8"/>
    </properties>
   </object>
   <object id="32" name="EGG" gid="1257" x="2976" y="96" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="66"/>
+    <property name="stack-0" value="GIANT_BAT,5,11,8"/>
    </properties>
   </object>
   <object id="53" name="EGG" gid="1257" x="1536" y="128" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="66"/>
-    <property name="spawn" value="POTION"/>
+    <property name="stack-0" value="INSECTS,10,11,8"/>
+    <property name="stack-1" value="HEADLESS,5,3,8"/>
+    <property name="stack-2" value="TROLL,2,5,8"/>
+    <property name="stack-3" value="CYCLOPS,2,4,8"/>
    </properties>
   </object>
   <object id="55" name="EGG" gid="1257" x="3600" y="176" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1090"/>
+    <property name="qty" value="66"/>
     <property name="quality" value="4"/>
+    <property name="stack-0" value="GIANT_ANT,6,11,8"/>
    </properties>
   </object>
   <object id="72" name="EGG" gid="1257" x="352" y="240" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="33"/>
+    <property name="stack-0" value="DRAKE,2,11,8"/>
    </properties>
   </object>
   <object id="73" name="EGG" gid="1257" x="576" y="240" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="33"/>
+    <property name="stack-0" value="DRAKE,2,11,8"/>
+    <property name="stack-1" value="MEAD,1,0,8"/>
+    <property name="stack-2" value="WINE,1,0,8"/>
    </properties>
   </object>
   <object id="74" name="EGG" gid="1257" x="784" y="240" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="33"/>
+    <property name="stack-0" value="DRAKE,2,11,8"/>
    </properties>
   </object>
   <object id="75" name="EGG" gid="1257" x="1008" y="256" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1099"/>
+    <property name="qty" value="75"/>
     <property name="quality" value="4"/>
+    <property name="stack-0" value="GREMLIN,5,5,8"/>
+    <property name="stack-1" value="INSECTS,6,8,8"/>
+    <property name="stack-2" value="GIANT_SPIDER,4,3,8"/>
+    <property name="stack-3" value="GAZER,2,4,8"/>
    </properties>
   </object>
   <object id="77" name="EGG" gid="1257" x="3344" y="256" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1090"/>
+    <property name="qty" value="66"/>
     <property name="quality" value="4"/>
+    <property name="stack-0" value="GIANT_ANT,5,8,8"/>
    </properties>
   </object>
   <object id="100" name="EGG" gid="1257" x="1424" y="304" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="50"/>
+    <property name="stack-0" value="REAPER,4,14,8"/>
    </properties>
   </object>
   <object id="108" name="EGG" gid="1257" x="2480" y="320" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="33"/>
+    <property name="stack-0" value="GAZER,1,8,8"/>
    </properties>
   </object>
   <object id="123" name="EGG" gid="1257" x="1808" y="368" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="75"/>
+    <property name="stack-0" value="CORPSER,6,8,8"/>
    </properties>
   </object>
   <object id="124" name="EGG" gid="1257" x="48" y="384" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="33"/>
+    <property name="stack-0" value="HYDRA,2,8,8"/>
+    <property name="stack-1" value="GLASS_SWORD,0,0,8"/>
+    <property name="stack-2" value="MAGIC_BOW,0,0,8"/>
    </properties>
   </object>
   <object id="132" name="EGG" gid="1257" x="2704" y="416" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="50"/>
+    <property name="stack-0" value="REAPER,4,8,8"/>
    </properties>
   </object>
   <object id="142" name="EGG" gid="1257" x="224" y="448" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="33"/>
+    <property name="stack-0" value="SEA_SERPENT,1,8,8"/>
    </properties>
   </object>
   <object id="145" name="EGG" gid="1257" x="1232" y="448" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="66"/>
+    <property name="stack-0" value="INSECTS,6,11,8"/>
    </properties>
   </object>
   <object id="150" name="EGG" gid="1257" x="1968" y="448" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="33"/>
+    <property name="stack-0" value="DRAKE,1,8,8"/>
    </properties>
   </object>
   <object id="151" name="EGG" gid="1257" x="2096" y="448" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="33"/>
+    <property name="stack-0" value="GIANT_SPIDER,2,8,8"/>
    </properties>
   </object>
   <object id="153" name="EGG" gid="1257" x="2352" y="448" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="33"/>
+    <property name="stack-0" value="DRAGON,1,8,8"/>
    </properties>
   </object>
   <object id="155" name="EGG" gid="1257" x="3152" y="448" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1090"/>
+    <property name="qty" value="66"/>
     <property name="quality" value="4"/>
+    <property name="stack-0" value="GIANT_ANT,6,8,8"/>
    </properties>
   </object>
   <object id="158" name="EGG" gid="1257" x="640" y="464" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="33"/>
+    <property name="stack-0" value="SEA_SERPENT,1,8,8"/>
    </properties>
   </object>
   <object id="190" name="EGG" gid="1257" x="3488" y="496" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1090"/>
+    <property name="qty" value="66"/>
     <property name="quality" value="4"/>
+    <property name="stack-0" value="GIANT_ANT,6,8,8"/>
    </properties>
   </object>
   <object id="193" name="EGG" gid="1257" x="3760" y="528" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1090"/>
+    <property name="qty" value="66"/>
     <property name="quality" value="4"/>
+    <property name="stack-0" value="GIANT_ANT,8,11,8"/>
    </properties>
   </object>
   <object id="197" name="EGG" gid="1257" x="1376" y="560" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="50"/>
+    <property name="stack-0" value="REAPER,5,14,8"/>
    </properties>
   </object>
   <object id="201" name="EGG" gid="1257" x="1696" y="576" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="75"/>
+    <property name="stack-0" value="ROT_WORMS,5,11,8"/>
    </properties>
   </object>
   <object id="218" name="EGG" gid="1257" x="1728" y="608" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1074"/>
+    <property name="qty" value="50"/>
     <property name="quality" value="4"/>
+    <property name="stack-0" value="SNAKE,5,8,8"/>
    </properties>
   </object>
   <object id="260" name="EGG" gid="1257" x="432" y="704" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="578"/>
+    <property name="qty" value="66"/>
     <property name="quality" value="2"/>
+    <property name="stack-0" value="MOUSE,5,9,8"/>
    </properties>
   </object>
   <object id="261" name="EGG" gid="1257" x="1200" y="704" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="50"/>
+    <property name="stack-0" value="WOLF,8,6,8"/>
    </properties>
   </object>
   <object id="263" name="EGG" gid="1257" x="1968" y="704" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="33"/>
+    <property name="stack-0" value="DAEMON,1,8,8"/>
    </properties>
   </object>
   <object id="264" name="EGG" gid="1257" x="2224" y="704" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="80"/>
+    <property name="stack-0" value="GUARD,1,8,8"/>
    </properties>
   </object>
   <object id="265" name="EGG" gid="1257" x="2480" y="704" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="33"/>
+    <property name="stack-0" value="MAGE,1,8,8"/>
    </properties>
   </object>
   <object id="269" name="EGG" gid="1257" x="944" y="720" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="50"/>
+    <property name="stack-0" value="GHOST,3,11,8"/>
    </properties>
   </object>
   <object id="285" name="EGG" gid="1257" x="1504" y="752" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="50"/>
+    <property name="stack-0" value="REAPER,5,14,8"/>
    </properties>
   </object>
   <object id="286" name="EGG" gid="1257" x="1744" y="752" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="66"/>
+    <property name="stack-0" value="REAPER,5,14,8"/>
    </properties>
   </object>
   <object id="288" name="EGG" gid="1257" x="3104" y="752" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1090"/>
+    <property name="qty" value="66"/>
     <property name="quality" value="4"/>
+    <property name="stack-0" value="GIANT_ANT,4,11,8"/>
    </properties>
   </object>
   <object id="296" name="EGG" gid="1257" x="720" y="784" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="50"/>
+    <property name="stack-0" value="SKELETON,5,8,8"/>
    </properties>
   </object>
   <object id="311" name="EGG" gid="1257" x="1200" y="832" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="10"/>
+    <property name="stack-0" value="GOLD_NUGGET,1,0,8"/>
    </properties>
   </object>
   <object id="313" name="EGG" gid="1257" x="1344" y="832" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="10"/>
+    <property name="stack-0" value="GOLD_NUGGET,4,0,8"/>
    </properties>
   </object>
   <object id="314" name="EGG" gid="1257" x="3568" y="832" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1090"/>
+    <property name="qty" value="66"/>
     <property name="quality" value="4"/>
+    <property name="stack-0" value="GIANT_ANT,6,11,8"/>
    </properties>
   </object>
   <object id="320" name="EGG" gid="1257" x="448" y="848" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="33"/>
+    <property name="stack-0" value="SEA_SERPENT,2,11,8"/>
    </properties>
   </object>
   <object id="322" name="EGG" gid="1257" x="2256" y="848" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="66"/>
+    <property name="stack-0" value="SLIME,10,8,8"/>
    </properties>
   </object>
   <object id="328" name="EGG" gid="1257" x="2112" y="864" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="50"/>
+    <property name="stack-0" value="SNAKE,5,11,8"/>
    </properties>
   </object>
   <object id="369" name="EGG" gid="1257" x="1088" y="960" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="33"/>
+    <property name="stack-0" value="GIANT_SCORPION,3,8,8"/>
    </properties>
   </object>
   <object id="376" name="EGG" gid="1257" x="2080" y="960" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1057"/>
+    <property name="qty" value="33"/>
     <property name="quality" value="4"/>
+    <property name="stack-0" value="ROT_WORMS,5,11,8"/>
    </properties>
   </object>
   <object id="449" name="EGG" gid="1257" x="2816" y="1024" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1090"/>
+    <property name="qty" value="66"/>
     <property name="quality" value="4"/>
+    <property name="stack-0" value="GIANT_ANT,4,11,8"/>
    </properties>
   </object>
   <object id="527" name="EGG" gid="1257" x="1152" y="1152" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1057"/>
+    <property name="qty" value="33"/>
     <property name="quality" value="4"/>
+    <property name="stack-0" value="GIANT_RAT,4,8,8"/>
    </properties>
   </object>
   <object id="555" name="EGG" gid="1257" x="3552" y="1184" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1090"/>
+    <property name="qty" value="66"/>
     <property name="quality" value="4"/>
+    <property name="stack-0" value="GIANT_ANT,3,8,8"/>
    </properties>
   </object>
   <object id="560" name="EGG" gid="1257" x="560" y="1200" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="50"/>
+    <property name="stack-0" value="SNAKE,5,8,8"/>
    </properties>
   </object>
   <object id="561" name="EGG" gid="1257" x="1712" y="1200" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1054"/>
+    <property name="qty" value="30"/>
     <property name="quality" value="4"/>
+    <property name="stack-0" value="MOUSE,4,8,8"/>
+    <property name="stack-1" value="GIANT_RAT,3,8,8"/>
    </properties>
   </object>
   <object id="586" name="EGG" gid="1257" x="320" y="1248" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="99"/>
+    <property name="stack-0" value="SPIDER_SILK,6,0,8"/>
    </properties>
   </object>
   <object id="592" name="EGG" gid="1257" x="2096" y="1264" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="50"/>
+    <property name="stack-0" value="SNAKE,5,11,8"/>
+    <property name="stack-1" value="DRAGON,1,8,8"/>
    </properties>
   </object>
   <object id="593" name="EGG" gid="1257" x="2832" y="1264" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1099"/>
+    <property name="qty" value="75"/>
     <property name="quality" value="4"/>
+    <property name="stack-0" value="SKELETON,6,3,8"/>
+    <property name="stack-1" value="GAZER,2,4,8"/>
+    <property name="stack-2" value="GHOST,4,8,8"/>
+    <property name="stack-3" value="WOLF,2,6,8"/>
+    <property name="stack-4" value="SLIME,10,8,8"/>
    </properties>
   </object>
   <object id="595" name="EGG" gid="1257" x="3344" y="1264" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1090"/>
+    <property name="qty" value="66"/>
     <property name="quality" value="4"/>
+    <property name="stack-0" value="GIANT_ANT,5,8,8"/>
    </properties>
   </object>
   <object id="599" name="EGG" gid="1257" x="3072" y="1280" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1090"/>
+    <property name="qty" value="66"/>
     <property name="quality" value="4"/>
+    <property name="stack-0" value="GIANT_ANT,5,8,8"/>
    </properties>
   </object>
   <object id="642" name="EGG" gid="1257" x="48" y="1344" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="75"/>
+    <property name="stack-0" value="GIANT_SPIDER,3,8,8"/>
    </properties>
   </object>
   <object id="673" name="EGG" gid="1257" x="288" y="1360" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="99"/>
+    <property name="stack-0" value="SPIDER_SILK,15,0,8"/>
    </properties>
   </object>
   <object id="674" name="EGG" gid="1257" x="432" y="1360" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1090"/>
+    <property name="qty" value="66"/>
     <property name="quality" value="4"/>
+    <property name="stack-0" value="GIANT_SPIDER,4,8,8"/>
+    <property name="stack-1" value="ALLIGATOR,5,11,8"/>
    </properties>
   </object>
   <object id="678" name="EGG" gid="1257" x="832" y="1360" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1057"/>
+    <property name="qty" value="33"/>
     <property name="quality" value="4"/>
+    <property name="stack-0" value="GIANT_SQUID,2,11,8"/>
    </properties>
   </object>
   <object id="734" name="EGG" gid="1257" x="1776" y="1408" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1054"/>
+    <property name="qty" value="30"/>
     <property name="quality" value="4"/>
+    <property name="stack-0" value="MOUSE,5,8,8"/>
+    <property name="stack-1" value="GIANT_RAT,8,8,8"/>
    </properties>
   </object>
   <object id="741" name="EGG" gid="1257" x="224" y="1440" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1090"/>
+    <property name="qty" value="66"/>
     <property name="quality" value="4"/>
+    <property name="stack-0" value="GIANT_SPIDER,3,8,8"/>
    </properties>
   </object>
   <object id="752" name="EGG" gid="1257" x="608" y="1456" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="99"/>
+    <property name="stack-0" value="SPIDER_SILK,15,0,8"/>
    </properties>
   </object>
   <object id="763" name="EGG" gid="1257" x="272" y="1472" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="99"/>
+    <property name="stack-0" value="SPIDER_SILK,15,0,8"/>
    </properties>
   </object>
   <object id="764" name="EGG" gid="1257" x="784" y="1472" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="578"/>
+    <property name="qty" value="66"/>
     <property name="quality" value="2"/>
+    <property name="stack-0" value="GIANT_BAT,3,8,8"/>
    </properties>
   </object>
   <object id="768" name="EGG" gid="1257" x="1536" y="1472" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1124"/>
+    <property name="qty" value="100"/>
     <property name="quality" value="4"/>
+    <property name="stack-0" value="GIANT_RAT,8,8,8"/>
    </properties>
   </object>
   <object id="770" name="EGG" gid="1257" x="2624" y="1472" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1074"/>
+    <property name="qty" value="50"/>
     <property name="quality" value="4"/>
+    <property name="stack-0" value="DAEMON,1,4,8"/>
+    <property name="stack-1" value="SKELETON,5,3,8"/>
    </properties>
   </object>
   <object id="820" name="EGG" gid="1257" x="512" y="1552" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="99"/>
+    <property name="stack-0" value="SPIDER_SILK,10,0,8"/>
    </properties>
   </object>
   <object id="823" name="EGG" gid="1257" x="464" y="1568" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1090"/>
+    <property name="qty" value="66"/>
     <property name="quality" value="4"/>
+    <property name="stack-0" value="GIANT_SPIDER,3,8,8"/>
    </properties>
   </object>
   <object id="839" name="EGG" gid="1257" x="2048" y="1584" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="33"/>
+    <property name="stack-0" value="CORPSER,4,8,8"/>
    </properties>
   </object>
   <object id="843" name="EGG" gid="1257" x="1328" y="1600" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1057"/>
+    <property name="qty" value="33"/>
     <property name="quality" value="4"/>
+    <property name="stack-0" value="GIANT_RAT,4,8,8"/>
    </properties>
   </object>
   <object id="857" name="EGG" gid="1257" x="2240" y="1616" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1124"/>
+    <property name="qty" value="100"/>
     <property name="quality" value="4"/>
+    <property name="stack-0" value="GREMLIN,3,8,8"/>
    </properties>
   </object>
   <object id="859" name="EGG" gid="1257" x="2864" y="1616" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="562"/>
+    <property name="qty" value="50"/>
     <property name="quality" value="2"/>
+    <property name="stack-0" value="MONGBAT,5,8,8"/>
    </properties>
   </object>
   <object id="880" name="EGG" gid="1257" x="96" y="1664" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="33"/>
+    <property name="stack-0" value="GIANT_SCORPION,3,8,8"/>
    </properties>
   </object>
   <object id="883" name="EGG" gid="1257" x="2608" y="1664" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="33"/>
+    <property name="stack-0" value="SEA_SERPENT,2,8,8"/>
    </properties>
   </object>
   <object id="884" name="EGG" gid="1257" x="3968" y="1664" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1099"/>
+    <property name="qty" value="75"/>
     <property name="quality" value="4"/>
+    <property name="stack-0" value="CORPSER,6,8,8"/>
    </properties>
   </object>
   <object id="886" name="EGG" gid="1257" x="768" y="1680" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="66"/>
+    <property name="stack-0" value="ACID_SLUG,3,11,8"/>
    </properties>
   </object>
   <object id="910" name="EGG" gid="1257" x="672" y="1712" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="66"/>
+    <property name="stack-0" value="ACID_SLUG,3,11,8"/>
    </properties>
   </object>
   <object id="921" name="EGG" gid="1257" x="560" y="1728" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="66"/>
+    <property name="stack-0" value="ACID_SLUG,2,11,8"/>
    </properties>
   </object>
   <object id="949" name="EGG" gid="1257" x="1728" y="1744" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1054"/>
+    <property name="qty" value="30"/>
     <property name="quality" value="4"/>
+    <property name="stack-0" value="MOUSE,5,8,8"/>
+    <property name="stack-1" value="GIANT_RAT,3,8,8"/>
    </properties>
   </object>
   <object id="952" name="EGG" gid="1257" x="2992" y="1744" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1074"/>
+    <property name="qty" value="50"/>
     <property name="quality" value="4"/>
+    <property name="stack-0" value="SEA_SERPENT,2,8,8"/>
    </properties>
   </object>
   <object id="962" name="EGG" gid="1257" x="2224" y="1760" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1099"/>
+    <property name="qty" value="75"/>
     <property name="quality" value="4"/>
+    <property name="stack-0" value="SEA_SERPENT,2,8,8"/>
    </properties>
   </object>
   <object id="1006" name="EGG" gid="1257" x="2224" y="1840" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="587"/>
+    <property name="qty" value="75"/>
     <property name="quality" value="2"/>
+    <property name="stack-0" value="GIANT_SQUID,2,8,8"/>
    </properties>
   </object>
   <object id="1015" name="EGG" gid="1257" x="48" y="1856" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="33"/>
+    <property name="stack-0" value="GIANT_ANT,5,8,8"/>
    </properties>
   </object>
   <object id="1016" name="EGG" gid="1257" x="592" y="1856" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="66"/>
+    <property name="stack-0" value="ACID_SLUG,4,11,8"/>
    </properties>
   </object>
   <object id="1040" name="EGG" gid="1257" x="2624" y="1872" width="16" height="16">
@@ -809,7 +916,7 @@
   <object id="1046" name="EGG" gid="1257" x="432" y="1888" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1074"/>
+    <property name="qty" value="50"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
@@ -822,21 +929,21 @@
   <object id="1065" name="EGG" gid="1257" x="1392" y="1904" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1084"/>
+    <property name="qty" value="60"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="1112" name="EGG" gid="1257" x="2864" y="1984" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1057"/>
+    <property name="qty" value="33"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="1147" name="EGG" gid="1257" x="80" y="2032" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1074"/>
+    <property name="qty" value="50"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
@@ -849,9 +956,8 @@
   <object id="1220" name="EGG" gid="1257" x="320" y="2128" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1074"/>
+    <property name="qty" value="50"/>
     <property name="quality" value="4"/>
-    <property name="spawn" value="GOLD_COIN"/>
    </properties>
   </object>
   <object id="1240" name="EGG" gid="1257" x="1440" y="2160" width="16" height="16">
@@ -863,28 +969,28 @@
   <object id="1247" name="EGG" gid="1257" x="3040" y="2176" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1099"/>
+    <property name="qty" value="75"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="1248" name="EGG" gid="1257" x="3712" y="2176" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1074"/>
+    <property name="qty" value="50"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="1249" name="EGG" gid="1257" x="3328" y="2192" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1074"/>
+    <property name="qty" value="50"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="1250" name="EGG" gid="1257" x="224" y="2208" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1090"/>
+    <property name="qty" value="66"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
@@ -897,7 +1003,7 @@
   <object id="1255" name="EGG" gid="1257" x="2480" y="2224" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1099"/>
+    <property name="qty" value="75"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
@@ -910,7 +1016,7 @@
   <object id="1273" name="EGG" gid="1257" x="3888" y="2240" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1099"/>
+    <property name="qty" value="75"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
@@ -923,21 +1029,21 @@
   <object id="1311" name="EGG" gid="1257" x="2480" y="2352" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1057"/>
+    <property name="qty" value="33"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="1312" name="EGG" gid="1257" x="2864" y="2352" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1057"/>
+    <property name="qty" value="33"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="1314" name="EGG" gid="1257" x="2112" y="2368" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1099"/>
+    <property name="qty" value="75"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
@@ -945,7 +1051,6 @@
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="33"/>
-    <property name="spawn" value="ANCHOR"/>
    </properties>
   </object>
   <object id="1368" name="EGG" gid="1257" x="3696" y="2448" width="16" height="16">
@@ -958,27 +1063,26 @@
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="33"/>
-    <property name="spawn" value="BLOOD"/>
    </properties>
   </object>
   <object id="1382" name="EGG" gid="1257" x="4016" y="2480" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1099"/>
+    <property name="qty" value="75"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="1384" name="EGG" gid="1257" x="336" y="2496" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="587"/>
+    <property name="qty" value="75"/>
     <property name="quality" value="2"/>
    </properties>
   </object>
   <object id="1385" name="EGG" gid="1257" x="416" y="2496" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1099"/>
+    <property name="qty" value="75"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
@@ -997,7 +1101,7 @@
   <object id="1435" name="EGG" gid="1257" x="3472" y="2592" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="545"/>
+    <property name="qty" value="33"/>
     <property name="quality" value="2"/>
    </properties>
   </object>
@@ -1010,7 +1114,7 @@
   <object id="1440" name="EGG" gid="1257" x="2832" y="2624" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1057"/>
+    <property name="qty" value="33"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
@@ -1023,14 +1127,14 @@
   <object id="1462" name="EGG" gid="1257" x="3392" y="2736" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1074"/>
+    <property name="qty" value="50"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="1464" name="EGG" gid="1257" x="2736" y="2752" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1074"/>
+    <property name="qty" value="50"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
@@ -1055,14 +1159,14 @@
   <object id="1473" name="EGG" gid="1257" x="3600" y="2800" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1099"/>
+    <property name="qty" value="75"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="1474" name="EGG" gid="1257" x="3584" y="2816" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1074"/>
+    <property name="qty" value="50"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
@@ -1081,21 +1185,21 @@
   <object id="1488" name="EGG" gid="1257" x="2992" y="2896" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1057"/>
+    <property name="qty" value="33"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="1489" name="EGG" gid="1257" x="3920" y="2896" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1099"/>
+    <property name="qty" value="75"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="1494" name="EGG" gid="1257" x="2224" y="2928" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1124"/>
+    <property name="qty" value="100"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
@@ -1108,7 +1212,7 @@
   <object id="1499" name="EGG" gid="1257" x="2560" y="2960" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1099"/>
+    <property name="qty" value="75"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
@@ -1121,14 +1225,14 @@
   <object id="1502" name="EGG" gid="1257" x="2736" y="2976" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1090"/>
+    <property name="qty" value="66"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="1503" name="EGG" gid="1257" x="2096" y="2992" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1099"/>
+    <property name="qty" value="75"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
@@ -1141,7 +1245,7 @@
   <object id="1512" name="EGG" gid="1257" x="2864" y="3024" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1124"/>
+    <property name="qty" value="100"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
@@ -1172,30 +1276,29 @@
   <object id="1567" name="EGG" gid="1257" x="2368" y="3168" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1057"/>
+    <property name="qty" value="33"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="1570" name="EGG" gid="1257" x="2880" y="3168" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1090"/>
+    <property name="qty" value="66"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="1582" name="EGG" gid="1257" x="2656" y="3184" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1090"/>
+    <property name="qty" value="66"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="1592" name="EGG" gid="1257" x="2800" y="3200" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1099"/>
+    <property name="qty" value="75"/>
     <property name="quality" value="4"/>
-    <property name="spawn" value="BOLT"/>
    </properties>
   </object>
   <object id="1605" name="EGG" gid="1257" x="176" y="3248" width="16" height="16">
@@ -1208,7 +1311,6 @@
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="33"/>
-    <property name="spawn" value="INKWELL"/>
    </properties>
   </object>
   <object id="1608" name="EGG" gid="1257" x="1200" y="3264" width="16" height="16">
@@ -1220,7 +1322,7 @@
   <object id="1609" name="EGG" gid="1257" x="2608" y="3264" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1090"/>
+    <property name="qty" value="66"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
@@ -1228,7 +1330,6 @@
    <properties>
     <property name="object" value="335"/>
     <property name="qty" value="66"/>
-    <property name="spawn" value="BAG"/>
    </properties>
   </object>
   <object id="1619" name="EGG" gid="1257" x="80" y="3392" width="16" height="16">
@@ -1270,14 +1371,14 @@
   <object id="1640" name="EGG" gid="1257" x="1760" y="3552" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1057"/>
+    <property name="qty" value="33"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="1643" name="EGG" gid="1257" x="2192" y="3568" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1057"/>
+    <property name="qty" value="33"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
@@ -1296,7 +1397,7 @@
   <object id="1656" name="EGG" gid="1257" x="1968" y="3664" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1099"/>
+    <property name="qty" value="75"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
@@ -1339,21 +1440,21 @@
   <object id="1703" name="EGG" gid="1257" x="1744" y="3744" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1057"/>
+    <property name="qty" value="33"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="1708" name="EGG" gid="1257" x="2160" y="3744" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1057"/>
+    <property name="qty" value="33"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
   <object id="1711" name="EGG" gid="1257" x="1056" y="3760" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="1123"/>
+    <property name="qty" value="99"/>
     <property name="quality" value="4"/>
    </properties>
   </object>
@@ -1384,7 +1485,7 @@
   <object id="1738" name="EGG" gid="1257" x="816" y="4032" width="16" height="16">
    <properties>
     <property name="object" value="335"/>
-    <property name="qty" value="331"/>
+    <property name="qty" value="75"/>
     <property name="quality" value="1"/>
    </properties>
   </object>
@@ -1504,6 +1605,7 @@
    <properties>
     <property name="frame" value="1"/>
     <property name="object" value="165"/>
+    <property name="stack-0" value="CYCLOPS,1,8,8"/>
    </properties>
   </object>
   <object id="24" name="STALAGMITE" gid="722" x="640" y="80" width="16" height="16">
@@ -1574,6 +1676,7 @@
    <properties>
     <property name="frame" value="1"/>
     <property name="object" value="310"/>
+    <property name="stack-0" value="DRAKE,3,8,8"/>
    </properties>
   </object>
   <object id="46" name="PORTCULLIS" gid="1149" x="2336" y="112" width="16" height="16">
@@ -1733,6 +1836,7 @@
   <object id="102" name="LEATHER_HELM" gid="513" x="1872" y="304" width="16" height="16">
    <properties>
     <property name="object" value="1"/>
+    <property name="stack-0" value="GIANT_RAT,8,8,8"/>
    </properties>
   </object>
   <object id="103" name="DAGGER" gid="550" x="1888" y="304" width="16" height="16">
@@ -1924,6 +2028,7 @@
    <properties>
     <property name="frame" value="1"/>
     <property name="object" value="165"/>
+    <property name="stack-0" value="PROTECTION_RING,0,0,8"/>
    </properties>
   </object>
   <object id="159" name="STALAGMITE" gid="721" x="672" y="464" width="16" height="16">
@@ -2056,6 +2161,7 @@
    <properties>
     <property name="frame" value="1"/>
     <property name="object" value="165"/>
+    <property name="stack-0" value="CYCLOPS,1,8,8"/>
    </properties>
   </object>
   <object id="198" name="PLANT" gid="671" x="3568" y="560" width="16" height="16">
@@ -2067,6 +2173,7 @@
    <properties>
     <property name="object" value="70"/>
     <property name="qty" value="1"/>
+    <property name="stack-0" value="TRAP,0,0,2"/>
    </properties>
   </object>
   <object id="203" name="PORTCULLIS" gid="1152" x="1888" y="576" width="16" height="16">
@@ -2140,6 +2247,7 @@
    <properties>
     <property name="object" value="70"/>
     <property name="qty" value="1"/>
+    <property name="stack-0" value="GOLD_NUGGET,1,0,8"/>
    </properties>
   </object>
   <object id="221" name="PLANT" gid="671" x="3680" y="608" width="16" height="16">
@@ -2172,6 +2280,9 @@
    <properties>
     <property name="frame" value="1"/>
     <property name="object" value="165"/>
+    <property name="stack-0" value="CAT,6,8,8"/>
+    <property name="stack-1" value="MAGE,2,4,8"/>
+    <property name="stack-2" value="SKELETON,5,3,8"/>
    </properties>
   </object>
   <object id="227" name="GOLD_NUGGET" gid="610" x="1536" y="656" width="16" height="16">
@@ -2196,6 +2307,7 @@
    <properties>
     <property name="frame" value="1"/>
     <property name="object" value="310"/>
+    <property name="stack-0" value="ACID_SLUG,3,8,8"/>
    </properties>
   </object>
   <object id="233" name="PORTCULLIS" gid="1149" x="2080" y="656" width="16" height="16">
@@ -2208,6 +2320,7 @@
    <properties>
     <property name="frame" value="1"/>
     <property name="object" value="310"/>
+    <property name="stack-0" value="CYCLOPS,2,8,8"/>
    </properties>
   </object>
   <object id="241" name="PORTCULLIS" gid="1149" x="2336" y="656" width="16" height="16">
@@ -2248,6 +2361,7 @@
    <properties>
     <property name="object" value="268"/>
     <property name="quality" value="73"/>
+    <property name="stack-0" value="SLIME,15,8,8"/>
    </properties>
   </object>
   <object id="252" name="LEVER" gid="913" x="2240" y="672" width="16" height="16">
@@ -2294,6 +2408,7 @@
   <object id="259" name="STALAGMITE" gid="721" x="64" y="704" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
+    <property name="stack-0" value="TRAP,0,0,2"/>
    </properties>
   </object>
   <object id="262" name="STALAGMITE" gid="721" x="1456" y="704" width="16" height="16">
@@ -2305,6 +2420,8 @@
    <properties>
     <property name="object" value="70"/>
     <property name="qty" value="1"/>
+    <property name="stack-0" value="ACID_SLUG,4,8,8"/>
+    <property name="stack-1" value="SLIME,8,8,8"/>
    </properties>
   </object>
   <object id="267" name="PLANT" gid="671" x="3504" y="704" width="16" height="16">
@@ -2348,6 +2465,7 @@
    <properties>
     <property name="object" value="70"/>
     <property name="qty" value="1"/>
+    <property name="stack-0" value="SHEEP,6,12,8"/>
    </properties>
   </object>
   <object id="276" name="NIGHTSHADE" gid="582" x="3600" y="720" width="16" height="16">
@@ -2418,6 +2536,7 @@
    <properties>
     <property name="object" value="70"/>
     <property name="qty" value="1"/>
+    <property name="stack-0" value="GREMLIN,5,11,8"/>
    </properties>
   </object>
   <object id="291" name="INVISIBILITY_RING" gid="896" x="224" y="768" width="16" height="16">
@@ -2428,6 +2547,7 @@
   <object id="292" name="STALAGMITE" gid="721" x="240" y="768" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
+    <property name="stack-0" value="GIANT_RAT,8,8,8"/>
    </properties>
   </object>
   <object id="293" name="GOLD_NUGGET" gid="610" x="1536" y="768" width="16" height="16">
@@ -2445,6 +2565,7 @@
    <properties>
     <property name="frame" value="1"/>
     <property name="object" value="165"/>
+    <property name="stack-0" value="REAPER,3,14,8"/>
    </properties>
   </object>
   <object id="297" name="STALAGMITE" gid="721" x="1552" y="784" width="16" height="16">
@@ -2455,6 +2576,7 @@
   <object id="298" name="PLANT" gid="671" x="3600" y="784" width="16" height="16">
    <properties>
     <property name="object" value="138"/>
+    <property name="stack-0" value="PROTECTION_RING,0,0,8"/>
    </properties>
   </object>
   <object id="299" name="REGENERATION_RING" gid="895" x="224" y="800" width="16" height="16">
@@ -2470,6 +2592,9 @@
   <object id="301" name="STALAGMITE" gid="721" x="1312" y="800" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
+    <property name="stack-0" value="GOLD_NUGGET,1,0,8"/>
+    <property name="stack-1" value="GEM,1,0,8"/>
+    <property name="stack-2" value="RUNE_OF_HONESTY,0,0,8"/>
    </properties>
   </object>
   <object id="302" name="STALAGMITE" gid="721" x="2016" y="800" width="16" height="16">
@@ -2589,6 +2714,7 @@
   <object id="331" name="STALAGMITE" gid="721" x="1952" y="896" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
+    <property name="stack-0" value="GHOST,3,11,8"/>
    </properties>
   </object>
   <object id="332" name="PLANT" gid="671" x="3648" y="912" width="16" height="16">
@@ -2606,6 +2732,7 @@
    <properties>
     <property name="frame" value="5"/>
     <property name="object" value="276"/>
+    <property name="stack-0" value="DRAKE,3,8,8"/>
    </properties>
   </object>
   <object id="335" name="STEPS2" gid="950" x="2224" y="928" width="16" height="16">
@@ -2676,6 +2803,7 @@
    <properties>
     <property name="object" value="89"/>
     <property name="qty" value="1"/>
+    <property name="stack-0" value="GREMLIN,15,8,8"/>
    </properties>
   </object>
   <object id="347" name="STALAGMITE" gid="721" x="992" y="944" width="16" height="16">
@@ -2692,6 +2820,7 @@
   <object id="349" name="STALAGMITE" gid="721" x="1200" y="944" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
+    <property name="stack-0" value="WOLF,5,8,8"/>
    </properties>
   </object>
   <object id="350" name="GOLD_NUGGET" gid="610" x="1600" y="944" width="16" height="16">
@@ -2704,6 +2833,8 @@
    <properties>
     <property name="frame" value="1"/>
     <property name="object" value="165"/>
+    <property name="stack-0" value="MOUSE,5,8,8"/>
+    <property name="stack-1" value="GIANT_RAT,4,8,8"/>
    </properties>
   </object>
   <object id="352" name="STEPS2" gid="948" x="2192" y="944" width="16" height="16">
@@ -2725,6 +2856,7 @@
   <object id="355" name="FLOOR2" gid="544" x="2240" y="944" width="16" height="16">
    <properties>
     <property name="object" value="32"/>
+    <property name="stack-0" value="DRAGON,2,8,8"/>
    </properties>
   </object>
   <object id="356" name="FLOOR2" gid="544" x="2256" y="944" width="16" height="16">
@@ -2889,6 +3021,7 @@
    <properties>
     <property name="frame" value="1"/>
     <property name="object" value="165"/>
+    <property name="stack-0" value="SLIME,10,8,8"/>
    </properties>
   </object>
   <object id="404" name="STALAGMITE" gid="721" x="2112" y="976" width="16" height="16">
@@ -2905,6 +3038,7 @@
   <object id="406" name="FLOOR2" gid="544" x="2208" y="976" width="16" height="16">
    <properties>
     <property name="object" value="32"/>
+    <property name="stack-0" value="FLASK_OF_OIL,1,0,8"/>
    </properties>
   </object>
   <object id="407" name="FLOOR2" gid="544" x="2224" y="976" width="16" height="16">
@@ -2920,6 +3054,7 @@
   <object id="409" name="FLOOR2" gid="544" x="2256" y="976" width="16" height="16">
    <properties>
     <property name="object" value="32"/>
+    <property name="stack-0" value="GOLD_COIN,2,0,8"/>
    </properties>
   </object>
   <object id="410" name="STEPS2" gid="952" x="2256" y="976" width="16" height="16">
@@ -2980,6 +3115,7 @@
   <object id="420" name="STALAGMITE" gid="721" x="1728" y="992" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
+    <property name="stack-0" value="DRAKE,4,11,8"/>
    </properties>
   </object>
   <object id="421" name="STEPS2" gid="956" x="2192" y="992" width="16" height="16">
@@ -3002,6 +3138,8 @@
   <object id="424" name="FLOOR2" gid="544" x="2224" y="992" width="16" height="16">
    <properties>
     <property name="object" value="32"/>
+    <property name="stack-0" value="HEADLESS,4,8,8"/>
+    <property name="stack-1" value="GAZER,2,4,8"/>
    </properties>
   </object>
   <object id="425" name="STEPS2" gid="946" x="2224" y="992" width="16" height="16">
@@ -3024,6 +3162,8 @@
   <object id="428" name="FLOOR2" gid="544" x="2256" y="992" width="16" height="16">
    <properties>
     <property name="object" value="32"/>
+    <property name="stack-0" value="HEADLESS,6,3,8"/>
+    <property name="stack-1" value="GAZER,2,4,8"/>
    </properties>
   </object>
   <object id="429" name="STEPS2" gid="955" x="2256" y="992" width="16" height="16">
@@ -3058,6 +3198,7 @@
    <properties>
     <property name="frame" value="1"/>
     <property name="object" value="276"/>
+    <property name="stack-0" value="DRAGON,2,8,8"/>
    </properties>
   </object>
   <object id="435" name="FLOOR2" gid="544" x="2624" y="992" width="16" height="16">
@@ -3080,6 +3221,7 @@
    <properties>
     <property name="frame" value="10"/>
     <property name="object" value="276"/>
+    <property name="stack-0" value="DRAGON,2,8,8"/>
    </properties>
   </object>
   <object id="447" name="STALAGMITE" gid="722" x="3808" y="1008" width="16" height="16">
@@ -3091,6 +3233,7 @@
   <object id="448" name="PLANT" gid="671" x="2736" y="1024" width="16" height="16">
    <properties>
     <property name="object" value="138"/>
+    <property name="stack-0" value="GAZER,3,8,8"/>
    </properties>
   </object>
   <object id="450" name="STALAGMITE" gid="721" x="3376" y="1024" width="16" height="16">
@@ -3133,6 +3276,7 @@
    <properties>
     <property name="object" value="89"/>
     <property name="qty" value="1"/>
+    <property name="stack-0" value="DRAGON,2,8,8"/>
    </properties>
   </object>
   <object id="458" name="STALAGMITE" gid="721" x="928" y="1056" width="16" height="16">
@@ -3143,6 +3287,7 @@
   <object id="459" name="STALAGMITE" gid="721" x="1216" y="1056" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
+    <property name="stack-0" value="DRAGON,2,8,8"/>
    </properties>
   </object>
   <object id="460" name="STALAGMITE" gid="722" x="1328" y="1056" width="16" height="16">
@@ -3155,6 +3300,7 @@
    <properties>
     <property name="frame" value="1"/>
     <property name="object" value="165"/>
+    <property name="stack-0" value="PROTECTION_RING,0,0,8"/>
    </properties>
   </object>
   <object id="462" name="STALAGMITE" gid="721" x="272" y="1072" width="16" height="16">
@@ -3178,6 +3324,7 @@
    <properties>
     <property name="frame" value="1"/>
     <property name="object" value="206"/>
+    <property name="stack-0" value="GIANT_BAT,5,11,8"/>
    </properties>
   </object>
   <object id="466" name="BRAZIER" gid="798" x="2496" y="1072" width="16" height="16">
@@ -3222,6 +3369,7 @@
   <object id="474" name="STALAGMITE" gid="721" x="816" y="1088" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
+    <property name="stack-0" value="GREMLIN,15,8,8"/>
    </properties>
   </object>
   <object id="475" name="STALAGMITE" gid="721" x="832" y="1088" width="16" height="16">
@@ -3243,6 +3391,7 @@
   <object id="478" name="STALAGMITE" gid="721" x="880" y="1088" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
+    <property name="stack-0" value="DRAKE,5,11,8"/>
    </properties>
   </object>
   <object id="479" name="STALAGMITE" gid="721" x="896" y="1088" width="16" height="16">
@@ -3259,6 +3408,7 @@
   <object id="481" name="WALKWAY" gid="993" x="1584" y="1088" width="16" height="16">
    <properties>
     <property name="object" value="286"/>
+    <property name="stack-0" value="REAPER,4,14,8"/>
    </properties>
   </object>
   <object id="482" name="WALKWAY" gid="993" x="1600" y="1088" width="16" height="16">
@@ -3269,6 +3419,7 @@
   <object id="483" name="WALKWAY" gid="993" x="1616" y="1088" width="16" height="16">
    <properties>
     <property name="object" value="286"/>
+    <property name="stack-0" value="DRAKE,2,8,8"/>
    </properties>
   </object>
   <object id="484" name="STALAGMITE" gid="722" x="1968" y="1088" width="16" height="16">
@@ -3290,6 +3441,7 @@
   <object id="488" name="SPIKES" gid="732" x="3840" y="1088" width="16" height="16">
    <properties>
     <property name="object" value="172"/>
+    <property name="stack-0" value="GIANT_BAT,10,11,8"/>
    </properties>
   </object>
   <object id="490" name="GOLD_NUGGET" gid="610" x="64" y="1104" width="16" height="16">
@@ -3322,6 +3474,7 @@
   <object id="495" name="STALAGMITE" gid="721" x="944" y="1104" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
+    <property name="stack-0" value="DRAKE,2,8,8"/>
    </properties>
   </object>
   <object id="496" name="STALAGMITE" gid="721" x="1472" y="1104" width="16" height="16">
@@ -3345,6 +3498,7 @@
    <properties>
     <property name="frame" value="3"/>
     <property name="object" value="286"/>
+    <property name="stack-0" value="RABBIT,8,8,8"/>
    </properties>
   </object>
   <object id="500" name="WALKWAY" gid="996" x="1616" y="1104" width="16" height="16">
@@ -3376,6 +3530,7 @@
   <object id="506" name="SPIKES" gid="732" x="3840" y="1104" width="16" height="16">
    <properties>
     <property name="object" value="172"/>
+    <property name="stack-0" value="DRAGON,1,8,8"/>
    </properties>
   </object>
   <object id="507" name="STALAGMITE" gid="721" x="1152" y="1120" width="16" height="16">
@@ -3386,6 +3541,7 @@
   <object id="508" name="STEPS2" gid="945" x="2384" y="1120" width="16" height="16">
    <properties>
     <property name="object" value="276"/>
+    <property name="stack-0" value="DRAGON,1,8,8"/>
    </properties>
   </object>
   <object id="509" name="FLOOR1" gid="543" x="2384" y="1120" width="16" height="16">
@@ -3527,6 +3683,7 @@
    <properties>
     <property name="frame" value="1"/>
     <property name="object" value="206"/>
+    <property name="stack-0" value="DRAGON,3,8,8"/>
    </properties>
   </object>
   <object id="539" name="STALAGMITE" gid="722" x="3056" y="1152" width="16" height="16">
@@ -3571,6 +3728,7 @@
    <properties>
     <property name="frame" value="3"/>
     <property name="object" value="276"/>
+    <property name="stack-0" value="DRAGON,2,8,8"/>
    </properties>
   </object>
   <object id="547" name="STALAGMITE" gid="721" x="144" y="1184" width="16" height="16">
@@ -3582,6 +3740,8 @@
    <properties>
     <property name="frame" value="1"/>
     <property name="object" value="165"/>
+    <property name="stack-0" value="GHOST,3,8,8"/>
+    <property name="stack-1" value="SKELETON,3,8,8"/>
    </properties>
   </object>
   <object id="549" name="STEPS2" gid="951" x="2384" y="1184" width="16" height="16">
@@ -3611,6 +3771,7 @@
    <properties>
     <property name="frame" value="5"/>
     <property name="object" value="276"/>
+    <property name="stack-0" value="GHOST,4,8,8"/>
    </properties>
   </object>
   <object id="554" name="STEPS2" gid="949" x="2448" y="1184" width="16" height="16">
@@ -3628,6 +3789,7 @@
    <properties>
     <property name="object" value="89"/>
     <property name="qty" value="1"/>
+    <property name="stack-0" value="GOLD_COIN,98,0,8"/>
    </properties>
   </object>
   <object id="563" name="STALAGMITE" gid="721" x="3328" y="1200" width="16" height="16">
@@ -3677,6 +3839,7 @@
   <object id="576" name="STALAGMITE" gid="721" x="976" y="1232" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
+    <property name="stack-0" value="MAGE,3,8,8"/>
    </properties>
   </object>
   <object id="577" name="WALKWAY" gid="998" x="1840" y="1232" width="16" height="16">
@@ -3748,6 +3911,7 @@
   <object id="589" name="HOLE" gid="1143" x="3152" y="1248" width="16" height="16">
    <properties>
     <property name="object" value="308"/>
+    <property name="stack-0" value="DRAKE,2,8,8"/>
    </properties>
   </object>
   <object id="590" name="STALAGMITE" gid="722" x="784" y="1264" width="16" height="16">
@@ -3788,6 +3952,7 @@
    <properties>
     <property name="frame" value="1"/>
     <property name="object" value="165"/>
+    <property name="stack-0" value="DRAKE,5,8,8"/>
    </properties>
   </object>
   <object id="610" name="STALAGMITE" gid="722" x="912" y="1312" width="16" height="16">
@@ -3806,6 +3971,7 @@
    <properties>
     <property name="frame" value="5"/>
     <property name="object" value="276"/>
+    <property name="stack-0" value="GHOST,6,11,8"/>
    </properties>
   </object>
   <object id="613" name="STEPS2" gid="950" x="2224" y="1312" width="16" height="16">
@@ -3836,6 +4002,7 @@
    <properties>
     <property name="frame" value="5"/>
     <property name="object" value="276"/>
+    <property name="stack-0" value="DRAKE,4,8,8"/>
    </properties>
   </object>
   <object id="618" name="STEPS2" gid="950" x="2608" y="1312" width="16" height="16">
@@ -3859,6 +4026,7 @@
   <object id="621" name="STALAGMITE" gid="721" x="32" y="1328" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
+    <property name="stack-0" value="DRAKE,4,11,8"/>
    </properties>
   </object>
   <object id="622" name="STALAGMITE" gid="722" x="880" y="1328" width="16" height="16">
@@ -3894,6 +4062,7 @@
   <object id="627" name="FLOOR2" gid="544" x="2208" y="1328" width="16" height="16">
    <properties>
     <property name="object" value="32"/>
+    <property name="stack-0" value="DRAGON,3,8,8"/>
    </properties>
   </object>
   <object id="628" name="FLOOR2" gid="544" x="2224" y="1328" width="16" height="16">
@@ -3921,6 +4090,7 @@
    <properties>
     <property name="frame" value="1"/>
     <property name="object" value="206"/>
+    <property name="stack-0" value="SEA_SERPENT,2,11,8"/>
    </properties>
   </object>
   <object id="633" name="STEPS2" gid="948" x="2576" y="1328" width="16" height="16">
@@ -3942,6 +4112,7 @@
   <object id="636" name="FLOOR2" gid="544" x="2624" y="1328" width="16" height="16">
    <properties>
     <property name="object" value="32"/>
+    <property name="stack-0" value="SEA_SERPENT,1,11,8"/>
    </properties>
   </object>
   <object id="637" name="FLOOR2" gid="544" x="2640" y="1328" width="16" height="16">
@@ -3997,6 +4168,7 @@
    <properties>
     <property name="frame" value="3"/>
     <property name="object" value="276"/>
+    <property name="stack-0" value="SEA_SERPENT,2,11,8"/>
    </properties>
   </object>
   <object id="652" name="FLOOR2" gid="544" x="2208" y="1344" width="16" height="16">
@@ -4012,6 +4184,7 @@
   <object id="655" name="FLOOR2" gid="544" x="2240" y="1344" width="16" height="16">
    <properties>
     <property name="object" value="32"/>
+    <property name="stack-0" value="DRAGON,3,8,8"/>
    </properties>
   </object>
   <object id="656" name="FLOOR2" gid="544" x="2256" y="1344" width="16" height="16">
@@ -4029,6 +4202,7 @@
    <properties>
     <property name="frame" value="3"/>
     <property name="object" value="276"/>
+    <property name="stack-0" value="GIANT_BAT,5,11,8"/>
    </properties>
   </object>
   <object id="667" name="FLOOR2" gid="544" x="2592" y="1344" width="16" height="16">
@@ -4211,6 +4385,7 @@
    <properties>
     <property name="frame" value="7"/>
     <property name="object" value="286"/>
+    <property name="stack-0" value="SEA_SERPENT,1,11,8"/>
    </properties>
   </object>
   <object id="710" name="WALKWAY" gid="1001" x="2048" y="1376" width="16" height="16">
@@ -4234,6 +4409,7 @@
    <properties>
     <property name="frame" value="1"/>
     <property name="object" value="276"/>
+    <property name="stack-0" value="GIANT_BAT,5,11,8"/>
    </properties>
   </object>
   <object id="714" name="FLOOR2" gid="544" x="2224" y="1376" width="16" height="16">
@@ -4295,6 +4471,7 @@
    <properties>
     <property name="frame" value="1"/>
     <property name="object" value="276"/>
+    <property name="stack-0" value="GIANT_BAT,5,11,8"/>
    </properties>
   </object>
   <object id="725" name="FLOOR2" gid="544" x="2624" y="1376" width="16" height="16">
@@ -4311,6 +4488,7 @@
   <object id="727" name="FLOOR2" gid="544" x="2640" y="1376" width="16" height="16">
    <properties>
     <property name="object" value="32"/>
+    <property name="stack-0" value="GIANT_BAT,5,11,8"/>
    </properties>
   </object>
   <object id="728" name="STEPS2" gid="955" x="2640" y="1376" width="16" height="16">
@@ -4357,6 +4535,7 @@
    <properties>
     <property name="frame" value="9"/>
     <property name="object" value="216"/>
+    <property name="stack-0" value="DOG,2,10,8"/>
    </properties>
   </object>
   <object id="745" name="BOOKSHELF" gid="825" x="3488" y="1424" width="16" height="16">
@@ -4381,6 +4560,7 @@
    <properties>
     <property name="frame" value="9"/>
     <property name="object" value="216"/>
+    <property name="stack-0" value="GHOST,4,11,8"/>
    </properties>
   </object>
   <object id="749" name="BOOKSHELF" gid="825" x="3520" y="1424" width="16" height="16">
@@ -4410,6 +4590,7 @@
   <object id="754" name="STALAGMITE" gid="721" x="2384" y="1456" width="16" height="16">
    <properties>
     <property name="object" value="165"/>
+    <property name="stack-0" value="ROT_WORMS,5,11,8"/>
    </properties>
   </object>
   <object id="755" name="STALAGMITE" gid="721" x="2896" y="1456" width="16" height="16">
@@ -4433,6 +4614,11 @@
    <properties>
     <property name="frame" value="4"/>
     <property name="object" value="339"/>
+    <property name="stack-0" value="SWORD,0,0,8"/>
+    <property name="stack-1" value="SPEAR,0,0,8"/>
+    <property name="stack-2" value="LEATHER_ARMOR,0,0,8"/>
+    <property name="stack-3" value="WOODEN_SHIELD,0,0,8"/>
+    <property name="stack-4" value="LEATHER_HELM,0,0,8"/>
    </properties>
   </object>
   <object id="765" name="WALKWAY" gid="998" x="1312" y="1472" width="16" height="16">
@@ -4474,6 +4660,7 @@
    <properties>
     <property name="frame" value="7"/>
     <property name="object" value="339"/>
+    <property name="stack-0" value="HALBERD,0,0,8"/>
    </properties>
   </object>
   <object id="789" name="WALKWAY" gid="998" x="1312" y="1488" width="16" height="16">
@@ -4509,6 +4696,9 @@
    <properties>
     <property name="frame" value="3"/>
     <property name="object" value="339"/>
+    <property name="stack-0" value="SPIKED_COLLAR,0,0,8"/>
+    <property name="stack-1" value="MAGIC_HELM,0,0,8"/>
+    <property name="stack-2" value="GEM,6,0,8"/>
    </properties>
   </object>
   <object id="798" name="WALKWAY" gid="998" x="1312" y="1504" width="16" height="16">
@@ -4543,12 +4733,18 @@
    <properties>
     <property name="frame" value="2"/>
     <property name="object" value="339"/>
+    <property name="stack-0" value="SWAMP_BOOTS,0,0,8"/>
+    <property name="stack-1" value="SLING,0,0,8"/>
+    <property name="stack-2" value="CLUB,0,0,8"/>
    </properties>
   </object>
   <object id="812" name="DEAD_BODY" gid="1268" x="208" y="1520" width="16" height="16">
    <properties>
     <property name="frame" value="5"/>
     <property name="object" value="339"/>
+    <property name="stack-0" value="CHAIN_MAIL,0,0,8"/>
+    <property name="stack-1" value="CROSSBOW,0,0,8"/>
+    <property name="stack-2" value="MAIN_GAUCHE,0,0,8"/>
    </properties>
   </object>
   <object id="814" name="DEAD_BODY" gid="1263" x="592" y="1520" width="16" height="16">
@@ -4757,6 +4953,10 @@
    <properties>
     <property name="frame" value="4"/>
     <property name="object" value="339"/>
+    <property name="stack-0" value="LOCK_PICK,5,0,8"/>
+    <property name="stack-1" value="ARROW,24,0,8"/>
+    <property name="stack-2" value="BOW,0,0,8"/>
+    <property name="stack-3" value="POTION,0,0,8"/>
    </properties>
   </object>
   <object id="872" name="DEAD_CYCLOPS" gid="1276" x="464" y="1648" width="16" height="16">
@@ -8418,6 +8618,9 @@
     <property name="portal_dest_x" value="163"/>
     <property name="portal_dest_y" value="59"/>
     <property name="portal_dest_z" value="3"/>
+    <property name="stack-0" value="SWASHBUCKLER,2,5,8"/>
+    <property name="stack-1" value="MAGE,1,4,8"/>
+    <property name="stack-2" value="GUARD,4,3,8"/>
    </properties>
   </object>
   <object id="399" name="UP_LADDER" gid="1136" x="3760" y="960" width="16" height="16">
@@ -8436,6 +8639,7 @@
     <property name="portal_dest_x" value="251"/>
     <property name="portal_dest_y" value="59"/>
     <property name="portal_dest_z" value="1"/>
+    <property name="stack-0" value="DRAKE,3,8,8"/>
    </properties>
   </object>
   <object id="489" name="DOWN_LADDER" gid="1135" x="3888" y="1088" width="16" height="16">
@@ -8531,6 +8735,7 @@
     <property name="portal_dest_x" value="242"/>
     <property name="portal_dest_y" value="82"/>
     <property name="portal_dest_z" value="3"/>
+    <property name="stack-0" value="SULFUROUS_ASH,8,0,8"/>
    </properties>
   </object>
   <object id="644" name="UP_LADDER" gid="1136" x="1072" y="1344" width="16" height="16">
@@ -8548,6 +8753,7 @@
     <property name="portal_dest_x" value="139"/>
     <property name="portal_dest_y" value="83"/>
     <property name="portal_dest_z" value="3"/>
+    <property name="stack-0" value="DRAKE,3,8,8"/>
    </properties>
   </object>
   <object id="668" name="DOWN_LADDER" gid="1135" x="2608" y="1344" width="16" height="16">
@@ -8556,6 +8762,7 @@
     <property name="portal_dest_x" value="163"/>
     <property name="portal_dest_y" value="83"/>
     <property name="portal_dest_z" value="3"/>
+    <property name="stack-0" value="ALLIGATOR,5,11,8"/>
    </properties>
   </object>
   <object id="756" name="UP_LADDER" gid="1136" x="3232" y="1456" width="16" height="16">
@@ -8565,6 +8772,7 @@
     <property name="portal_dest_x" value="202"/>
     <property name="portal_dest_y" value="90"/>
     <property name="portal_dest_z" value="1"/>
+    <property name="stack-0" value="GHOST,5,11,8"/>
    </properties>
   </object>
   <object id="760" name="UP_LADDER" gid="1136" x="3776" y="1456" width="16" height="16">
@@ -9359,6 +9567,7 @@
    <properties>
     <property name="frame" value="1"/>
     <property name="object" value="301"/>
+    <property name="stack-0" value="WINE,1,0,8"/>
    </properties>
   </object>
   <object id="89" name="DOORWAY" gid="1089" x="2208" y="272" width="16" height="16">
@@ -9372,6 +9581,7 @@
     <property name="frame" value="1"/>
     <property name="object" value="301"/>
     <property name="quality" value="65"/>
+    <property name="stack-0" value="WINE,1,0,8"/>
    </properties>
   </object>
   <object id="93" name="DOORWAY" gid="1089" x="2336" y="272" width="16" height="16">
@@ -9435,6 +9645,7 @@
     <property name="frame" value="1"/>
     <property name="object" value="301"/>
     <property name="quality" value="72"/>
+    <property name="stack-0" value="DRAGON,3,8,8"/>
    </properties>
   </object>
   <object id="173" name="DOORWAY" gid="1089" x="1952" y="496" width="16" height="16">
@@ -9572,6 +9783,7 @@
    <properties>
     <property name="frame" value="13"/>
     <property name="object" value="300"/>
+    <property name="stack-0" value="ACID_SLUG,3,8,8"/>
    </properties>
   </object>
   <object id="237" name="STEEL_DOOR" gid="1085" x="2208" y="656" width="16" height="16">
@@ -9611,6 +9823,7 @@
     <property name="frame" value="1"/>
     <property name="object" value="301"/>
     <property name="quality" value="68"/>
+    <property name="stack-0" value="DRAGON,2,8,8"/>
    </properties>
   </object>
   <object id="247" name="DOORWAY" gid="1089" x="2464" y="656" width="16" height="16">
@@ -9625,6 +9838,7 @@
     <property name="frame" value="7"/>
     <property name="object" value="297"/>
     <property name="qty" value="30"/>
+    <property name="stack-0" value="DRAGON,1,8,8"/>
    </properties>
   </object>
   <object id="385" name="OAKEN_DOOR" gid="1031" x="2272" y="944" width="16" height="16">
@@ -9690,6 +9904,7 @@
    <properties>
     <property name="frame" value="1"/>
     <property name="object" value="301"/>
+    <property name="stack-0" value="DRAKE,3,8,8"/>
    </properties>
   </object>
   <object id="442" name="DOORWAY" gid="1089" x="2208" y="1008" width="16" height="16">
@@ -9716,6 +9931,7 @@
    <properties>
     <property name="frame" value="1"/>
     <property name="object" value="301"/>
+    <property name="stack-0" value="HEADLESS,5,8,8"/>
    </properties>
   </object>
   <object id="446" name="DOORWAY" gid="1089" x="2592" y="1008" width="16" height="16">
@@ -9727,11 +9943,14 @@
   <object id="467" name="MEAT" gid="804" x="2720" y="1072" width="16" height="16">
    <properties>
     <property name="object" value="209"/>
+    <property name="stack-0" value="SLIME,8,8,8"/>
+    <property name="stack-1" value="ACID_SLUG,4,8,8"/>
    </properties>
   </object>
   <object id="486" name="MEAT" gid="804" x="2720" y="1088" width="16" height="16">
    <properties>
     <property name="object" value="209"/>
+    <property name="stack-0" value="SKELETON,4,8,8"/>
    </properties>
   </object>
   <object id="518" name="MEAT" gid="804" x="2720" y="1120" width="16" height="16">
@@ -9755,6 +9974,11 @@
    <properties>
     <property name="object" value="53"/>
     <property name="qty" value="5"/>
+    <property name="stack-0" value="SWORD,0,0,8"/>
+    <property name="stack-1" value="KITE_SHIELD,0,0,8"/>
+    <property name="stack-2" value="LEATHER_BOOTS,0,0,8"/>
+    <property name="stack-3" value="CHAIN_MAIL,0,0,8"/>
+    <property name="stack-4" value="CHAIN_COIF,0,0,8"/>
    </properties>
   </object>
   <object id="568" name="WEB" gid="565" x="464" y="1216" width="16" height="16">
@@ -9794,6 +10018,7 @@
     <property name="frame" value="5"/>
     <property name="object" value="297"/>
     <property name="qty" value="30"/>
+    <property name="stack-0" value="DRAGON,2,8,8"/>
    </properties>
   </object>
   <object id="607" name="OAKEN_DOOR" gid="1029" x="2592" y="1296" width="16" height="16">
@@ -9877,6 +10102,7 @@
    <properties>
     <property name="object" value="53"/>
     <property name="qty" value="5"/>
+    <property name="stack-0" value="GIANT_BAT,5,11,8"/>
    </properties>
   </object>
   <object id="676" name="WEB" gid="565" x="576" y="1360" width="16" height="16">
@@ -9895,6 +10121,7 @@
    <properties>
     <property name="object" value="53"/>
     <property name="qty" value="5"/>
+    <property name="stack-0" value="SEA_SERPENT,1,11,8"/>
    </properties>
   </object>
   <object id="701" name="WEB" gid="565" x="576" y="1376" width="16" height="16">
@@ -9937,6 +10164,7 @@
    <properties>
     <property name="object" value="53"/>
     <property name="qty" value="5"/>
+    <property name="stack-0" value="DAEMON,3,8,8"/>
    </properties>
   </object>
   <object id="739" name="WEB" gid="565" x="16" y="1440" width="16" height="16">

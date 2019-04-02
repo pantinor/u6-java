@@ -11,6 +11,12 @@ import java.io.FileInputStream;
 public class Objects {
 
     public static void main(String[] args) throws Exception {
+        
+        int x = 611;
+        int b0 = x & 0xff000000;
+        int b1 = x & 0x00ff0000;
+        int b2 = x & 0x0000ff00;
+        int b3 = x & 0x000000ff;
 
         FileInputStream is = new FileInputStream("src/main/resources/data/TILEFLAG");
         LittleEndianDataInputStream dis = new LittleEndianDataInputStream(is);
