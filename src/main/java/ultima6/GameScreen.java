@@ -19,7 +19,6 @@ import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.actions.ParallelAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -88,6 +87,8 @@ public class GameScreen extends BaseScreen {
         mapViewPort.update(width, height, false);
     }
 
+    //private int day = 1, hour = 0;
+
     @Override
     public void render(float delta) {
 
@@ -122,6 +123,8 @@ public class GameScreen extends BaseScreen {
         batch.draw(Ultima6.backGround, 0, 0);
         batch.draw((TextureRegion) Ultima6.AVATAR_TEXTURE, TILE_DIM * 11, TILE_DIM * 11, TILE_DIM, TILE_DIM);
 
+        this.hud.renderStrip(batch, this.map.getId(), Ultima6.CLOCK.getDay(), Ultima6.CLOCK.getHour());
+
         Vector3 v = new Vector3();
         setCurrentMapCoords(v);
         Ultima6.font.draw(batch, String.format("%s  [%.0f, %.0f] %s\n", CLOCK.getTimeString(), v.x, v.y, stage.getRoot().hasActions()), 200, Ultima6.SCREEN_HEIGHT - 24);
@@ -137,6 +140,15 @@ public class GameScreen extends BaseScreen {
     public boolean keyUp(int keycode) {
         Vector3 v = new Vector3();
         setCurrentMapCoords(v);
+
+//        hour++;
+//        if (hour > 23) {
+//            hour = 0;
+//            day++;
+//            if (day > 28) {
+//                day = 1;
+//            }
+//        }
 
         if (keycode == Keys.UP) {
             if (Ultima6.currentDirection != Direction.NORTH) {
@@ -414,7 +426,7 @@ public class GameScreen extends BaseScreen {
             for (Actor actor : map.getBaseMap().getActors()) {
                 if (actor.getId() == npc) {
                     for (Schedule sched : SCHEDULES.get(npc)) {
-                        if (sched.getHour() == CLOCK.getHour() && CLOCK.getMinute() == 0 
+                        if (sched.getHour() == CLOCK.getHour() && CLOCK.getMinute() == 0
                                 && (sched.getDayOfWeek() == 0 || sched.getDayOfWeek() == CLOCK.getDayOfWeek())) {
 
                             GraphPath<LocationGraph.Location> path = new DefaultGraphPath<>();

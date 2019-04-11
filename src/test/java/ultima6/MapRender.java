@@ -156,6 +156,9 @@ public class MapRender {
             for (int x = 0; x < 8; x++) {
                 List<U6Object> worldObjects = readObjBlock(x, y, basetiles, tileflags);
                 count = setObjects(count, worldObjects, eggLayer, portalLayer, onTopLayer, itemsLayer, objectLayer);
+                for (U6Object obj : worldObjects) {
+                    //System.out.println(obj);
+                }
             }
         }
 
@@ -177,6 +180,9 @@ public class MapRender {
 
             count = 1;
             setObjects(count, dungeonObjects, dungEggLayer, dungPortalLayer, dungOnTopLayer, dungItemLayer, dungObjectLayer);
+            for (U6Object obj : dungeonObjects) {
+                //System.out.println(obj);
+            }
 
             dungObjectLayers[i] = dungObjectLayer.toString();
             dungOnTopLayers[i] = dungOnTopLayer.toString();
@@ -406,9 +412,16 @@ public class MapRender {
 
         @Override
         public String toString() {
+
+            StringBuilder contentProperties = new StringBuilder();
+            for (int j = 0; j < contents.size(); j++) {
+                U6Object obj = contents.get(j);
+                contentProperties.append(String.format("\tname=\"stack-%d\" value=\"%s, %d, %d, %d\"/>\n", j, obj.name, obj.quantity, obj.quality, obj.status));
+            }
+
             return name + ", id=" + id + ", x=" + x + ", y=" + y + ", z=" + z + ", frame=" + frame + ", tile=" + tile + ", object="
                     + object + ", npc=" + npc + ", status=" + status + ", quality=" + quality + ", quantity="
-                    + quantity + ", on_top=" + on_top + ", on_map=" + on_map;
+                    + quantity + ", on_top=" + on_top + ", on_map=" + on_map + "" + (contents.size() > 0 ? "\n" + contentProperties : "");
         }
 
         public String toString(int id) {

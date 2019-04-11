@@ -30,6 +30,18 @@ import ultima6.LocationGraph.Location;
 public class Constants {
 
     public static final int TILE_DIM = 32;
+    
+    public static TextureRegion[] TILES;
+
+    static {
+        TILES = new TextureRegion[32 * 64];
+        TextureRegion[][] tmp = TextureRegion.split(new Texture(Gdx.files.classpath("data/u6tiles+objects.png")), 16, 16);
+        for (int y = 0; y < 64; y++) {
+            for (int x = 0; x < 32; x++) {
+                TILES[y * 32 + x] = tmp[y][x];
+            }
+        }
+    }
 
     public static enum Map {
 
@@ -60,6 +72,10 @@ public class Constants {
                 init();
             }
             return this.tiledMap;
+        }
+
+        public int getId() {
+            return id;
         }
 
         public BaseMap getBaseMap() {
@@ -877,13 +893,7 @@ public class Constants {
         }
 
         public static void init() throws Exception {
-            TextureRegion[] tiles = new TextureRegion[32 * 64];
-            TextureRegion[][] tmp = TextureRegion.split(new Texture(Gdx.files.classpath("data/u6tiles+objects.png")), 16, 16);
-            for (int y = 0; y < 64; y++) {
-                for (int x = 0; x < 32; x++) {
-                    tiles[y * 32 + x] = tmp[y][x];
-                }
-            }
+            TextureRegion[] tiles = TILES;
 
             for (ActorAnimation aa : ActorAnimation.values()) {
 
@@ -1280,13 +1290,8 @@ public class Constants {
         }
 
         public static void init() throws Exception {
-            TextureRegion[] tiles = new TextureRegion[32 * 64];
-            TextureRegion[][] tmp = TextureRegion.split(new Texture(Gdx.files.classpath("data/u6tiles+objects.png")), 16, 16);
-            for (int y = 0; y < 64; y++) {
-                for (int x = 0; x < 32; x++) {
-                    tiles[y * 32 + x] = tmp[y][x];
-                }
-            }
+            TextureRegion[] tiles = TILES;
+            
             InputStream is = Gdx.files.classpath("data/U6PAL").read();
             byte[] palette = IOUtils.toByteArray(is);
             java.util.Map<Integer, Integer[]> palMap = new HashMap<>();
@@ -1377,7 +1382,7 @@ public class Constants {
     };
 
     // Red moongate teleport locations.
-    public static int[][] RedMoongate = new int[][]{
+    public static int[][] RED_MOONGATES = new int[][]{
         {0x0, 0x0, 0x0},
         {0x383, 0x1f3, 0x0},
         {0x3a7, 0x106, 0x0},
@@ -1404,7 +1409,6 @@ public class Constants {
         {0x183, 0x313, 0x0},
         {0x33f, 0xa6, 0x0},
         {0x29b, 0x43, 0x0}
-
     };
 
 }
