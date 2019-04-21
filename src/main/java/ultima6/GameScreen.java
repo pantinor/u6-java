@@ -40,6 +40,7 @@ public class GameScreen extends BaseScreen {
     private final Viewport mapViewPort;
     private final HUD hud;
     private final OrbInputProcessor orbip;
+    private final PointerActor pointer;
 
     public GameScreen(Map map) {
 
@@ -47,7 +48,7 @@ public class GameScreen extends BaseScreen {
 
         batch = new SpriteBatch();
 
-        stage = new Stage(viewport);
+        stage = new Stage();
 
         hud = new HUD(this, Ultima6.skin);
 
@@ -56,6 +57,7 @@ public class GameScreen extends BaseScreen {
         camera = new OrthographicCamera(Ultima6.MAP_VIEWPORT_DIM, Ultima6.MAP_VIEWPORT_DIM);
 
         mapViewPort = new ScreenViewport(camera);
+        stage.setViewport(mapViewPort);
 
         renderer = new TmxMapRenderer(this.map, this.map.getTiledMap(), 2f);
 
@@ -63,6 +65,9 @@ public class GameScreen extends BaseScreen {
         seq1.addAction(Actions.delay(5f));
         seq1.addAction(Actions.run(new GameTimer()));
         stage.addAction(Actions.forever(seq1));
+        
+        pointer = new PointerActor(POINTER);
+        stage.addActor(pointer);
     }
 
     @Override
@@ -132,18 +137,6 @@ public class GameScreen extends BaseScreen {
         Vector3 v = new Vector3();
         setCurrentMapCoords(v);
         Ultima6.font.draw(batch, String.format("%s  [%.0f, %.0f] %s\n", CLOCK.getTimeString(), v.x, v.y, stage.getRoot().hasActions()), 200, Ultima6.SCREEN_HEIGHT - 24);
-
-        if (orbip.active) {
-            float pointerx = currentMousePos.x - TILE_DIM / 2;
-            float pointery = Ultima6.SCREEN_HEIGHT - currentMousePos.y - TILE_DIM / 2;
-            int diffx = Math.abs(TILE_DIM * 11 - (int) pointerx);
-            int diffy = Math.abs(TILE_DIM * 11 - (int) pointery);
-            if (diffx > 80 || diffy > 80) {
-                //oob
-            } else {
-                batch.draw(POINTER, pointerx, pointery, 32, 32);
-            }
-        }
 
         batch.end();
 
@@ -322,6 +315,7 @@ public class GameScreen extends BaseScreen {
             while (iter.hasNext()) {
                 Moongate m = iter.next();
                 if (m.getWx() == currentX && m.getWy() == currentY) {
+                    Sounds.play(Sound.MOONGATE);
                     Map dmap = m.getMap();
                     dmap.getScreen().setMapPixelCoords(dmap.getScreen().newMapPixelCoords, m.getDestination().getDx(), m.getDestination().getDy());
                     Ultima6.mainGame.setScreen(dmap.getScreen());
@@ -330,7 +324,7 @@ public class GameScreen extends BaseScreen {
                 }
             }
         }
-        
+
         if (CLOCK.incMoveCounter()) {
             checkSchedules();
         }
@@ -425,11 +419,13 @@ public class GameScreen extends BaseScreen {
             this.wx = wx;
             this.wy = wy;
             this.active = true;
+            GameScreen.this.pointer.setVisible(true);
         }
 
         @Override
         public boolean touchDown(int screenX, int screenY, int pointer, int button) {
             this.active = false;
+            GameScreen.this.pointer.setVisible(false);
 
             Gdx.input.setInputProcessor(new InputMultiplexer(GameScreen.this, stage));
 
@@ -457,7 +453,21 @@ public class GameScreen extends BaseScreen {
 
         @Override
         public boolean mouseMoved(int screenX, int screenY) {
-            currentMousePos.set(screenX, screenY);
+
+            int diffx = TILE_DIM * 11 + 16 - screenX;
+            int diffy = TILE_DIM * 11 + 48 - screenY;
+
+            if (Math.abs(diffx) > 80 || Math.abs(diffy) > 80) {
+                //oob
+            } else {
+                RedMoongates dest = RedMoongates.get(diffx, diffy);
+                if (dest != null) {
+                    float mx = (this.wx + dest.getX()) * TILE_DIM;
+                    float my = (GameScreen.this.map.getHeight() - this.wy + dest.getY() - 1) * TILE_DIM;
+                    GameScreen.this.pointer.set(mx, my);
+                }
+            }
+
             return false;
         }
 

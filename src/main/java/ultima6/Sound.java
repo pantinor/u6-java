@@ -3,7 +3,7 @@ package ultima6;
 
 
 public enum Sound {
-
+    MOONGATE("moongate_flash.ogg", false, 0.3f),
     BLOCKED("blocked.ogg", false, 0.3f),
     BOOTUP("01 Can't Remove the Pain (Bootup).wav", false, 0.3f),
     MAIN_MENU("02 Ultima Theme (Main Menu).wav", false, 0.3f),
