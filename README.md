@@ -1,8 +1,7 @@
 u6-java
 =========
 
-Was able to create TMX tilemap 1024x1024 with a few layers with this script.
-The function was derived from other examples found here on github and in the Nuvie project with some help from their development team.
+Tinkering with re-creating Ultima 6 using libgdx and TMX maps. Borrowing algorithms derived from other projects such as Nuvie and other sources.
 
 ![screenshot of the example](https://raw.github.com/pantinor/u6-java/master/screenshot.png)
 
