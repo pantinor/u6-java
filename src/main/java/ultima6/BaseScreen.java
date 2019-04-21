@@ -1,26 +1,13 @@
 package ultima6;
 
-//import static andius.Andius.CTX;
-//import static Ultima6.mainGame;
-//import static andius.Constants.SAVE_FILENAME;
-import com.badlogic.gdx.Gdx;
-import java.util.Random;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-//import utils.XORShiftRandom;
 
 public abstract class BaseScreen implements Screen, InputProcessor {
 
@@ -29,7 +16,6 @@ public abstract class BaseScreen implements Screen, InputProcessor {
     protected float time = 0;
     //protected Random rand = new XORShiftRandom();
 
-    protected int mapPixelHeight;
     public final Vector3 newMapPixelCoords = new Vector3();
 
     protected final Viewport viewport = new ScreenViewport();

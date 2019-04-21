@@ -45,6 +45,25 @@ public class TmxMapRenderer extends BatchTiledMapRenderer {
     }
 
     @Override
+    public void render() {
+        beginRender();
+        for (MapLayer layer : getMap().getLayers()) {
+            renderMapLayer(layer);
+        }
+        for (Moongate m : this.map.getBaseMap().getMoongates()) {
+            if (viewBounds.contains(m.getX() * unitScale + 32, m.getY() * unitScale)) {
+                Animation[] anim = m.getAnimation();
+                TextureRegion tr1 = (TextureRegion) anim[0].getKeyFrame(this.stateTime, true);
+                TextureRegion tr2 = (TextureRegion) anim[1].getKeyFrame(this.stateTime, true);
+                batch.draw(tr1, (m.getX() - 16) * unitScale, m.getY() * unitScale, tr1.getRegionWidth() * unitScale, tr1.getRegionHeight() * unitScale);
+                batch.draw(tr2, m.getX() * unitScale, m.getY() * unitScale, tr2.getRegionWidth() * unitScale, tr2.getRegionHeight() * unitScale);
+            }
+        }
+        endRender();
+
+    }
+
+    @Override
     public void renderTileLayer(TiledMapTileLayer layer) {
 
         this.stateTime += Gdx.graphics.getDeltaTime() / 4;

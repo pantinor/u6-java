@@ -30,7 +30,7 @@ import ultima6.LocationGraph.Location;
 public class Constants {
 
     public static final int TILE_DIM = 32;
-    
+
     public static TextureRegion[] TILES;
 
     static {
@@ -83,6 +83,9 @@ public class Constants {
         }
 
         public BaseScreen getScreen() {
+            if (this.screen == null) {
+                init();
+            }
             return screen;
         }
 
@@ -1141,87 +1144,87 @@ public class Constants {
             }
         }
 
-        private static Texture mergeTiles(Direction dir, TextureRegion... tr) {
-            Texture ret = null;
-            if (tr.length == 2) {
-                Pixmap dest = (dir == Direction.EAST || dir == Direction.WEST ? new Pixmap(32, 16, Format.RGBA8888) : new Pixmap(16, 32, Format.RGBA8888));
-                Pixmap p1 = pixmapFromRegion(tr[0]);
-                Pixmap p2 = pixmapFromRegion(tr[1]);
-                if (dir == Direction.EAST || dir == Direction.WEST) {
-                    dest.drawPixmap(p1, (dir == Direction.EAST ? 16 : 0), 0);
-                    dest.drawPixmap(p2, (dir == Direction.EAST ? 0 : 16), 0);
-                } else {
-                    dest.drawPixmap(p1, 0, (dir == Direction.NORTH ? 0 : 16));
-                    dest.drawPixmap(p2, 0, (dir == Direction.NORTH ? 16 : 0));
-                }
-                p1.dispose();
-                p2.dispose();
-                ret = new Texture(dest);
-            } else if (tr.length == 4) {
-                Pixmap p1 = pixmapFromRegion(tr[0]);
-                Pixmap p2 = pixmapFromRegion(tr[1]);
-                Pixmap p3 = pixmapFromRegion(tr[2]);
-                Pixmap p4 = pixmapFromRegion(tr[3]);
-                Pixmap dest = new Pixmap(32, 32, Format.RGBA8888);
-                dest.drawPixmap(p1, 0, 0);
-                dest.drawPixmap(p2, 16, 0);
+    }
+
+    private static Texture mergeTiles(Direction dir, TextureRegion... tr) {
+        Texture ret = null;
+        if (tr.length == 2) {
+            Pixmap dest = (dir == Direction.EAST || dir == Direction.WEST ? new Pixmap(32, 16, Format.RGBA8888) : new Pixmap(16, 32, Format.RGBA8888));
+            Pixmap p1 = pixmapFromRegion(tr[0]);
+            Pixmap p2 = pixmapFromRegion(tr[1]);
+            if (dir == Direction.EAST || dir == Direction.WEST) {
+                dest.drawPixmap(p1, (dir == Direction.EAST ? 16 : 0), 0);
+                dest.drawPixmap(p2, (dir == Direction.EAST ? 0 : 16), 0);
+            } else {
+                dest.drawPixmap(p1, 0, (dir == Direction.NORTH ? 0 : 16));
+                dest.drawPixmap(p2, 0, (dir == Direction.NORTH ? 16 : 0));
+            }
+            p1.dispose();
+            p2.dispose();
+            ret = new Texture(dest);
+        } else if (tr.length == 4) {
+            Pixmap p1 = pixmapFromRegion(tr[0]);
+            Pixmap p2 = pixmapFromRegion(tr[1]);
+            Pixmap p3 = pixmapFromRegion(tr[2]);
+            Pixmap p4 = pixmapFromRegion(tr[3]);
+            Pixmap dest = new Pixmap(32, 32, Format.RGBA8888);
+            dest.drawPixmap(p1, 0, 0);
+            dest.drawPixmap(p2, 16, 0);
+            dest.drawPixmap(p3, 0, 16);
+            dest.drawPixmap(p4, 16, 16);
+            p1.dispose();
+            p2.dispose();
+            p3.dispose();
+            p4.dispose();
+            ret = new Texture(dest);
+        } else if (tr.length == 6) {
+            Pixmap p1 = pixmapFromRegion(tr[0]);
+            Pixmap p2 = pixmapFromRegion(tr[1]);
+            Pixmap p3 = pixmapFromRegion(tr[2]);
+            Pixmap p4 = pixmapFromRegion(tr[3]);
+            Pixmap p5 = pixmapFromRegion(tr[4]);
+            Pixmap p6 = pixmapFromRegion(tr[5]);
+            Pixmap dest = (dir == Direction.EAST || dir == Direction.WEST ? new Pixmap(48, 32, Format.RGBA8888) : new Pixmap(32, 48, Format.RGBA8888));
+            if (dir == Direction.EAST || dir == Direction.WEST) {
+                dest.drawPixmap(p1, (dir == Direction.EAST ? 32 : 0), 0);
+                dest.drawPixmap(p2, (dir == Direction.EAST ? 32 : 0), 16);
+                dest.drawPixmap(p3, 16, 0);
+                dest.drawPixmap(p4, 16, 16);
+                dest.drawPixmap(p5, (dir == Direction.EAST ? 0 : 32), 0);
+                dest.drawPixmap(p6, (dir == Direction.EAST ? 0 : 32), 16);
+            } else {
+                dest.drawPixmap(p1, 0, (dir == Direction.NORTH ? 0 : 32));
+                dest.drawPixmap(p2, 16, (dir == Direction.NORTH ? 0 : 32));
                 dest.drawPixmap(p3, 0, 16);
                 dest.drawPixmap(p4, 16, 16);
-                p1.dispose();
-                p2.dispose();
-                p3.dispose();
-                p4.dispose();
-                ret = new Texture(dest);
-            } else if (tr.length == 6) {
-                Pixmap p1 = pixmapFromRegion(tr[0]);
-                Pixmap p2 = pixmapFromRegion(tr[1]);
-                Pixmap p3 = pixmapFromRegion(tr[2]);
-                Pixmap p4 = pixmapFromRegion(tr[3]);
-                Pixmap p5 = pixmapFromRegion(tr[4]);
-                Pixmap p6 = pixmapFromRegion(tr[5]);
-                Pixmap dest = (dir == Direction.EAST || dir == Direction.WEST ? new Pixmap(48, 32, Format.RGBA8888) : new Pixmap(32, 48, Format.RGBA8888));
-                if (dir == Direction.EAST || dir == Direction.WEST) {
-                    dest.drawPixmap(p1, (dir == Direction.EAST ? 32 : 0), 0);
-                    dest.drawPixmap(p2, (dir == Direction.EAST ? 32 : 0), 16);
-                    dest.drawPixmap(p3, 16, 0);
-                    dest.drawPixmap(p4, 16, 16);
-                    dest.drawPixmap(p5, (dir == Direction.EAST ? 0 : 32), 0);
-                    dest.drawPixmap(p6, (dir == Direction.EAST ? 0 : 32), 16);
-                } else {
-                    dest.drawPixmap(p1, 0, (dir == Direction.NORTH ? 0 : 32));
-                    dest.drawPixmap(p2, 16, (dir == Direction.NORTH ? 0 : 32));
-                    dest.drawPixmap(p3, 0, 16);
-                    dest.drawPixmap(p4, 16, 16);
-                    dest.drawPixmap(p5, 0, (dir == Direction.NORTH ? 32 : 0));
-                    dest.drawPixmap(p6, 16, (dir == Direction.NORTH ? 32 : 0));
-                }
-                p1.dispose();
-                p2.dispose();
-                p3.dispose();
-                p4.dispose();
-                p5.dispose();
-                p6.dispose();
-                ret = new Texture(dest);
-            } else if (tr.length == 9) {
-                Pixmap dest = new Pixmap(48, 48, Format.RGBA8888);
-                Pixmap[] sources = new Pixmap[tr.length];
-                for (int i = 0; i < tr.length; i++) {
-                    sources[i] = pixmapFromRegion(tr[i]);
-                }
-                for (int x = 0; x < 3; x++) {
-                    for (int y = 0; y < 3; y++) {
-                        Pixmap p = sources[y * 3 + x];
-                        if (p != null) {
-                            dest.drawPixmap(p, x * 16, y * 16);
-                            p.dispose();
-                        }
+                dest.drawPixmap(p5, 0, (dir == Direction.NORTH ? 32 : 0));
+                dest.drawPixmap(p6, 16, (dir == Direction.NORTH ? 32 : 0));
+            }
+            p1.dispose();
+            p2.dispose();
+            p3.dispose();
+            p4.dispose();
+            p5.dispose();
+            p6.dispose();
+            ret = new Texture(dest);
+        } else if (tr.length == 9) {
+            Pixmap dest = new Pixmap(48, 48, Format.RGBA8888);
+            Pixmap[] sources = new Pixmap[tr.length];
+            for (int i = 0; i < tr.length; i++) {
+                sources[i] = pixmapFromRegion(tr[i]);
+            }
+            for (int x = 0; x < 3; x++) {
+                for (int y = 0; y < 3; y++) {
+                    Pixmap p = sources[y * 3 + x];
+                    if (p != null) {
+                        dest.drawPixmap(p, x * 16, y * 16);
+                        p.dispose();
                     }
                 }
-                ret = new Texture(dest);
             }
-            return ret;
-
+            ret = new Texture(dest);
         }
+        return ret;
 
     }
 
@@ -1229,7 +1232,9 @@ public class Constants {
         if (tr == null) {
             return null;
         }
-        tr.getTexture().getTextureData().prepare();
+        if (!tr.getTexture().getTextureData().isPrepared()) {
+            tr.getTexture().getTextureData().prepare();
+        }
         Pixmap source = tr.getTexture().getTextureData().consumePixmap();
         Pixmap dest = new Pixmap(tr.getRegionWidth(), tr.getRegionHeight(), Format.RGBA8888);
         for (int x = 0; x < tr.getRegionWidth(); x++) {
@@ -1256,6 +1261,9 @@ public class Constants {
         srcPix.dispose();
         return new TextureRegion(t);
     }
+
+    public static Animation[] RED_MOONGATE = new Animation[2];
+    public static Animation[] BLUE_MOONGATE = new Animation[2];
 
     public static enum PaletteCycledTiles {
 
@@ -1291,7 +1299,7 @@ public class Constants {
 
         public static void init() throws Exception {
             TextureRegion[] tiles = TILES;
-            
+
             InputStream is = Gdx.files.classpath("data/U6PAL").read();
             byte[] palette = IOUtils.toByteArray(is);
             java.util.Map<Integer, Integer[]> palMap = new HashMap<>();
@@ -1354,6 +1362,10 @@ public class Constants {
                 }
 
             }
+            RED_MOONGATE[0] = PaletteCycledTiles.FIRE_CYCLES.anims[4];
+            RED_MOONGATE[1] = PaletteCycledTiles.FIRE_CYCLES.anims[5];
+            BLUE_MOONGATE[0] = PaletteCycledTiles.BLUE_CYCLES.anims[7];
+            BLUE_MOONGATE[1] = PaletteCycledTiles.BLUE_CYCLES.anims[8];
         }
 
     }
@@ -1381,34 +1393,104 @@ public class Constants {
         "Buccaneer's Cave"
     };
 
-    // Red moongate teleport locations.
-    public static int[][] RED_MOONGATES = new int[][]{
-        {0x0, 0x0, 0x0},
-        {0x383, 0x1f3, 0x0},
-        {0x3a7, 0x106, 0x0},
-        {0x1b3, 0x18b, 0x0},
-        {0x1f7, 0x166, 0x0},
-        {0x93, 0x373, 0x0},
-        {0x397, 0x3a6, 0x0},
-        {0x44, 0x2d, 0x5},
-        {0x133, 0x160, 0x0},
-        {0xbc, 0x2d, 0x5},
-        {0x9f, 0x3ae, 0x0},
-        {0x2e3, 0x2bb, 0x0},
-        {0x0, 0x0, 0x0},
-        {0x0, 0x0, 0x0},
-        {0x0, 0x0, 0x0},
-        {0xe3, 0x83, 0x0},
-        {0x17, 0x16, 0x1},
-        {0x80, 0x56, 0x5},
-        {0x6c, 0xdd, 0x5},
-        {0x39b, 0x36c, 0x0},
-        {0x127, 0x26, 0x0},
-        {0x4b, 0x1fb, 0x0},
-        {0x147, 0x336, 0x0},
-        {0x183, 0x313, 0x0},
-        {0x33f, 0xa6, 0x0},
-        {0x29b, 0x43, 0x0}
-    };
+    public static enum RedMoongates {
+        MOONGLOW(-2, 2, 899, 499, 0),
+        SHRINE_HONESTY(-1, 2, 935, 262, 0),
+        BRITAIN(0, 2, 435, 395, 0),
+        SHRINE_COMPASSION(1, 2, 503, 358, 0),
+        JHELOM(2, 2, 147, 883, 0),
+        //
+        SHRINE_HUMILITY(-2, 1, 919, 934, 0),
+        SHRINE_CONTROL(-1, 1, 68, 45, 5),
+        CASTLE_BRITANNIA(0, 1, 307, 352, 0),
+        SHRINE_PASSION(1, 1, 188, 45, 5),
+        SHRINE_VALOR(2, 1, 159, 942, 0),
+        //
+        NEW_MAGINCIA(-2, 0, 739, 699, 0),
+        YEW(2, 0, 227, 131, 0),
+        //
+        SHRINE_SPIRITUALITY(-2, -1, 23, 22, 1),
+        GARGOYLE_CITY(-1, -1, 128, 86, 5),
+        SHRINE_DILIGENCE(0, -1, 108, 221, 5),
+        SHRINE_CODEX(1, -1, 923, 876, 0),
+        SHRINE_JUSTICE(2, -1, 295, 38, 0),
+        //
+        SKARA_BRAE(-2, -2, 75, 507, 0),
+        SHRINE_HONOR(-1, -2, 327, 822, 0),
+        TRINSIC(0, -2, 387, 787, 0),
+        SHRINE_SACRIFICE(1, -2, 831, 166, 0),
+        MINOC(2, -2, 667, 67, 0);
+
+        int x;
+        int y;
+        int dx;
+        int dy;
+        int dz;
+
+        private RedMoongates(int x, int y, int dx, int dy, int dz) {
+            this.x = x;
+            this.y = y;
+            this.dx = dx;
+            this.dy = dy;
+            this.dz = dz;
+        }
+
+        public static RedMoongates get(int diffx, int diffy) {
+            int x = -1;
+            int y = -1;
+
+            if (diffx <= 80 && diffx > 48) {
+                x = -2;
+            } else if (diffx <= 48 && diffx > 16) {
+                x = -1;
+            } else if (diffx <= 16 && diffx > -16) {
+                x = 0;
+            } else if (diffx <= -16 && diffx > -48) {
+                x = 1;
+            } else if (diffx <= -48 && diffx > -80) {
+                x = 2;
+            }
+
+            if (diffy <= 80 && diffy > 48) {
+                y = 2;
+            } else if (diffy <= 48 && diffy > 16) {
+                y = 1;
+            } else if (diffy <= 16 && diffy > -16) {
+                y = 0;
+            } else if (diffy <= -16 && diffy > -48) {
+                y = -1;
+            } else if (diffy <= -48 && diffy > -80) {
+                y = -2;
+            }
+
+            for (RedMoongates m : RedMoongates.values()) {
+                if (m.x == x && m.y == y) {
+                    return m;
+                }
+            }
+            return null;
+        }
+
+        public int getDx() {
+            return dx;
+        }
+
+        public int getDy() {
+            return dy;
+        }
+
+        public int getDz() {
+            return dz;
+        }
+
+        public int getX() {
+            return x;
+        }
+
+        public int getY() {
+            return y;
+        }
+
+    }
 
 }

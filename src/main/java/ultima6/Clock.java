@@ -21,6 +21,12 @@ public class Clock {
     public static final float TRAMMEL_PHASE = 1.75f;
     public static final float FELUCCA_PHASE = 1.1666666666666667f;
 
+    private long lastIncrementTime = System.currentTimeMillis();
+
+    public long getLastIncrementTime() {
+        return lastIncrementTime;
+    }
+
     public int getMinute() {
         return minute;
     }
@@ -52,6 +58,7 @@ public class Clock {
     }
 
     public boolean incMoveCounter() {
+        lastIncrementTime = System.currentTimeMillis();
         moveCounter++;
         ticks++;
         if (ticks == 4) {
@@ -190,14 +197,14 @@ public class Clock {
     public boolean isMoonVisible() {
 
         int phase = (Math.round((day - 1) / TRAMMEL_PHASE)) % 8;
-        int posA = ((hour + 1) + 3 * phase) % 24; 
+        int posA = ((hour + 1) + 3 * phase) % 24;
         if (posA >= 5 && posA <= 19) {
             return true;
         }
 
         int phaseb = (day - 1) % (Math.round(FELUCCA_PHASE * 8)) - 1;
         phase = (phaseb >= 0) ? phaseb : 0;
-        int posB = ((hour - 1) + 3 * phase) % 24; 
+        int posB = ((hour - 1) + 3 * phase) % 24;
 
         if (posB >= 5 && posB <= 19) {
             return true;

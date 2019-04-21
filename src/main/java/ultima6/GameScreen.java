@@ -5,6 +5,7 @@ import static ultima6.Constants.Direction;
 import ultima6.Constants.Map;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.ai.pfa.DefaultGraphPath;
 import com.badlogic.gdx.ai.pfa.GraphPath;
@@ -22,9 +23,13 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import java.util.Iterator;
+import ultima6.Constants.Objects;
+import ultima6.Constants.RedMoongates;
 import ultima6.Conversations.Conversation;
 import static ultima6.Ultima6.AVATAR_TEXTURE;
 import static ultima6.Ultima6.CLOCK;
+import static ultima6.Ultima6.POINTER;
 import static ultima6.Ultima6.SCHEDULES;
 
 public class GameScreen extends BaseScreen {
@@ -34,6 +39,7 @@ public class GameScreen extends BaseScreen {
     private final Batch batch;
     private final Viewport mapViewPort;
     private final HUD hud;
+    private final OrbInputProcessor orbip;
 
     public GameScreen(Map map) {
 
@@ -45,18 +51,18 @@ public class GameScreen extends BaseScreen {
 
         hud = new HUD(this, Ultima6.skin);
 
+        orbip = new OrbInputProcessor();
+
         camera = new OrthographicCamera(Ultima6.MAP_VIEWPORT_DIM, Ultima6.MAP_VIEWPORT_DIM);
 
         mapViewPort = new ScreenViewport(camera);
 
         renderer = new TmxMapRenderer(this.map, this.map.getTiledMap(), 2f);
 
-        mapPixelHeight = this.map.getHeight();
-
-//        SequenceAction seq1 = Actions.action(SequenceAction.class);
-//        seq1.addAction(Actions.delay(10f));
-//        seq1.addAction(Actions.run(new ScheduleRunner()));
-//        stage.addAction(Actions.forever(seq1));
+        SequenceAction seq1 = Actions.action(SequenceAction.class);
+        seq1.addAction(Actions.delay(5f));
+        seq1.addAction(Actions.run(new GameTimer()));
+        stage.addAction(Actions.forever(seq1));
     }
 
     @Override
@@ -71,14 +77,14 @@ public class GameScreen extends BaseScreen {
 
     @Override
     public void setMapPixelCoords(Vector3 v, int x, int y) {
-        v.set(x * TILE_DIM, mapPixelHeight - y * TILE_DIM, 0);
+        v.set(x * TILE_DIM, this.map.getHeight() - y * TILE_DIM, 0);
     }
 
     @Override
     public void setCurrentMapCoords(Vector3 v) {
         float dy = (this.map == Constants.Map.WORLD ? TILE_DIM * 818 + 16 : TILE_DIM * 214 + 0);
         Vector3 tmp = camera.unproject(new Vector3(TILE_DIM * 8, dy, 0), 32, 96, Ultima6.MAP_VIEWPORT_DIM, Ultima6.MAP_VIEWPORT_DIM);
-        v.set(Math.round(tmp.x / TILE_DIM) - 0, ((mapPixelHeight - Math.round(tmp.y) - TILE_DIM) / TILE_DIM) - 0, 0);
+        v.set(Math.round(tmp.x / TILE_DIM) - 0, ((this.map.getHeight() - Math.round(tmp.y) - TILE_DIM) / TILE_DIM) - 0, 0);
     }
 
     @Override
@@ -86,8 +92,6 @@ public class GameScreen extends BaseScreen {
         viewport.update(width, height, false);
         mapViewPort.update(width, height, false);
     }
-
-    //private int day = 1, hour = 0;
 
     @Override
     public void render(float delta) {
@@ -129,6 +133,18 @@ public class GameScreen extends BaseScreen {
         setCurrentMapCoords(v);
         Ultima6.font.draw(batch, String.format("%s  [%.0f, %.0f] %s\n", CLOCK.getTimeString(), v.x, v.y, stage.getRoot().hasActions()), 200, Ultima6.SCREEN_HEIGHT - 24);
 
+        if (orbip.active) {
+            float pointerx = currentMousePos.x - TILE_DIM / 2;
+            float pointery = Ultima6.SCREEN_HEIGHT - currentMousePos.y - TILE_DIM / 2;
+            int diffx = Math.abs(TILE_DIM * 11 - (int) pointerx);
+            int diffy = Math.abs(TILE_DIM * 11 - (int) pointery);
+            if (diffx > 80 || diffy > 80) {
+                //oob
+            } else {
+                batch.draw(POINTER, pointerx, pointery, 32, 32);
+            }
+        }
+
         batch.end();
 
         stage.act();
@@ -140,15 +156,6 @@ public class GameScreen extends BaseScreen {
     public boolean keyUp(int keycode) {
         Vector3 v = new Vector3();
         setCurrentMapCoords(v);
-
-//        hour++;
-//        if (hour > 23) {
-//            hour = 0;
-//            day++;
-//            if (day > 28) {
-//                day = 1;
-//            }
-//        }
 
         if (keycode == Keys.UP) {
             if (Ultima6.currentDirection != Direction.NORTH) {
@@ -194,8 +201,10 @@ public class GameScreen extends BaseScreen {
             }
             newMapPixelCoords.x = newMapPixelCoords.x - TILE_DIM;
             v.x -= 1;
-        } else if (keycode == Keys.D || keycode == Keys.U) {
-
+        } else if (keycode == Keys.U) {
+            Gdx.input.setInputProcessor(orbip);
+            orbip.init(null, keycode, Objects.ORB_OF_THE_MOONS, v.x, v.y);
+            return false;
         } else if (keycode == Keys.E || keycode == Keys.K) {
             Portal p = this.map.getBaseMap().getPortal((int) v.x, (int) v.y);
             if (p != null && p.getMap() != this.map) {
@@ -210,46 +219,7 @@ public class GameScreen extends BaseScreen {
             }
             return false;
         } else if (keycode == Keys.G) {
-//            MapLayer messagesLayer = this.map.getTiledMap().getLayers().get("messages");
-//            if (messagesLayer != null) {
-//                Iterator<MapObject> iter = messagesLayer.getObjects().iterator();
-//                while (iter.hasNext()) {
-//                    MapObject obj = iter.next();
-//                    float mx = obj.getProperties().get("x", Float.class) / TILE_DIM;
-//                    float my = obj.getProperties().get("y", Float.class) / TILE_DIM;
-//                    if (v.x == mx && this.map.getMap().getHeight() - v.y - 1 == my) {
-//                        if ("REWARD".equals(obj.getName())) {
-//                            StringBuilder sb = new StringBuilder();
-//                            Iterator<String> iter2 = obj.getProperties().getKeys();
-//                            while (iter2.hasNext()) {
-//                                String key = iter2.next();
-//                                if (key.startsWith("item")) {
-//                                    Item found = Andius.ITEMS_MAP.get(obj.getProperties().get(key, String.class));
-//                                    sb.append("Party found ").append(found.genericName).append(". ");
-//                                    Andius.CTX.players()[0].inventory.add(found);
-//                                }
-//                            }
-//                            animateText(sb.toString(), Color.GREEN, 100, 300, 100, 400, 3);
-//                            messagesLayer.getObjects().remove(obj);
-//                            TiledMapTileLayer layer = (TiledMapTileLayer) this.map.getTiledMap().getLayers().get("props");
-//                            TiledMapTileLayer.Cell cell = layer.getCell((int) v.x, this.map.getMap().getHeight() - 1 - (int) v.y);
-//                            if (cell != null) {
-//                                cell.setTile(null);
-//                            }
-//                            return false;
-//                        }
-//                    }
-//                }
-//            }
-//            //random treasure chest
-//            TiledMapTileLayer layer = (TiledMapTileLayer) this.map.getTiledMap().getLayers().get("props");
-//            TiledMapTileLayer.Cell cell = layer.getCell((int) v.x, this.map.getMap().getHeight() - 1 - (int) v.y);
-//            if (cell != null && cell.getTile().getId() >= 1321) { //items tileset
-//                RewardScreen rs = new RewardScreen(CTX, this.map, 1, 0, REWARDS.get(rand.nextInt(10)), REWARDS.get(rand.nextInt(10)));
-//                mainGame.setScreen(rs);
-//                cell.setTile(null);
-//                return false;
-//            }
+
         } else if (keycode == Keys.T) {
             Direction dir = Ultima6.currentDirection;
             Actor a = null;
@@ -341,76 +311,26 @@ public class GameScreen extends BaseScreen {
             //return false;
         }
 
-//        MapLayer messagesLayer = this.map.getTiledMap().getLayers().get("messages");
-//        if (messagesLayer != null) {
-//            Iterator<MapObject> iter = messagesLayer.getObjects().iterator();
-//            while (iter.hasNext()) {
-//                MapObject obj = iter.next();
-//                float mx = obj.getProperties().get("x", Float.class) / TILE_DIM;
-//                float my = obj.getProperties().get("y", Float.class) / TILE_DIM;
-//                if (nx == mx && this.map.getMap().getHeight() - 1 - ny == my) {
-//                    String msg = obj.getProperties().get("type", String.class);
-//
-//                    animateText(msg, Color.WHITE, 100, 300, 100, 400, 3);
-//
-//                    String itemRequired = obj.getProperties().get("itemRequired", String.class);
-//                    if (itemRequired != null) {
-//                        Item found = Andius.ITEMS_MAP.get(itemRequired);
-//                        boolean owned = false;
-//                        for (int i = 0; i < Andius.CTX.players().length && found != null; i++) {
-//                            if (Andius.CTX.players()[i].inventory.contains(found)) {
-//                                owned = true;
-//                            }
-//                        }
-//                        if (!owned) {
-//                            Sounds.play(Sound.NEGATIVE_EFFECT);
-//                            animateText("Cannot pass!", Color.RED, 100, 200, 100, 300, 3);
-//                            return false;
-//                        }
-//                    }
-//
-//                    String itemObtained = obj.getProperties().get("itemObtained", String.class);
-//                    if (itemObtained != null) {
-//                        Item found = Andius.ITEMS_MAP.get(itemObtained);
-//                        boolean owned = false;
-//                        for (int i = 0; i < Andius.CTX.players().length; i++) {
-//                            if (Andius.CTX.players()[i].inventory.contains(found)) {
-//                                owned = true;
-//                            }
-//                        }
-//                        if (found != null && !owned) {
-//                            Sounds.play(Sound.POSITIVE_EFFECT);
-//                            Andius.CTX.players()[0].inventory.add(found);
-//                            animateText(Andius.CTX.players()[0].name + " obtained a " + found.name + "!", Color.GREEN, 100, 200, 100, 300, 3);
-//                        }
-//                    }
-//
-//                    String monsterFound = obj.getProperties().get("monsterId", String.class);
-//                    if (monsterFound != null) {
-//                        Monster found = Andius.MONSTER_MAP.get(monsterFound);
-//                        if (found != null) {
-//                            Actor actor = new Actor(found.getIcon(), -1, monsterFound);
-//                            MutableMonster mm = new MutableMonster(found);
-//                            String msx = obj.getProperties().get("monsterSpawnX", String.class);
-//                            String msy = obj.getProperties().get("monsterSpawnY", String.class);
-//                            Vector3 pixelPos = new Vector3();
-//                            setMapPixelCoords(pixelPos, msx != null ? Integer.valueOf(msx) : nx, msy != null ? Integer.valueOf(msy) : ny);
-//                            actor.set(mm, Role.MONSTER,
-//                                    msx != null ? Integer.valueOf(msx) : nx,
-//                                    msy != null ? Integer.valueOf(msy) : ny,
-//                                    pixelPos.x, pixelPos.y, MovementBehavior.ATTACK_AVATAR);
-//                            this.map.getMap().actors.add(actor);
-//                        }
-//                    }
-//                }
-//
-//            }
-//        }
         return true;
     }
 
     @Override
     public void finishTurn(int currentX, int currentY) {
+
+        if (this.map.getBaseMap().getMoongates().size() > 0) {
+            Iterator<Moongate> iter = this.map.getBaseMap().getMoongates().iterator();
+            while (iter.hasNext()) {
+                Moongate m = iter.next();
+                if (m.getWx() == currentX && m.getWy() == currentY) {
+                    Map dmap = m.getMap();
+                    dmap.getScreen().setMapPixelCoords(dmap.getScreen().newMapPixelCoords, m.getDestination().getDx(), m.getDestination().getDy());
+                    Ultima6.mainGame.setScreen(dmap.getScreen());
+                    iter.remove();
+                    break;
+                }
+            }
+        }
+        
         if (CLOCK.incMoveCounter()) {
             checkSchedules();
         }
@@ -471,6 +391,74 @@ public class GameScreen extends BaseScreen {
             actor.setWy(loc.getY());
             actor.setX(loc.getX() * 16);
             actor.setY((map.getHeight() - 1 - loc.getY()) * 16);
+        }
+
+    }
+
+    public class GameTimer implements Runnable {
+
+        public boolean active = true;
+
+        @Override
+        public void run() {
+            if (active) {
+                if (System.currentTimeMillis() - CLOCK.getLastIncrementTime() > 15 * 1000) {
+                    keyUp(Keys.SPACE);
+                }
+            }
+        }
+    }
+
+    private class OrbInputProcessor extends InputAdapter {
+
+        private int keyCode;
+        private float wx;
+        private float wy;
+        private ultima6.Actor player;
+        private Objects object;
+        private boolean active;
+
+        public void init(ultima6.Actor player, int keyCode, Objects object, float wx, float wy) {
+            this.object = object;
+            this.player = player;
+            this.keyCode = keyCode;
+            this.wx = wx;
+            this.wy = wy;
+            this.active = true;
+        }
+
+        @Override
+        public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+            this.active = false;
+
+            Gdx.input.setInputProcessor(new InputMultiplexer(GameScreen.this, stage));
+
+            int diffx = TILE_DIM * 11 + 16 - screenX;
+            int diffy = TILE_DIM * 11 + 48 - screenY;
+
+            if (Math.abs(diffx) > 80 || Math.abs(diffy) > 80) {
+                //oob
+            } else {
+                RedMoongates dest = RedMoongates.get(diffx, diffy);
+                if (dest != null) {
+                    Moongate m = new Moongate(Constants.RED_MOONGATE, dest,
+                            (this.wx + dest.getX()) * 16f,
+                            (GameScreen.this.map.getHeight() - this.wy + dest.getY() - 1) * 16f,
+                            (int) this.wx + dest.getX(),
+                            (int) this.wy - dest.getY());
+
+                    GameScreen.this.map.getBaseMap().getMoongates().clear();
+                    GameScreen.this.map.getBaseMap().getMoongates().add(m);
+                }
+            }
+
+            return false;
+        }
+
+        @Override
+        public boolean mouseMoved(int screenX, int screenY) {
+            currentMousePos.set(screenX, screenY);
+            return false;
         }
 
     }

@@ -25,7 +25,6 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.zip.GZIPInputStream;
 import org.apache.commons.io.IOUtils;
 import ultima6.Constants.Direction;
@@ -66,6 +65,7 @@ public class Ultima6 extends Game {
     public static final java.util.Map<Integer, java.util.List<Schedule>> SCHEDULES = new HashMap<>();
 
     public static TextureRegion AVATAR_TEXTURE;
+    public static TextureRegion POINTER;
     public static Direction currentDirection = Direction.NORTH;
 
     public static Party PARTY = new Party();
@@ -149,12 +149,13 @@ public class Ultima6 extends Game {
 
             Constants.ActorAnimation.init();
             Constants.PaletteCycledTiles.init();
-
+            
             initTileFlags();
             initConversations();
             initSchedules();
 
             AVATAR_TEXTURE = Constants.ActorAnimation.AVATAR.getTexture(Constants.Direction.NORTH);
+            POINTER = Constants.TILES[365];
 
             PARTY.add(AVATAR);
 
