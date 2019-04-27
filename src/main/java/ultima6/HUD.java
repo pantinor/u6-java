@@ -109,8 +109,6 @@ public class HUD extends Table {
         this.scrollPane.add("You see " + conv.getDescription());
 
         stage.setKeyboardFocus(input);
-        Gdx.input.setInputProcessor(new InputMultiplexer(stage));
-
     }
 
     private static final int STRIP_X = 700;

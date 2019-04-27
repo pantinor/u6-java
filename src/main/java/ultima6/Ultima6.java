@@ -56,7 +56,7 @@ public class Ultima6 extends Game {
 
     public static Skin skin;
 
-    public static boolean playMusic = true;
+    public static boolean playMusic = false;
     public static float musicVolume = 0.1f;
     public static Music music;
 

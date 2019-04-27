@@ -38,6 +38,8 @@ public class GameScreen extends BaseScreen {
     private final TmxMapRenderer renderer;
     private final Batch batch;
     private final Viewport mapViewPort;
+    private final Stage mapStage;
+
     private final HUD hud;
     private final OrbInputProcessor orbip;
     private final PointerActor pointer;
@@ -48,7 +50,7 @@ public class GameScreen extends BaseScreen {
 
         batch = new SpriteBatch();
 
-        stage = new Stage();
+        stage = new Stage(viewport);
 
         hud = new HUD(this, Ultima6.skin);
 
@@ -57,7 +59,8 @@ public class GameScreen extends BaseScreen {
         camera = new OrthographicCamera(Ultima6.MAP_VIEWPORT_DIM, Ultima6.MAP_VIEWPORT_DIM);
 
         mapViewPort = new ScreenViewport(camera);
-        stage.setViewport(mapViewPort);
+        
+        mapStage = new Stage(mapViewPort);
 
         renderer = new TmxMapRenderer(this.map, this.map.getTiledMap(), 2f);
 
@@ -65,19 +68,29 @@ public class GameScreen extends BaseScreen {
         seq1.addAction(Actions.delay(5f));
         seq1.addAction(Actions.run(new GameTimer()));
         stage.addAction(Actions.forever(seq1));
-        
+
         pointer = new PointerActor(POINTER);
-        stage.addActor(pointer);
+        mapStage.addActor(pointer);
     }
 
     @Override
     public void show() {
-        Gdx.input.setInputProcessor(new InputMultiplexer(this));
+        Gdx.input.setInputProcessor(new InputMultiplexer(this, stage));
+
+        if (Ultima6.playMusic) {
+            if (Ultima6.music != null) {
+                Ultima6.music.stop();
+            }
+            Sound snd = Sound.RULE_BRIT;
+            Ultima6.music = Sounds.play(snd, Ultima6.musicVolume);
+        }
     }
 
     @Override
     public void hide() {
-
+        if (Ultima6.music != null) {
+            Ultima6.music.stop();
+        }
     }
 
     @Override
@@ -132,13 +145,16 @@ public class GameScreen extends BaseScreen {
         batch.draw(Ultima6.backGround, 0, 0);
         batch.draw((TextureRegion) Ultima6.AVATAR_TEXTURE, TILE_DIM * 11, TILE_DIM * 11, TILE_DIM, TILE_DIM);
 
-        this.hud.renderStrip(batch, this.map.getId(), Ultima6.CLOCK.getDay(), Ultima6.CLOCK.getHour());
+        hud.renderStrip(batch, this.map.getId(), Ultima6.CLOCK.getDay(), Ultima6.CLOCK.getHour());
 
         Vector3 v = new Vector3();
         setCurrentMapCoords(v);
         Ultima6.font.draw(batch, String.format("%s  [%.0f, %.0f] %s\n", CLOCK.getTimeString(), v.x, v.y, stage.getRoot().hasActions()), 200, Ultima6.SCREEN_HEIGHT - 24);
 
         batch.end();
+        
+        mapStage.act();
+        mapStage.draw();
 
         stage.act();
         stage.draw();
@@ -237,8 +253,9 @@ public class GameScreen extends BaseScreen {
                 }
                 Conversation c = Ultima6.CONVS.get(a.getId());
                 if (c != null) {
-                    this.stage.addActor(this.hud);
-                    this.hud.set(stage, Ultima6.AVATAR, Ultima6.PARTY, c);
+                    stage.addActor(hud);
+                    Gdx.input.setInputProcessor(new InputMultiplexer(stage));
+                    hud.set(stage, Ultima6.AVATAR, Ultima6.PARTY, c);
                 }
 
             }
@@ -358,7 +375,7 @@ public class GameScreen extends BaseScreen {
                                 seq.addAction(Actions.run(run));
                             }
                             seq.addAction(Actions.removeAction(seq));
-                            stage.addAction(seq);
+                            mapStage.addAction(seq);
                             break;
                         }
                     }
@@ -427,7 +444,7 @@ public class GameScreen extends BaseScreen {
             this.active = false;
             GameScreen.this.pointer.setVisible(false);
 
-            Gdx.input.setInputProcessor(new InputMultiplexer(GameScreen.this, stage));
+            Gdx.input.setInputProcessor(new InputMultiplexer(GameScreen.this, GameScreen.this.stage));
 
             int diffx = TILE_DIM * 11 + 16 - screenX;
             int diffy = TILE_DIM * 11 + 48 - screenY;
