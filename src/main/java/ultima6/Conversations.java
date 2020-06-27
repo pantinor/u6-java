@@ -236,6 +236,13 @@ public class Conversations {
                     String text = consumeText(this, avatar, party, this.bb);
                     if (!text.isEmpty()) {
                         output.print(text, null);
+
+                        //advance it
+                        U6OP peek = U6OP.get(bb);
+                        if (peek == U6OP.ASK) {
+                            bb.get();//skip
+                        }
+
                         break;
                     }
                 }
@@ -576,7 +583,7 @@ public class Conversations {
         int quality = (int) values.pop();
 
         if (delete) {
-            party.getPlayer(npc).addItem(obj, quantity, quality);
+            party.getPlayer(npc).removeItem(obj, quantity, quality);
         } else {
             party.getPlayer(npc).addItem(obj, quantity, quality);
         }
@@ -617,12 +624,12 @@ public class Conversations {
             byte next = bb.get();
         } while (bb.position() < bb.limit() && U6OP.find(bb.get(bb.position())) == null);
         String val = new String(bb.array(), start, bb.position() - start);
-        
+
         val = val.replace("$G", "milord");
         val = val.replace("$P", player.getName());
         val = val.replace("$N", conv.getName());
         val = val.replace("$T", "morning");
-        
+
         {
             Pattern p = Pattern.compile("#[0-9]+");
             Matcher m = p.matcher(val);
@@ -637,7 +644,7 @@ public class Conversations {
             m.appendTail(sb);
             val = sb.toString();
         }
-        
+
         {
             Pattern p = Pattern.compile("$[0-9]+");
             Matcher m = p.matcher(val);
@@ -652,7 +659,6 @@ public class Conversations {
             m.appendTail(sb);
             val = sb.toString();
         }
-        
 
         return val;
     }

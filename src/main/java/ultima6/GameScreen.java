@@ -15,6 +15,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.math.Vector3;
@@ -24,7 +25,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import java.util.Iterator;
-import ultima6.Constants.Objects;
+import ultima6.Objects.Object;
 import ultima6.Constants.RedMoongates;
 import ultima6.Conversations.Conversation;
 import static ultima6.Ultima6.AVATAR_TEXTURE;
@@ -212,7 +213,7 @@ public class GameScreen extends BaseScreen {
             v.x -= 1;
         } else if (keycode == Keys.U) {
             Gdx.input.setInputProcessor(orbip);
-            orbip.init(null, keycode, Objects.ORB_OF_THE_MOONS, v.x, v.y);
+            orbip.init(null, keycode, Object.ORB_OF_THE_MOONS, v.x, v.y);
             return false;
         } else if (keycode == Keys.E || keycode == Keys.K) {
             Portal p = this.map.getBaseMap().getPortal((int) v.x, (int) v.y);
@@ -296,7 +297,7 @@ public class GameScreen extends BaseScreen {
             if (tf.isWall() || tf.isImpassable() || tf.isWet()) {
                 TileFlags otf = null;
                 MapLayer objLayer = this.map.getTiledMap().getLayers().get("objects");
-                for (Object obj : objLayer.getObjects()) {
+                for (MapObject obj : objLayer.getObjects()) {
                     TiledMapTileMapObject tmo = (TiledMapTileMapObject) obj;
                     float ox = ((Float) tmo.getProperties().get("x")) / 16;
                     float oy = ((Float) tmo.getProperties().get("y")) / 16;
@@ -426,10 +427,10 @@ public class GameScreen extends BaseScreen {
         private float wx;
         private float wy;
         private ultima6.Actor player;
-        private Objects object;
+        private Object object;
         private boolean active;
 
-        public void init(ultima6.Actor player, int keyCode, Objects object, float wx, float wy) {
+        public void init(ultima6.Actor player, int keyCode, Object object, float wx, float wy) {
             this.object = object;
             this.player = player;
             this.keyCode = keyCode;

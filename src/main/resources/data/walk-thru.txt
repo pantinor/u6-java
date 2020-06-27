@@ -1,0 +1,582 @@
+
+
+courtesy of diachun@autarch.acsu.buffalo.edu
+--
+Ultima VI The False Prophet, IBM version 3.2
+This "walkthru" by Wyvern
+
+     ULTIMA VI from Origin and Lord British is the sixth game in the 
+Ultima series. Great improvements to the graphics are to be enjoyed 
+in this game, but it does not compensate for the buggy program, poor
+documentation of the commands and little improvement in the actual
+plot/game itself. 
+     Be certain to set you game up properly or it will run very slowly.
+     The screen is divided into four sections: map, status display, 
+message area and command icons. The map area is so small that until 
+you have played the game for a while it is far to easy to get 
+disoriented. I would prefer a larger map area.
+     Do NOT use the mouse! Although the docs {such as they are} says 
+that mouse is supported it simply does not work well. The keyboard 
+works fine once you get used to it. Commands are NOT well explained. 
+It took me a couple of hours to figure out how to move items from 
+one character to another, drop items, etc. Much attention was given 
+to the compendium. I wish such attention had been given to the 
+instructions. 
+     You begin the game with 3 other companions in Lord British's 
+castle. You also begin IN a fight. This is not a nice way to start a 
+game. Frankly at this point you are not familiar enough with the 
+commands to handle a fight easily. My group managed to scrape 
+through and Lord B did heal us completely right afterwards, but I 
+think it was a poor game choice. 
+     Your beginning group is: Yourself, Dupre, Shamino, and Iolo. 
+Talk to them. Iolo can gather or split all the gold in the party 
+for you {would be nice if the docs told you these things rather than 
+leaving it to the player to find out by random chance}. Later in the 
+game you will find others who are willing to join your group. 
+Everyone who is willing to join you is not necessarily worth having 
+join you. Some of them are poorly equipped, others have poor stats, 
+or both. Having extra people in your group can sometimes be an 
+advantage even if they are not the best. To ask them to join or 
+leave your party, talk to them. 
+     Another word of caution: Many BUGS have been reported on this game.
+I see little excuse, save greed, for a game to be released to the public 
+with such obvious bugs. Unfortunately this practice seems to be becoming 
+the rule rather than the exception these days. You can send in your disks
+for replacements. You should also make backups of your character files
+often or you may find yourself restarting the game. Don't just overwrite
+your past backups, make different copies. That way you will have a
+chance to save what playing time you have put in. Some bugs can be avoided 
+by limiting your inventory and later in the game reducing your party to the
+original four {avatar, Dupre, Samino, Iolo}.
+
+TEAM MEMBERS: 
+NAME         WHERE           STR; DEX;INT     Magic
+*Beh Lem    - outside Hythloth 23;24 ; 26      0/0
+ Blain      - with Gypsies   16 ; 21 ; 18      0/0
+ Cpt Leonna - Moonglow       15 ; 15 ; 18      0/0
+ Cpt Leodon - Moonglow       15 ; 19 ; 15      7/7
+*Gorn       - Under Sutek's
+*Gwenno     - Minoc          18 ; 21 ; 17      9/9
+ Jaana      - Yew    
+ Julia      - Minoc          21 ; 18 ; 17      0/0
+ Katrina    - New Magincia   19 ; 16 ; 16      0/0
+*Seggallion - Serpents Hold  28 ; 21 ; 20      0/0
+ Sentri     - Serpents Hold  26 ; 18 ; 16      0/0
+ Sherry     - Lord B's castle 
+     {Sherry is a talking mouse. You need her for one task in 
+      Jhelom. Once completed, you can drop her from the party.}
+ 
+* suggested best party to add to Avatar, Dupre, Shamino, Iolo
+
+EXPERIENCE needed to Advance:
+0    -     100   Level 1     When one of your characters has enough
+101  -     200   Level 2     experience to advance a level, TALK to
+201  -     400   Level 3     a shrine and chant the mantra. You can
+401  -     800   Level 4     greatly improve the character's stats
+801  -     1600  Level 5     with careful use of the chart below.
+1601 -     3200  Level 6
+3201 -     6400  Level 7
+6401 +           Level 8
+
+CHARACTERISTIC IMPROVEMENTS BY SHRINE:
+ Shrine          Strength     Dexterity    Intelligence
+|-------------|-------------|------------|-------------|
+|Compassion           -           +3          -        |
+|Honesty              -           -           +3       |
+|Honor                -           +1          +1       |
+|Humility             -           -           -        |
+|Justice              +1          -           +1       |
+|Sacrifice            +1          +1          -        |
+|Spirituality         +1          +1          +1       |
+|Valor                +3          -           -        |
+|-------------|-------------|------------|-------------|
+
+MANTRAS:               
+Compassion       mu    
+Control          un
+Diligence        us
+Honesty          ahm   
+Honor            summ  
+Humility         lum   
+Justice          beh   
+Passion          or
+Pride            mul   
+Sacrifice        cah   
+Singularity      unorus
+Spritiuality     om    
+Valor            ra    
+
+RUNES: Location of and requirements to get:
+Compassion:      Ariana, child, in the conservatory of Britannia. You will 
+                 need her mother's permission. Her mother runs the tavern in
+                 Britannia
+Honesty:         In the tomb of Beyvin in the catacombs of Moonglow. You will
+                 need to get the key from Manrel who lives south of the Blue 
+                 Bottle Inn.
+Honor:           On the pedestal in Trinsic. Talk to the mayor before taking 
+                 it and return it afterwards.
+Humility:        The mayor of New Magincia has the rune, you will need to 
+                 answer a questions before he will give it to you. The
+                 answer is "Conor".
+Justice:         Talking to the thief in the Yew jail will tell you that the
+                 rune is hidden under a plant in Yew's tavern.
+Sacrifice:       Selganor in the Minoc Artisians' Guild has the rune but you
+                 will need to join the Guild before he will give it to you. To
+                 join, you need to get a yew log from Ben {west of the mayor's
+                 house in Yew} and have it cut at the saw mill south east of
+                 Minoc. Take yew board to Julia to make into PanPipes and 
+                 learn the notation of the tune STONES from Gwenno {minoc}
+                 Stones {music} 6789878767653
+Spirituality     In the chest in Marney's house in the north end of Skara 
+                 Brae.
+
+MOONGATES: To use a moongate, stand in the center and USE the MOON ORB and 
+point to one of the squares around you. Below is a list of where each square 
+will take you: {the numbers listed are the coordinates of these areas. If
+you use {alt}214 you can teleport to these areas by listing the coordinates.
+{alt} 214 works ANYWHERE in the game at least through version 3.2. SEE BELOW
+FOR ADDITIONAL EXPLANATION OF ALT COMMANDS}
++-------------+--------------+--------------+--------------+--------------+
+| MG of       | Shrine of    |  MG of       | Shrine of    | MG of        |
+| Honesty     | Honesty      |  Compassion  | Compassion   | Valor        |
+| MoonGlow    |              |  Britannia   |              | Jhelom       |
+| 383 1F3 0   | 3A7 106 0    | 1B3 18B 0    | 1F7 166 0    | 093 373 0    |
++-------------+--------------+--------------+--------------+--------------+
+| Shrine of   | Shrine of    |  Lord B's    | Shrine of    | Shrine of    |
+| Humility    | Control      |  Castle      | Passion      | Valor        |
+|             |              |  Throne Room |              |              |
+| 398 3A7 0   | 044 02D 5    |  133 160 0   | 0BC 02D 5    | 09F 3AE 0    |
++-------------+--------------+==============+--------------+--------------+
+| MG of       |              [[  MIDDLE    ]]              | MG of        |
+| Humility    |  No Effect   [[  YOU ARE   ]]  No Effect   | Justice      |
+| New Magincia|              [[   HERE!    ]]              | Yew          |
+| 2E3 2BB 0   |              [[            ]]              | 0E3 083 0    |
++-------------+--------------+==============+--------------+--------------+
+| Shrine of   | Gargoyle     |  Shrine of   | Temple of    | Shrine of    |
+| Spirituality| Altar        |  Diligence   | Codex        | Justice      |
+|             |              |              |              |              |
+| 017 016 1   | 080 056 5    | 066 0DD 5    | 39B 36C 0    | 129 027 0    |
++-------------+--------------+--------------+--------------+--------------+
+| MG of       | Shrine of    |  MG of       | Shrine of    | MG of        |
+| Spirituality| Honor        |  Honor       | Sacrifice    | Sacrifice    |
+| Skara Brae  |              |  Trinsic     |              | Minoc        |
+| 04B 1FB 0   | 147 336 0    | 183 313 0    | 340 0A7 0    | 29B 043 0    |
++-------------+--------------+--------------+--------------+--------------+
+
+SPELLS:__REAGENTS:__MAGIC:__POTIONS:________________________________________
+| * = spells you must have to complete the game!                           |
+|                                                                          |
+| COVE:      Ruduyom {20 gp/lvl}                                           |
+|      Northwest corner of town            Reagents                        |
+| 1st  Create Food, Douse, Heal, Ignite    Blood Moss        3g            |
+| 2nd  -                                   Garlic            1g            |
+| 3rd  Mass Awaken                         Ginsing           2g            |
+| 4th  Great Heal*                         Nightshade        2g            |
+| 5th  Pickpocket*, Seance                 Spider Silk       2g            |
+| 6th  -                                   Sul. Ash          1g            |
+| 7th  -                                                                   |
+|                                                                          |
+| LYCAEUM:   Xaio {25gp/lvl}                                               |
+|      North, northeast of Library, Xiao                                   |
+| 1st  Detect Magic, Dispell Magic*, Light                                 |
+| 2nd  Infravision, Reappear, Telekinesis*, Vanish                         |
+| 3rd  Dispel Field*, Great Light, Peer                                    |
+| 4th  Animate, Fire Field, Locate, Mass Dispell*, Poison Field, Sleep     |
+|      Field, Wind Change*                                                 |
+| 5th  Energy Field, Invisibility*, Reveal, X-Ray                          |
+| 6th  Clone, Negate Magic, Replicate                                      |
+| 7th  Fear, Gate Travel, Wizard's Eye                                     |
+|                                                                          |
+| Reagents                                                                 |
+| Black Pearl      4g                                                      |
+| Garlic           3g                                                      |
+| Ginsing          3g                                                      |
+| Mandrake         6g                                                      |
+| Nightshade       3g                                                      |
+| Spider Silk      3g                                                      |
+| Sul. Ash         3g                                                      |
+|                                                                          |
+| NICKODEMUS: North of Britain between two rivers {20gp/lvl}               |
+| 1st  Detect Trap                                                         |
+| 2nd  Sleep, Unlock Magic*, Untrap                                        |
+| 3rd  Magic Lock, Mass Sleep, Protection, Repell Undead                   |
+| 4th  Conjure                                                             |
+| 5th  Insect Swarm                                                        |
+| 6th  Charm, Confuse, Mass Protect, Web                                   |
+| 7th  Enchant, Mass Invisibility*                                         |
+|                                                                          |
+| Reagents:                                                                |
+| Blood Moss     2gp                                                       |
+| Garlic         1gp                                                       |
+| Ginseng        1gp                                                       |
+| Spiders Silk   1gp                                                       |
+| Sul. Ash       2gp                                                       |
+|                                                                          |
+| Staves: Nick sells these staffs which can be used with the ENCHANT       |
+|         Spell. Each staff can hold upto 10 spells. Anyone can use        |
+|         a staff so charged.                                              |
+|                                                                          |
+| SKARA BRAE: Horance Island, Horance {30gp/lvl}  03B 1D4 0                |
+| 1st  Harm                                                                |
+| 2nd  Magic Arrow, Poison, Trap, Unlock Magic*                            |
+| 3rd  Curse, Fireball                                                     |
+| 4th  Disable                                                             |
+| 5th  Explosion*, Lightning, Paralyze                                     |
+| 6th  Flame Wind, Hail Storm, Poison Wind                                 |
+| 7th  Chain Bolt, Energy Wind, Kill, Mass Curse, Wing Strike              |
+|                                                                          |
+| Reagents:                                                                |
+| Black Pearl      3gp                                                     |
+| Blood Moss       3gp                                                     |
+| Mandrake Root    5gp                                                     |
+| NightShade       2gp                                                     |
+| Spider Silk      1gp                                                     |
+| Sul Ash          2gp                                                     |
+|                                                                          |
+| ZOLTAR - gypsy                                                           |
+| Reagents                                                                 |
+| Blood Moss       3g                                                      |
+| Garlic           2g                                                      |
+| Ginseng          1g                                                      |
+| Nightshade       1g                                                      |
+| Spider Silk      2g                                                      |
+| Sul. Ash         1g                                                      |
+|                                                                          |
+| POTIONS:                                                                 |
+| Black            Invisible                                               |
+| Blue             Awaken                                                  |
+| Green            Poison                                                  |
+| Orange           Sleep {does not work on monsters}                       |
+| Purple           Invisible                                               |
+| Red              Dispell Magic                                           |
+| Yellow           Heal                                                    |
+| White            Xray vision                                             |
+|__________________________________________________________________________|
+
+WEAPONS & ARMOR:____________________________________________________________
+|                                                                          |
+| Britannia:     {not all in one location/building}                        |
+|    Weapons:    dagger, spear, sword, 2-handed sword, MAGIC BOW, arrows   |
+|                bolts                                                     |
+|    Armor:      cloth armor, leather armor, chain mail, plate mail,       |
+|                heater {serpent} shield, iron helm                        |
+|                                                                          |
+| Buccaneer's Den:                                                         |
+|    Weapons:    club, dagger, oil flask, main gauche, throwing axe        |
+|    Armor:      cloth armor, leather armor, leather helm                  |
+|                                                                          |
+| Jhelom:                                                                  |
+|    Weapons:    bow, club, crossbow, dagger, oil flask, spear, arrows     |
+|                bolts                                                     |
+|    Armor:      spiked shield                                             |
+|                                                                          |
+| Minoc:                                                                   |
+|    Weapons:    dagger, mace, main gauche, morning star, sword            |
+|    Armor:      chain coif, chain mail, ring mail, scale mail,            |
+|                winged helm                                               |
+|                                                                          |
+| Serpent's Hold:                                                          |
+|    Weapons:    halberd, hammer, morning star, throwing axe,              |
+|                2-handed sword                                            |
+|    Armor:      black shield, door shield, scale mail, spiked collar      |
+|                spiked shield, spiked helm, MAGIC SHIELD{can be made}     |
+|                                                                          |
+| Trinsic:                                                                 |
+|    Weapons:    mace, main gauche, sword, 2-handed axe, 2-handed hammer,  |
+|                2-handed sword                                            |
+|    Armor:      iron helm, kite shield, MAGIC ARMOR, MAGIC HELM,          |
+|                plate mail                                                |
+|                                                                          |
+| Yew:                                                                     |
+|    Weapons:    club, dagger, spear, throwing axe, 2-handed axe           |
+|    Armor:      brass helm, leather helm, leather armor, ring mail        |
+|                SWAMP BOOTS                                               |
+|__________________________________________________________________________|
+
+ROUGH WORLD MAP:   /( = WATER
+  1     2     3     4     5     6     7     8     9     10    11    12   13
+|----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+----|
+| /( | /(  | /(  | /(  | /(  | /(  | /(  | /(  | /(  | /(  | /(  | /(  | /( |
+|    |     |     |    shr    |     |     |     |     |     |     |     |    |
+|----+-----+-----+---justice-+--dun|-----+-----+-----+-----+-----+-----+----|
+| /( | /(  |     |     |     | wrong /(  |  MINOC    |     |     | /(  | /( |
+|    |     |     |     |     |     |     |     | dun |     |     |     |    |
+|----+-----+-----+-----+-----+-----+-----+-----|covet|-----+-shr-+-----+----|
+| /( |     |     |YEW  |     |     |     | /(  |     |     |sacri|     | /( |
+|    |     |     |     |     |     |     |     |     |     | Ants|     |    |
+|----+-----+-----+-----|Nicko|-----+-----+-----+-----+---SinVraal|-----+----|
+| /( | cave|ABBEY|     |demus|     |     |  stone    |     |     | shr | /( |
+|    |spide|     |     |     |     |     |  gate     |     |     |honesty   |
+|----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+----|
+| /( |     |     |     |BRITAIN    | shr |COVE | dun | /(  | /(  |     | /( |
+|    |     |     |     |     |     |compa|     |     |     |     |     dun  |
+|----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----deceit
+| /( |     | dun | dun |     | /(  | /(  | /(  | /(  | /(  | /(  |Lycae| /( |
+|    |     |cyclo|shame|     |     |     |     |     |     |     | um  |    |
+|----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+----|
+| /( |     |     |     |     | /(  | /(  | /(  | /(  | /(  | /(  |     | /( |
+|    |SKARA|     |     |     |     |     |     |     |     |     | MOON|    |
+|----+-BRAE|-----+-----+-----+-----+-----+-----+-----+-----+-----+-GLOW|----|
+| /( | /(  |     |     |  PAWS /(  | /(  | /(  | /(  | /(  | /(  |     | /( |
+|    |     |     |     |     |     |     |     |     |     |     |     |    |
+|----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+----|
+| /( | /(  |     |dun  |     | /(  |BUCCA| /(  | NEW | /(  | /(  | /(  | /( |
+|    |     |     |destard    |     | DEN |     |MAGIN|     |     |     |    |
+|----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+----|
+| /( | /(  |     |     TRINSIC /(  | /(  | /(  | /(  | /(  | /(  | /(  | /( |
+|    |     |     |     |     |     |     |     |     |     |     |     |    |
+|----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+----|
+| /( | /(  | /(  | /(  | shr |     | /(  | /(  | /(  | /(  | /(  | /(  | /( |
+|    |     |     |     |honor|     |     |    isle   |     |     | Isle|    |
+|----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+--of-+----|
+| /( |  JHELOM   | /(  | /(  |     |  /( | /(  | /(  | /(  | /(  |Avatar /( |
+|    |     |     |     |     |     |     |     |     |     |     |     |    |
+|----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----dun--|
+| /( | /(  |shr  | /(  | /(  | /(  | Serpent's |     |  Sutek's  |shr  hyth |
+|    |     |valor|     |     |     |   Hold    |     |  Castle   |humil     |
+|----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+----|
+  1     2     3     4     5     6     7     8     9     10    11    12   13
+
+STARTING OUT:
+     You begin the game in Lord British's castle. Lord B will tell you 
+how the shrines are under the control of the gargoyles and must be freed.
+There is equipment for your use in the castle, in your room and in others. 
+Talk to everyone you meet. Ask their name and job to get clues as to 
+further conversation. Talk to the mage in L. B's castle. He will tell you 
+about Iolo's book and to consult Mariah {in Lycaeum}.
+
+INVENTORY HINTS:
+     Major BUGS are related to character's inventory so keep only what you
+need, food, reagents, and the like. Some items you will need to keep until
+they have been used. Once used, you can drop them {such as Rune Stones and
+pieces to the pirates treasure map} To WIN the game you will need:
+
+     Vortex Cube {loaded with the 8 Moonstones}
+     2 Vortex Lens
+
+     It will be very useful to have a strong character in your party carry
+a skiff. There are areas you will want to reach {such as Dungeon Shame}
+that you will be unable to reach without a skiff.
+
+SEWERS: good for gold and experience
+     In the potion laboratory in the castle, you will find a ladder to
+the sewers below the castle. This is the best place to start out your
+characters. It is larger than it looks. Use all ladders you find until you
+are familiar with where they lead. On level 2 of the sewers you will find
+an underground lake. Phoenix lives to the north of the lake. When you have
+gotten the PICKPOCKET spell, seek out Phoenix and take her thieve's belt.
+
+SHRINES:
+     After you have spent a little time in the sewers earning gold and
+experience, its time to visit the wide world. Your purpose at this point 
+is to free the shrines from the hold of the gargoyles. The shrine of
+Compassion {east of Britannia} is the easiest to free early in the game
+having fewer gargoyles guarding the shrine. At other shrines, you may
+find it easier to cast invisibiity upon your avatar and have him/her
+free the shrine alone thus avoiding a fight with the gargoyles. To free
+a shrine USE the rune on the shrine and chant the mantra. The force
+field upon the shrine will be broken. Take the MOONSTONE!
+
+EXPLORE and GAIN EXPERIENCE:
+Here is a list of some of the major areas of interest in the game. As
+noted, some contain important clues or items while others are primarily
+good for gaining experience. Many of the caves are connected.
+
+Ant Mounds             - Map piece piece, reagents
+Bucaneer Cave          - minor items
+Cyclops Cave           - Powder Kegs, gold
+Dungeon Covertous      - minor items
+Dungeon Deceit         - minor items
+Dungeons Destard       - Dragon Eggs, major treasures
+Dungeon Hyaloth        - Gargoyle scroll, ENTRANCE TO GARGOYLE WORLD
+Dungeon Shame          - Map piece, gold, gems
+Dungeon Wrong          - Map piece
+Heftimus Cave          - near Jhelom, rings, potions
+Heros Cave             - Near shrine of Honor, minor items
+Lycaceum Underground   - Books *
+Moonglow Catacombs     - Rune of Honesty, weapons, armor, staves
+Pirate's Cave          - Tablet, storm cloak, magic fan
+Sewers {under L B's}   - Thief Guild Belt, gold, minor items
+Shrine of Control      - Mondain Statue
+Shrine of Diligence    - Exodus Statue
+Shrine of Passion      - Minax Statue
+Spider Cave            - Spider Silk 
+Stonegate              - Vortex Cube
+Sutex Castle Catacombs - Balloon Plans
+Tomb of Kings          - minor items
+
+* Books: The book of lost mantras if shown to Wisps will get you the
+         8th level spell of Armageddon {which you do NOT need}
+         The book Wizard of Oz when given to Lord British will get
+         you some gems as reward.
+
+KARMA:
+     Karma is important in this game. To maintain and increase Karma, do 
+not steal, return the rune of honor to Trinsic, do good deeds {such as
+getting dragon eggs for Sandy the cook in Trinsic}
+
+PIRATES' MAP & TABLET:
+     Talking to Mariah in Lycaeum will reveal that a second portion of
+the tablet will be needed to translate it fully. Mariah directs you to
+Zoltar the gypsy. Zoltar will tell you that pirates stole the other
+portion of the tablet. To locate this second piece of tablet you will
+need:
+     Thieves Belt - sewers under LB's to join the Thieves Guild to be
+                    able to get any information from HOMER on Bucaneer
+                    Den.
+Homer will tell you that there are 9 pieces to the map of Captain
+Hawkin's treasure {the location of the 2nd piece of tablet}. Homer has
+one of the nine pieces. The others are at:
+     Shipwreck         -     71S, 14E
+     Ant Mound         -     4th level
+     Dungeon Shame     
+     Dungeon Wrong
+Giving Sandy, the cook in Trinsic, dragon eggs will tell you the other
+locations of map pieces:
+     Serpent's Hold    -     A woman to the east has a piece. You will
+                             need to give her a Magic Shield to get it.
+     Dagger Isle       -     Hermits cellar {move harpsicord}
+     Bad gypsies       -     Buy or pickpocket the piece {N of Paws}
+     Mayor of Trinsic  -     Confront mayor with name "GORDON"
+After collecting 8 pieces return to HOMER. He will give you the last piece 
+and tell you how many paces to move before digging {you will need a SHOVEL}.
+Drop the map pieces and move them around until you get a clear map of the
+location of the treasure.
+TREASURE: Small island to southwest of Bucaneer's Den with 3 stones in 
+northeast corner. Walk 3 steps south, 9 steps west, 12 steps south. DIG!
+This will reveal a hole that you can enter. Explore this area {which has
+many traps} until you find the sign: "Drop to your Death", choose the
+hole that has a gold nugget next to it to find the TABLET.
+     Return to Bucaneer's Den and give Storm Cloak to Homer.
+     Return to Lycaeum with both parts of the tablet and talk to Mariah.
+
+GARGOYLES:
+     Mariah will supply some additional information on why the gargoyles
+are causing so much trouble now. She will direct you to Sin Vraal {south
+of shrine of sacrifice} who will tell you that you can enter the 
+gargoyle world through Hythloth. 
+     Dungeon Hythloth is to be found near the Shrine of Humility {lower
+right portion of the map}. You will find Captain Johne on the bottom
+level. He will tell you about the gargoyles and give you a scroll that
+will allow you to talk to gargoyles. Cpt. Johne will also tell you about
+Beh Lem a gargoyle who will help you get around the gargoyle city without
+being attacked. Beh Lem is to be found just outside of Dungeon Hythloth
+on the gargoyle plane.
+     Talk to Beh Lem. He will tell you to see his father and give you 
+instructions on how to find him. Beh's father will tell you that you need
+to visit the gargoyle Inquisitor {Lord Draxinusom} and surrender as well
+as the need for you to make a sacrifice to help mend the two worlds, that
+of humans and gargoyles. Naxatilor is the gargoyle who will be able to 
+explain sacrifice to you more clearly.
+     Go see Lord Drax and surrender. Drax will ask that you submit to 
+wearing an amulet of submission. Dupre will warn you that it is a magical
+trick, ignore him. Once you are wearing the amulet, you will be able to
+travel freely around the gargoyle world and talk with its inhabitants.         
+     Now visit Nax {who lives across the way from Drax and learn more about
+sacrifice. Sacrifice, to gargoyles, can mean one of three things: self,
+others or valuables. When asked which you wish to sacrifice, answer "value".
+Nax informs you that the Codex is the only thing of real value. Nax will
+ask if you wish to destroy the Codex, answer "no". Nax will then suggest
+that you return the Codex to the void. Here at last is your true mission
+in this game!
+     Visit the Hall of Knowledge to read the Book of Rituals and to get
+the vortex lens {it is broken and you will need to have it repaired by
+the gargoyle lens maker who lives east of the gargoyle city}. After doing
+these errands and returning to Nax where needed for additional instructions,
+you will be told that you need a concave vortex lens to represent humans
+and to read the Codex for instructions on what to do with the lenses and
+the vortex cube {loaded with the 8 moonstones}. The vortex CUBE is supposed to 
+be in the Hall of Knowledge but you will find it missing. Asking the gargoyle 
+who cares for the Hall, you will learn that the Cube was stolen by humans who 
+went to StoneGate. StoneGate is the castle that lies in the mountains south of 
+Minoc. You will need to find secret passages as well as do a couple of errands 
+for the Ogres that live there to get the vortex Cube.
+     The mage that lives across the river near Lycaeum will be able to make
+you a concave vortex lens if you can give him a glass sword. Glass swords
+can be found on Phoenix in the sewers.
+     You will not be able to enter the temple of the Codex unless you are
+on a quest. THere is only one way to be put on a quest and that is to
+visit the Shrine of Singularity {in the gargoyle world}. To visit the
+Shrine of Singularity you will need a balloon. Plans for making a balloon
+can be found on a dead body in the dungeon under Sutek's. Once you have the 
+balloon plans you will need to visit: 
+Minoc to have the basket woven {300gp},
+Paws  to buy rope {5gp} 
+      to have silk thread spun {have lots of spider silk for this} {10gp}
+New Magincia to have the thread woven into cloth {20gp}
+Paws  to have the cloth sewn into a large bag {75gp}
+You also need a cauldron {dungeon wrong is a good source for this} and an 
+anchor.
+USE the balloon plans to make a balloon. Have one of your strong characters
+carry the balloon. Use a moongate to get to the gargoyle altar {see moon-
+gate chart above}. Go north and a little to the right, drop the balloon and
+then use it. Use the FAN to change the wind to S so that you may travel
+north. Once past the mountains, land and enter the Shrine of Singularity.
+     TALK to the altar. When asked what you want, answer "quest". You will
+be asked for whom you seek this quest of the Codex, answer "all". The
+shrine will tell you to visit the shrines representing the gargoyle virtues
+Control, Passion & Diligence. Each of these shrines contains a statue with
+which you must talk to learn the mantra of that virtue. The three virtues 
+combined equal the mantra for the Singularity. Use the balloon to return south 
+of the mountains, back to near the gargoyle altar. 
+     The entrances to the shrines of Control, Passion and Diligence are
+found on the island of the gargoyle world {which is not that large}. The 
+catacombs of Diligence are the hardest to get through. There is a secret door 
+leading to a ladder near the lower left corner of the catacombs. This secret 
+door is NOT on an outer wall. 
+     After you have visited all three shrines and learned the mantras, return 
+to the Shrine of Singularity. When asked if you have visited all three shrines 
+answer yes and then chant the mantra UNORUS. You now have a quest and may 
+enter the temple containing the Codex!
+     Use the Moon Orb to get to the Temple of the Codex and read it {LOOK}. 
+Follow the instructions to place the two lenses and the Cube loaded with all 
+eight moonstones then USE the Cube! 
+     You will see a series of pictures that culminate in the END GAME!
+     CONGRATS!
+
+{alt} commands:
+     There are 3 {alt} commands that work in this game {through version
+3.2}. These are "debugging tools" that were left in the game.
+To use them press the alt key and then the three numbers before releasing
+the alt key.
+
+{alt} 213  -     This command will give you the same over view that a gem
+                 would plus a string of numbers. The first 2 numbers are
+                 your character's karma, the next four are the time, the
+                 next three are the first coordinates, the three after that
+                 are the second coordinates and the last number is the 
+                 "plane". Example: 7510260170161
+                 75   = karma
+                 1026 = time
+                 017  = 1st coordinates }
+                 016  = 2nd coordinates }====Shrine of Spirituality
+                 1    = plane           }
+
+{alt} 214  -     This command will allow you to teleport from where you are
+                 to another location. Example: To get to the Shrine of
+                 Spirituality, you would type:
+                 017 {return}
+                 016 {return}
+                 1   {return}   and you will be teleported there!
+
+{alt} 215  -     Causes an hour of game time to pass. Useful when you
+                 are waiting for someone to return to their place of
+                 business.
+
+Some other {alt} 214 coordinates:
+
+PAWS       -     173 272 0
+MINOC      -     254 063 0   by the sundial
+SUTEX      -     315 3D6 0   on the docks
+SEWERS     -     062 07B 2   this is near the campfires
+PIRATES TR -     09B 0D8 4   this is the treasure room
+LYCAEUM    -     376 1BB 0
+SINGULARITY-     080 02E 5   altar of
+MONDAIN    -     043 00C 4   statue of
+MINAX      -     0BB 00B 4   statue of
+EXODUS     -     053 0DC 3   statue of
+HYTHLOTH   -     0DC 0DB 5   entrance on gargoyle plane
+HYTHLOTH   -     3B4 3A2 0   entrance on human plane
+LENS MAKER -     3BB 195 0   human lens maker near Lycaeum
+
+The Spoiler Centre 

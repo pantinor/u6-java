@@ -8,6 +8,7 @@ public class BaseMap {
     private final List<Portal> portals = new ArrayList<>();
     private final List<Actor> actors = new ArrayList<>();
     private final List<Moongate> moongates = new ArrayList<>();
+    private final List<Egg> eggs = new ArrayList<>();
 
     public void addPortal(Constants.Map map, int sx, int sy, int dx, int dy, int dz) {
         portals.add(new Portal(map, sx, sy, dx, dy, dz));
@@ -38,6 +39,10 @@ public class BaseMap {
     public List<Moongate> getMoongates() {
         return moongates;
     }
+    
+    public List<Egg> getEggs() {
+        return eggs;
+    }
 
     public void addActor(Actor cr) {
         this.actors.add(cr);
@@ -46,5 +51,7 @@ public class BaseMap {
     public void removeActor(Actor cr) {
         this.actors.remove(cr);
     }
+    
+    
 
 }

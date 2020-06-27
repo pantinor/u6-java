@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.zip.GZIPInputStream;
 import org.apache.commons.io.FileUtils;
 import ultima6.Conversations.Conversation;
+import ultima6.Objects.Object;
 
 public class MapRender {
 
@@ -135,7 +136,7 @@ public class MapRender {
 
         AnimData animData = readAnimData();
 
-        List<Map<String, Object>> tileflags = readTileFlags();
+        List<Map<String, java.lang.Object>> tileflags = readTileFlags();
 
         int[] basetiles = new int[1024];
         is = new FileInputStream("D:\\ultima\\ULTIMA6\\BASETILE");
@@ -222,7 +223,7 @@ public class MapRender {
         }
     }
 
-    public static List<Map<String, Object>> readTileFlags() throws Exception {
+    public static List<Map<String, java.lang.Object>> readTileFlags() throws Exception {
         FileInputStream is = new FileInputStream("D:\\ultima\\ULTIMA6\\TILEFLAG");
         LittleEndianDataInputStream dis = new LittleEndianDataInputStream(is);
 
@@ -236,10 +237,10 @@ public class MapRender {
         dis.read(none);
         dis.read(f3);
 
-        List<Map<String, Object>> list = new ArrayList<>();
+        List<Map<String, java.lang.Object>> list = new ArrayList<>();
 
         for (int i = 0; i < 2048; i++) {
-            Map<String, Object> map = new HashMap<>();
+            Map<String, java.lang.Object> map = new HashMap<>();
 
             map.put("wet", (f1[i] & 0x1) != 0);
             map.put("impassable", (f1[i] & 0x2) != 0);
@@ -272,21 +273,21 @@ public class MapRender {
 
     }
 
-    public static List<U6Object> readObjBlock(int idx, int idy, int[] basetiles, List<Map<String, Object>> tileflags) throws Exception {
+    public static List<U6Object> readObjBlock(int idx, int idy, int[] basetiles, List<Map<String, java.lang.Object>> tileflags) throws Exception {
         String chars = "ABCDEFGH";
         FileInputStream is = new FileInputStream("D:\\ultima\\ULTIMA6\\SAVEGAME\\OBJBLK" + chars.charAt(idy) + chars.charAt(idx));
         LittleEndianDataInputStream dis = new LittleEndianDataInputStream(is);
         return readObjBlock(basetiles, tileflags, dis);
     }
 
-    public static List<U6Object> readObjBlockDungeon(int idx, int[] basetiles, List<Map<String, Object>> tileflags) throws Exception {
+    public static List<U6Object> readObjBlockDungeon(int idx, int[] basetiles, List<Map<String, java.lang.Object>> tileflags) throws Exception {
         String chars = "ABCDEFGH";
         FileInputStream is = new FileInputStream("D:\\ultima\\ULTIMA6\\SAVEGAME\\OBJBLK" + chars.charAt(idx) + "I");
         LittleEndianDataInputStream dis = new LittleEndianDataInputStream(is);
         return readObjBlock(basetiles, tileflags, dis);
     }
 
-    public static List<U6Object> readObjBlock(int[] basetiles, List<Map<String, Object>> tileflags, LittleEndianDataInputStream dis) throws Exception {
+    public static List<U6Object> readObjBlock(int[] basetiles, List<Map<String, java.lang.Object>> tileflags, LittleEndianDataInputStream dis) throws Exception {
 
         int count = dis.readUnsignedShort();
 
@@ -314,7 +315,7 @@ public class MapRender {
             int quantity = dis.readUnsignedByte();
             int quality = dis.readUnsignedByte();
 
-            boolean on_map = (status & Constants.OBJ_STATUS_MASK_GET) == 0;
+            boolean on_map = (status & Objects.OBJ_STATUS_MASK_GET) == 0;
 
             int tile = basetiles[object] + frame;
             int objtile = tile;
@@ -343,8 +344,8 @@ public class MapRender {
                         obj.quantity = ((quality << 8) + quantity) & 0x000000ff;
                     }
 
-                    obj.name = Constants.Objects.getName(object);
-                    if (obj.object == Constants.Objects.LADDER.getId()) {
+                    obj.name = Objects.Object.getName(object);
+                    if (obj.object == Objects.Object.LADDER.getId()) {
                         if (frame == 0) {
                             obj.name = "DOWN_LADDER";
                             if (z == 0) {
@@ -367,7 +368,7 @@ public class MapRender {
                             obj.portal_dest_z = z - 1;
                         }
                     }
-                    if (obj.object == Constants.Objects.MINE_SHAFT.getId()) {
+                    if (obj.object == Objects.Object.MINE_SHAFT.getId()) {
                         if (z == 0) {
                             obj.portal_dest_x = (x & 0x07) | (x >> 2 & 0xF8);
                             obj.portal_dest_y = (y & 0x07) | (y >> 2 & 0xF8);
@@ -453,7 +454,7 @@ public class MapRender {
     }
 
     public static boolean isStackable(int id) {
-        Constants.Objects obj = Constants.Objects.get(id);
+        Objects.Object obj = Objects.Object.get(id);
         switch (obj) {
             case TORCH:
             case LOCK_PICK:
@@ -501,15 +502,15 @@ public class MapRender {
 
         for (int j = 0; j < objects.size(); j++) {
             U6Object obj = objects.get(j);
-            if (obj.object == Constants.Objects.EGG.getId()) {
+            if (obj.object == Objects.Object.EGG.getId()) {
                 eggLayer.append(obj.toString(count++));
             } else if (!obj.on_map || obj.status > 1) {
                 //nothing
-            } else if (obj.object == Constants.Objects.MINE_SHAFT.getId() || obj.object == Constants.Objects.LADDER.getId()) {
+            } else if (obj.object == Objects.Object.MINE_SHAFT.getId() || obj.object == Objects.Object.LADDER.getId()) {
                 portalLayer.append(obj.toString(count++));
             } else if (obj.on_top) {
                 onTopLayer.append(obj.toString(count++));
-            } else if (obj.status == 1 || obj.object == Constants.Objects.MOONSTONE.getId()) {
+            } else if (obj.status == 1 || obj.object == Objects.Object.MOONSTONE.getId()) {
                 itemLayer.append(obj.toString(count++));
             } else {
                 objectLayer.append(obj.toString(count++));
@@ -576,7 +577,7 @@ public class MapRender {
             object += (b2 & 0x3) << 8;
             int frame = (b2 & 0xfc) >> 2;
             Conversation c = convs.get(objects[i].npc);
-            objects[i].name = c != null ? c.getName() : Constants.Objects.getName(object);
+            objects[i].name = c != null ? c.getName() : Objects.Object.getName(object);
             objects[i].object = object;
             objects[i].frame = frame;
             objects[i].tile = basetiles[objects[i].object] + objects[i].frame;

@@ -103,7 +103,7 @@ public class Converse {
         while (iter.hasNext()) {
 
             Conversation conv = iter.next();
-
+            
             if (!conv.getName().equals("Iolo")) {
                 continue;
             }

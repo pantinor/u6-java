@@ -1,0 +1,717 @@
+
+
+
+ Ultima VI: The False Prophet
+© 1992 Origin Systems
+
+Help
+
+     For those of you that would like a bit of help getting
+through Ultima VI, here is a list of items you can get using the
+Cheater's Menu.  You can access the Cheater's Menu by talking
+with Iolo and saying "Spam..Spam..Spam..Humbug".  Credit for
+finding the Cheater's Menu first, goes to Michael Teixeira and
+Questbusters.
+     In the Cheater's Menu, there is an option called "Get
+Object", or something to that effect.  You will be asked for the
+object number.  Here is a list of numbers and the items you will
+get...I only went up to 433.  There are more, but I think I got
+the best ones.  NOTE: Some of the items you get will not work
+properly in the game.  IE: I haven't gotten the program to
+recognize reagents that I created using this method.  Weapons and
+armor seem to work well though.
+
+#    Name / Notes (if any)       Weight    Defense   Offense
+---------------------------------------------------------------
+1    Leather Helm                  0.4       1
+2    Chain Coif                    1.2       2
+3    Iron Helm                     2.4       3
+4    Spiked Helm                   2.7       3          4
+5    Winged Helm                   1.0       2
+6    Brass Helm                    1.2       2
+7    Gargoyle Helm                 2.6       3
+8    Magic Helm                    0.8       5
+9    Wooden Shield                 3.2       2
+10   Curved Heater/Shield          3.5       3
+11   Winged Shield                 3.7       3
+12   Kite Shield                   3.3       3
+13   Spiked Shield                 3.4       2           4
+14   Black Shield                  2.0       2 
+15   Door Shield                   4.0       4
+16   Magic Shield                  3.5       5
+17   Cloth Armor                   0.9       1
+18   Leather Armor                 2.4       2
+19   Ring Mail                     3.6       3
+20   Scale Mail                    4.8       4
+21   Chain Mail                    6.8       5
+22   Plate Mail                   12.3       7
+23   Magic Armor                   7.0       10
+24   Spiked Collar                 0.2       2
+25   Guild Belt                    0.5
+26   Gargoyle Belt                 1.4
+27   Leather Boots                 0.5
+28   Swamp Boots                   0.3
+29   Earth
+30   Floor/Wood
+31   Floor/Brick
+32   Floor/Blue Tile
+33   Sling                         0.6                        6
+34   Club                          1.5                        8
+35   Main Gauche                   0.8       1                8
+36   Spear                         1.2                        10
+37   Throwing Axe                  1.1                        10
+38   Dagger                        0.4                        6
+39   Mace                          1.8                        15
+40   Morning Star                  2.4                        15
+41   Bow                           1.0                        10
+42   Crossbow                      2.0                        12
+43   Sword                         1.4                        15
+44   Two-Handed Hammer             6.3                        20
+45   Two-Handed Axe                4.7                        20
+46   Two-Handed Sword              3.4                        20
+47   Halberd                       8.2                        30
+48   Glass Sword/One hit only      1.3                        255
+49   Boomerang                     0.6                        8
+50   Triple Crossbow/Fire 3 bolts  2.5          (each arrow)  12
+51   Force Field
+52   Wizard Eye
+53   Web
+54   Magic Bow                     1.0                        20
+55   Arrow                         0.1
+56   Bolt                          0.1
+57   Spellbook                     0.5
+58   Spell                         0.1
+59   The Codex
+60   Book of Prophecies            1.4
+61   Book of Circles               1.0
+62   Vortex Cube                   4.0
+63   Lock Pick                     0.1
+64   Key                           0.1
+65   Black Pearl
+66   Blood Moss
+67   Garlic
+68   Ginseng
+69   Mandrake Root
+70   Nightshade
+71   SpiderSilk
+72   Sulfurous Ash
+73   Moonstone                     1.2
+74   Ankh                          0.1
+75   Snake Amulet                  0.1
+76   Amulet of Submission\Can't remove
+77   Gem                           0.2
+78   Staff                         2.5                        4
+79   Lightning Wand                0.5                        30
+80   Fire Wand                     0.6                        20
+81   Storm Cloak                   0.5
+82   Ring                          0.1
+83   Flask of Oil                  0.5                        4
+84   Red Gate
+85   Moon Gate
+86   Gavel                         0.2
+87   Orb of the Moons              0.1
+88   Gold Coins/257?               2.5
+89   Gold Nugget                   0.1
+90   Torch                         0.5
+91   Zu Ylem                       0.5
+92   Silver Snake Venom            0.5
+93   Sextant                       1.2
+94   Spinning Wheel
+95   Grapes                        0.5
+96   Butter                        0.2
+97   Garish Vocabulary             0.3
+98   Chest                         2.0
+99   Backpack                      3.2
+100  Scythe                        3.4
+101  Pitchfork                     1.6
+102  Rake                          1.3
+103  Pick                          2.4
+104  Shovel                        1.8
+105  Hoe                           1.3
+106  Wooden Ladder                12.0
+107  Yoke                          3.2
+108  Spatula                       1.1
+109  Rolling Pin                   0.5                        2
+110  Spatula/Small                 0.1
+111  Ladle                         0.1
+112  Cooking Sheet                 2.1
+113  Cleaver                       0.2                        4
+114  Knife                         0.1                        4
+115  Wine                          1.6
+116  Mead                          1.6
+117  Ale                           1.6
+118  Wine Glass                    0.1
+119  Plate                         0.1
+120  Mug                           0.1
+121  Silverware                    0.1
+122  Candle                        0.2
+123  Mirror                       16.0
+124  Tunic                         1.0
+125  Hanger                        0.1
+126  Dress                         1.4
+127  Skillet                       1.6
+128  Loaf of Bread                 0.3
+129  Portion of Meat               0.2
+130  Rolls                         0.3
+131  Cake                          0.3
+132  Cheese                        0.2
+133  Ham                           0.2
+134  Horse Carcass
+135  Horse Chops                   0.2
+136  Skewer
+137  Pants                         1.2
+138  Plant                        15.0
+139  Flowers                       0.8
+140  Wall Mount                    0.1
+141  Decorative Sword              0.6                        4
+142  Decorative Shield             2.0
+143  Picture                       1.5
+144  Tapestry
+145  Candelabra                    3.6
+146  Sleeping Person
+147  Cauldron                     16.0
+148  Cauldron\Full                16.5
+149  Ship Deed                     0.1
+150  Inkwell                       0.1
+151  Book                          1.0
+152  Scroll                        0.1
+153  Panpipes                      0.2
+154  Telescope/It works!
+155  Crystal Ball
+156  Harpsichord
+157  Harp
+158  Lute                          1.4
+159  Clock
+160  Endtable                      8.0
+161  Water Vase                    2.4
+162  Stove
+163  Bed
+164  Fireplace
+165  Stalagmite
+166  Sack of Grain                12.0
+167  Sack of Flower               12.0
+168  Remains
+169  Rubber Ducky                  0.1
+170  Urn of Ashes                  0.1
+171  Fumarole
+172  Spikes
+173  Trap                          2.5
+174  Switch
+175  Electric Field
+176  Drawers
+177  Desk
+178  Bucket                        1.6
+179  Bucket of Water               4.8
+180  Bucket of Milk                4.8
+181  Churn                         8.0
+182  Beehive                      12.0
+183  Honey Jar                     0.4
+184  Jar of Honey                  0.4
+185  Cloth                         3.0
+186  Barrel
+187  Jug                           8.0
+188  Bag                           0.2
+189  Cask
+190  Bale of Wool                 16.0
+191  Basket                        0.4
+192  Crate
+193  Small Jug                     0.5
+194  Milk Bottle
+195  Wheat
+196  Vat
+197  Wine Cask
+198  Cutting Table
+199  Loom
+200  Hood
+201  Fire
+202  Horseshoes                    0.8
+203  Pliers                        0.1
+204  Hammer                        0.6
+205  Water Trough
+206  Brazier
+207  Rod
+208  Hook
+209  Meat                          0.2
+210  Ribs                          0.6
+211  Dead Animal                   0.2
+212  Fan                           0.5
+213  Mouse Hole
+214  Wine Press
+215  Stable
+216  Book Shelf
+217  Anvil
+218  Bellows
+219  Oven
+220  Flag                          1.1
+221  Cannon\Works just fine
+222  Cannon Balls
+223  Powder Keg                    3.0
+224  Foot Rail
+225  Spool of Thread               0.4
+226  Spool of Silk                 0.4
+227  Pennant
+228  Table
+229  Shadow\Beats me...
+230  Table
+231  Spittoon                      1.3
+232  Well
+233  Fountain
+234  Sundial
+235  Sundial
+236  Bell
+237  Table
+238  Shadow
+239  Table
+240  Shadow
+241  Silk Cloth                    0.4
+242  Rune of Honesty               0.1
+243  Rune of Compassion            0.1
+244  Rune of Valor                 0.1
+245  Rune of Justice               0.1
+246  Rune of Sacrifice             0.1
+247  Rune of Honor                 0.1
+248  Rune of Spirituality          0.1
+249  Rune of Humility              0.1
+250  Table
+251  Shadow
+252  Chair                         7.4
+253  Campfire
+254  Cross                         1.8
+255  Tombstone                    18.0
+256  Protection Ring               0.1       5
+257  Regeneration Ring             0.1
+258  Invisibility Ring             0.1
+259  Table Leg
+260  Shadow
+261  Table Leg
+262  Shadow
+263  Stocks
+264  Fishing Pole                  0.5
+265  Fish                          0.5
+266  Grave
+267  Guillotine
+268  Lever
+269  Drawbridge
+270  Balloon Plans                 0.1
+271  Door Sill
+272  Steps
+273  Tile
+274  Yew Log                       2.0
+275  Blue Potion                   0.3
+276  Steps
+277  Yew Board                     1.0
+278  Passthrough
+279  Table
+280  Passthrough
+281  Fence
+282  Bars
+283  Anchor                       25.0
+284  Rope
+285  Pole
+286  Walkway
+287  Water Wheel
+288  Crank
+289  Log Saw
+290  Millstone
+291  Shaft
+292  Gearwork
+293  Chain
+294  Lightsource
+295  Heatsource
+296  Xylophone                    10.0
+297  Oaken Door
+298  Windowed Door
+299  Ceder Door
+300  Steel Door
+301  Doorway
+302  Archway
+303  Carpet
+304  Cookfire
+305  Ladder
+306  Trellis
+307  Volcano
+308  Hole
+309  Bones
+310  Portcullis
+311  Stone Table
+312  Stone Lion
+313  Silver Horn
+314  Floor
+315  Stone
+316  Lamppost
+317  Fire Field
+318  Poison Field
+319  Protection Field
+320  Sleep Field
+321  Statue
+322  Pool
+323  Monolith
+324  Pillar
+325  Book Stand
+326  Mine Shaft
+327  Throne
+328  Altar
+329  Altar of Singularity
+330  Mat
+331  Government Sign
+332  Sign
+333  Gargoyle Sign
+334  Secret Door
+335  Egg
+336  Charge
+337  Effect
+338  Blood
+339  Dead Body                    16.0  
+340  Dead Cyclops
+341  Dead Gargoyle
+342  Giant Rat                     1.1
+343  Insects                       0.1
+344  Giant Bat                     1.2
+345  Giant Squid                  18.0
+346  Sea Serpent
+347  Reaper
+348  Sheep                        12.0
+349  Dog                          11.0
+350  Deer                         25.0
+351  Wolf                         11.5
+352  Ghost
+353  Gremlin                       0.1
+354  Mouse                         0.1
+355  Gazer                        10.0
+356  Bird                          0.5
+357  Corpser
+358  Snake                         3.0
+359  Rabbit                        3.0
+360  Rot Worms
+361  Giant Spider
+362  Gargoyle/The big ones
+363  Gargoyle/A little one
+364  Acid Slug                     8.0
+365  Tangle Vine
+366  Tangle Vine
+367  Daemon                       18.0
+368  Skeleton                     16.0
+369  Drake                        22.0
+370  Headless                     20.0
+371  Troll                        22.0
+372  Mongbat                      18.0
+373  Wisp
+374  Hydra
+375  Slime                         3.0
+376  Fighter                      20.0
+377  Swashbuckler                 20.0
+378  Mage                         20.0
+379  Villager                     20.0
+380  Merchant                     20.0
+381  Child                        20.0
+382  Guard                        20.0
+383  Jester                       20.0
+384  Peasant                      20.0
+385  Farmer                       20.0
+386  Musician                     20.0
+387  Woman                        20.0
+388  Cat                           8.0
+389  Silver Tablet                 6.0
+390  Silver Fragment               2.0
+391  Farmer                       20.0
+392  Musician                     20.0
+393  Shrine                  
+394  Britannian Lens               2.8
+395  Broken Lens                   2.8
+396  Gargoyle Lens
+397  Statue of Mondain
+398  Statue of Minax
+399  Statue of Exodus
+400-408  Pieces of the Map         0.1
+409  Lord British                 20.0
+410  Avatar                       20.0
+411  Dragon                       13.0
+412  Ship                         30
+413  Silver Serpent
+414  Skiff                        25.0
+415  Raft                         15.0
+416  Nothing/Yes, there will be a nothing in your pack
+417  Dragon Egg                    8.0
+418  Hatched Dragon Egg            0.4
+419  Pull Chain
+420  Balloon/Works just fine..    25.4
+421  Mammoth Silk Bag              3.6
+422  Balloon Basket                6.0
+423  Balloon/Just the balloon..  
+424  Cyclops
+425  Hydra
+426  Giant Scorpion
+427  Giant Ant
+428  Cow
+429  Alligator
+430  Horse
+431  Horse with Rider
+432  "
+433  "
+
+     That's it.  There are more, but I think this list covers
+some of the more useful ones.  I hope I didn't make any mistakes,
+and I hope this will do someone some good.  Don't let this info
+ruin the game for you.  Try not to make the game too easy by
+using the Cheat Menu, and have FUN!!!
+
+---
+By Randy Snow and Rygar
+
+
+
+
+
+                    Alt 214 Codes for Ultima VI
+               "for all you real cheaters out there" 
+
+
+  For those of you that haven't found the magic method of travel
+in Ultima 6, pressing Alt 214 will bring up a prompt (in
+Gargoylian) for three coordinates - these three hex numbers will
+bring you to any location in Britannia, the dungeons or the
+Gargoyle world. This is apparently the programmers method of
+travel and is faster than a fan powered Balloon!
+
+ The three numbers are basicly the x,y & z coordinates for the
+map, with 0,0,0 located at the upper left corner on Level 0
+(Britannia). For this discussion, I will use the form x,y,l to
+describe this coordinate system. The first two numbers (x & y)
+increase by 1 for each move in the horizontal or vertical
+direction. The x coordinates begin at the left edge and the y
+coordinates begin at the top. The third coordinate (l) represents
+the level; Britannia is Level 0, the dungeons are Levels 1 thru 4
+and the Gargoyle world is Level 5.
+
+  Alt 214 is entered on the numeric keypad, just like entering
+ASCII codes. Each coordinate is entered separately, ie, press
+return after each one. You will be instantly teleported to your
+destination faster than Scotty could manage. Just be carefull
+about landing on mountians, oceans, dragons and the remnants of
+the once beautiful Gargoyle world - the Etherial Void.
+
+  Now how does this relate to that old degree system used for
+over 5 centuries in our beloved land? Well, if you really want to
+convert your sextant readings to "Gargoyle coordinates" I'll tell
+you how (but there is an easier way!). Sextant coordinates are
+centered on Lord British's castle. Sextant coordinate 0N 0E is
+equavalent to Gargoyle coordinate 133,16c,0. It should be noted
+that one degree encompasses 8 moves on the map, or , 8 minutes
+equals 1 degree. Unfortunatly, the craftsmen of Britannia have not
+succeeded in producing a sextant fine enough to read to the
+minute. You will have to determine this on your own. Just move
+and read the sextant until the degrees change. I have assumed a
+degree-minute numbering system in the following form: 
+
+          1.0  1.1  1.2  1.3  1.4  1.5  1.6  1.7  2.0 .....
+
+  OK, now lets say you read your sextant and move around and
+find you are at Sextant coordinate  37.1N  45.2E . To translate
+this to Gargoyle coordinates for a quick return, use the
+following proceedure:
+    1. For the x coordinate you must use the degrees E or W.
+       Multiply the degrees by 8 and add the minutes. If this is
+       degrees E, add it to 307; if degrees W, subtract from 307.
+       Convert the result to hex for the final x coordinate.
+       In our example:
+           45 times 8 = 360 minutes
+           360 plus 2 = 362
+           Since this is E:  307 + 362 = 669
+           669 decimal = 29d hex
+           therefore, the x coordinate is 29d
+
+    2. For the y coordinate you must use the degrees N or S.
+       Multiply the degrees by 8 and add the minutes. If this is
+       degrees S, add it to 364; if degrees N, subtract from 364.
+       Convert the result to hex for the final y coordinate.
+       In our example:
+           37 times 8 = 296 minutes
+           296 plus 1 = 297
+           Since this is N:  364 - 297 = 67
+           67 decimal = 43 hex
+           therefore, the x coordinate is 43
+
+     3. We now have the coordinate 29d,43. Since we are on the 
+        main map of Britannia, this is Level 0, and the full coordinate
+        is:
+             29d,43,0
+
+     4. Now, just press Alt 214, enter 29d,43,0 in response to
+        the prompts, and you will find yourself back in Minoc at
+        the "old shrine".
+
+  Now your going to say "You must be kidding - this is suppose to
+be a game, not a damm math lesson!" Well, I agree. I went so far
+as to write a program for my calculator to do the conversions for
+me. But then I reasoned: If Alt 214 exists, there might be other
+Alt codes that do something. The first one I tried was Alt 213
+and, low and behold, this gives the Gargoyle coordinate for your
+present position plus a free view of the map - forget all those
+gems and peer spells!
+
+  Alt 213 returns a 13 digit number, the last 7 of which are the
+coordinates. The first 6 are releted to the total number of moves
+you have made. For the example above, the number would look
+something like:
+                 79000029D0430
+
+  or  790000 moves and coordinate 29D,043,0
+
+
+  OK, now for all you cheaters; Here are a bunch of Gargoyle
+coordinates, many of which can destroy your enjoyment of the
+game...kids, don't do this at home! Most of the enjoyment of
+Ultima is exploring the land on your own, so I suggest you only
+use these to see what lies ahead and find these locations on your
+own. The list is not complete because I'm taking my time roaming
+around and getting everything I can out of the game.
+
+Some of these coordinates are from a list generated by Bug Man.
+Thanks for the insite into Alt 214.
+
+BEWARE: You can land in a real 'snake pit' with some of these
+locations. Always be prepared for the worst when teleporting to a
+strange location.
+
+
+LB's Castle (for a quick heal)....................133,15f,0
+Gold exchange.....................................144,18c,0
+  Vault at the Gold Exchange......................144,18a,0
+Log cabin outside Yew.............................b2,94,0
+Saw Mill..........................................2a4,65,0
+Budo (Thieves guild-Serpent's Hold)...............233,25e,0
+Wisps (outside Empath Abbey)......................a5,115,0
+Iolo's hut........................................c3,e8,0
+Mariah (Lycaeum)..................................37b,1aa,0
+Ephemerides (Lens Maker-Lycaeum)..................3b9,196,0
+Bonn's house (Hermit on Bloddy Plains)............3a3,d3,0
+  Bonn's basement (Map)...........................e9,32,1
+Lake entrance on Isle of Avatar...................36c,383,0
+Codex.............................................39b,354,0
+Cyclops Castle (S of Minoc).......................25f,11d,0
+  Vortex Cube.....................................93,3c,0
+Mushroom Isle (S of Paws).........................19b,29c,0
+  Isle to N with ship.............................194,28c,0
+
+Magicians (for spells and reagents):
+  Nicodemus (N of Britain)........................148,ca,0
+  Xiao (Verity Isle)..............................35b,165,0
+  Horance (N of Jhelom)...........................38,1d5,0
+  Rudyom (NE Cove)................................243,157,0
+
+SHRINES
+  Honesty (island N of Lycaem)....................3a7,109,0
+  Compassion (E of Britain).......................1f7,168,0
+  Valor (island S of Jhelom)......................9f,3b1,0
+  Justice (tip of land NE of Yew).................127,28,0
+  Sacrifice (desert E of Minoc)...................33f,a6,0
+  Honor (SW of Trinsic)...........................147,339,0
+  Humility (Isle of Avatar).......................397,3a8,0
+  Spirituality....................................?????????
+    (Note: Maybe a bug; I can't go here under the full moon.)
+            
+"Old Shrines":
+  Moonglow........................................383,1f4,0
+  Britain.........................................1b3,18c,0
+  Jhelom..........................................93,374,0
+  Yew.............................................e3,84,0
+  Skara Brae......................................4b,1fc,0
+  Trinsic.........................................183,314,0
+  Minoc...........................................29b,44,0
+  New Magencia....................................2e3,2bc,0
+
+Cities:
+  Britain (Sundial)...............................133,1a3,0
+  Buccaneers Den..................................23c,215,0
+  Cove............................................223,163,0
+  Empath Abbey....................................83,db,0
+  Jhelom (Main Dock)..............................a0,36b,0
+  Lycaeum.........................................37b,1a4,0
+    Library (Ladder Down).........................37b,1b4,0
+  Minoc (Sundial).................................254,63,0
+    Baskets.......................................246,5c,0
+    James (Armorer)...............................259,6b,0
+  Moonglow........................................383,203,0
+    Penumbra......................................39a,1f3,0
+  New Magencia....................................2e3,2ab,0
+  Paws (dock).....................................198,264,0
+    Marissa.......................................186,257,0
+  Trinsic (at Rune)...............................19b,2e,0
+    Brandon (Armory)..............................1ad,2e8,0
+  Serpents Hold...................................22e,3bc,0
+  Skara Brae (Well)...............................54,203,0
+  Sutek's Island..................................316,3d4,0
+    Ladder down...................................313,3ad,0
+    Man (Balloon Plans)...........................b4,dc,4
+  Yew (Sundial)...................................ec,a7,0
+
+
+
+
+                          DUNGEONS
+ 
+Hefitimus Cave:
+  Entrance .......................................84,35b,0
+Wrong:
+  Entrance........................................1f4,53,0
+  Map Room........................................93,3,3
+Covetous:
+  Entrance........................................273,73,0
+  Map Room........................................93,3,3
+Ant's Cave:
+  Entrance........................................365,bb,0
+  Mushroom Lake...................................e4,2b,2
+  Object stores...................................ad,15,3
+  Hole down to map................................a4,2b,3
+  Map.............................................f7,27,4
+Destard:
+  Entrance........................................120,29d,0
+  Dragon Eggs (To North)..........................2c,2b,4
+Hythloth:
+  Britannia Entrance (Isle of Avatar).............384,3a4,0
+  Captain John....................................ea,ef,4
+  Gargoyle entrance...............................dc,db,5
+Shame:
+  Entrance (at Lost Lake).........................eb,19b,0
+  Skeleton's house................................2c,5b,1
+  River (gold nuggets)............................37,93,1
+  Magic Bow.......................................63,6,3
+  Ybarra (Map)....................................53,1f,4
+Buccaneer's Cave (Sewers under LB's Castle):
+  Entrance on Buccaneers Isle.....................234,253,0
+  Entrance in LB's Castle Sewer (1 of 4)..........44,4b,1
+  Daros...........................................43,7a,1
+  Glass Sword, Magic Bow..........................9c,7e,2
+  Spider's Cache..................................81,dd,3
+  Isle in Lake S of Pheonix.......................83,8c,3
+  Pheonix (Thief).................................76,46,3
+Pirate Cave:
+  N End of Island (safe area).....................2bc,333,0
+  Entrance @ Isle S of New Magencia...............2c3,342,0
+  Pirate's Treasure Room..........................9b,e4,4
+
+
+                      GARGOYLE WORLD
+
+Valkadesh.........................................cf,ac,5
+Hall of Knowledge.................................7f,af,5
+Temple of Singularity.............................7f,37,5
+Temple of Kings...................................7f,50,5
+Shrine of  Passion................................bc,2c,5
+Shrine of Diligence...............................6c,dc,5
+Shrine of Control.................................43,2c,5
+Tomb of the Kings.................................7f,9,4
+
+
+Now, all I ask for all these coordinates is for someone who has
+been to the Shrine of Spirituality to do an Alt 213 on it and
+tell me the coordinate. I seriousally think I have a bug since I
+can't get there by normal means. You can leave me a message on
+Candyland, Elm Street or the Fatal Society.
+
+---
+Brought to you by Beamer and Rygar
+
+For more Amiga documents, visit www.lemonamiga.com
+
+

@@ -8,7 +8,7 @@ package ultima6;
 import com.google.common.io.LittleEndianDataInputStream;
 import java.io.FileInputStream;
 
-public class Objects {
+public class ObjectsTest {
 
     public static void main(String[] args) throws Exception {
         
@@ -33,7 +33,7 @@ public class Objects {
         dis.read(none);
         dis.read(f3);
 
-        for (Constants.Objects obj : Constants.Objects.values()) {
+        for (Objects.Object obj : Objects.Object.values()) {
             int weight = weights[obj.getId()] & 0xff;
             //System.out.printf("%s [%d]\n", obj, weight);
         }
