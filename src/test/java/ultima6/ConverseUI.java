@@ -11,11 +11,14 @@ import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.io.FileInputStream;
 import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.zip.GZIPInputStream;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
-import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 import javax.swing.event.ListSelectionEvent;
@@ -38,11 +41,28 @@ public class ConverseUI extends javax.swing.JFrame {
 
         party = new Party();
 
-        avatar = new Player(1, "avatar");
-        party.add(avatar);
+        Map<Integer, String> players = new HashMap<>();
+        players.put(0, "Avatar");
+        players.put(2, "Dupre");
+        players.put(3, "Shamino");
+        players.put(4, "Iolo");
+        players.put(62, "Jaana");
+        players.put(66, "Gwenno");
+        players.put(186, "Sentri");
+        players.put(67, "Julia");
+        //players.put(9, "Sherry");
 
-        player2 = new Player(2, "dupre");
-        party.add(player2);
+        for (Integer id : players.keySet()) {
+            Player p = new Player(id, players.get(id));
+            party.add(p);
+            p.addItem(Objects.Object.GOLD_COIN, 5, 0);
+            p.setStrength(12);
+            p.setHp(32);
+            p.setIntelligence(10);
+            p.setDex(12);
+        }
+
+        avatar = party.get(1);
 
         GZIPInputStream is;
         ByteBuffer bba = null;
@@ -59,6 +79,8 @@ public class ConverseUI extends javax.swing.JFrame {
         }
 
         Conversations convs = new Conversations();
+
+        Conversations.DEBUG = true;
 
         while (bba.position() < bba.limit()) {
             short len = bba.getShort();
@@ -80,13 +102,8 @@ public class ConverseUI extends javax.swing.JFrame {
         ListCellRenderer cellRenderer = new DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-                Component c = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                if (c instanceof JLabel) {
-                    JLabel label = (JLabel) c;
-                    Conversations.Conversation conv = (Conversations.Conversation) value;
-                    label.setText(conv.getName());
-                }
-                return c;
+                Conversations.Conversation conv = (Conversations.Conversation) value;
+                return super.getListCellRendererComponent(list, conv.getName() + " - " + conv.getId(), index, isSelected, cellHasFocus);
             }
         };
 
@@ -96,16 +113,14 @@ public class ConverseUI extends javax.swing.JFrame {
                 if (!e.getValueIsAdjusting()) {
                     JList source = (JList) e.getSource();
 
-                    selected = (Conversations.Conversation) source.getSelectedValue();
-
-                    selected.init(avatar, party);
-
                     DefaultListModel<String> cmodel = (DefaultListModel) conversation.getModel();
                     cmodel.clear();
 
-                    ByteBuffer bb = selected.data();
-                    debugTA.setText(debugOutput(bb));
+                    selected = (Conversations.Conversation) source.getSelectedValue();
 
+                    debugTA.setText(debugOutput(selected.data()));
+
+                    selected.init(avatar, party, output);
                 }
             }
 
@@ -148,6 +163,8 @@ public class ConverseUI extends javax.swing.JFrame {
         input = new javax.swing.JTextField();
         debugSP = new javax.swing.JScrollPane();
         debugTA = new javax.swing.JTextArea();
+        partySP = new javax.swing.JScrollPane();
+        partyTA = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -165,29 +182,37 @@ public class ConverseUI extends javax.swing.JFrame {
         debugTA.setRows(5);
         debugSP.setViewportView(debugTA);
 
+        partyTA.setColumns(20);
+        partyTA.setRows(5);
+        partySP.setViewportView(partyTA);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(debugSP)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(namesSP, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(input)
-                            .addComponent(convSP, javax.swing.GroupLayout.DEFAULT_SIZE, 849, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(partySP)
+                            .addComponent(convSP, javax.swing.GroupLayout.DEFAULT_SIZE, 1043, Short.MAX_VALUE)
+                            .addComponent(input))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(convSP, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
-                    .addComponent(namesSP))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(partySP)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(convSP, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(namesSP, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -202,6 +227,14 @@ public class ConverseUI extends javax.swing.JFrame {
         String in = input.getText();
         input.setText("");
         selected.process(avatar, party, in, output);
+
+        partyTA.setText("");
+        for (Player p : party.getPlayers()) {
+            partyTA.append(p.toString());
+            partyTA.append("\n");
+        }
+
+
     }//GEN-LAST:event_inputActionPerformed
 
     private static String debugOutput(ByteBuffer bb) {
@@ -213,8 +246,8 @@ public class ConverseUI extends javax.swing.JFrame {
 
                 bb.get();
 
-                if (op == U6OP.IF || op == U6OP.ASK || op == U6OP.DECL || op == U6OP.KEYWORDS || op == U6OP.ASKC || op == U6OP.ENDANSWERS) {
-                    sb.append("" + bb.position() + "\n");
+                if (op == U6OP.IF || op == U6OP.ASK || op == U6OP.DECL || op == U6OP.KEYWORDS || op == U6OP.ASKC || op == U6OP.ENDANSWERS || op == U6OP.EVAL) {
+                    sb.append("").append(bb.position()).append("\n");
                 }
 
                 if (op == U6OP.JUMP) {
@@ -223,30 +256,26 @@ public class ConverseUI extends javax.swing.JFrame {
                     sb.append(String.format("[%s]", op));
                 }
 
+                if (op == U6OP.ONE_BYTE) {
+                    sb.append(String.format("[%02x]", bb.get()));
+                }
+
                 if (op == U6OP.ENDANSWERS || op == U6OP.ENDIF || op == U6OP.ASK) {
                     sb.append("\n");
                 }
 
             } else {
                 boolean ascii = CharUtils.isAsciiPrintable((char) bb.get(bb.position()));
-                sb.append(ascii ? (char) bb.get(bb.position()) : String.format("[%02X]", bb.get(bb.position())));
+                sb.append(ascii ? (char) bb.get(bb.position()) : String.format("[%02x]", bb.get(bb.position())));
                 bb.get();
             }
         }
-        
+
         return sb.toString();
 
     }
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -254,21 +283,16 @@ public class ConverseUI extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConverseUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConverseUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConverseUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConverseUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+        } catch (Exception ex) {
 
-        /* Create and display the form */
+        }
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ConverseUI().setVisible(true);
+
+                ConverseUI ui = new ConverseUI();
+                ui.setLocationRelativeTo(null);
+                ui.setVisible(true);
             }
         });
     }
@@ -282,11 +306,12 @@ public class ConverseUI extends javax.swing.JFrame {
     private javax.swing.JTextField input;
     private javax.swing.JList<Conversations.Conversation> names;
     private javax.swing.JScrollPane namesSP;
+    private javax.swing.JScrollPane partySP;
+    private javax.swing.JTextArea partyTA;
     // End of variables declaration//GEN-END:variables
 
     private Party party;
     private Player avatar;
-    private Player player2;
     Conversations.Conversation selected;
 
     private final OutputStream output = new OutputStream() {

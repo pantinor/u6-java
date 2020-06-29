@@ -13,8 +13,10 @@ public class Actor {
     private final String name;
     private final ActorAnimation icon;
     private Constants.Direction dir;
+    
     private boolean sitting;
     private boolean moving;
+    
     private int wx;
     private int wy;
     private float x;

@@ -316,6 +316,21 @@ public class Ultima6 extends Game {
         }
     }
 
+    public static final int getScheduleWorkType(int npc) {
+
+        java.util.List<Schedule> scheds = SCHEDULES.get(npc);
+
+        for (int i = scheds.size() - 1; i >= 0 && !scheds.isEmpty(); i--) {
+            Schedule sched = scheds.get(i);
+            if (sched.getHour() >= CLOCK.getHour() && (sched.getDayOfWeek() == 0 || sched.getDayOfWeek() == CLOCK.getDayOfWeek())) {
+                return sched.getWorktype();
+            }
+        }
+
+        return 0;
+
+    }
+
     public static Texture fillRectangle(int width, int height, Color color, float alpha) {
         Pixmap pix = new Pixmap(width, height, Pixmap.Format.RGBA8888);
         pix.setColor(color.r, color.g, color.b, alpha);

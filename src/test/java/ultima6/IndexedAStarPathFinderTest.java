@@ -6,8 +6,6 @@ import com.badlogic.gdx.ai.pfa.GraphPath;
 import com.badlogic.gdx.ai.pfa.indexed.IndexedAStarPathFinder;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import ultima6.LocationGraph.ManhattanDistance;
 
 public class IndexedAStarPathFinderTest implements ApplicationListener {
 

@@ -88,7 +88,7 @@ public class HUD extends Table {
 
         this.conv = conv;
 
-        this.conv.init(avatar, party);
+        this.conv.init(avatar, party, output);
 
         this.scrollPane.clear();
 

@@ -36,10 +36,20 @@ public class Party {
     }
 
     public Player get(int idx) {
-        return players.get(idx) != null ? players.get(idx) : null;
+        //return players.get(idx);
+        return idx > 0 && players.size() > 0 && idx - 1 < players.size() ? players.get(idx - 1) : null;
     }
 
-    public boolean isObjectInParty(int objId) {
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public boolean isObjectInParty(Objects.Object obj, int quality) {
+        for (Player player : players) {
+            if (player.hasItem(obj, quality)) {
+                return true;
+            }
+        }
         return false;
     }
 
