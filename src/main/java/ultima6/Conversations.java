@@ -6,6 +6,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.BitSet;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -148,8 +149,8 @@ public class Conversations {
             this.iVars.put(GLOBAL_VAR_SEX, player.getGender());
             this.iVars.put(GLOBAL_VAR_KARMA, player.getKarma());
             this.iVars.put(GLOBAL_VAR_GARGF, player.getGargishf());
-            this.iVars.put(GLOBAL_VAR_PARTYLIVE, party.getPlayers().size());
-            this.iVars.put(GLOBAL_VAR_PARTYALL, party.getPlayers().size());
+            this.iVars.put(GLOBAL_VAR_PARTYLIVE, party.getPlayers().size() - 1);
+            this.iVars.put(GLOBAL_VAR_PARTYALL, party.getPlayers().size() - 1);
             this.iVars.put(GLOBAL_VAR_HP, player.getHp());
             this.iVars.put(GLOBAL_VAR_QUESTF, player.getQuestf());
             this.iVars.put(GLOBAL_VAR_WORKTYPE, 0);
@@ -227,21 +228,27 @@ public class Conversations {
                         int ind = bb.get() & 0xff;
                         sVars.put(ind, input);
                         bb.get();
-                    } else if (op == U6OP.HEAL) {
-
-                    } else if (op == U6OP.CURE) {
-
-                    } else if (op == U6OP.WORKTYPE) {
-
-                    } else if (op == U6OP.RESURRECT) {
-
-                    } else if (op == U6OP.GIVE) {
-
-                    } else if (op == U6OP.SUBKARMA) {
-
-                    } else if (op == U6OP.ADDKARMA) {
-
-                    } else if (op == U6OP.WAIT) {
+                    } else if (op == U6OP.SETNAME) {
+                        Stack<Object> values = new Stack<>();
+                        marshall(bb, values, this, party);
+                        int npc = (Integer) values.pop();
+                        String val = party.getPlayer(npc).getName();
+                        this.sVars.put(GLOBAL_VAR_YSTRING, val);
+//                    } else if (op == U6OP.HEAL) {
+//
+//                    } else if (op == U6OP.CURE) {
+//
+//                    } else if (op == U6OP.WORKTYPE) {
+//
+//                    } else if (op == U6OP.RESURRECT) {
+//
+//                    } else if (op == U6OP.GIVE) {
+//
+//                    } else if (op == U6OP.SUBKARMA) {
+//
+//                    } else if (op == U6OP.ADDKARMA) {
+//
+//                    } else if (op == U6OP.WAIT) {
 
                     } else if (op == U6OP.NEW) {
                         objectMgmt(this, party, this.bb, false);
@@ -249,7 +256,7 @@ public class Conversations {
                         objectMgmt(this, party, this.bb, true);
                     } else if (op == U6OP.PORTRAIT) {
                         Stack<Object> values = new Stack<>();
-                        marshall(bb, values, null, this);
+                        marshall(bb, values, this, party);
                         int npc = (int) values.pop();
                         output.setPortrait(npc == 0xeb ? this.id : npc);
                     } else if (op == U6OP.BYE) {
@@ -288,17 +295,10 @@ public class Conversations {
     public static void condition(Party party, Conversation conv, ByteBuffer bb, OutputStream output) {
 
         Stack<Object> values = new Stack<>();
-        Stack<OpWrapper> operations = new Stack<>();
 
-        marshall(bb, values, operations, conv);
+        marshall(bb, values, conv, party);
 
-        Object finalEval = null;
-        if (operations.size() > 0) {
-            OpWrapper wrapper = operations.pop();
-            finalEval = eval(party, conv, wrapper.op, wrapper.args);
-        } else {
-            finalEval = (Integer) values.pop() > 0 ? 1 : 0;
-        }
+        Object finalEval = values.get(0);
 
         boolean condition = (Integer) finalEval > 0;
 
@@ -345,17 +345,10 @@ public class Conversations {
         }
 
         Stack<Object> values = new Stack<>();
-        Stack<OpWrapper> operations = new Stack<>();
 
-        marshall(bb, values, operations, conv);
+        marshall(bb, values, conv, party);
 
-        Object finalValue = null;
-        if (operations.size() > 0) {
-            OpWrapper wrapper = operations.pop();
-            finalValue = eval(party, conv, wrapper.op, wrapper.args);
-        } else {
-            finalValue = values.pop();
-        }
+        Object finalValue = values.remove(0);
 
         if (stringType) {
             conv.sVars.put(var_name, "" + finalValue);
@@ -367,7 +360,7 @@ public class Conversations {
 
     }
 
-    private static void marshall(ByteBuffer bb, Stack<Object> values, Stack<OpWrapper> operations, Conversation conv) {
+    private static void marshall(ByteBuffer bb, Stack<Object> values, Conversation conv, Party party) {
         while (bb.position() < bb.limit()) {
 
             if (bb.get(bb.position()) == U6OP.EVAL.code()) {
@@ -395,49 +388,32 @@ public class Conversations {
                 bb.get();
             } else if (bb.get(bb.position() + 1) == U6OP.FLAG.code()) {
                 values.push(bb.get() & 0xff);//npc
-            } else if (bb.get(bb.position()) == U6OP.NPC.code()) {
-                bb.get();
-                values.pop();//remove the unused extra byte 0
             } else {
+
                 U6OP op = U6OP.get(bb);
                 if (op != null) {
-                    OpWrapper wrapper = new OpWrapper();
-                    wrapper.op = op;
+                    Stack<Object> args = new Stack<>();
                     for (int i = 0; i < op.argCount(); i++) {
-                        if (values.size() > 0) {
-                            wrapper.args.add(values.remove(0));
-                        } else if (operations.size() > 0) {
-                            wrapper.args.add(operations.remove(0));
-                        }
+                        args.add(values.pop());
                     }
-                    operations.push(wrapper);
-                    bb.get();
-
-                    trace("At line [%d] Marshalled [%s]\n", bb.position(), operations);
-
-                } else {
-                    System.err.printf("unknown byte in marshall [%s]\n", String.format("[%02X]", bb.get(bb.position())));
-                    bb.get();
+                    Collections.reverse(args);
+                    Object result = eval(party, conv, op, args);
+                    values.push(result);
                 }
+
+                bb.get();
+
+                trace("At line [%d] Marshalled [%s] values [%s]\n", bb.position(), op, values);
+
             }
 
         }
     }
 
-    private static Object eval(Party party, Conversation conv, U6OP op, List<Object> values) {
+    private static Object eval(Party party, Conversation conv, U6OP op, Stack args) {
         Object result = null;
 
-        Stack<Object> args = new Stack<>();
-        for (Object v : values) {
-            if (v instanceof OpWrapper) {
-                OpWrapper wrapper = (OpWrapper) v;
-                args.push(eval(party, conv, wrapper.op, wrapper.args));
-            } else {
-                args.push(v);
-            }
-        }
-
-        trace("\tEvaluating [%s]\n", op, args);
+        trace("\tEvaluating [%s] with args [%s]\n", op, args);
 
         if (op == U6OP.EQ) {
             Object v1 = args.get(0);
@@ -509,8 +485,8 @@ public class Conversations {
             Integer unused = args.size() > 1 ? (Integer) args.get(1) : 0;
             result = party.get(idx).getId();
         } else if (op == U6OP.CANCARRY) {
-            Integer idx = (Integer) args.get(0);
-            Player p = party.get(idx);
+            Integer npc = (Integer) args.get(0);
+            Player p = party.getPlayer(npc);
             int val = p.getMaxInventoryWeight() - p.getInventoryWeight() * 10;
             result = val;
         } else if (op == U6OP.OBJINPARTY) {
@@ -518,38 +494,38 @@ public class Conversations {
             Integer quality = (Integer) args.get(1);
             result = party.isObjectInParty(ultima6.Objects.Object.get(obj), quality);
         } else if (op == U6OP.OBJCOUNT) {
-            Integer idx = (Integer) args.get(0);
+            Integer npc = (Integer) args.get(0);
             Integer obj = (Integer) args.get(1);
-            Player p = party.get(idx);
+            Player p = party.getPlayer(npc);
             result = p.quantity(ultima6.Objects.Object.get(obj));
         } else if (op == U6OP.STR) {
-            Integer idx = (Integer) args.pop();
+            Integer npc = (Integer) args.get(0);
             Integer amt = (Integer) args.pop();
-            Player p = party.get(idx);
+            Player p = party.getPlayer(npc);
             result = p.getStrength() + amt;
             p.setStrength((Integer) result);
         } else if (op == U6OP.INT) {
-            Integer idx = (Integer) args.pop();
+            Integer npc = (Integer) args.get(0);
             Integer amt = (Integer) args.pop();
-            Player p = party.get(idx);
+            Player p = party.getPlayer(npc);
             result = p.getIntelligence() + amt;
             p.setIntelligence((Integer) result);
         } else if (op == U6OP.DEX) {
-            Integer idx = (Integer) args.pop();
+            Integer npc = (Integer) args.get(0);
             Integer amt = (Integer) args.pop();
-            Player p = party.get(idx);
+            Player p = party.getPlayer(npc);
             result = p.getDex() + amt;
             p.setDex((Integer) result);
         } else if (op == U6OP.LVL) {
-            Integer idx = (Integer) args.pop();
+            Integer npc = (Integer) args.get(0);
             Integer amt = (Integer) args.pop();
-            Player p = party.get(idx);
+            Player p = party.getPlayer(npc);
             result = p.getLevel() + amt;
             p.setLevel((Integer) result);
         } else if (op == U6OP.EXP) {
-            Integer idx = (Integer) args.pop();
+            Integer npc = (Integer) args.get(0);
             Integer amt = (Integer) args.pop();
-            Player p = party.get(idx);
+            Player p = party.getPlayer(npc);
             result = p.getExp() + amt;
             p.setExp((Integer) result);
         } else if (op == U6OP.OBJINACTOR) {
@@ -572,15 +548,15 @@ public class Conversations {
             result = 0;//todo
             //0 if the npc val1 left the party, 1 if the party is not on land, 2 if npc is not in the party
         } else if (op == U6OP.NPCNEARBY) {
-            Integer idx = (Integer) args.pop();
+            Integer npc = (Integer) args.get(0);
             result = 0;//todo
             //1 if NPC val1 is in proximity to self, 0 if not.
         } else if (op == U6OP.WOUNDED) {
-            Integer idx = (Integer) args.pop();
+            Integer npc = (Integer) args.get(0);
             result = 0;//todo
             //1 if NPC val1 is wounded, 0 if current HP equals maximum HP.
         } else if (op == U6OP.POISONED) {
-            Integer idx = (Integer) args.pop();
+            Integer npc = (Integer) args.get(0);
             result = 0;//todo
             //1 if NPC val1 "poisoned" flag is true, 0 if it is false.
         } else if (op == U6OP.NPCINPARTY) {
@@ -588,7 +564,7 @@ public class Conversations {
             result = 1;//todo
             //1 if NPC val1 is in the Avatar's party, 0 if not.
         } else if (op == U6OP.HORSED) {
-            Integer idx = (Integer) args.pop();
+            Integer npc = (Integer) args.get(0);
             result = 0;//todo
             //1 if npc val1 is riding a horse, 0 if on foot.
         } else if (op == U6OP.DATA) {
@@ -637,27 +613,31 @@ public class Conversations {
     private static void objectMgmt(Conversation conv, Party party, ByteBuffer bb, boolean delete) {
 
         Stack<Object> values = new Stack<>();
-        Stack<OpWrapper> operations = new Stack<>();
 
-        marshall(bb, values, operations, conv);
-        marshall(bb, values, operations, conv);
-        marshall(bb, values, operations, conv);
-        marshall(bb, values, operations, conv);
+        marshall(bb, values, conv, party);
+        int npc = (int) values.get(0);
+        values.clear();
 
-        int idx = (int) values.get(0);
-        int obj = (int) values.get(1);
-        int quality = (int) values.get(2);
-        int quantity = (int) values.get(3);
+        marshall(bb, values, conv, party);
+        int obj = (int) values.get(0);
+        values.clear();
 
-        Player player = party.get(idx);
+        marshall(bb, values, conv, party);
+        int quality = (int) values.get(0);
+        values.clear();
+
+        marshall(bb, values, conv, party);
+        int quantity = (int) values.get(0);
+
+        Player p = party.getPlayer(npc);
 
         trace("Object MGMT on NPC [%d] player found? [%s] %s [%s] quantity %d quality %d\n",
-                idx, player != null, delete ? "Removed Item" : "Added Item", ultima6.Objects.Object.get(obj), quantity, quality);
+                npc, p != null ? p.getName() : "NULL", delete ? "Removed Item" : "Added Item", ultima6.Objects.Object.get(obj), quantity, quality);
 
         if (delete) {
-            player.removeItem(ultima6.Objects.Object.get(obj), quantity, quality);
+            p.removeItem(ultima6.Objects.Object.get(obj), quantity, quality);
         } else {
-            player.addItem(ultima6.Objects.Object.get(obj), quantity, quality);
+            p.addItem(ultima6.Objects.Object.get(obj), quantity, quality);
         }
 
     }
@@ -767,15 +747,4 @@ public class Conversations {
 
     }
 
-    private static class OpWrapper {
-
-        private U6OP op;
-        private final List<Object> args = new ArrayList<>();
-
-        @Override
-        public String toString() {
-            return "OpWrapper{" + "op=" + op + ", args=" + args + '}';
-        }
-
-    }
 }

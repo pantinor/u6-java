@@ -50,7 +50,6 @@ public class ConverseUI extends javax.swing.JFrame {
         players.put(66, "Gwenno");
         players.put(186, "Sentri");
         players.put(67, "Julia");
-        //players.put(9, "Sherry");
 
         for (Integer id : players.keySet()) {
             Player p = new Player(id, players.get(id));

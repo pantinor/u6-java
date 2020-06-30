@@ -27,6 +27,9 @@ public class Party {
     }
 
     public Player getPlayer(int npc) {
+        if (npc == 1) { //avatar is both npc 0 and 1
+            npc = 0;
+        }
         for (Player player : players) {
             if (player.getId() == npc) {
                 return player;
@@ -36,8 +39,7 @@ public class Party {
     }
 
     public Player get(int idx) {
-        //return players.get(idx);
-        return idx > 0 && players.size() > 0 && idx - 1 < players.size() ? players.get(idx - 1) : null;
+        return players.get(idx);
     }
 
     public List<Player> getPlayers() {
