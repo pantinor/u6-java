@@ -104,8 +104,10 @@ public class Converse {
 
             Conversation conv = iter.next();
 
+            System.out.println("\n**********************\n" + conv.getName());
+
             if (!conv.getName().equals("Iolo")) {
-                continue;
+                //continue;
             }
 
             ByteBuffer bb = conv.data();
@@ -132,17 +134,33 @@ public class Converse {
     private static String debug(byte[] data) {
         StringBuilder sb = new StringBuilder();
         ByteBuffer bb = ByteBuffer.wrap(data);
+        boolean printing = false;
         while (bb.position() < bb.limit()) {
             U6OP op = U6OP.get(bb);
             if (op != null) {
-                sb.append(String.format("[%s]", op));
-                if (op == U6OP.ENDANSWERS || op == U6OP.ENDIF || op == U6OP.ASK) {
-                    sb.append("\n");
+
+                if (op == U6OP.IF) {
+                    printing = true;
                 }
-            } else {
-                //boolean ascii = CharUtils.isAsciiPrintable((char) bb.get(bb.position()));
-                //sb.append(ascii ? (char) bb.get(bb.position()) : String.format("[%02x]", bb.get(bb.position())));
+
+                if (printing) {
+                    sb.append(String.format("[%s]", op));
+                    if (op == U6OP.ENDANSWERS || op == U6OP.ENDIF || op == U6OP.ASK) {
+                        sb.append("\n");
+                    }
+                }
+
+                if (op == U6OP.ENDIF) {
+                    printing = false;
+                }
+            } else if (bb.get(bb.position() - 1) == U6OP.IF.code()) {
                 sb.append(String.format("[%02x]", bb.get(bb.position())));
+            } else {
+                if (printing) {
+                    boolean ascii = CharUtils.isAsciiPrintable((char) bb.get(bb.position()));
+                    sb.append(ascii ? (char) bb.get(bb.position()) : String.format("[%02x]", bb.get(bb.position())));
+                    //sb.append(String.format("[%02x]", bb.get(bb.position())));
+                }
             }
             bb.get();
         }
@@ -228,8 +246,7 @@ public class Converse {
         dis.read(f3);
 
         return new Object[][]{
-            {"[DECL][05][VAR][ASSIGN][ONE_BYTE][01][CANCARRY][EVAL]", 5, 0},
-        /*
+            {"[DECL][05][VAR][ASSIGN][ONE_BYTE][01][CANCARRY][EVAL]", 5, 0}, /*
             {"[DECL][02][VAR][ASSIGN][ONE_BYTE][01][17][VAR][ONE_BYTE][01][ADD][RAND][EVAL]", 2, 4},
             {"[DECL][01][VAR][ASSIGN][ONE_BYTE][EB][00][FLAG][EVAL]", 1, 0},
             {"[DECL][02][VAR][ASSIGN][01][VAR][CANCARRY][ONE_BYTE][59][ONE_BYTE][01][WEIGHT][DIV][EVAL]", 2, 36},
@@ -243,8 +260,7 @@ public class Converse {
             {"[DECL][FOUR_BYTE][06][13][00][00][02][VAR][DATA][ASSIGN][00][VAR][EVAL]", 0, 0},
             {"[DECL][08][VAR][ASSIGN][05][VAR][ONE_BYTE][01][SUB][EVAL]", 8, 4},
             {"[DECL][08][VAR][ASSIGN][02][VAR][17][VAR][ONE_BYTE][03][ADD][DIV][EVAL]", 8, 13}, //
-        */
-        };
+         */};
     }
 
     @Test(dataProvider = "declares")
@@ -257,7 +273,7 @@ public class Converse {
         player.setStrength(18);
         player.addItem(Objects.Object.KEY, 1, 0);
         player.addItem(Objects.Object.GOLD_COIN, 100, 0);
-        
+
         Player player2 = new Player(2, "npc");
         party.add(player2);
         player2.setStrength(18);
@@ -277,7 +293,7 @@ public class Converse {
     @DataProvider
     public static Object[][] conditions() {
         return new Object[][]{
-/*
+            /*
             {"[IF][01][VAR][17][VAR][LE][EVAL][JUMP][85][07][00][00][ENDIF]"},
             {"[IF][ONE_BYTE][EB][00][FLAG][ONE_BYTE][EB][01][FLAG][ONE_BYTE][00][EQ][LAND][EVAL][ENDIF]"},
             {"[IF][ONE_BYTE][EB][00][FLAG][EVAL][ENDIF]"},
@@ -285,16 +301,14 @@ public class Converse {
             {"[IF][05][VAR][ONE_BYTE][0B][GT][03][VAR][CANCARRY][LAND][FOUR_BYTE][81][0A][00][00][00][VAR][DATA][ONE_BYTE][01][WEIGHT][GE][EVAL][NEW][03][VAR][EVAL][FOUR_BYTE][81][0A][00][00][00][VAR][DATA][EVAL][ONE_BYTE][00][EVAL][ONE_BYTE][01][EVAL][22][ELSE][22][ENDIF]"},
             {"[IF][17][VAR][EVAL][73][ENDIF]"},
             {"[IF][ONE_BYTE][EB][00][FLAG][ONE_BYTE][00][EQ][EVAL][72][65][2E][22][SETF][ONE_BYTE][EB][EVAL][00][EVAL][ELSE][2E][22][ENDIF]"},
-*/
-            {"[IF][05][VAR][ONE_BYTE][01][CANCARRY][GT][EVAL][DECL][05][VAR][ASSIGN][ONE_BYTE][01][CANCARRY][EVAL][ENDIF]"},
-/*
+             */
+            {"[IF][05][VAR][ONE_BYTE][01][CANCARRY][GT][EVAL][DECL][05][VAR][ASSIGN][ONE_BYTE][01][CANCARRY][EVAL][ENDIF]"}, /*
             {"[IF][03][VAR][CANCARRY][ONE_BYTE][58][FOUR_BYTE][5D][07][00][00][09][SVAR][DATA][WEIGHT][ADD][ONE_BYTE][95][ONE_BYTE][01][WEIGHT][LT][EVAL][ENDIF]"},
             {"[IF][00][VAR][03][VAR][FLAG][EVAL][CLEARF][00][VAR][EVAL][03][VAR][EVAL][ELSE][SETF][00][VAR][EVAL][03][VAR][EVAL][ENDIF]"},
             {"[IF][ONE_BYTE][eb][00][FLAG][EVAL][JUMP][64][02][00][00][ENDIF]"},
             {"[IF][ONE_BYTE][04][NPCINPARTY][EVAL][22][49][6f][6c][6f][21][ELSE][JUMP][07][02][00][00][ENDIF]"},
             {"[IF][FOUR_BYTE][c1][12][00][00][00][VAR][DATA][EVAL][JUMP][41][0d][00][00][ENDIF]"},
-*/
-        };
+         */};
     }
 
     @Test(dataProvider = "conditions")
@@ -307,7 +321,7 @@ public class Converse {
         player.setStrength(18);
         player.addItem(Objects.Object.KEY, 1, 0);
         player.addItem(Objects.Object.GOLD_COIN, 100, 0);
-        
+
         Player player2 = new Player(2, "npc");
         party.add(player2);
         player2.setStrength(18);
@@ -317,7 +331,7 @@ public class Converse {
         bb.get();//if
 
         Conversation conv = new Conversation(1, "test");
-        
+
         conv.setVar(35, "test", true);
         conv.setVar(25, "test", true);
 
@@ -333,8 +347,8 @@ public class Converse {
             vars.put(i, "test-" + i);
         }
 
-        Pattern p = Pattern.compile("#[0-9]+");
-        Matcher m = p.matcher("some text #5 was here after #63.");
+        Pattern p = Pattern.compile("\\$[0-9]+");
+        Matcher m = p.matcher("\"Enjoy your $1.\"");
 
         StringBuffer sb = new StringBuffer();
         while (m.find()) {

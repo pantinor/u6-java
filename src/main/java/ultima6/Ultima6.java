@@ -153,7 +153,8 @@ public class Ultima6 extends Game {
 
             initTileFlags();
             initConversations();
-            initSchedules();
+            
+            initSchedules(Gdx.files.classpath("data/SCHEDULE").read());
 
             AVATAR_TEXTURE = Constants.ActorAnimation.AVATAR.getTexture(Constants.Direction.NORTH);
             POINTER = Constants.TILES[365];
@@ -259,8 +260,7 @@ public class Ultima6 extends Game {
 
     }
 
-    private static void initSchedules() throws Exception {
-        InputStream is = Gdx.files.classpath("data/SCHEDULE").read();
+    public static void initSchedules(InputStream is) throws Exception {
         LittleEndianDataInputStream dis = new LittleEndianDataInputStream(is);
 
         int[] sched_offsets = new int[256];
@@ -322,7 +322,7 @@ public class Ultima6 extends Game {
 
         for (int i = scheds.size() - 1; i >= 0 && !scheds.isEmpty(); i--) {
             Schedule sched = scheds.get(i);
-            if (sched.getHour() >= CLOCK.getHour() && (sched.getDayOfWeek() == 0 || sched.getDayOfWeek() == CLOCK.getDayOfWeek())) {
+            if (sched.getHour() <= CLOCK.getHour() && (sched.getDayOfWeek() == 0 || sched.getDayOfWeek() == CLOCK.getDayOfWeek())) {
                 return sched.getWorktype();
             }
         }

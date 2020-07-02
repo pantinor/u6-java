@@ -10,11 +10,10 @@ import java.awt.Component;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.zip.GZIPInputStream;
 import javax.swing.DefaultListCellRenderer;
@@ -26,6 +25,7 @@ import javax.swing.event.ListSelectionListener;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.CharUtils;
 import ultima6.Conversations.OutputStream;
+import static ultima6.Ultima6.CLOCK;
 
 /**
  *
@@ -37,6 +37,16 @@ public class ConverseUI extends javax.swing.JFrame {
      * Creates new form ConverseUI
      */
     public ConverseUI() {
+
+        try {
+            InputStream is = new FileInputStream("src\\main\\resources\\data\\SCHEDULE");
+            Ultima6.initSchedules(is);
+            CLOCK.incMinute(1 * 60 * 11 + 59);
+            CLOCK.setDayMonth(1, 1, 1);
+        } catch (Exception e) {
+
+        }
+
         initComponents();
 
         party = new Party();
@@ -54,7 +64,7 @@ public class ConverseUI extends javax.swing.JFrame {
         for (Integer id : players.keySet()) {
             Player p = new Player(id, players.get(id));
             party.add(p);
-            p.addItem(Objects.Object.GOLD_COIN, 5, 0);
+            p.addItem(Objects.Object.GOLD_COIN, 50, 0);
             p.setStrength(12);
             p.setHp(32);
             p.setIntelligence(10);
@@ -242,9 +252,9 @@ public class ConverseUI extends javax.swing.JFrame {
         while (bb.position() < bb.limit()) {
             U6OP op = U6OP.get(bb);
             if (op != null) {
-
+                
                 bb.get();
-
+                
                 if (op == U6OP.IF || op == U6OP.ASK || op == U6OP.DECL || op == U6OP.KEYWORDS || op == U6OP.ASKC || op == U6OP.ENDANSWERS || op == U6OP.EVAL) {
                     sb.append("").append(bb.position()).append("\n");
                 }
@@ -262,12 +272,13 @@ public class ConverseUI extends javax.swing.JFrame {
                 if (op == U6OP.ENDANSWERS || op == U6OP.ENDIF || op == U6OP.ASK) {
                     sb.append("\n");
                 }
-
+            } else if (bb.get(bb.position() - 1) == U6OP.IF.code()) {
+                sb.append(String.format("[%02x]", bb.get()));
             } else {
                 boolean ascii = CharUtils.isAsciiPrintable((char) bb.get(bb.position()));
-                sb.append(ascii ? (char) bb.get(bb.position()) : String.format("[%02x]", bb.get(bb.position())));
-                bb.get();
+                sb.append(ascii ? (char) bb.get() : String.format("[%02x]", bb.get()));
             }
+            
         }
 
         return sb.toString();
