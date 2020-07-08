@@ -76,7 +76,7 @@ public enum U6OP {
     INPUTNUM((byte) 0xfc, 2),
     SIDENT((byte) 0xff, 0),
     SLEEP((byte) 0x9e, 0),
-    OBJINACTOR((byte) 0x9F, 2),
+    HASOBJ((byte) 0x9F, 3),
     RESURRECT((byte) 0xD6, 1),
     INPUTSTR((byte) 0xF9, 2),
     INDEXOF((byte) 0xB7, 2),

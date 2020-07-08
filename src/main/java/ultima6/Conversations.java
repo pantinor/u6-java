@@ -497,7 +497,7 @@ public class Conversations {
         } else if (op == U6OP.OBJINPARTY) {
             Integer obj = (Integer) args.get(0);
             Integer quality = (Integer) args.get(1);
-            result = party.isObjectInParty(ultima6.Objects.Object.get(obj), quality);
+            result = party.isObjectInParty(ultima6.Objects.Object.get(obj), quality)? 1 : 0;
         } else if (op == U6OP.OBJCOUNT) {
             Integer npc = (Integer) args.get(0);
             Integer obj = (Integer) args.get(1);
@@ -533,15 +533,16 @@ public class Conversations {
             Player p = party.getPlayer(npc);
             result = p.getExp() + amt;
             p.setExp((Integer) result);
-        } else if (op == U6OP.OBJINACTOR) {
-            Integer idx = (Integer) args.get(0);
-            Integer obj = (Integer) args.pop();
-            Player p = party.get(idx);
+        } else if (op == U6OP.HASOBJ) {
+            Integer npc = (Integer) args.get(0);
+            Integer obj = (Integer) args.get(1);
+            Integer quality = (Integer) args.get(2);
+            Player p = party.getPlayer(npc);
             result = p.hasItem(ultima6.Objects.Object.get(obj)) ? 1 : 0;
         } else if (op == U6OP.WEIGHT) {
             Integer obj = (Integer) args.get(0);
             Integer amt = (Integer) args.pop();
-            result = Ultima6.OBJ_WEIGHTS[obj] & 0xff * amt;
+            result = (Ultima6.OBJ_WEIGHTS[obj] & 0xff * amt) / 10;
         } else if (op == U6OP.JOIN) {
             Integer npc = (Integer) args.get(0);
             result = 0;//todo
@@ -598,10 +599,27 @@ public class Conversations {
                 result = bb.get(offset + p) & 0xff;
             }
         } else if (op == U6OP.INDEXOF) {
-            Integer db = (Integer) args.pop();
-            Integer idx = (Integer) args.pop();
-            result = 1;//todo
-            //dereference to a database name
+            Integer offset = (Integer) args.get(0);
+            Integer idx = (Integer) args.get(1);
+
+            int e = 0, p = 0;
+            if (declSvar) {
+                while (e++ < idx) {
+                    while (bb.get(offset + (p++)) != 0) {
+                    }
+                }
+            } else {
+                while (e++ < idx) {
+                    p += 2;
+                }
+            }
+
+            StringBuffer sb = new StringBuffer();
+            for (int i = offset + p; bb.get(i) != 0; i++) {
+                sb.append((char) bb.get(i));
+            }
+            result = sb.toString();
+
         } else {
             throw new IllegalArgumentException(String.format("unknown op in eval function [%s]", op));
         }
@@ -705,7 +723,6 @@ public class Conversations {
         String val = new String(bb.array(), start, bb.position() - start);
 
         //val = val.replace("*", "");
-
         val = val.replace("$G", "milord");
         val = val.replace("$P", player.getName());
         val = val.replace("$N", conv.getName());

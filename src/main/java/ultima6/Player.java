@@ -250,7 +250,7 @@ public class Player {
     public int getInventoryWeight() {
         int amt = 0;
         for (InventoryItem ii : this.inventory) {
-            amt += Ultima6.OBJ_WEIGHTS[ii.id.getId()] & 0xff * ii.quantity;
+            amt += (Ultima6.OBJ_WEIGHTS[ii.id.getId()] & 0xff * ii.quantity) / 10;
         }
         return amt;
     }

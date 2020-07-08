@@ -26,6 +26,7 @@ import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.zip.GZIPInputStream;
 import org.apache.commons.io.IOUtils;
 import ultima6.Constants.Direction;
@@ -70,7 +71,7 @@ public class Ultima6 extends Game {
     public static Direction currentDirection = Direction.NORTH;
 
     public static Party PARTY = new Party();
-    public static Player AVATAR = new Player(1, "Avatar");
+    public static Player AVATAR;
     public static final Clock CLOCK = new Clock();
 
     public static TextureRegion[] faceTiles = new TextureRegion[13 * 16];
@@ -153,11 +154,33 @@ public class Ultima6 extends Game {
 
             initTileFlags();
             initConversations();
-            
+
             initSchedules(Gdx.files.classpath("data/SCHEDULE").read());
 
             AVATAR_TEXTURE = Constants.ActorAnimation.AVATAR.getTexture(Constants.Direction.NORTH);
             POINTER = Constants.TILES[365];
+
+            Map<Integer, String> players = new HashMap<>();
+            players.put(0, "Avatar");
+            players.put(2, "Dupre");
+            players.put(3, "Shamino");
+            players.put(4, "Iolo");
+            // players.put(62, "Jaana");
+            //players.put(66, "Gwenno");
+            //players.put(186, "Sentri");
+            //players.put(67, "Julia");
+
+            for (Integer id : players.keySet()) {
+                Player p = new Player(id, players.get(id));
+                PARTY.add(p);
+                p.addItem(Objects.Object.GOLD_COIN, 50, 0);
+                p.setStrength(20);
+                p.setHp(69);
+                p.setIntelligence(19);
+                p.setDex(21);
+            }
+
+            AVATAR = PARTY.get(0);
 
             PARTY.add(AVATAR);
 
@@ -320,10 +343,12 @@ public class Ultima6 extends Game {
 
         java.util.List<Schedule> scheds = SCHEDULES.get(npc);
 
-        for (int i = scheds.size() - 1; i >= 0 && !scheds.isEmpty(); i--) {
-            Schedule sched = scheds.get(i);
-            if (sched.getHour() <= CLOCK.getHour() && (sched.getDayOfWeek() == 0 || sched.getDayOfWeek() == CLOCK.getDayOfWeek())) {
-                return sched.getWorktype();
+        if (scheds != null) {
+            for (int i = scheds.size() - 1; i >= 0 && !scheds.isEmpty(); i--) {
+                Schedule sched = scheds.get(i);
+                if (sched.getHour() <= CLOCK.getHour() && (sched.getDayOfWeek() == 0 || sched.getDayOfWeek() == CLOCK.getDayOfWeek())) {
+                    return sched.getWorktype();
+                }
             }
         }
 

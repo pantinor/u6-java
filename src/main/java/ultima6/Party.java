@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Party {
 
-    public static final int NPC_AVATAR = 1;
+    public static final int NPC_AVATAR = 0;
     public static final int NPC_DUPRE = 2;
     public static final int NPC_SHAMINO = 3;
     public static final int NPC_IOLO = 4;
@@ -15,6 +15,9 @@ public class Party {
     public static final int NPC_THOLDEN = 8;
     public static final int NPC_SHERRY = 9;
     public static final int NPC_SELF = 235;
+    
+    public static final int MAX_PARTY_SIZE = 8;
+
 
     final private List<Player> players = new ArrayList<>();
 
@@ -45,7 +48,7 @@ public class Party {
     public List<Player> getPlayers() {
         return players;
     }
-
+    
     public boolean isObjectInParty(Objects.Object obj, int quality) {
         for (Player player : players) {
             if (player.hasItem(obj, quality)) {

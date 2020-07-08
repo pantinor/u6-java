@@ -252,6 +252,9 @@ public class Constants {
                 }
 
             }
+            
+            CRANK_ANIM_TILE = (AnimatedTiledMapTile) set.getTile(1009 + 1);
+            CHAIN_ANIM_TILE = (AnimatedTiledMapTile) set.getTile(1020 + 1);
 
         }
 
@@ -792,11 +795,13 @@ public class Constants {
 
     public static Animation[] RED_MOONGATE = new Animation[2];
     public static Animation[] BLUE_MOONGATE = new Animation[2];
+    public static AnimatedTiledMapTile CRANK_ANIM_TILE;
+    public static AnimatedTiledMapTile CHAIN_ANIM_TILE;
 
     public static enum PaletteCycledTiles {
 
         FIRE_CYCLES(0xe0, 8, 221, 222, 223, 797, 602, 603, 683, 702, 703, 717, 719, 788, 789, 790, 791, 890, 1160, 1140, 1126, 1127, 1132, 1133, 1164),
-        BLUE_CYCLES(0xe8, 8, 3, 217, 218, 219, 252, 254, 798, 604, 605),
+        BLUE_CYCLES(0xe8, 8, 3, 217, 218, 219, 252, 254, 798, 604, 605, 1180, 1181, 1182, 1183),
         BROWN_CYCLES(0xf4, 4, 687),
         PINK_CYCLES(0xf0, 4, 253, 562, 799, 1167),
         GREEN_CYCLES(0xf8, 4, 1165);

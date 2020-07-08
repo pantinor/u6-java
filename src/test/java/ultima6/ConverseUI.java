@@ -71,7 +71,7 @@ public class ConverseUI extends javax.swing.JFrame {
             p.setDex(12);
         }
 
-        avatar = party.get(1);
+        avatar = party.get(0);
 
         GZIPInputStream is;
         ByteBuffer bba = null;

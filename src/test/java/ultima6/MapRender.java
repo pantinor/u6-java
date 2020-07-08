@@ -7,7 +7,10 @@ import java.io.File;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.zip.GZIPInputStream;
@@ -315,7 +318,7 @@ public class MapRender {
             int quantity = dis.readUnsignedByte();
             int quality = dis.readUnsignedByte();
 
-            boolean on_map = (status & Objects.OBJ_STATUS_MASK_GET) == 0;
+            int mask = status & Objects.OBJ_STATUS_MASK_GET;
 
             int tile = basetiles[object] + frame;
             int objtile = tile;
@@ -338,7 +341,17 @@ public class MapRender {
                     obj.quantity = quantity;
                     obj.status = status;
                     obj.on_top = on_top;
-                    obj.on_map = on_map;
+
+                    if (mask == Objects.OBJ_STATUS_ON_MAP) {
+                        obj.on_map = true;
+                    } else if (mask == Objects.OBJ_STATUS_IN_CONTAINER) {
+                        obj.in_container = true;
+                    } else if (mask == Objects.OBJ_STATUS_IN_INVENTORY) {
+                        obj.in_inventory = true;
+                        obj.npc = obj.x;
+                    } else if (mask == Objects.OBJ_STATUS_READIED) {
+                        obj.readied = true;
+                    }
 
                     if (isStackable(object)) {
                         obj.quantity = ((quality << 8) + quantity) & 0x000000ff;
@@ -380,12 +393,35 @@ public class MapRender {
                         }
                     }
 
+                    if (obj.object == Objects.Object.CRANK.getId()) {
+                        obj.tile = 273;
+                    }
+
+                    if (obj.object == Objects.Object.CHAIN.getId()) {
+                        obj.tile = 311;
+                    }
+
                     objects.add(obj);
                     tile--;
                 }
             }
 
         }
+
+        //fix for stone lions and floor2 layering issue
+        Collections.sort(objects, new Comparator<U6Object>() {
+            @Override
+            public int compare(U6Object o1, U6Object o2) {
+                if (o1.name.equals("STONE_LION") && o2.name.equals("FLOOR2")) {
+                    return 1;
+                }
+                if (o1.name.equals("FLOOR2") && o2.name.equals("STONE_LION")) {
+                    return -1;
+                }
+                return 0;
+            }
+        });
+
         return objects;
     }
 
@@ -403,8 +439,13 @@ public class MapRender {
         int status;
         int quality;
         int quantity;
+
         boolean on_top;
         boolean on_map;
+        boolean in_container;
+        boolean readied;
+        boolean in_inventory;
+
         int portal_dest_x;
         int portal_dest_y;
         int portal_dest_z;
@@ -420,9 +461,12 @@ public class MapRender {
                 contentProperties.append(String.format("\tname=\"stack-%d\" value=\"%s, %d, %d, %d\"/>\n", j, obj.name, obj.quantity, obj.quality, obj.status));
             }
 
+            String statMask = String.format("%8s", Integer.toBinaryString(0xFF & status)).replaceAll(" ", "0");
+
             return name + ", id=" + id + ", x=" + x + ", y=" + y + ", z=" + z + ", frame=" + frame + ", tile=" + tile + ", object="
-                    + object + ", npc=" + npc + ", status=" + status + ", quality=" + quality + ", quantity="
-                    + quantity + ", on_top=" + on_top + ", on_map=" + on_map + "" + (contents.size() > 0 ? "\n" + contentProperties : "");
+                    + object + ", npc=" + npc + ", status=" + status + " [" + statMask + "], quality=" + quality + ", quantity="
+                    + quantity + ", on_top=" + on_top + ", on_map=" + on_map + ", in_container=" + in_container + ", readied=" + readied + ", in_inventory=" + in_inventory
+                    + (contents.size() > 0 ? "\n" + contentProperties : "");
         }
 
         public String toString(int id) {
@@ -488,15 +532,33 @@ public class MapRender {
     public static int setObjects(int count, List<U6Object> objects, StringBuilder eggLayer, StringBuilder portalLayer,
             StringBuilder onTopLayer, StringBuilder itemLayer, StringBuilder objectLayer) {
 
+        //objects that go into containers
         for (int j = 0; j < objects.size(); j++) {
             U6Object obj = objects.get(j);
-            if (!obj.on_map || obj.status > 1) {
+            if (obj.in_container) {
                 U6Object container = findContainer(objects, obj.x);
                 if (container != null) {
                     container.contents.add(obj);
+                    //System.out.printf("Added to container [%s] with id [%d] an item [%s]\n", container.name, obj.x, obj.name);
                 } else {
                     System.out.printf("%s cannot find container for id %d\n", obj.name, obj.x);
                 }
+            }
+        }
+
+        //objects that are in inventory
+        for (int j = 0; j < objects.size(); j++) {
+            U6Object obj = objects.get(j);
+            if (obj.in_inventory) {
+                
+            }
+        }
+
+        //objects that are readied
+        for (int j = 0; j < objects.size(); j++) {
+            U6Object obj = objects.get(j);
+            if (obj.readied) {
+
             }
         }
 
@@ -504,16 +566,16 @@ public class MapRender {
             U6Object obj = objects.get(j);
             if (obj.object == Objects.Object.EGG.getId()) {
                 eggLayer.append(obj.toString(count++));
-            } else if (!obj.on_map || obj.status > 1) {
-                //nothing
             } else if (obj.object == Objects.Object.MINE_SHAFT.getId() || obj.object == Objects.Object.LADDER.getId()) {
                 portalLayer.append(obj.toString(count++));
-            } else if (obj.on_top) {
+            } else if (obj.on_top && !obj.in_container) {
                 onTopLayer.append(obj.toString(count++));
-            } else if (obj.status == 1 || obj.object == Objects.Object.MOONSTONE.getId()) {
+            } else if ((obj.on_map && obj.status == 1) || obj.object == Objects.Object.MOONSTONE.getId()) {
                 itemLayer.append(obj.toString(count++));
-            } else {
+            } else if (obj.on_map) {
                 objectLayer.append(obj.toString(count++));
+            } else {
+                //TODO add to containers?
             }
         }
 
