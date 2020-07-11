@@ -174,7 +174,7 @@ public class MapRender {
 
         for (int i = 0; i < 5; i++) {
 
-            List<U6Object> dungeonObjects = (readObjBlockDungeon(i, basetiles, tileflags));
+            List<U6Object> dungeonObjects = readObjBlockDungeon(i, basetiles, tileflags);
 
             StringBuilder dungObjectLayer = new StringBuilder();
             StringBuilder dungOnTopLayer = new StringBuilder();
